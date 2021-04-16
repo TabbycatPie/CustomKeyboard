@@ -1,4 +1,10 @@
-!*.c
-!*.h
-!*.uvproj
-!*.inc
+
+*.admin
+*.uvopt
+*.obj
+*.lnp
+*.lst
+*.hex
+*.htm
+CH551CustomKeyboard/Objects/CH552E-RX
+*.m51
