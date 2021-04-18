@@ -396,16 +396,6 @@
               <FileType>5</FileType>
               <FilePath>.\usar\CH552.INC</FilePath>
             </File>
-            <File>
-              <FileName>HIDdevice.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\HIDdevice.c</FilePath>
-            </File>
-            <File>
-              <FileName>HIDdevice.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\HIDdevice.h</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>
