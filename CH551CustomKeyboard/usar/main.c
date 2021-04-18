@@ -195,6 +195,8 @@ UINT8C MouseRepDesc[52] =
     0x15,0x81,0x25,0x7f,0x75,0x08,0x95,0x03,
     0x81,0x06,0xC0,0xC0
 };
+
+
 /*鼠标数据*/
 UINT8 HIDMouse[4] = {0x0,0x0,0x0,0x0};
 /*键盘数据*/
@@ -611,16 +613,27 @@ void    DeviceInterrupt( void ) interrupt INT_NO_USB                     //USB中
 
 
 
-/*
-	上报按键数据
-*/
+//report key code to computer
+void HIDsend(){
+	FLAG = 0;
+	//HIDKey[0] = 0x3D;   //F4
+	//HIDKey[3] = 0;
+	//Enp1IntIn();
+	Enp2IntIn();
+	while(FLAG == 0)
+	{
+		;    /*等待上一包传输完成*/
+	}
+}
 
+
+//Abandoned
 void HIDValueHandle(UINT8 i)
 {
 	switch(i)
 	{
 		//键盘数据上传示例
-		case '1':
+		case 1:
 			FLAG = 0;
 //			HIDKey[0] = 0x3D;   //F4
 //			HIDKey[3] = 0;
@@ -635,11 +648,11 @@ void HIDValueHandle(UINT8 i)
 				;    /*等待上一包传输完成*/
 			}
 			break;
-		case '2':
+		case 2:
 			FLAG = 0;
-//			HIDKey[0] = 0x3D;   //F4
-//			HIDKey[3] = 0;
-//			Enp1IntIn();
+			//HIDKey[0] = 0x3D;   //F4
+			//HIDKey[3] = 0;
+			//Enp1IntIn();
 			HIDMouse[0] = 0x02;
 			HIDMouse[1] = 0x0;
 			HIDMouse[2] = 0x0;
@@ -650,11 +663,11 @@ void HIDValueHandle(UINT8 i)
 				;    /*等待上一包传输完成*/
 			}
 			break;
-		case '7':
+		case 0:
 			FLAG = 0;
-//			HIDKey[0] = 0;      //按键结束
-//			HIDKey[3] = 0;
-//			Enp1IntIn();
+			//HIDKey[0] = 0;      //按键结束
+			//HIDKey[3] = 0;
+			//Enp1IntIn();
 			HIDMouse[0] = 0x0;
 			HIDMouse[1] = 0x0;
 			HIDMouse[2] = 0x0;
@@ -673,9 +686,47 @@ void HIDValueHandle(UINT8 i)
 }
 
 
+UINT8 KEY_CODE[10]  = {0x01,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for key code
+UINT8 KEY_PRESS[10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}; //if key(n) pressed, key_press[n] == 0xff
+
 //sbit Key1 = P3^3;
 sbit Key1 = P3^2;
 sbit Key2 = P1^4;
+
+void scanKey(){
+	UINT8 i = 0;
+	UINT8 key_code = 0x00;
+	if(!Key1){
+		KEY_PRESS[0]=0xff;
+	}
+	else{
+		KEY_PRESS[0]=0x00;
+	}
+	if(!Key2){
+		KEY_PRESS[1]=0xff;
+	}
+	else{
+		KEY_PRESS[1]=0x00;
+	}
+	mDelaymS(6); //avoid jitter
+	if(!Key1){
+		if(KEY_PRESS[0]!=0xff){
+			KEY_PRESS[0] =0x00;
+		}
+	}
+	if(!Key2){
+		if(KEY_PRESS[1]!=0xff){
+			KEY_PRESS[1] =0x00;
+		}
+	}
+	
+	
+	//get final result
+	for(;i<10;i++){
+		key_code += KEY_CODE[i]&KEY_PRESS[i];
+	}
+	HIDMouse[0] = key_code;
+}
 
 
 void main()
@@ -691,7 +742,7 @@ void main()
 	P3_DIR_PU = 0xFF;
 
 	USBDeviceInit();              //USB设备模式初始化
-    EA = 1;                       //允许单片机中断
+    EA = 1;                     //允许单片机中断
     
 	UEP1_T_LEN = 0;               //预使用发送长度一定要清空
     FLAG = 0;
@@ -699,38 +750,68 @@ void main()
 	
 	//等待USB枚举成功
 	while(Ready == 0);
-	
-    while(1)
-    {
-
-		if(Ready)
+	while(1)
+	{
+		if(Ready)   //waiting for usb enum finish
 		{
-
-			if(!Key1)
-			{
-				mDelaymS(6);
-				if(!Key1)
-				{
-					HIDValueHandle('1');
-					while(!Key1);
-					HIDValueHandle('7');
-				}
-			}
-			
-			if(!Key2)
-			{
-				mDelaymS(6);
-				if(!Key2)
-				{
-					HIDValueHandle('2');
-					while(!Key2);
-					HIDValueHandle('7');
-				}
-			}
-			
+			scanKey();
+			HIDsend();
 			FLAG = 0;
-		
 		}
-
-    }
+	}
 }
+
+
+
+
+//void main()
+//{
+//    CfgFsys( );                    //CH552时钟选择配置
+//    mDelaymS(50);                 //修改主频等待内部晶振稳定,必加
+
+//	/* 设置P1口为准双向IO口 */
+//	P1_MOD_OC = 0xff;
+//	P1_DIR_PU = 0xff;
+//	
+//	P3_MOD_OC = 0xFF;
+//	P3_DIR_PU = 0xFF;
+
+//	USBDeviceInit();              //USB设备模式初始化
+//    EA = 1;                     //允许单片机中断
+//    
+//	UEP1_T_LEN = 0;               //预使用发送长度一定要清空
+//    FLAG = 0;
+//    Ready = 0;
+//	
+//	//等待USB枚举成功
+//	while(Ready == 0);
+//	while(1)
+//	{
+//		if(Ready)   //waiting for usb enum finish
+//		{
+//			if(!Key1)
+//			{
+//				mDelaymS(6);  //avoid jitter 
+//				if(!Key1)
+//				{
+//					HIDValueHandle(1);
+//					while(!Key1);
+//					HIDValueHandle(0);
+//				}
+//			}
+//			
+//			if(!Key2)  
+//			{
+//				mDelaymS(6);  //avoid jitter 
+//				if(!Key2)
+//				{
+//					HIDValueHandle(2);  
+//					while(!Key2);
+//					HIDValueHandle(0);
+//				}
+//			}
+//			
+//			FLAG = 0;
+//		}
+//	}
+//}
