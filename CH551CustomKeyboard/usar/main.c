@@ -10,20 +10,20 @@
 #define Fullspeed
 #define THIS_ENDP0_SIZE         DEFAULT_ENDP0_SIZE
 
-UINT8X  Ep0Buffer[8>(THIS_ENDP0_SIZE+2)?8:(THIS_ENDP0_SIZE+2)] _at_ 0x0000;    //端点0 OUT&IN缓冲区，必须是偶地址
-UINT8X  Ep1Buffer[64>(MAX_PACKET_SIZE+2)?64:(MAX_PACKET_SIZE+2)] _at_ 0x000a;  //端点1 IN缓冲区,必须是偶地址
-UINT8X  Ep2Buffer[64>(MAX_PACKET_SIZE+2)?64:(MAX_PACKET_SIZE+2)] _at_ 0x0050;  //端点2 IN缓冲区,必须是偶地址
+UINT8X  Ep0Buffer[8 >(THIS_ENDP0_SIZE+2)? 8:(THIS_ENDP0_SIZE+2)] _at_ 0x0000;    //端点0 OUT&IN缓冲区，必须是偶地址
+UINT8X  Ep1Buffer[64>(MAX_PACKET_SIZE+2)?64:(MAX_PACKET_SIZE+2)] _at_ 0x000a;    //端点1 IN缓冲区,必须是偶地址
+UINT8X  Ep2Buffer[64>(MAX_PACKET_SIZE+2)?64:(MAX_PACKET_SIZE+2)] _at_ 0x0050;    //端点2 IN缓冲区,必须是偶地址
 UINT8   SetupReq,SetupLen,Ready,Count,FLAG,UsbConfig;
 PUINT8  pDescr;                                                                //USB配置标志
 USB_SETUP_REQ   SetupReqBuf;                                                   //暂存Setup包
-
 
 #define UsbSetupBuf     ((PUSB_SETUP_REQ)Ep0Buffer)
 #define DEBUG 0
 
 #pragma  NOAREGS
 /*设备描述符*/
-UINT8C DevDesc[18] = {
+UINT8C DevDesc[18] = 
+{
 	0x12,
 	0x01,	/* 设备描述符 */
 	
@@ -80,7 +80,7 @@ UINT8C CfgDesc[] =		//34
 	0x03,	/* 该接口所使用的类   键盘属于HID */
 	0x01,	/* 该接口所用的子类 1=BOOT, 0=no boot */
 	0x01,	/* 键盘是1   鼠标是2  0是自定义设备 */
-	0x00,   /* 该接口字符串的索引  一般都为0 */
+	0x00, /* 该接口字符串的索引  一般都为0 */
 
 //////////////////////////////////////////////////
 /************** 键盘HID的描述符 *****************/
@@ -198,7 +198,8 @@ UINT8C MouseRepDesc[52] =
 
 
 /*鼠标数据*/
-UINT8 HIDMouse[4] = {0x0,0x0,0x0,0x0};
+UINT8 HIDMouse[4] = {0x0,0x0,0x0,0x0}; 
+
 /*键盘数据*/
 UINT8 HIDKey[8] = {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0};
 
@@ -255,17 +256,17 @@ void USBDeviceInit()
     UDEV_CTRL &= ~bUD_LOW_SPEED;                                               //选择全速12M模式，默认方式
     USB_CTRL &= ~bUC_LOW_SPEED;
 #endif
+
+	UEP2_DMA = Ep2Buffer;                                                      //端点2数据传输地址
+	UEP2_3_MOD = UEP2_3_MOD & ~bUEP2_BUF_MOD | bUEP2_TX_EN;                    //端点2发送使能 64字节缓冲区
+	UEP2_CTRL = bUEP_AUTO_TOG | UEP_T_RES_NAK;                                 //端点2自动翻转同步标志位，IN事务返回NAK
+	UEP0_DMA = Ep0Buffer;                                                      //端点0数据传输地址
+	UEP4_1_MOD &= ~(bUEP4_RX_EN | bUEP4_TX_EN);                                //端点0单64字节收发缓冲区
+	UEP0_CTRL = UEP_R_RES_ACK | UEP_T_RES_NAK;                                 //OUT事务返回ACK，IN事务返回NAK
+	UEP1_DMA = Ep1Buffer;                                                      //端点1数据传输地址
+	UEP4_1_MOD = UEP4_1_MOD & ~bUEP1_BUF_MOD | bUEP1_TX_EN;                    //端点1发送使能 64字节缓冲区
+	UEP1_CTRL = bUEP_AUTO_TOG | UEP_T_RES_NAK;                                 //端点1自动翻转同步标志位，IN事务返回NAK	
 	
-    UEP2_DMA = Ep2Buffer;                                                      //端点2数据传输地址
-    UEP2_3_MOD = UEP2_3_MOD & ~bUEP2_BUF_MOD | bUEP2_TX_EN;                    //端点2发送使能 64字节缓冲区
-    UEP2_CTRL = bUEP_AUTO_TOG | UEP_T_RES_NAK;                                 //端点2自动翻转同步标志位，IN事务返回NAK
-    UEP0_DMA = Ep0Buffer;                                                      //端点0数据传输地址
-    UEP4_1_MOD &= ~(bUEP4_RX_EN | bUEP4_TX_EN);                                //端点0单64字节收发缓冲区
-    UEP0_CTRL = UEP_R_RES_ACK | UEP_T_RES_NAK;                                 //OUT事务返回ACK，IN事务返回NAK
-    UEP1_DMA = Ep1Buffer;                                                      //端点1数据传输地址
-    UEP4_1_MOD = UEP4_1_MOD & ~bUEP1_BUF_MOD | bUEP1_TX_EN;                    //端点1发送使能 64字节缓冲区
-    UEP1_CTRL = bUEP_AUTO_TOG | UEP_T_RES_NAK;                                 //端点1自动翻转同步标志位，IN事务返回NAK	
-		
 	USB_DEV_AD = 0x00;
 	USB_CTRL |= bUC_DEV_PU_EN | bUC_INT_BUSY | bUC_DMA_EN;                      // 启动USB设备及DMA，在中断期间中断标志未清除前自动返回NAK
 	UDEV_CTRL |= bUD_PORT_EN;                                                  // 允许USB端口
@@ -273,6 +274,8 @@ void USBDeviceInit()
 	USB_INT_EN = bUIE_SUSPEND | bUIE_TRANSFER | bUIE_BUS_RST;
 	IE_USB = 1;
 }
+
+
 /*******************************************************************************
 * Function Name  : Enp1IntIn()
 * Description    : USB设备模式端点1的中断上传
@@ -299,11 +302,13 @@ void Enp2IntIn( )
     UEP2_T_LEN = sizeof(HIDMouse);                                              //上传数据长度
     UEP2_CTRL = UEP2_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_ACK;                  //有数据时上传数据并应答ACK
 }
+
+
 /*******************************************************************************
 * Function Name  : DeviceInterrupt()
 * Description    : CH552USB中断处理函数
-*******************************************************************************/
-void    DeviceInterrupt( void ) interrupt INT_NO_USB                     //USB中断服务程序,使用寄存器组1
+********************************************************************************/
+void DeviceInterrupt( void ) interrupt INT_NO_USB                     					//USB中断服务程序,使用寄存器组1
 {
     UINT8 len = 0;
     if(UIF_TRANSFER)                                                            //USB传输完成标志
@@ -314,7 +319,7 @@ void    DeviceInterrupt( void ) interrupt INT_NO_USB                     //USB中
             UEP2_T_LEN = 0;                                                     //预使用发送长度一定要清空
 //            UEP1_CTRL ^= bUEP_T_TOG;                                          //如果不设置自动翻转则需要手动翻转
             UEP2_CTRL = UEP2_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_NAK;           //默认应答NAK
-		FLAG = 1;
+						FLAG = 1;
             break;
         case UIS_TOKEN_IN | 1:                                                  //endpoint 1# 中断端点上传
             UEP1_T_LEN = 0;                                                     //预使用发送长度一定要清空
@@ -375,7 +380,7 @@ void    DeviceInterrupt( void ) interrupt INT_NO_USB                     //USB中
                                 pDescr = KeyRepDesc;                        //数据准备上传
                                 len = sizeof(KeyRepDesc);
                             }
-//不枚举鼠标
+														//不枚举鼠标
                             else if(UsbSetupBuf->wIndexL == 1)              //接口1报表描述符
                             {
                                 pDescr = MouseRepDesc;                      //数据准备上传
@@ -411,14 +416,14 @@ void    DeviceInterrupt( void ) interrupt INT_NO_USB                     //USB中
                         break;
                     case USB_SET_CONFIGURATION:
                         UsbConfig = UsbSetupBuf->wValueL;
-						if(UsbConfig)
-						{
-#ifdef DE_PRINTF 							
-							//printf("SET CONFIG.\n");
-#endif
-							Ready = 1;                                      //set config命令一般代表usb枚举完成的标志
-						}
-						break;
+												if(UsbConfig)
+												{
+												#ifdef DE_PRINTF 							
+													//printf("SET CONFIG.\n");
+												#endif
+													Ready = 1;                                      //set config命令一般代表usb枚举完成的标志
+												}
+												break;
                     case 0x0A:
                         break;
                     case USB_CLEAR_FEATURE:                                            //Clear Feature
@@ -442,7 +447,7 @@ void    DeviceInterrupt( void ) interrupt INT_NO_USB                     //USB中
                         }
                         if ( ( UsbSetupBuf->bRequestType & USB_REQ_RECIP_MASK ) == USB_REQ_RECIP_DEVICE )// 设备
                         {
-							break;
+										break;
                         }													
                         else
                         {
@@ -613,17 +618,14 @@ void    DeviceInterrupt( void ) interrupt INT_NO_USB                     //USB中
 
 
 
+
 //report key code to computer
 void HIDsend(){
 	FLAG = 0;
-	//HIDKey[0] = 0x3D;   //F4
-	//HIDKey[3] = 0;
-	//Enp1IntIn();
-	Enp2IntIn();
-	while(FLAG == 0)
-	{
-		;    /*等待上一包传输完成*/
-	}
+	Enp2IntIn();      //send mouse event
+	while(FLAG == 0); /*等待上一包传输完成*/
+	Enp1IntIn();      //send keyboard event
+	while(FLAG == 0); 
 }
 
 
@@ -686,16 +688,32 @@ void HIDValueHandle(UINT8 i)
 }
 
 
-UINT8 KEY_CODE[10]  = {0x01,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for key code
-UINT8 KEY_PRESS[10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}; //if key(n) pressed, key_press[n] == 0xff
+
+UINT8 MOUSE_CODE [10] = {0x01,0x02,0x04,0x03,0x05,0x06,0x07,0x01,0x03,0x04};  //temporily used for mouse 
+UINT8 KEY_CODE   [10] = {0x1E,0x1F,0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27};  //temporily used for key 
+//UINT8 KEY_CODE_1 [10] = {0x1E,0x10,0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27};  //temporily used for key 1
+//UINT8 KEY_CODE_2 [10] = {0x1E,0x10,0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27};  //temporily used for key 2
+UINT8 SP_KEY_CODE[10] = {0x01,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for sepcial key
+UINT8 KEY_PRESS  [10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //if key(n) pressed, key_press[n] == 0xff
+
 
 //sbit Key1 = P3^3;
-sbit Key1 = P3^2;
-sbit Key2 = P1^4;
+sbit Key1  = P3^2;
+sbit Key2  = P1^4;
+sbit Key3  = P1^5;
+sbit Key4  = P1^6;
+sbit Key5  = P1^7;
+sbit Key6  = P3^1;
+sbit Key7  = P3^0;
+sbit Key8  = P1^1;
+sbit Key9  = P3^3;
+sbit Key10 = P3^4;
 
 void scanKey(){
 	UINT8 i = 0;
-	UINT8 key_code = 0x00;
+	UINT8 mouse_code = 0x00;
+	UINT8 sp_key_code = 0x00;
+	UINT8 key_count = 0;
 	if(!Key1){
 		KEY_PRESS[0]=0xff;
 	}
@@ -708,6 +726,54 @@ void scanKey(){
 	else{
 		KEY_PRESS[1]=0x00;
 	}
+	if(!Key3){
+		KEY_PRESS[2]=0xff;
+	}
+	else{
+		KEY_PRESS[2]=0x00;
+	}
+	if(!Key4){
+		KEY_PRESS[3]=0xff;
+	}
+	else{
+		KEY_PRESS[3]=0x00;
+	}
+	if(!Key5){
+		KEY_PRESS[4]=0xff;
+	}
+	else{
+		KEY_PRESS[4]=0x00;
+	}
+	if(!Key6){
+		KEY_PRESS[5]=0xff;
+	}
+	else{
+		KEY_PRESS[5]=0x00;
+	}
+	if(!Key7){
+		KEY_PRESS[6]=0xff;
+	}
+	else{
+		KEY_PRESS[6]=0x00;
+	}
+	if(!Key8){
+		KEY_PRESS[7]=0xff;
+	}
+	else{
+		KEY_PRESS[7]=0x00;
+	}
+	if(!Key9){
+		KEY_PRESS[8]=0xff;
+	}
+	else{
+		KEY_PRESS[8]=0x00;
+	}
+	if(!Key10){
+		KEY_PRESS[9]=0xff;
+	}
+	else{
+		KEY_PRESS[9]=0x00;
+	}
 	mDelaymS(6); //avoid jitter
 	if(!Key1){
 		if(KEY_PRESS[0]!=0xff){
@@ -719,14 +785,72 @@ void scanKey(){
 			KEY_PRESS[1] =0x00;
 		}
 	}
+	if(!Key3){
+		if(KEY_PRESS[2]!=0xff){
+			KEY_PRESS[2] =0x00;
+		}
+	}
+	if(!Key4){
+		if(KEY_PRESS[3]!=0xff){
+			KEY_PRESS[3] =0x00;
+		}
+	}
+	if(!Key5){
+		if(KEY_PRESS[4]!=0xff){
+			KEY_PRESS[4] =0x00;
+		}
+	}
+	if(!Key6){
+		if(KEY_PRESS[5]!=0xff){
+			KEY_PRESS[5] =0x00;
+		}
+	}
+	if(!Key7){
+		if(KEY_PRESS[6]!=0xff){
+			KEY_PRESS[6] =0x00;
+		}
+	}
+	if(!Key8){
+		if(KEY_PRESS[7]!=0xff){
+			KEY_PRESS[7] =0x00;
+		}
+	}
+	if(!Key9){
+		if(KEY_PRESS[8]!=0xff){
+			KEY_PRESS[8] =0x00;
+		}
+	}
+	if(!Key10){
+		if(KEY_PRESS[9]!=0xff){
+			KEY_PRESS[9] =0x00;
+		}
+	}
 	
 	
 	//get final result
 	for(;i<10;i++){
-		key_code += KEY_CODE[i]&KEY_PRESS[i];
+		mouse_code  |= MOUSE_CODE[i] &KEY_PRESS[i];
+		sp_key_code |= SP_KEY_CODE[i]&KEY_PRESS[i];
+		if(key_count<6 && (KEY_PRESS[i]==0xff)){
+			HIDKey[2+key_count]=KEY_CODE[i];
+			key_count ++;
+		}
 	}
-	HIDMouse[0] = key_code;
+	
+	//FINAL ASSIGNING
+	//mouse codes
+	HIDMouse[0] = mouse_code;
+	//key codes
+	HIDKey  [0] = sp_key_code; //special key Byte
+	HIDKey  [1] = 0x00;        //reserved
+	if(key_count<6){					 //fill blank
+		for(i=7;i>=key_count+2;i--){
+			HIDKey[i]=0x00;
+		}
+	}
+	
 }
+
 
 
 void main()
@@ -737,7 +861,7 @@ void main()
 	/* 设置P1口为准双向IO口 */
 	P1_MOD_OC = 0xff;
 	P1_DIR_PU = 0xff;
-	
+	//set P3 dual-dir IO port
 	P3_MOD_OC = 0xFF;
 	P3_DIR_PU = 0xFF;
 
@@ -761,57 +885,3 @@ void main()
 	}
 }
 
-
-
-
-//void main()
-//{
-//    CfgFsys( );                    //CH552时钟选择配置
-//    mDelaymS(50);                 //修改主频等待内部晶振稳定,必加
-
-//	/* 设置P1口为准双向IO口 */
-//	P1_MOD_OC = 0xff;
-//	P1_DIR_PU = 0xff;
-//	
-//	P3_MOD_OC = 0xFF;
-//	P3_DIR_PU = 0xFF;
-
-//	USBDeviceInit();              //USB设备模式初始化
-//    EA = 1;                     //允许单片机中断
-//    
-//	UEP1_T_LEN = 0;               //预使用发送长度一定要清空
-//    FLAG = 0;
-//    Ready = 0;
-//	
-//	//等待USB枚举成功
-//	while(Ready == 0);
-//	while(1)
-//	{
-//		if(Ready)   //waiting for usb enum finish
-//		{
-//			if(!Key1)
-//			{
-//				mDelaymS(6);  //avoid jitter 
-//				if(!Key1)
-//				{
-//					HIDValueHandle(1);
-//					while(!Key1);
-//					HIDValueHandle(0);
-//				}
-//			}
-//			
-//			if(!Key2)  
-//			{
-//				mDelaymS(6);  //avoid jitter 
-//				if(!Key2)
-//				{
-//					HIDValueHandle(2);  
-//					while(!Key2);
-//					HIDValueHandle(0);
-//				}
-//			}
-//			
-//			FLAG = 0;
-//		}
-//	}
-//}
