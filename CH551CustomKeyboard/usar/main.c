@@ -319,7 +319,7 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB                     					//USB
             UEP2_T_LEN = 0;                                                     //预使用发送长度一定要清空
 //            UEP1_CTRL ^= bUEP_T_TOG;                                          //如果不设置自动翻转则需要手动翻转
             UEP2_CTRL = UEP2_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_NAK;           //默认应答NAK
-						FLAG = 1;
+			FLAG = 1;
             break;
         case UIS_TOKEN_IN | 1:                                                  //endpoint 1# 中断端点上传
             UEP1_T_LEN = 0;                                                     //预使用发送长度一定要清空
@@ -619,6 +619,39 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB                     					//USB
 
 
 
+
+
+
+UINT8 MARCO_KEYCODE [100]= { 0x15,0x06,0x10,0x07,0x58,0x15,0x10,0x00,0x00,0x00,  //Win+r,c,m,d,Enter,Win+r,m,
+														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 };  //marco keycode
+
+UINT8 MARCO_SPLIT_INDX [11] = {0,4,9,29,39,49,59,69,79,89,99};  //split marco key position
+
+UINT8 MARCO_SPE_KEYINDX [20] = {0x00,0x05,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+UINT8 MARCO_SPE_KEYCODE [20] = {0x08,0x08,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+
+UINT8 MOUSE_CODE [10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for mouse 
+UINT8 KEY_CODE   [10] = {0x00,0x10,0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27};  //temporily used for key 
+UINT8 SP_KEY_CODE[10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for sepcial key
+
+//unpressed : 0x00
+//  pressed :key_pressed[n] == 0xff
+//if key(n) is a marco key 
+
+UINT8 KEY_PRESS  [10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  
+UINT8 KEY_MARCO  [10] = {0xff,0xff,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+
+
+
+
 //report key code to computer
 void HIDsend(){
 	FLAG = 0;
@@ -628,76 +661,50 @@ void HIDsend(){
 	while(FLAG == 0); 
 }
 
-
-//Abandoned
-void HIDValueHandle(UINT8 i)
-{
-	switch(i)
-	{
-		//键盘数据上传示例
-		case 1:
-			FLAG = 0;
-//			HIDKey[0] = 0x3D;   //F4
-//			HIDKey[3] = 0;
-//			Enp1IntIn();
-			HIDMouse[0] = 0x01;
-			HIDMouse[1] = 0x0;
-			HIDMouse[2] = 0x0;
-			HIDMouse[3] = 0x0;
-			Enp2IntIn();
-			while(FLAG == 0)
-			{
-				;    /*等待上一包传输完成*/
+//send marco key
+void HIDmarco(UINT8 key_num){
+	UINT8 i,j;
+	//init HIDKey[]
+	HIDKey[0] = 0x00;  //special key
+	HIDKey[1] = 0x00;  //reserved
+	HIDKey[2] = 0x00;  //key
+	HIDKey[3] = 0x00;  
+	HIDKey[4] = 0x00;
+	HIDKey[5] = 0x00;
+	HIDKey[6] = 0x00;
+	HIDKey[7] = 0x00;
+	HIDKey[8] = 0x00;
+	//HIDKeysend();
+	for(i=0;i<=(MARCO_SPLIT_INDX[key_num]-MARCO_SPLIT_INDX[key_num-1]);i++){
+		//prepare special key
+		for(j=0;j<20;j++){
+			if(!(MARCO_SPE_KEYINDX[j]|MARCO_SPE_KEYCODE[j]))
+				break;
+			if(MARCO_SPE_KEYINDX[j]>MARCO_SPLIT_INDX[key_num])
+				break;
+			if(MARCO_SPE_KEYINDX[j]==MARCO_SPLIT_INDX[key_num-1]+i){
+				HIDKey[0] = MARCO_SPE_KEYCODE[j];
 			}
-			break;
-		case 2:
-			FLAG = 0;
-			//HIDKey[0] = 0x3D;   //F4
-			//HIDKey[3] = 0;
-			//Enp1IntIn();
-			HIDMouse[0] = 0x02;
-			HIDMouse[1] = 0x0;
-			HIDMouse[2] = 0x0;
-			HIDMouse[3] = 0x0;
-			Enp2IntIn();
-			while(FLAG == 0)
-			{
-				;    /*等待上一包传输完成*/
-			}
-			break;
-		case 0:
-			FLAG = 0;
-			//HIDKey[0] = 0;      //按键结束
-			//HIDKey[3] = 0;
-			//Enp1IntIn();
-			HIDMouse[0] = 0x0;
-			HIDMouse[1] = 0x0;
-			HIDMouse[2] = 0x0;
-			HIDMouse[3] = 0x0;
-			Enp2IntIn();
-			while(FLAG == 0)
-			{
-				;    /*等待上一包传输完成*/
-			}
-			break;
-		default:                                                          //其他
-			UEP1_CTRL = UEP1_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_NAK;     //默认应答NAK
-			UEP2_CTRL = UEP2_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_NAK;     //默认应答NAK
-			break;
+		}
+		//prepare normal key
+		HIDKey [2] = MARCO_KEYCODE[MARCO_SPLIT_INDX[key_num-1]+i];
+		HIDsend();
+		//bounce up
+		HIDKey[0] = 0x00;
+		HIDKey[2] = 0x00;
+		//HIDsend();
 	}
+	//clear buffer
+	HIDKey[0] = 0x00;
+	HIDKey[2] = 0x00;
+	HIDsend();
+	//wait marco-key bounce up
+	mDelaymS(200);
 }
 
 
 
-UINT8 MOUSE_CODE [10] = {0x01,0x02,0x04,0x03,0x05,0x06,0x07,0x01,0x03,0x04};  //temporily used for mouse 
-UINT8 KEY_CODE   [10] = {0x1E,0x1F,0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27};  //temporily used for key 
-//UINT8 KEY_CODE_1 [10] = {0x1E,0x10,0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27};  //temporily used for key 1
-//UINT8 KEY_CODE_2 [10] = {0x1E,0x10,0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27};  //temporily used for key 2
-UINT8 SP_KEY_CODE[10] = {0x01,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for sepcial key
-UINT8 KEY_PRESS  [10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //if key(n) pressed, key_press[n] == 0xff
-
-
-//sbit Key1 = P3^3;
+//10-key maping 
 sbit Key1  = P3^2;
 sbit Key2  = P1^4;
 sbit Key3  = P1^5;
@@ -708,6 +715,7 @@ sbit Key7  = P3^0;
 sbit Key8  = P1^1;
 sbit Key9  = P3^3;
 sbit Key10 = P3^4;
+
 
 void scanKey(){
 	UINT8 i = 0;
@@ -779,6 +787,10 @@ void scanKey(){
 		if(KEY_PRESS[0]!=0xff){
 			KEY_PRESS[0] =0x00;
 		}
+		else{
+			if(KEY_MARCO[0]==0xff)
+				HIDmarco(1);
+		}
 	}
 	if(!Key2){
 		if(KEY_PRESS[1]!=0xff){
@@ -829,8 +841,9 @@ void scanKey(){
 	
 	//get final result
 	for(;i<10;i++){
-		mouse_code  |= MOUSE_CODE[i] &KEY_PRESS[i];
-		sp_key_code |= SP_KEY_CODE[i]&KEY_PRESS[i];
+		mouse_code  |= MOUSE_CODE[i] &KEY_PRESS[i]; //generate mouse_code
+		sp_key_code |= SP_KEY_CODE[i]&KEY_PRESS[i]; //generate special_key_code
+		//generate normal key_code
 		if(key_count<6 && (KEY_PRESS[i]==0xff)){
 			HIDKey[2+key_count]=KEY_CODE[i];
 			key_count ++;
