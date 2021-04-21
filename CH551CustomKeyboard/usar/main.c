@@ -304,6 +304,8 @@ void Enp2IntIn( )
 }
 
 
+
+
 /*******************************************************************************
 * Function Name  : DeviceInterrupt()
 * Description    : CH552USB中断处理函数
@@ -633,13 +635,16 @@ UINT8 MARCO_KEYCODE [100]= { 0x15,0x06,0x10,0x07,0x58,0x15,0x10,0x16,0x17,0x16, 
 														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 };  //marco keycode
 
-UINT8 MARCO_SPLIT_INDX [11] = {0,4,9,29,39,49,59,69,79,89,99};  //split marco key position
+UINT8 MARCO_SPLIT_INDX [11] = {0,5,12,29,39,49,59,69,79,89,99};  //split marco key position
 
 UINT8 MARCO_SPE_KEYINDX [20] = {0x00,0x05,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 UINT8 MARCO_SPE_KEYCODE [20] = {0x08,0x08,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 
+UINT8 MARCO_DELAY_INDX  [20] = {0x00,0x05,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+UINT8 MARCO_DELAY       [20] = {0x04,0x04,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+
 UINT8 MOUSE_CODE [10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for mouse 
-UINT8 KEY_CODE   [10] = {0x00,0x10,0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27};  //temporily used for key 
+UINT8 KEY_CODE   [10] = {0x00,0x00,0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27};  //temporily used for key 
 UINT8 SP_KEY_CODE[10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for sepcial key
 
 //unpressed : 0x00
@@ -650,7 +655,11 @@ UINT8 KEY_PRESS  [10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 UINT8 KEY_MARCO  [10] = {0xff,0xff,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 
 
-
+//delay time*100ms
+void MarcoDelay(UINT8 time){
+	while(time--)
+		mDelaymS(100);
+}
 
 //report key code to computer
 void HIDsend(){
@@ -663,7 +672,7 @@ void HIDsend(){
 
 //send marco key
 void HIDmarco(UINT8 key_num){
-	UINT8 i,j;
+	UINT8 i,j,delay_n00ms;
 	//init HIDKey[]
 	HIDKey[0] = 0x00;  //special key
 	HIDKey[1] = 0x00;  //reserved
@@ -675,20 +684,39 @@ void HIDmarco(UINT8 key_num){
 	HIDKey[7] = 0x00;
 	HIDKey[8] = 0x00;
 	//HIDKeysend();
-	for(i=0;i<=(MARCO_SPLIT_INDX[key_num]-MARCO_SPLIT_INDX[key_num-1]);i++){
+	for(i=0;i<(MARCO_SPLIT_INDX[key_num]-MARCO_SPLIT_INDX[key_num-1]);i++){
 		//prepare special key
+		delay_n00ms = 0;
 		for(j=0;j<20;j++){
 			if(!(MARCO_SPE_KEYINDX[j]|MARCO_SPE_KEYCODE[j]))
 				break;
+			if(MARCO_SPE_KEYINDX[j]<MARCO_SPLIT_INDX[key_num-1])
+				continue;
 			if(MARCO_SPE_KEYINDX[j]>MARCO_SPLIT_INDX[key_num])
 				break;
-			if(MARCO_SPE_KEYINDX[j]==MARCO_SPLIT_INDX[key_num-1]+i){
+			if(MARCO_SPE_KEYINDX[j] == (MARCO_SPLIT_INDX[key_num-1]+i)){
 				HIDKey[0] = MARCO_SPE_KEYCODE[j];
+				break;
+			}
+		}
+		//prepare delay
+		for(j=0;j<20;j++){
+			if(!(MARCO_DELAY_INDX[j]|MARCO_DELAY[j]))
+				break;
+			if(MARCO_DELAY_INDX[j]<MARCO_SPLIT_INDX[key_num-1])
+				continue;
+			if(MARCO_DELAY_INDX[j]>MARCO_SPLIT_INDX[key_num])
+				break;
+			if(MARCO_DELAY_INDX[j] == (MARCO_SPLIT_INDX[key_num-1]+i)){
+				delay_n00ms = MARCO_DELAY[j];
+				break;
 			}
 		}
 		//prepare normal key
 		HIDKey [2] = MARCO_KEYCODE[MARCO_SPLIT_INDX[key_num-1]+i];
 		HIDsend();
+		//delay
+		MarcoDelay(delay_n00ms);
 		//bounce up
 		HIDKey[0] = 0x00;
 		HIDKey[2] = 0x00;
@@ -701,7 +729,6 @@ void HIDmarco(UINT8 key_num){
 	//wait marco-key bounce up
 	mDelaymS(200);
 }
-
 
 
 //10-key maping 
@@ -795,6 +822,10 @@ void scanKey(){
 	if(!Key2){
 		if(KEY_PRESS[1]!=0xff){
 			KEY_PRESS[1] =0x00;
+		}
+		else{
+			if(KEY_MARCO[1]==0xff)
+				HIDmarco(2);
 		}
 	}
 	if(!Key3){
