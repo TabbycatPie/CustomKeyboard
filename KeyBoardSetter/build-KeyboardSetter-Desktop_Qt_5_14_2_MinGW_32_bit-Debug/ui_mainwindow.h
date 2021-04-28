@@ -147,7 +147,9 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->setWindowModality(Qt::NonModal);
-        MainWindow->resize(890, 302);
+        MainWindow->resize(900, 686);
+        MainWindow->setMinimumSize(QSize(900, 600));
+        MainWindow->setMaximumSize(QSize(900, 16777215));
         MainWindow->setAnimated(true);
         MainWindow->setDockOptions(QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::ForceTabbedDocks);
         actionExit = new QAction(MainWindow);
@@ -158,8 +160,8 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(0, 0, 900, 900));
-        tabWidget->setMinimumSize(QSize(900, 900));
+        tabWidget->setGeometry(QRect(0, 0, 900, 411));
+        tabWidget->setMinimumSize(QSize(900, 0));
         tabWidget->setMaximumSize(QSize(900, 900));
         tabWidget->setUsesScrollButtons(true);
         tab = new QWidget();
@@ -177,7 +179,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 890, 22));
+        menubar->setGeometry(QRect(0, 0, 900, 30));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         MainWindow->setMenuBar(menubar);
@@ -186,6 +188,7 @@ public:
         MainWindow->setStatusBar(statusbar);
         dockKeyboard = new QDockWidget(MainWindow);
         dockKeyboard->setObjectName(QString::fromUtf8("dockKeyboard"));
+        dockKeyboard->setMinimumSize(QSize(900, 242));
         dockKeyboard->setMaximumSize(QSize(900, 242));
         dockKeyboard->setAutoFillBackground(true);
         dockKeyboard->setFloating(false);
@@ -485,7 +488,7 @@ public:
 
         layoutWidget_5 = new QWidget(dockWidgetContents);
         layoutWidget_5->setObjectName(QString::fromUtf8("layoutWidget_5"));
-        layoutWidget_5->setGeometry(QRect(51, 180, 538, 30));
+        layoutWidget_5->setGeometry(QRect(51, 180, 531, 30));
         horizontalLayout_6 = new QHBoxLayout(layoutWidget_5);
         horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
         horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
@@ -630,7 +633,7 @@ public:
 
         layoutWidget2 = new QWidget(dockWidgetContents);
         layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(601, 30, 134, 28));
+        layoutWidget2->setGeometry(QRect(601, 30, 111, 28));
         horizontalLayout_7 = new QHBoxLayout(layoutWidget2);
         horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
         horizontalLayout_7->setContentsMargins(0, 0, 0, 0);

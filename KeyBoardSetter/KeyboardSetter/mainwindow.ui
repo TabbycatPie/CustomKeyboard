@@ -9,9 +9,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>890</width>
-    <height>302</height>
+    <width>900</width>
+    <height>686</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>900</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>900</width>
+    <height>16777215</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -29,13 +41,13 @@
       <x>0</x>
       <y>0</y>
       <width>900</width>
-      <height>900</height>
+      <height>411</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
       <width>900</width>
-      <height>900</height>
+      <height>0</height>
      </size>
     </property>
     <property name="maximumSize">
@@ -93,8 +105,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>890</width>
-     <height>22</height>
+     <width>900</width>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -110,6 +122,12 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="dockKeyboard">
+   <property name="minimumSize">
+    <size>
+     <width>900</width>
+     <height>242</height>
+    </size>
+   </property>
    <property name="maximumSize">
     <size>
      <width>900</width>
@@ -559,7 +577,7 @@
       <rect>
        <x>51</x>
        <y>180</y>
-       <width>538</width>
+       <width>531</width>
        <height>30</height>
       </rect>
      </property>
@@ -808,7 +826,7 @@
       <rect>
        <x>601</x>
        <y>30</y>
-       <width>134</width>
+       <width>111</width>
        <height>28</height>
       </rect>
      </property>

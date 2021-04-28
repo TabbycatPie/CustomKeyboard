@@ -13,6 +13,8 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    bool isSpecialKey(int index);
+    void updateUI();
     ~MainWindow();
 
 private:
