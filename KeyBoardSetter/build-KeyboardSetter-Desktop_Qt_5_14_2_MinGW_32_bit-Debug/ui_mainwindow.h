@@ -120,8 +120,8 @@ public:
     QToolButton *btn_up;
     QLabel *tvkey_out;
     QPushButton *btn_setcommit;
-    QPushButton *btn_setcamcel;
-    QWidget *widget;
+    QPushButton *btn_setcancel;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout;
     QToolButton *btn_esc;
     QToolButton *btn_f1;
@@ -136,7 +136,7 @@ public:
     QToolButton *btn_f10;
     QToolButton *btn_f11;
     QToolButton *btn_f12;
-    QWidget *widget1;
+    QWidget *layoutWidget2;
     QHBoxLayout *horizontalLayout_7;
     QToolButton *btn_ptsr;
     QToolButton *btn_del;
@@ -147,7 +147,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->setWindowModality(Qt::NonModal);
-        MainWindow->resize(890, 649);
+        MainWindow->resize(890, 302);
         MainWindow->setAnimated(true);
         MainWindow->setDockOptions(QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::ForceTabbedDocks);
         actionExit = new QAction(MainWindow);
@@ -177,7 +177,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 890, 30));
+        menubar->setGeometry(QRect(0, 0, 890, 22));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         MainWindow->setMenuBar(menubar);
@@ -186,7 +186,6 @@ public:
         MainWindow->setStatusBar(statusbar);
         dockKeyboard = new QDockWidget(MainWindow);
         dockKeyboard->setObjectName(QString::fromUtf8("dockKeyboard"));
-        dockKeyboard->setMinimumSize(QSize(377, 0));
         dockKeyboard->setMaximumSize(QSize(900, 242));
         dockKeyboard->setAutoFillBackground(true);
         dockKeyboard->setFloating(false);
@@ -486,7 +485,7 @@ public:
 
         layoutWidget_5 = new QWidget(dockWidgetContents);
         layoutWidget_5->setObjectName(QString::fromUtf8("layoutWidget_5"));
-        layoutWidget_5->setGeometry(QRect(51, 180, 531, 30));
+        layoutWidget_5->setGeometry(QRect(51, 180, 538, 30));
         horizontalLayout_6 = new QHBoxLayout(layoutWidget_5);
         horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
         horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
@@ -555,97 +554,97 @@ public:
         btn_setcommit = new QPushButton(dockWidgetContents);
         btn_setcommit->setObjectName(QString::fromUtf8("btn_setcommit"));
         btn_setcommit->setGeometry(QRect(770, 180, 91, 30));
-        btn_setcamcel = new QPushButton(dockWidgetContents);
-        btn_setcamcel->setObjectName(QString::fromUtf8("btn_setcamcel"));
-        btn_setcamcel->setGeometry(QRect(770, 140, 91, 30));
-        widget = new QWidget(dockWidgetContents);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(51, 30, 531, 30));
-        horizontalLayout = new QHBoxLayout(widget);
+        btn_setcancel = new QPushButton(dockWidgetContents);
+        btn_setcancel->setObjectName(QString::fromUtf8("btn_setcancel"));
+        btn_setcancel->setGeometry(QRect(770, 140, 91, 30));
+        layoutWidget1 = new QWidget(dockWidgetContents);
+        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(51, 30, 531, 30));
+        horizontalLayout = new QHBoxLayout(layoutWidget1);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        btn_esc = new QToolButton(widget);
+        btn_esc = new QToolButton(layoutWidget1);
         btn_esc->setObjectName(QString::fromUtf8("btn_esc"));
 
         horizontalLayout->addWidget(btn_esc);
 
-        btn_f1 = new QToolButton(widget);
+        btn_f1 = new QToolButton(layoutWidget1);
         btn_f1->setObjectName(QString::fromUtf8("btn_f1"));
 
         horizontalLayout->addWidget(btn_f1);
 
-        btn_f2 = new QToolButton(widget);
+        btn_f2 = new QToolButton(layoutWidget1);
         btn_f2->setObjectName(QString::fromUtf8("btn_f2"));
 
         horizontalLayout->addWidget(btn_f2);
 
-        btn_f3 = new QToolButton(widget);
+        btn_f3 = new QToolButton(layoutWidget1);
         btn_f3->setObjectName(QString::fromUtf8("btn_f3"));
 
         horizontalLayout->addWidget(btn_f3);
 
-        btn_f4 = new QToolButton(widget);
+        btn_f4 = new QToolButton(layoutWidget1);
         btn_f4->setObjectName(QString::fromUtf8("btn_f4"));
 
         horizontalLayout->addWidget(btn_f4);
 
-        btn_f5 = new QToolButton(widget);
+        btn_f5 = new QToolButton(layoutWidget1);
         btn_f5->setObjectName(QString::fromUtf8("btn_f5"));
 
         horizontalLayout->addWidget(btn_f5);
 
-        btn_f6 = new QToolButton(widget);
+        btn_f6 = new QToolButton(layoutWidget1);
         btn_f6->setObjectName(QString::fromUtf8("btn_f6"));
 
         horizontalLayout->addWidget(btn_f6);
 
-        btn_f7 = new QToolButton(widget);
+        btn_f7 = new QToolButton(layoutWidget1);
         btn_f7->setObjectName(QString::fromUtf8("btn_f7"));
 
         horizontalLayout->addWidget(btn_f7);
 
-        btn_f8 = new QToolButton(widget);
+        btn_f8 = new QToolButton(layoutWidget1);
         btn_f8->setObjectName(QString::fromUtf8("btn_f8"));
 
         horizontalLayout->addWidget(btn_f8);
 
-        btn_f9 = new QToolButton(widget);
+        btn_f9 = new QToolButton(layoutWidget1);
         btn_f9->setObjectName(QString::fromUtf8("btn_f9"));
 
         horizontalLayout->addWidget(btn_f9);
 
-        btn_f10 = new QToolButton(widget);
+        btn_f10 = new QToolButton(layoutWidget1);
         btn_f10->setObjectName(QString::fromUtf8("btn_f10"));
 
         horizontalLayout->addWidget(btn_f10);
 
-        btn_f11 = new QToolButton(widget);
+        btn_f11 = new QToolButton(layoutWidget1);
         btn_f11->setObjectName(QString::fromUtf8("btn_f11"));
 
         horizontalLayout->addWidget(btn_f11);
 
-        btn_f12 = new QToolButton(widget);
+        btn_f12 = new QToolButton(layoutWidget1);
         btn_f12->setObjectName(QString::fromUtf8("btn_f12"));
 
         horizontalLayout->addWidget(btn_f12);
 
-        widget1 = new QWidget(dockWidgetContents);
-        widget1->setObjectName(QString::fromUtf8("widget1"));
-        widget1->setGeometry(QRect(601, 30, 121, 28));
-        horizontalLayout_7 = new QHBoxLayout(widget1);
+        layoutWidget2 = new QWidget(dockWidgetContents);
+        layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
+        layoutWidget2->setGeometry(QRect(601, 30, 134, 28));
+        horizontalLayout_7 = new QHBoxLayout(layoutWidget2);
         horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
         horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
-        btn_ptsr = new QToolButton(widget1);
+        btn_ptsr = new QToolButton(layoutWidget2);
         btn_ptsr->setObjectName(QString::fromUtf8("btn_ptsr"));
 
         horizontalLayout_7->addWidget(btn_ptsr);
 
-        btn_del = new QToolButton(widget1);
+        btn_del = new QToolButton(layoutWidget2);
         btn_del->setObjectName(QString::fromUtf8("btn_del"));
 
         horizontalLayout_7->addWidget(btn_del);
 
-        btn_ins = new QToolButton(widget1);
+        btn_ins = new QToolButton(layoutWidget2);
         btn_ins->setObjectName(QString::fromUtf8("btn_ins"));
 
         horizontalLayout_7->addWidget(btn_ins);
@@ -743,7 +742,7 @@ public:
         btn_up->setText(QCoreApplication::translate("MainWindow", "^", nullptr));
         tvkey_out->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         btn_setcommit->setText(QCoreApplication::translate("MainWindow", "Commit", nullptr));
-        btn_setcamcel->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
+        btn_setcancel->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
         btn_esc->setText(QCoreApplication::translate("MainWindow", "Esc", nullptr));
         btn_f1->setText(QCoreApplication::translate("MainWindow", "F1", nullptr));
         btn_f2->setText(QCoreApplication::translate("MainWindow", "F2", nullptr));

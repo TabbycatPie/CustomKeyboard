@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>890</width>
-    <height>649</height>
+    <height>302</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -94,7 +94,7 @@
      <x>0</x>
      <y>0</y>
      <width>890</width>
-     <height>30</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -110,12 +110,6 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="dockKeyboard">
-   <property name="minimumSize">
-    <size>
-     <width>377</width>
-     <height>0</height>
-    </size>
-   </property>
    <property name="maximumSize">
     <size>
      <width>900</width>
@@ -565,7 +559,7 @@
       <rect>
        <x>51</x>
        <y>180</y>
-       <width>531</width>
+       <width>538</width>
        <height>30</height>
       </rect>
      </property>
@@ -693,7 +687,7 @@
       <string>Commit</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="btn_setcamcel">
+    <widget class="QPushButton" name="btn_setcancel">
      <property name="geometry">
       <rect>
        <x>770</x>
@@ -706,7 +700,7 @@
       <string>Cancel</string>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>51</x>
@@ -809,12 +803,12 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>601</x>
        <y>30</y>
-       <width>121</width>
+       <width>134</width>
        <height>28</height>
       </rect>
      </property>
