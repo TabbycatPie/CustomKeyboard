@@ -4,9 +4,6 @@
 
 #define DEBUG 1
 
-//public ui
-QLabel *softkey_out;
-
 
 //public key board string
 QString key_string[]={
@@ -48,7 +45,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    softkey_out = ui->tvkey_out;
     //button init
     QToolButton *keyboard_list[]={
         //normal keys
@@ -62,30 +58,32 @@ MainWindow::MainWindow(QWidget *parent)
         ui->btn_ptsr,ui->btn_del,ui->btn_ins,
         ui->btn_up,ui->btn_left,ui->btn_down,ui->btn_right
     };
-
-    //connect soft-keyboard toolbuttons
-    int total = (int)(sizeof(keyboard_list)/sizeof(QToolButton*));
-
 #ifdef DEBUG
+    int total = (int)(sizeof(keyboard_list)/sizeof(QToolButton*));
     qDebug() << "Total key number is :" + QString::number(total)<<endl;
 #endif
 
+    //connect soft-keyboard toolbuttons
     for(int i = 0;i<total;i++){
         connect(keyboard_list[i],&QToolButton::clicked,this,[=]{
             softKeyPressed(i);
         });
     }
-
-
     //connect menu bar action
     connect(ui->actionExit,&QAction::triggered,this,&MainWindow::close);
     connect(ui->btn_setcancel,&QPushButton::clicked,ui->dockKeyboard,[=]{
+        key_pressed_sp.clear();
+        key_pressed_normal.clear();
+        updateUI();
         //hide key board
         ui->dockKeyboard->hide();
     });
-
     //test
     connect(ui->btn_testkey1,&QPushButton::clicked,ui->dockKeyboard,&QDockWidget::show);
+
+    //init UI
+    ui->dockKeyboard->hide();
+
 
 }
 
@@ -103,12 +101,10 @@ void MainWindow::softKeyPressed(int i){
         }
     }
     else{
-        if(key_pressed_normal.indexOf(i)>=0){
-            //the key is pressed
-            key_pressed_normal.remove(key_pressed_normal.indexOf(i));
-        }
+        if(key_pressed_normal.indexOf(i)>=0)
+            key_pressed_normal.clear();
         else{
-            //key is not pressed
+            key_pressed_normal.clear();
             key_pressed_normal.append(i);
         }
     }

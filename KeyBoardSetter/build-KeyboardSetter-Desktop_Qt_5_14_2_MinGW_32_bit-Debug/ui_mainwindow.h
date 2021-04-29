@@ -34,9 +34,15 @@ public:
     QWidget *centralwidget;
     QTabWidget *tabWidget;
     QWidget *tab;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout_9;
     QPushButton *btn_testkey1;
     QPushButton *btn_testkey2;
+    QPushButton *btn_testkey1_2;
+    QPushButton *btn_testkey2_2;
+    QPushButton *btn_testkey2_3;
     QWidget *tab_2;
+    QPushButton *btn_setcancel_2;
     QMenuBar *menubar;
     QMenu *menuFile;
     QStatusBar *statusbar;
@@ -147,7 +153,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->setWindowModality(Qt::NonModal);
-        MainWindow->resize(900, 686);
+        MainWindow->resize(900, 736);
         MainWindow->setMinimumSize(QSize(900, 600));
         MainWindow->setMaximumSize(QSize(900, 16777215));
         MainWindow->setAnimated(true);
@@ -160,22 +166,55 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(0, 0, 900, 411));
-        tabWidget->setMinimumSize(QSize(900, 0));
+        tabWidget->setGeometry(QRect(3, 1, 751, 431));
+        tabWidget->setMinimumSize(QSize(0, 0));
         tabWidget->setMaximumSize(QSize(900, 900));
         tabWidget->setUsesScrollButtons(true);
         tab = new QWidget();
         tab->setObjectName(QString::fromUtf8("tab"));
-        btn_testkey1 = new QPushButton(tab);
+        widget = new QWidget(tab);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(30, 30, 481, 92));
+        horizontalLayout_9 = new QHBoxLayout(widget);
+        horizontalLayout_9->setObjectName(QString::fromUtf8("horizontalLayout_9"));
+        horizontalLayout_9->setContentsMargins(0, 0, 0, 0);
+        btn_testkey1 = new QPushButton(widget);
         btn_testkey1->setObjectName(QString::fromUtf8("btn_testkey1"));
-        btn_testkey1->setGeometry(QRect(50, 40, 91, 91));
-        btn_testkey2 = new QPushButton(tab);
+        btn_testkey1->setMinimumSize(QSize(90, 90));
+
+        horizontalLayout_9->addWidget(btn_testkey1);
+
+        btn_testkey2 = new QPushButton(widget);
         btn_testkey2->setObjectName(QString::fromUtf8("btn_testkey2"));
-        btn_testkey2->setGeometry(QRect(150, 40, 91, 91));
+        btn_testkey2->setMinimumSize(QSize(90, 90));
+
+        horizontalLayout_9->addWidget(btn_testkey2);
+
+        btn_testkey1_2 = new QPushButton(widget);
+        btn_testkey1_2->setObjectName(QString::fromUtf8("btn_testkey1_2"));
+        btn_testkey1_2->setMinimumSize(QSize(90, 90));
+
+        horizontalLayout_9->addWidget(btn_testkey1_2);
+
+        btn_testkey2_2 = new QPushButton(widget);
+        btn_testkey2_2->setObjectName(QString::fromUtf8("btn_testkey2_2"));
+        btn_testkey2_2->setMinimumSize(QSize(90, 90));
+
+        horizontalLayout_9->addWidget(btn_testkey2_2);
+
+        btn_testkey2_3 = new QPushButton(widget);
+        btn_testkey2_3->setObjectName(QString::fromUtf8("btn_testkey2_3"));
+        btn_testkey2_3->setMinimumSize(QSize(90, 90));
+
+        horizontalLayout_9->addWidget(btn_testkey2_3);
+
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
         tabWidget->addTab(tab_2, QString());
+        btn_setcancel_2 = new QPushButton(centralwidget);
+        btn_setcancel_2->setObjectName(QString::fromUtf8("btn_setcancel_2"));
+        btn_setcancel_2->setGeometry(QRect(780, 70, 91, 30));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -553,7 +592,7 @@ public:
         btn_up->setGeometry(QRect(641, 145, 36, 31));
         tvkey_out = new QLabel(dockWidgetContents);
         tvkey_out->setObjectName(QString::fromUtf8("tvkey_out"));
-        tvkey_out->setGeometry(QRect(60, -2, 521, 21));
+        tvkey_out->setGeometry(QRect(60, -2, 811, 21));
         btn_setcommit = new QPushButton(dockWidgetContents);
         btn_setcommit->setObjectName(QString::fromUtf8("btn_setcommit"));
         btn_setcommit->setGeometry(QRect(770, 180, 91, 30));
@@ -676,8 +715,12 @@ public:
         actionOpen_Device->setText(QCoreApplication::translate("MainWindow", "Open Device", nullptr));
         btn_testkey1->setText(QCoreApplication::translate("MainWindow", "KEY1", nullptr));
         btn_testkey2->setText(QCoreApplication::translate("MainWindow", "KEY2", nullptr));
+        btn_testkey1_2->setText(QCoreApplication::translate("MainWindow", "KEY3", nullptr));
+        btn_testkey2_2->setText(QCoreApplication::translate("MainWindow", "KEY4", nullptr));
+        btn_testkey2_3->setText(QCoreApplication::translate("MainWindow", "KEY5", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("MainWindow", "Test", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("MainWindow", "OneKey", nullptr));
+        btn_setcancel_2->setText(QCoreApplication::translate("MainWindow", "Burn", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
         btn_wave->setText(QCoreApplication::translate("MainWindow", "~", nullptr));
         btn_1->setText(QCoreApplication::translate("MainWindow", "1", nullptr));

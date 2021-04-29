@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>900</width>
-    <height>686</height>
+    <height>736</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -38,15 +38,15 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>900</width>
-      <height>411</height>
+      <x>3</x>
+      <y>1</y>
+      <width>751</width>
+      <height>431</height>
      </rect>
     </property>
     <property name="minimumSize">
      <size>
-      <width>900</width>
+      <width>0</width>
       <height>0</height>
      </size>
     </property>
@@ -66,31 +66,82 @@
      <attribute name="title">
       <string>Test</string>
      </attribute>
-     <widget class="QPushButton" name="btn_testkey1">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>40</y>
-        <width>91</width>
-        <height>91</height>
+        <x>30</x>
+        <y>30</y>
+        <width>481</width>
+        <height>92</height>
        </rect>
       </property>
-      <property name="text">
-       <string>KEY1</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btn_testkey2">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>40</y>
-        <width>91</width>
-        <height>91</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>KEY2</string>
-      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_9">
+       <item>
+        <widget class="QPushButton" name="btn_testkey1">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>90</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>KEY1</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_testkey2">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>90</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>KEY2</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_testkey1_2">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>90</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>KEY3</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_testkey2_2">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>90</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>KEY4</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_testkey2_3">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>90</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>KEY5</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
@@ -98,6 +149,19 @@
       <string>OneKey</string>
      </attribute>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="btn_setcancel_2">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>70</y>
+      <width>91</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Burn</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -684,7 +748,7 @@
       <rect>
        <x>60</x>
        <y>-2</y>
-       <width>521</width>
+       <width>811</width>
        <height>21</height>
       </rect>
      </property>

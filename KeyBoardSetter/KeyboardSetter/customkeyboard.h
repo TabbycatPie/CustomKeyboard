@@ -14,11 +14,7 @@ public:
     int getKeynum();
     int getMarcoMem();
     int getMarcoSPkeyMem();
-
     void setNormalKey(int setkey_no,uchar keytable_no,uchar spkeytable_no);
-
-
-
     ~CustomKeyboard();
 private:
     uint16_t pid;       //production id
