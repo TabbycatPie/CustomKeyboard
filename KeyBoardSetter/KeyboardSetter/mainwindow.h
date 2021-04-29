@@ -21,6 +21,9 @@ private:
     Ui::MainWindow *ui;
 
 private slots:
-    void softKeyPressed(int i);
+    void softKeyPressed(int i);   //button on keyboard pressed
+    void setKeyPress(int key_no);
+    void setKeyRelease();
+    void setKey(int key_no);      //open softkey board window
 };
 #endif // MAINWINDOW_H

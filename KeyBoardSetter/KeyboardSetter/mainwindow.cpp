@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
+#include <QTimer>
 
 #define DEBUG 1
 
@@ -35,10 +36,15 @@ int spkey_index[]={
     /*Left Shift*/54,/*Right Shift*/65,/*Left Ctrl*/66,/*Left Win*/67,/*Left Alt*/68,
     /*Right Alt*/70,/*Right Win*/71,/*Right Ctrl*/72
 };
+//global vars
 
 //current pressed key
 QVector<int> key_pressed_normal;
 QVector<int> key_pressed_sp;
+
+//timer for long press
+QTimer *press_timer = new QTimer;
+//delay 500ms and jump to funtion setKey()
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -78,8 +84,19 @@ MainWindow::MainWindow(QWidget *parent)
         //hide key board
         ui->dockKeyboard->hide();
     });
-    //test
-    connect(ui->btn_testkey1,&QPushButton::clicked,ui->dockKeyboard,&QDockWidget::show);
+    // set key pressed
+    press_timer = new QTimer;
+    //delay 500ms and jump to funtion setKey()
+    connect(press_timer,&QTimer::timeout,this,[=]{
+        setKey(1);
+    });
+    connect(ui->btn_testkey1,&QPushButton::pressed,this,[=]{
+        setKeyPress(1);
+    });
+    //set key release
+    connect(ui->btn_testkey1,&QPushButton::released,this,[=]{
+        setKeyRelease();
+    });
 
     //init UI
     ui->dockKeyboard->hide();
@@ -87,6 +104,16 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
+//----------SLOTS
+void MainWindow::setKeyPress(int key_no){
+    press_timer->start(500);
+}
+void MainWindow::setKeyRelease(){
+    press_timer->stop();
+}
+void MainWindow::setKey(int key_no){
+    ui->dockKeyboard->show();
+};
 
 //soft key press function
 void MainWindow::softKeyPressed(int i){
