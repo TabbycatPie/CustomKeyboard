@@ -1,7 +1,8 @@
 #include "customkeyboard.h"
+#include <QPushButton>
 
 //constructor of class CustomKeyboard
-CustomKeyboard::CustomKeyboard(int keynum,uint16_t pid,uint16_t vid,int marco_mem,int marco_spkey_mem){
+CustomKeyboard::CustomKeyboard(int keynum,uint16_t pid,uint16_t vid,int marco_mem,int marco_spkey_mem,QPushButton (*_btn_list)[]){
     this->keynum = keynum;
     this->pid = pid;
     this->vid = vid;
@@ -10,6 +11,8 @@ CustomKeyboard::CustomKeyboard(int keynum,uint16_t pid,uint16_t vid,int marco_me
 
     this->normal_keycode = new uchar[keynum];
     this->spkey_mixcode = new uchar[keynum];
+
+    this->btn_list = _btn_list;
     //init memory
     for(int x = 0;x<keynum;x++){
         normal_keycode[x]=0x00;

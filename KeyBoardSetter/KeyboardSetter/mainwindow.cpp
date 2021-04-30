@@ -1,9 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "customkeyboard.h"
 #include <QDebug>
 #include <QTimer>
 
 #define DEBUG 1
+#define TYPENUM 1
 
 
 //public key board string
@@ -37,7 +39,8 @@ int spkey_index[]={
     /*Right Alt*/70,/*Right Win*/71,/*Right Ctrl*/72
 };
 //global vars
-
+//custom key board class
+CustomKeyboard (*ckb)[TYPENUM];
 //current pressed key
 QVector<int> key_pressed_normal;
 QVector<int> key_pressed_sp;
@@ -64,8 +67,8 @@ MainWindow::MainWindow(QWidget *parent)
         ui->btn_ptsr,ui->btn_del,ui->btn_ins,
         ui->btn_up,ui->btn_left,ui->btn_down,ui->btn_right
     };
-#ifdef DEBUG
     int total = (int)(sizeof(keyboard_list)/sizeof(QToolButton*));
+#ifdef DEBUG
     qDebug() << "Total key number is :" + QString::number(total)<<endl;
 #endif
 
