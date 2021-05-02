@@ -15,7 +15,8 @@ HIDCodeTable table;
 CustomKeyboard *ckb[TYPENUM];
 
 //current pressed key
-QVector<KeyValue> cur_kvs;
+QVector<int> cur_key_sp;
+QVector<int> cur_key_normal;
 
 //current select keyboard
 int cur_keyboard_no = 0;//-1 repersent none
