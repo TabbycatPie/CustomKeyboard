@@ -40,7 +40,7 @@
      <rect>
       <x>3</x>
       <y>1</y>
-      <width>751</width>
+      <width>561</width>
       <height>431</height>
      </rect>
     </property>
@@ -62,15 +62,15 @@
     <property name="usesScrollButtons">
      <bool>true</bool>
     </property>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="tab_test">
      <attribute name="title">
       <string>Test</string>
      </attribute>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>30</y>
+        <x>10</x>
+        <y>10</y>
         <width>481</width>
         <height>92</height>
        </rect>
@@ -103,7 +103,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_testkey1_2">
+        <widget class="QPushButton" name="btn_testkey3">
          <property name="minimumSize">
           <size>
            <width>90</width>
@@ -116,7 +116,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_testkey2_2">
+        <widget class="QPushButton" name="btn_testkey4">
          <property name="minimumSize">
           <size>
            <width>90</width>
@@ -129,7 +129,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_testkey2_3">
+        <widget class="QPushButton" name="btn_testkey5">
          <property name="minimumSize">
           <size>
            <width>90</width>
@@ -143,24 +143,220 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="layoutWidget_7">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>110</y>
+        <width>481</width>
+        <height>92</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <item>
+        <widget class="QPushButton" name="btn_testkey6">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>90</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>KEY6</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_testkey7">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>90</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>KEY7</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_testkey8">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>90</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>KEY8</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_testkey9">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>90</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>KEY9</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_testkey10">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>90</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>KEY10</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
-    <widget class="QWidget" name="tab_2">
+    <widget class="QWidget" name="tab_dualkeys">
      <attribute name="title">
-      <string>OneKey</string>
+      <string>DualKey</string>
      </attribute>
+     <widget class="QWidget" name="layoutWidget_8">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>201</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_11">
+       <item>
+        <widget class="QPushButton" name="btn_dualkey1">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>90</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>KEY1</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_dualkey2">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>90</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>KEY2</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_quakeys">
+     <attribute name="title">
+      <string>QuaKey</string>
+     </attribute>
+     <widget class="QWidget" name="layoutWidget_10">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>110</y>
+        <width>201</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_13">
+       <item>
+        <widget class="QPushButton" name="btn_quakey3">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>90</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>KEY3</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_quakey4">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>90</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>KEY4</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget_11">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>201</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_14">
+       <item>
+        <widget class="QPushButton" name="btn_quakey1">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>90</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>KEY1</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_quakey2">
+         <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>90</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>KEY2</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </widget>
-   <widget class="QPushButton" name="btn_setcancel_2">
+   <widget class="QPushButton" name="btn_download">
     <property name="geometry">
      <rect>
-      <x>780</x>
-      <y>70</y>
-      <width>91</width>
-      <height>30</height>
+      <x>763</x>
+      <y>40</y>
+      <width>121</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Burn</string>
+     <string>Download</string>
     </property>
    </widget>
   </widget>
@@ -747,7 +943,7 @@
      <property name="geometry">
       <rect>
        <x>60</x>
-       <y>-2</y>
+       <y>4</y>
        <width>811</width>
        <height>21</height>
       </rect>
@@ -787,7 +983,7 @@
       <rect>
        <x>51</x>
        <y>30</y>
-       <width>531</width>
+       <width>562</width>
        <height>30</height>
       </rect>
      </property>
@@ -890,7 +1086,7 @@
       <rect>
        <x>601</x>
        <y>30</y>
-       <width>111</width>
+       <width>142</width>
        <height>28</height>
       </rect>
      </property>

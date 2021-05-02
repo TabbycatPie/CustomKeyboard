@@ -16,12 +16,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    customkey.cpp \
     customkeyboard.cpp \
+    hidcodetable.cpp \
+    keyvalue.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    customkey.h \
     customkeyboard.h \
+    hidcodetable.h \
+    keyvalue.h \
     mainwindow.h
 
 FORMS += \

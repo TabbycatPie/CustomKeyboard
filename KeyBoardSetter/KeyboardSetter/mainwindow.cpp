@@ -5,7 +5,7 @@
 #include <QTimer>
 
 #define DEBUG 1
-#define TYPENUM 1
+#define TYPENUM 3
 
 
 //public key board string
@@ -40,10 +40,14 @@ int spkey_index[]={
 };
 //global vars
 //custom key board class
-CustomKeyboard (*ckb)[TYPENUM];
+CustomKeyboard *ckb[TYPENUM];
+
 //current pressed key
-QVector<int> key_pressed_normal;
-QVector<int> key_pressed_sp;
+QVector<int> cur_key_normal;
+QVector<int> cur_key_sp;
+
+//current select keyboard
+int cur_keyboard_no = 0;//-1 repersent none
 
 //timer for long press
 QTimer *press_timer = new QTimer;
@@ -67,39 +71,71 @@ MainWindow::MainWindow(QWidget *parent)
         ui->btn_ptsr,ui->btn_del,ui->btn_ins,
         ui->btn_up,ui->btn_left,ui->btn_down,ui->btn_right
     };
-    int total = (int)(sizeof(keyboard_list)/sizeof(QToolButton*));
-#ifdef DEBUG
-    qDebug() << "Total key number is :" + QString::number(total)<<endl;
-#endif
+    //virtual key
+    //TEST keyboard page
+    QPushButton *virtual_test_keys[]{
+        ui->btn_testkey1,ui->btn_testkey2,ui->btn_testkey3,ui->btn_testkey4,ui->btn_testkey5,
+        ui->btn_testkey6,ui->btn_testkey7,ui->btn_testkey8,ui->btn_testkey9,ui->btn_testkey10
+    };
+    //Dual keyboard page
+    QPushButton *virtual_dual_keys[]{
+        ui->btn_dualkey1,ui->btn_dualkey2
+    };
+    //Qua keyboard page
+    QPushButton *virtual_qua_keys[]{
+        ui->btn_quakey1,ui->btn_quakey2,
+        ui->btn_quakey3,ui->btn_quakey4
+    };
 
+    ckb[0] = new CustomKeyboard("Test",10,(uint16_t)0x5131,(uint16_t)0x2019,100,20,virtual_test_keys);//test keyboard
+    ckb[1] = new CustomKeyboard("DualKey",2,(uint16_t)0x5131,(uint16_t)0x2019,100,20,virtual_dual_keys);//double-key keyboard
+    ckb[2] = new CustomKeyboard("QuadraKey",4,(uint16_t)0x5131,(uint16_t)0x2019,100,20,virtual_qua_keys);//quadra-key keyboard
+
+    int total = (int)(sizeof(keyboard_list)/sizeof(QToolButton*));
+    #ifdef DEBUG
+    qDebug() << "Total key number is :" + QString::number(total)<<endl;
+    #endif
+    //CONNECT FUNCTIONS
     //connect soft-keyboard toolbuttons
     for(int i = 0;i<total;i++){
         connect(keyboard_list[i],&QToolButton::clicked,this,[=]{
             softKeyPressed(i);
         });
     }
+    for(int i =0;i<TYPENUM;i++){
+        for(int j =0;j<ckb[i]->getKeynum();j++){
+            connect(ckb[i]->getButtonByID(j),&QPushButton::clicked,this,[=]{
+                setKey(j);
+            });
+        }
+    }
+    //connect tag-widget
+    connect(ui->tabWidget,&QTabWidget::currentChanged,this,[=]{
+        switchKeyboard(ui->tabWidget->currentIndex());
+        ui->dockKeyboard->hide();
+    });
     //connect menu bar action
     connect(ui->actionExit,&QAction::triggered,this,&MainWindow::close);
     connect(ui->btn_setcancel,&QPushButton::clicked,ui->dockKeyboard,[=]{
-        key_pressed_sp.clear();
-        key_pressed_normal.clear();
+        cur_key_sp.clear();
+        cur_key_normal.clear();
         updateUI();
         //hide key board
         ui->dockKeyboard->hide();
     });
-    // set key pressed
-    press_timer = new QTimer;
-    //delay 500ms and jump to funtion setKey()
-    connect(press_timer,&QTimer::timeout,this,[=]{
-        setKey(1);
-    });
-    connect(ui->btn_testkey1,&QPushButton::pressed,this,[=]{
-        setKeyPress(1);
-    });
-    //set key release
-    connect(ui->btn_testkey1,&QPushButton::released,this,[=]{
-        setKeyRelease();
-    });
+//    // set key pressed
+//    press_timer = new QTimer;
+//    //delay 500ms and jump to funtion setKey()
+//    connect(press_timer,&QTimer::timeout,this,[=]{
+//        setKey(1);
+//    });
+//    connect(ui->btn_testkey1,&QPushButton::pressed,this,[=]{
+//        setKeyPress(1);
+//    });
+//    //set key release
+//    connect(ui->btn_testkey1,&QPushButton::released,this,[=]{
+//        setKeyRelease();
+//    });
 
     //init UI
     ui->dockKeyboard->hide();
@@ -114,28 +150,31 @@ void MainWindow::setKeyPress(int key_no){
 void MainWindow::setKeyRelease(){
     press_timer->stop();
 }
+void MainWindow::switchKeyboard(int keyboard_no){
+    cur_keyboard_no = keyboard_no;
+}
 void MainWindow::setKey(int key_no){
+    ui->dockKeyboard->setWindowTitle("Current Keyboard:"+ckb[cur_keyboard_no]->getName()+"   Current Seletion:KEY"+QString::number(key_no+1));
     ui->dockKeyboard->show();
 };
-
 //soft key press function
 void MainWindow::softKeyPressed(int i){
     if(isSpecialKey(i)){
-        if(key_pressed_sp.indexOf(i)>=0){
+        if(cur_key_sp.indexOf(i)>=0){
             //the key is pressed
-            key_pressed_sp.remove(key_pressed_sp.indexOf(i));
+            cur_key_sp.remove(cur_key_sp.indexOf(i));
         }
         else{
             //key is not pressed
-            key_pressed_sp.append(i);
+            cur_key_sp.append(i);
         }
     }
     else{
-        if(key_pressed_normal.indexOf(i)>=0)
-            key_pressed_normal.clear();
+        if(cur_key_normal.indexOf(i)>=0)
+            cur_key_normal.clear();
         else{
-            key_pressed_normal.clear();
-            key_pressed_normal.append(i);
+            cur_key_normal.clear();
+            cur_key_normal.append(i);
         }
     }
 
@@ -148,8 +187,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-
 
 //setter key pressed
 
@@ -165,20 +202,20 @@ bool MainWindow::isSpecialKey(int index){
 void MainWindow::updateUI(){
     //update soft keyboard label
     QString temp = "";
-    if(!key_pressed_sp.isEmpty()){
-        temp = key_string[key_pressed_sp[0]];
-        for(int i = 1;i<key_pressed_sp.size();i++){
-            temp += " + " +  key_string[key_pressed_sp[i]];
+    if(!cur_key_sp.isEmpty()){
+        temp = key_string[cur_key_sp[0]];
+        for(int i = 1;i<cur_key_sp.size();i++){
+            temp += " + " +  key_string[cur_key_sp[i]];
         }
     }
-    if(!key_pressed_normal.isEmpty()){
+    if(!cur_key_normal.isEmpty()){
         int i = 0;
         if(temp == ""){
-            temp = key_string[key_pressed_normal[0]];
+            temp = key_string[cur_key_normal[0]];
             i++;
         }
-        for(;i<key_pressed_normal.size();i++){
-            temp += " + " +  key_string[key_pressed_normal[i]];
+        for(;i<cur_key_normal.size();i++){
+            temp += " + " +  key_string[cur_key_normal[i]];
         }
     }
     ui->tvkey_out->setText(temp);
