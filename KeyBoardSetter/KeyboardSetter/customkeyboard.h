@@ -19,10 +19,11 @@ public:
     int getMarcoMem();
     int getMarcoSPkeyMem();
     QPushButton *getButtonByID(int key_no);
+    CustomKey *getCustomKeyByID(int key_no);
     QString getName();
 
     //set key
-    void setKey(int key_id,KeyValue kv);  //normal single
+    void setKey(int key_id,KeyValue *kv);  //normal single
     void setKey(int key_id,QVector<KeyValue*> kvs); //marco
     //download to device
     bool download();

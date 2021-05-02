@@ -14,7 +14,9 @@ public:
     QString getKeyString(int key_no);
     uchar getHex(int key_no);
     uchar getSpKeyHex(QVector<int> spkey_list);
-    void converNormaltKeyValue2Hex(uchar * normal,uchar * sp_key,KeyValue *kv);
+    void convertNormaltKeyValue2Hex(uchar * normal,uchar * sp_key,KeyValue *kv);
+    KeyValue* convertVector2KeyValue(int normal,const QVector<int> sp_keys);
+    QString convertKeyValue2QString(KeyValue *kv);
     ~HIDCodeTable();
 private:
     const QString *key_string;

@@ -16,7 +16,7 @@ CustomKeyboard::CustomKeyboard(QString _name,int keynum,uint16_t pid,uint16_t vi
     this->spkey_mixcode = new uchar[keynum];
 
     for(int i =0;i<keynum;i++){
-        this->key_list.append(new CustomKey("KEY"+QString::number(i),_btn_list[i],false));
+        this->key_list.append(new CustomKey("KEY"+QString::number(i+1),_btn_list[i],false));
     }
     //init memory
     for(int x = 0;x<keynum;x++){
@@ -25,8 +25,8 @@ CustomKeyboard::CustomKeyboard(QString _name,int keynum,uint16_t pid,uint16_t vi
     }
 
 }
-void CustomKeyboard::setKey(int key_id, KeyValue kv){
-    this->key_list[key_id]->setKey(&kv);
+void CustomKeyboard::setKey(int key_id, KeyValue *kv){
+    this->key_list[key_id]->setKey(kv);
 }
 
 QString CustomKeyboard::getName(){
@@ -51,9 +51,12 @@ int CustomKeyboard::getMarcoMem(){
 int CustomKeyboard:: getMarcoSPkeyMem(){
     return this->marco_spkey;
 }
-
+CustomKey* CustomKeyboard::getCustomKeyByID(int key_no){
+    return this->key_list[key_no];
+};
 CustomKeyboard::~CustomKeyboard(){
     delete this->normal_keycode;
     delete this->spkey_mixcode;
     qDeleteAll(this->key_list);
 }
+

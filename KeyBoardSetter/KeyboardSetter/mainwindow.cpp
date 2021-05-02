@@ -5,6 +5,7 @@
 #include "keyvalue.h"
 #include <QDebug>
 #include <QTimer>
+#include <QStandardItem>
 
 #define DEBUG 1
 #define TYPENUM 3
@@ -13,6 +14,7 @@
 HIDCodeTable table;
 //custom key board class
 CustomKeyboard *ckb[TYPENUM];
+QVector<QStandardItemModel*> models;
 
 //current pressed key
 QVector<int> cur_key_sp;
@@ -20,6 +22,7 @@ QVector<int> cur_key_normal;
 
 //current select keyboard
 int cur_keyboard_no = 0;//-1 repersent none
+int cur_edit_key_no = -1;
 
 //timer for long press
 QTimer *press_timer = new QTimer;
@@ -95,21 +98,15 @@ MainWindow::MainWindow(QWidget *parent)
         //hide key board
         ui->dockKeyboard->hide();
     });
-//    // set key pressed
-//    press_timer = new QTimer;
-//    //delay 500ms and jump to funtion setKey()
-//    connect(press_timer,&QTimer::timeout,this,[=]{
-//        setKey(1);
-//    });
-//    connect(ui->btn_testkey1,&QPushButton::pressed,this,[=]{
-//        setKeyPress(1);
-//    });
-//    //set key release
-//    connect(ui->btn_testkey1,&QPushButton::released,this,[=]{
-//        setKeyRelease();
-//    });
+
+    //commit key setting
+    connect(ui->btn_setcommit,&QPushButton::clicked,this,[=]{
+       commitKeySetting();
+    });
 
     //init UI
+    initTreeView();
+    ui->treeView->setModel(models[0]);
     ui->dockKeyboard->hide();
 
 
@@ -124,11 +121,59 @@ void MainWindow::setKeyRelease(){
 }
 void MainWindow::switchKeyboard(int keyboard_no){
     cur_keyboard_no = keyboard_no;
+    updateUI();
 }
 void MainWindow::setKey(int key_no){
+    cur_edit_key_no = key_no;
     ui->dockKeyboard->setWindowTitle("Current Keyboard:"+ckb[cur_keyboard_no]->getName()+"   Current Seletion:KEY"+QString::number(key_no+1));
     ui->dockKeyboard->show();
 };
+void MainWindow::commitKeySetting(){
+    if(cur_key_sp.size()>0||cur_key_normal.size()>0){
+        KeyValue *vkp = table.convertVector2KeyValue(cur_key_normal[0],cur_key_sp);
+        ckb[cur_keyboard_no]->setKey(cur_edit_key_no,vkp);
+
+        //clear current buffer
+        cur_key_normal.clear();
+        cur_key_sp.clear();
+        cur_edit_key_no = -1;
+        ui->dockKeyboard->hide();
+    }
+}
+
+void MainWindow::initTreeView(){
+    for(int x =0;x<TYPENUM;x++){
+        QStandardItemModel* model = new QStandardItemModel(ui->treeView);
+        //set header
+        model->setHorizontalHeaderLabels(QStringList()<<QStringLiteral("NAME") << QStringLiteral("DESCRIPTION"));
+        CustomKeyboard *ckd_temp = ckb[x];
+        for(int i = 0;i<ckd_temp->getKeynum();i++){
+            QList<QStandardItem*> ikeys;
+            QStandardItem* ikey = new QStandardItem(ckd_temp->getCustomKeyByID(i)->getName());
+            QStandardItem* detail;
+            if(ckd_temp->getCustomKeyByID(i)->isMarco())
+                detail =new QStandardItem(QStringLiteral("Marco"));
+            else
+                detail =new QStandardItem(QStringLiteral("Normal"));
+            ikeys.append(ikey);
+            ikeys.append(detail);
+            model->appendRow(ikeys);
+            QVector<KeyValue*> kvlist_temp = ckd_temp->getCustomKeyByID(i)->getKeyValueList();
+            for(int j=0;j<kvlist_temp.size();j++){
+                QList<QStandardItem*> ikvs;
+                QStandardItem* ikv = new QStandardItem(QString::number(j+1));
+                QStandardItem* key_detail = new QStandardItem(table.convertKeyValue2QString(kvlist_temp[j]));
+                ikvs.append(ikv);
+                ikvs.append(key_detail);
+                ikey->appendRow(ikvs);
+            }
+        }
+        models.append(model);
+    }
+    //set treeview uneditable
+    ui->treeView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+}
+
 //soft key press function
 void MainWindow::softKeyPressed(int i){
     if(table.isSPkey(i)){
@@ -153,13 +198,6 @@ void MainWindow::softKeyPressed(int i){
    // softkey_out->setText(key_string[i]+"  i:"+QString::number(i));
     updateUI();
 }
-
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
-
 // update ui
 void MainWindow::updateUI(){
     //update soft keyboard label
@@ -181,6 +219,14 @@ void MainWindow::updateUI(){
         }
     }
     ui->tvkey_out->setText(temp);
+    ui->treeView->setModel(models[cur_keyboard_no]);
+}
+
+
+
+MainWindow::~MainWindow()
+{
+    delete ui;
 }
 
 

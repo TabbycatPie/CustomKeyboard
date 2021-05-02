@@ -66,11 +66,27 @@ uchar HIDCodeTable::getSpKeyHex(QVector<int> spkey_list){
     return temp;
 };
 
-void HIDCodeTable::converNormaltKeyValue2Hex(uchar * normal,uchar * sp_key,KeyValue *kv){
+void HIDCodeTable::convertNormaltKeyValue2Hex(uchar * normal,uchar * sp_key,KeyValue *kv){
     *normal = getHex(kv->getNormalKeyIndex());
     *sp_key = getSpKeyHex(kv->getSPKeyList());
 };
-
+KeyValue* HIDCodeTable::convertVector2KeyValue(int normal,const QVector<int> sp_keys){
+    return new KeyValue(normal,sp_keys);
+};
+QString HIDCodeTable::convertKeyValue2QString(KeyValue *kv){
+    QString out ="";
+    if(kv->getSPKeyList().size()>0 && kv->getSPKeyList()[0]!=0){
+        out = getKeyString(kv->getSPKeyList()[0]);
+        for(int i =1;i<kv->getSPKeyList().size();i++){
+            out += " + " + getKeyString(kv->getSPKeyList()[i]);
+        }
+        out += " + " + getKeyString(kv->getNormalKeyIndex());
+    }
+    else{
+        out = getKeyString(kv->getNormalKeyIndex());
+    }
+    return out;
+};
 HIDCodeTable::~HIDCodeTable(){
 
 };

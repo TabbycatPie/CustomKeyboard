@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDockWidget>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
@@ -22,6 +23,7 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QToolButton>
+#include <QtWidgets/QTreeView>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -63,6 +65,7 @@ public:
     QPushButton *btn_quakey1;
     QPushButton *btn_quakey2;
     QPushButton *btn_download;
+    QTreeView *treeView;
     QMenuBar *menubar;
     QMenu *menuFile;
     QStatusBar *statusbar;
@@ -186,7 +189,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(3, 1, 561, 431));
+        tabWidget->setGeometry(QRect(3, 1, 501, 431));
         tabWidget->setMinimumSize(QSize(0, 0));
         tabWidget->setMaximumSize(QSize(900, 900));
         tabWidget->setUsesScrollButtons(true);
@@ -328,6 +331,10 @@ public:
         btn_download = new QPushButton(centralwidget);
         btn_download->setObjectName(QString::fromUtf8("btn_download"));
         btn_download->setGeometry(QRect(763, 40, 121, 41));
+        treeView = new QTreeView(centralwidget);
+        treeView->setObjectName(QString::fromUtf8("treeView"));
+        treeView->setGeometry(QRect(510, 100, 381, 331));
+        treeView->setAnimated(true);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -785,7 +792,7 @@ public:
 
         layoutWidget3 = new QWidget(dockWidgetContents);
         layoutWidget3->setObjectName(QString::fromUtf8("layoutWidget3"));
-        layoutWidget3->setGeometry(QRect(601, 30, 142, 28));
+        layoutWidget3->setGeometry(QRect(601, 30, 111, 28));
         horizontalLayout_7 = new QHBoxLayout(layoutWidget3);
         horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
         horizontalLayout_7->setContentsMargins(0, 0, 0, 0);

@@ -15,6 +15,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     bool isSpecialKey(int index);
     void updateUI();
+    void commitKeySetting();
+    void initTreeView();
     ~MainWindow();
 
 private:

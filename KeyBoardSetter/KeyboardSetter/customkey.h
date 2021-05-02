@@ -16,6 +16,7 @@ public:
     void setMarco(bool is_marco);
     QPushButton *getMappingButton();
     QString getName();
+    QVector<KeyValue*> getKeyValueList();
     void setName(QString _name);
 
     void setKey(QVector<KeyValue*> _keys);
@@ -25,7 +26,7 @@ public:
     ~CustomKey();
 private:
     QVector<KeyValue*> keys;
-    QPushButton * mapping_btn;
+    QPushButton *mapping_btn;
     QString name;
     bool is_marco;
     int normalkey_index;

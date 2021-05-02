@@ -20,7 +20,7 @@ void CustomKey::setKey(QVector<KeyValue*> _keys){
 };
 
 void CustomKey::setKey(KeyValue *_key){
-    is_marco = false;
+    this->is_marco = false;
     this->keys.clear();
     this->keys.append(_key);
 }
@@ -36,6 +36,10 @@ void CustomKey::setName(QString _name){
 }
 bool CustomKey::isMarco(){
     return this->is_marco;
+};
+
+QVector<KeyValue*> CustomKey::getKeyValueList(){
+    return this->keys;
 };
 
 CustomKey::~CustomKey(){
