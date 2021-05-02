@@ -714,7 +714,7 @@ public:
         btn_setcancel->setGeometry(QRect(770, 140, 91, 30));
         layoutWidget2 = new QWidget(dockWidgetContents);
         layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(51, 30, 562, 30));
+        layoutWidget2->setGeometry(QRect(51, 30, 531, 31));
         horizontalLayout = new QHBoxLayout(layoutWidget2);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);

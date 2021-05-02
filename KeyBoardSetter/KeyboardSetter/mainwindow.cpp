@@ -69,8 +69,8 @@ MainWindow::MainWindow(QWidget *parent)
     #endif
     //CONNECT FUNCTIONS
     //connect soft-keyboard toolbuttons
-    for(int i = 0;i<total;i++){
-        connect(keyboard_list[i],&QToolButton::clicked,this,[=]{
+    for(int i = 1;i<total;i++){
+        connect(keyboard_list[i-1],&QToolButton::clicked,this,[=]{
             softKeyPressed(i);
         });
     }

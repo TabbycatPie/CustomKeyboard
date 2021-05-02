@@ -1,9 +1,11 @@
 #include "customkey.h"
+#include "keyvalue.h"
 
 CustomKey::CustomKey(QString _name,QPushButton *mapping_key,bool _is_marco){
     this->name = _name;
     this->mapping_btn = mapping_key;
     this->is_marco = _is_marco;
+    setKey(new KeyValue(0));
 }
 
 void CustomKey::setKey(QVector<KeyValue*> _keys){

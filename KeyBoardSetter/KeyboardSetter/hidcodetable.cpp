@@ -3,6 +3,7 @@
 
 //public key board string
 static const QString _key_string[]={
+    "None",
     //normal keys
     "Escape","F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","F11","F12",
     "~","1","2","3","4","5","6","7","8","9","0","-","+","Backspace",
@@ -17,6 +18,7 @@ static const QString _key_string[]={
 };
 //public key hex
 static const uchar _key_hex[]={
+    0x00,
     0x29,0x3a,0x3b,0x3c,0x3d,0x3e,0x3f,0x40,0x41,0x42,0x43,0x44,0x45,
     0x35,0x1e,0x1f,0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27,0x2d,0x2e,0x2a,
     0x2b,0x14,0x1a,0x08,0x15,0x17,0x1c,0x18,0x0c,0x12,0x13,0x2f,0x30,0x31,
@@ -28,8 +30,8 @@ static const uchar _key_hex[]={
     0x52,0x50,0x51,0x45
 };
 static const int _spkey_index[]={
-    /*Left Shift*/54,/*Right Shift*/65,/*Left Ctrl*/66,/*Left Win*/67,/*Left Alt*/68,
-    /*Right Alt*/70,/*Right Win*/71,/*Right Ctrl*/72
+    /*Left Shift*/55,/*Right Shift*/66,/*Left Ctrl*/67,/*Left Win*/68,/*Left Alt*/69,
+    /*Right Alt*/71,/*Right Win*/72,/*Right Ctrl*/73
 };
 
 
