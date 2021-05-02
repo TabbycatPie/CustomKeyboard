@@ -10,6 +10,8 @@ class KeyValue : public QObject
 public:
     KeyValue(int _normalkey,QVector<int> spkeys);
     void setValue(int _normalkey,QVector<int> spkeys);
+    int getNormalKeyIndex();
+    QVector<int> getSPKeyList();
 private:
     int normalkey;
     QVector<int> sp_keys;

@@ -21,8 +21,9 @@ public:
     QPushButton *getButtonByID(int key_no);
     QString getName();
 
-    //set normal key
-    void setNormalKey(int setkey_no,uchar keytable_no,uchar spkeytable_no);
+    //set key
+    void setKey(int key_id,KeyValue kv);  //normal single
+    void setKey(int key_id,QVector<KeyValue*> kvs); //marco
     //download to device
     bool download();
     ~CustomKeyboard();

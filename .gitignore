@@ -13,3 +13,5 @@ CH551CustomKeyboard/Objects/CH552E-RX
 *.o
 *.Release
 *.Debug
+*.Release
+*.Debug

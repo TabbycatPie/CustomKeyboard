@@ -17,6 +17,12 @@ void CustomKey::setKey(QVector<KeyValue*> _keys){
     this->keys =_keys;
 };
 
+void CustomKey::setKey(KeyValue *_key){
+    is_marco = false;
+    this->keys.clear();
+    this->keys.append(_key);
+}
+
 QPushButton * CustomKey::getMappingButton(){
     return this->mapping_btn;
 };

@@ -19,6 +19,7 @@ public:
     void setName(QString _name);
 
     void setKey(QVector<KeyValue*> _keys);
+    void setKey(KeyValue* _key);
 
     bool isMarco();
     ~CustomKey();

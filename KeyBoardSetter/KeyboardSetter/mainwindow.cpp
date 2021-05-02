@@ -1,50 +1,21 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "customkeyboard.h"
+#include "hidcodetable.h"
+#include "keyvalue.h"
 #include <QDebug>
 #include <QTimer>
 
 #define DEBUG 1
 #define TYPENUM 3
 
-
-//public key board string
-QString key_string[]={
-    //normal keys
-    "Escape","F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","F11","F12",
-    "~","1","2","3","4","5","6","7","8","9","0","-","+","Backspace",
-    "Tab","Q","W","E","R","T","Y","U","I","O","P","[","]","\\",
-    "Caps Lock","A","S","D","F","G","H","J","K","L",";","\'","Enter",
-    "Left Shift","Z","X","C","V","B","N","M","<",">","?","Right Shift",
-    "Left Ctrl","Left Win","Left Alt","Space","Right Alt","Right Win","Right Ctrl",
-    //right area keys
-    "Print Screen","Delete","Insert",
-    "Arrow UP","Arrow Left","Arrow Down","Arrow Right"
-
-};
-//public key hex
-uchar key_hex[]={
-    0x29,0x3a,0x3b,0x3c,0x3d,0x3e,0x3f,0x40,0x41,0x42,0x43,0x44,0x45,
-    0x35,0x1e,0x1f,0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27,0x2d,0x2e,0x2a,
-    0x2b,0x14,0x1a,0x08,0x15,0x17,0x1c,0x18,0x0c,0x12,0x13,0x2f,0x30,0x31,
-    0x82,0x04,0x16,0x07,0x09,0x0a,0x0b,0x0d,0x0e,0x0f,0x33,0x34,0x58,
-    /*Lshift*/0x02,0x1d,0x1b,0x06,0x19,0x05,0x11,0x10,0x36,0x37,0x38,/*Rshift*/0x20,
-    /*Lctrl*/ 0x01,0x08,0x04,0x2c,0x40,0x80,0x10,
-    //right area keys
-    0x46,0x4c,0x49,
-    0x52,0x50,0x51,0x45
-};
-int spkey_index[]={
-    /*Left Shift*/54,/*Right Shift*/65,/*Left Ctrl*/66,/*Left Win*/67,/*Left Alt*/68,
-    /*Right Alt*/70,/*Right Win*/71,/*Right Ctrl*/72
-};
 //global vars
+HIDCodeTable table;
 //custom key board class
 CustomKeyboard *ckb[TYPENUM];
 
 //current pressed key
-QVector<int> cur_key_normal;
-QVector<int> cur_key_sp;
+QVector<KeyValue> cur_kvs;
 
 //current select keyboard
 int cur_keyboard_no = 0;//-1 repersent none
@@ -159,7 +130,7 @@ void MainWindow::setKey(int key_no){
 };
 //soft key press function
 void MainWindow::softKeyPressed(int i){
-    if(isSpecialKey(i)){
+    if(table.isSPkey(i)){
         if(cur_key_sp.indexOf(i)>=0){
             //the key is pressed
             cur_key_sp.remove(cur_key_sp.indexOf(i));
@@ -188,34 +159,24 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-//setter key pressed
-
-//justify i is sp key
-bool MainWindow::isSpecialKey(int index){
-    for(int i =0;i<8;i++){
-        if(index==spkey_index[i])
-            return true;
-    }
-    return false;
-}
 // update ui
 void MainWindow::updateUI(){
     //update soft keyboard label
     QString temp = "";
     if(!cur_key_sp.isEmpty()){
-        temp = key_string[cur_key_sp[0]];
+        temp = table.getKeyString(cur_key_sp[0]);
         for(int i = 1;i<cur_key_sp.size();i++){
-            temp += " + " +  key_string[cur_key_sp[i]];
+            temp += " + " +  table.getKeyString(cur_key_sp[i]);
         }
     }
     if(!cur_key_normal.isEmpty()){
         int i = 0;
         if(temp == ""){
-            temp = key_string[cur_key_normal[0]];
+            temp = table.getKeyString(cur_key_normal[0]);
             i++;
         }
         for(;i<cur_key_normal.size();i++){
-            temp += " + " +  key_string[cur_key_normal[i]];
+            temp += " + " +  table.getKeyString(cur_key_normal[i]);
         }
     }
     ui->tvkey_out->setText(temp);

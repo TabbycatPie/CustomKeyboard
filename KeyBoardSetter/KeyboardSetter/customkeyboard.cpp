@@ -25,10 +25,8 @@ CustomKeyboard::CustomKeyboard(QString _name,int keynum,uint16_t pid,uint16_t vi
     }
 
 }
-
-void CustomKeyboard::setNormalKey(int setkey_no, uchar keytable_no, uchar spkeytable_no){
-    this->normal_keycode[++setkey_no] = keytable_no;
-    this->spkey_mixcode[++setkey_no]  = spkeytable_no;
+void CustomKeyboard::setKey(int key_id, KeyValue kv){
+    this->key_list[key_id]->setKey(&kv);
 }
 
 QString CustomKeyboard::getName(){
