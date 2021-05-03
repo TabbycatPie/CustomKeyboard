@@ -11,7 +11,7 @@ extern UINT8 HIDKey[8];
 extern UINT8 HIDMouse[4];
 
 
-extern UINT8   SetupReq,SetupLen,Ready,Count,FLAG,UsbConfig;
+extern UINT8 SetupReq,SetupLen,Ready,Count,FLAG,UsbConfig;
 extern UINT8 Endp2Rev;
 extern UINT8 Endp2Busy;
 

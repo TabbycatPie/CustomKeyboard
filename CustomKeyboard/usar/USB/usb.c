@@ -263,6 +263,7 @@ UINT8C MouseRepDesc[52] =
 UINT8 UserEp2Buf[64] = {0x0};
 UINT8 Endp2Busy = 0;			//自定义HID发送标志
 UINT8 Endp2Rev = 0;				//自定义HID接收标志	
+
 /*键盘数据*/
 UINT8 HIDKey[8] = {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0};
 /* 鼠标数据 */
