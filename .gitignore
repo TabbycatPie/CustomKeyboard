@@ -15,3 +15,5 @@ CH551CustomKeyboard/Objects/CH552E-RX
 *.Debug
 *.Release
 *.Debug
+*.qm
+*.dll
