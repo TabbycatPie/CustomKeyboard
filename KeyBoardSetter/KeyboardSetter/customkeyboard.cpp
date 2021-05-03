@@ -39,7 +39,7 @@ bool CustomKeyboard::download(){
     if(my_device!=NULL){
         //open success,start transfer
         int res;	// -1 for error
-        unsigned char buf[4];
+        unsigned char buf[65];
         buf[0] = 0x00;	// Report ID
         for(unsigned int i = 0;i<65;i++){
             buf[i]=i;
