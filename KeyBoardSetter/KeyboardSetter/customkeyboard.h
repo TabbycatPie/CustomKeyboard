@@ -11,10 +11,10 @@ class CustomKeyboard : public QObject
     Q_OBJECT
 public:
     //contructor
-    CustomKeyboard(QString _name,int keynum,uint16_t pid,uint16_t vid,int marco_mem,int marco_spkey_mem,QPushButton *(*_btn_list));
+    CustomKeyboard(QString _name,int keynum,unsigned short pid,unsigned short vid,int marco_mem,int marco_spkey_mem,QPushButton *(*_btn_list));
     //getter and setter
-    uint16_t getPid();
-    uint16_t getVid();
+    unsigned short getPid();
+    unsigned short getVid();
     int getKeynum();
     int getMarcoMem();
     int getMarcoSPkeyMem();
@@ -27,17 +27,19 @@ public:
     void setKey(int key_id,QVector<KeyValue*> kvs); //marco
     //download to device
     bool download();
+    QString getLastError();
     ~CustomKeyboard();
 private:
     QVector<CustomKey*> key_list;//soft-keyboard mapping
-    uint16_t pid;       //production id
-    uint16_t vid;       //vender     id
+    unsigned short pid;       //production id
+    unsigned short vid;       //vender     id
     int keynum;         //how many keys your device have
     int marco_mem;      //max number of marco_key memory on device
     int marco_spkey;    //max number of marco special key memort on device
     uchar *normal_keycode;  //normal key code
     uchar *spkey_mixcode;   //special key mix code
     QString name;           //keyboard Name
+    QString last_error;
 
 signals:
 

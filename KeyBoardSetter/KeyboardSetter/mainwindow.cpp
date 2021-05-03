@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QTimer>
 #include <QStandardItem>
+#include <QMessageBox>
 
 #define DEBUG 1
 #define TYPENUM 3
@@ -63,9 +64,9 @@ MainWindow::MainWindow(QWidget *parent)
         ui->btn_quakey3,ui->btn_quakey4
     };
 
-    ckb[0] = new CustomKeyboard("Test",10,(uint16_t)0x5131,(uint16_t)0x2019,100,20,virtual_test_keys);//test keyboard
-    ckb[1] = new CustomKeyboard("DualKey",2,(uint16_t)0x5131,(uint16_t)0x2019,100,20,virtual_dual_keys);//double-key keyboard
-    ckb[2] = new CustomKeyboard("QuadraKey",4,(uint16_t)0x5131,(uint16_t)0x2019,100,20,virtual_qua_keys);//quadra-key keyboard
+    ckb[0] = new CustomKeyboard("Test",10,0x2019,0x5131,100,20,virtual_test_keys);//test keyboard
+    ckb[1] = new CustomKeyboard("DualKey",2,0x2019,0x5131,100,20,virtual_dual_keys);//double-key keyboard
+    ckb[2] = new CustomKeyboard("QuadraKey",4,0x2019,0x5131,100,20,virtual_qua_keys);//quadra-key keyboard
 
     int total = (int)(sizeof(keyboard_list)/sizeof(QToolButton*));
     #ifdef DEBUG
@@ -73,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent)
     #endif
     //CONNECT FUNCTIONS
     //connect soft-keyboard toolbuttons
-    for(int i = 1;i<total;i++){
+    for(int i = 1;i<total+1;i++){
         connect(keyboard_list[i-1],&QToolButton::clicked,this,[=]{
             softKeyPressed(i);
         });
@@ -103,6 +104,11 @@ MainWindow::MainWindow(QWidget *parent)
     //commit key setting
     connect(ui->btn_setcommit,&QPushButton::clicked,this,[=]{
        commitKeySetting();
+    });
+
+    //download button
+    connect(ui->btn_download,&QPushButton::clicked,this,[=]{
+        downloadToDevice(cur_keyboard_no);
     });
 
     //init UI
@@ -230,13 +236,28 @@ void MainWindow::updateUI(){
     ui->treeView->setModel(models[cur_keyboard_no]);
 }
 
-bool openHIDDevice(unsigned short pid,unsigned short vid){
-    hid_device *my_device;
-    my_device = hid_open(vid,pid,NULL);
-    if(my_device != NULL)
-        return false;
-    else
-        return true;
+bool MainWindow::downloadToDevice(int keyboard_no){
+    QMessageBox msg_info(this);
+    msg_info.setWindowTitle("Notice");
+    msg_info.setText("Are you sure to download config to your device:" + ckb[keyboard_no]->getName()+"?");
+    msg_info.setIcon(QMessageBox::Question);
+    msg_info.setStandardButtons(QMessageBox::Ok | QMessageBox:: Cancel);
+    if(msg_info.exec() == QMessageBox::Ok){
+        QMessageBox msg_result(this);
+        if(ckb[keyboard_no]->download()){
+            msg_result.setWindowTitle("Notice");
+            msg_result.setText("Download finished!");
+            msg_result.setIcon(QMessageBox::Information);
+            msg_result.setStandardButtons(QMessageBox::Ok);
+        }
+        else{
+            msg_result.setWindowTitle("Error");
+            msg_result.setText("Download Error :" + ckb[keyboard_no]->getLastError());
+            msg_result.setIcon(QMessageBox::Critical);
+            msg_result.setStandardButtons(QMessageBox::Ok);
+        }
+        msg_result.exec();
+    }
 };
 
 
