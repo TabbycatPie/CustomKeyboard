@@ -26,6 +26,7 @@ SOURCES += \
 HEADERS += \
     customkey.h \
     customkeyboard.h \
+    hidapi.h \
     hidcodetable.h \
     keyvalue.h \
     mainwindow.h

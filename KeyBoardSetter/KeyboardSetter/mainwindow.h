@@ -17,6 +17,7 @@ public:
     void updateUI();
     void commitKeySetting();
     void initTreeView();
+    bool openHIDDevice(unsigned short pid,unsigned short vid);
     ~MainWindow();
 
 private:

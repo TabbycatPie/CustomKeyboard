@@ -3,6 +3,7 @@
 #include "customkeyboard.h"
 #include "hidcodetable.h"
 #include "keyvalue.h"
+#include "hidapi.h"
 #include <QDebug>
 #include <QTimer>
 #include <QStandardItem>
@@ -128,6 +129,7 @@ void MainWindow::setKey(int key_no){
     ui->dockKeyboard->setWindowTitle("Current Keyboard:"+ckb[cur_keyboard_no]->getName()+"   Current Seletion:KEY"+QString::number(key_no+1));
     ui->dockKeyboard->show();
 };
+
 void MainWindow::commitKeySetting(){
     if(cur_key_sp.size()>0||cur_key_normal.size()>0){
         KeyValue *vkp = table.convertVector2KeyValue(cur_key_normal[0],cur_key_sp);
@@ -228,6 +230,14 @@ void MainWindow::updateUI(){
     ui->treeView->setModel(models[cur_keyboard_no]);
 }
 
+bool openHIDDevice(unsigned short pid,unsigned short vid){
+    hid_device *my_device;
+    my_device = hid_open(vid,pid,NULL);
+    if(my_device != NULL)
+        return false;
+    else
+        return true;
+};
 
 
 MainWindow::~MainWindow()
