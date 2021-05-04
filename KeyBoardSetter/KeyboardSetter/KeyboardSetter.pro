@@ -34,7 +34,7 @@ HEADERS += \
 FORMS += \
     mainwindow.ui
 
-LIBS += -L$$_PRO_FILE_PWD_/  -lhidapi
+LIBS += -L$$_PRO_FILE_PWD_/  -l hidapi
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
