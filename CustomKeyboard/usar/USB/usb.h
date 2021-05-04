@@ -3,7 +3,7 @@
 
 
 /*用户自定义数据*/
-extern UINT8 UserEp2Buf[64];
+extern UINT8X UserEp2Buf[64];
 extern UINT8X Ep2Buffer[];
 /*键盘数据*/
 extern UINT8 HIDKey[8];

@@ -22,16 +22,17 @@ UINT8X MARCO_SPE_KEYCODE [20] = {0x08,0x08,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x
 UINT8X MARCO_DELAY_INDX  [20] = {0x00,0x05,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 UINT8X MARCO_DELAY       [20] = {0x04,0x04,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 
-UINT8X MOUSE_CODE [10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for mouse 
-UINT8X KEY_CODE   [10] = {0x1e,0x1f,0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27};  //temporily used for key 
-UINT8X SP_KEY_CODE[10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for sepcial key
+UINT8X MOUSE_CODE [10] = {0x00};  //temporily used for mouse 
+UINT8 KEY_CODE   [10] = {0x00};  //temporily used for key 
+UINT8 SP_KEY_CODE[10] = {0x00};  //temporily used for sepcial key
 
 //unpressed : 0x00
 //  pressed :key_pressed[n] == 0xff
 //if key(n) is a marco key 
 
-UINT8X KEY_PRESS  [10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  
+UINT8 KEY_PRESS  [10] = {0x00};  
 UINT8X KEY_MARCO  [10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+char reboot = 0;
 
 //delay time*100ms
 void MarcoDelay(UINT8 time){
@@ -123,7 +124,7 @@ sbit Key10 = P3^4;
 
 
 void scanKey(){
-	UINT8 i = 0;
+	UINT8 i;
 	UINT8 mouse_code = 0x00;
 	UINT8 sp_key_code = 0x00;
 	UINT8 key_count = 0;
@@ -249,7 +250,7 @@ void scanKey(){
 	
 	
 	//get final result
-	for(;i<10;i++){
+	for(i=0;i<10;i++){
 		mouse_code  |= MOUSE_CODE[i] &KEY_PRESS[i]; //generate mouse_code
 		sp_key_code |= SP_KEY_CODE[i]&KEY_PRESS[i]; //generate special_key_code
 		//generate normal key_code
@@ -273,6 +274,11 @@ void scanKey(){
 	
 }
 
+void initKeyValue(){
+	//read from data flash
+	ReadDataFlash(0,10,KEY_CODE);
+	ReadDataFlash(10,10,SP_KEY_CODE);
+}
 
 
 void hadleReceive(){
@@ -281,37 +287,25 @@ void hadleReceive(){
 		char i;
 		Endp2Rev = 0;
 		switch (Ep2Buffer[0]){
-			case 0x01:
+			case 0x03:
 				//set_key_code
 				for(i = 0; i< 10 ;i++){
 				//copy normal key
-					KEY_CODE[i]=Ep2Buffer[2+i];
+					KEY_CODE[i]=Ep2Buffer[1+i];
 				}
-				WriteDataFlash(0x00,KEY_CODE,10);
+				WriteDataFlash(0,KEY_CODE,10);
 				break;
 			case 0x02:
 				for(i = 0; i< 10 ;i++){
 				//copy normal key
-					SP_KEY_CODE[i]=Ep2Buffer[2+i];
+					SP_KEY_CODE[i]=Ep2Buffer[1+i];
 				}
-				WriteDataFlash(0x0a,SP_KEY_CODE,10);
+				WriteDataFlash(10,SP_KEY_CODE,10);
+				break;
 		}
-		
-		if(Ep2Buffer[0] == 0x00){
-			KEY_CODE[0] = 0x06 ;//c
-		}
-		else{
-			KEY_CODE[0] = Ep2Buffer[0];
-		}
-		
 	}
 }
 
-void initKeyValue(){
-	//read from data flash
-	ReadDataFlash(0,10,KEY_CODE);
-	ReadDataFlash(10,10,SP_KEY_CODE);
-}
 
 void main()
 {
@@ -337,7 +331,7 @@ void main()
 	EA = 1;                       //允许单片机中断
 	//等待USB枚举成功
 	while(Ready == 0);
-	while(1)
+	while(!reboot)
 	{
 		if(Ready)
 		{
