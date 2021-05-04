@@ -24,7 +24,7 @@ UINT8X MARCO_DELAY       [20] = {0x04,0x04,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x
 
 UINT8X MOUSE_CODE [10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for mouse 
 UINT8X KEY_CODE   [10] = {0x1e,0x1f,0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27};  //temporily used for key 
-UINT8X SP_KEY_CODE[10] = {0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for sepcial key
+UINT8X SP_KEY_CODE[10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for sepcial key
 
 //unpressed : 0x00
 //  pressed :key_pressed[n] == 0xff
@@ -274,6 +274,45 @@ void scanKey(){
 }
 
 
+
+void hadleReceive(){
+	if(Endp2Rev != 0)
+	{
+		char i;
+		Endp2Rev = 0;
+		switch (Ep2Buffer[0]){
+			case 0x01:
+				//set_key_code
+				for(i = 0; i< 10 ;i++){
+				//copy normal key
+					KEY_CODE[i]=Ep2Buffer[2+i];
+				}
+				WriteDataFlash(0x00,KEY_CODE,10);
+				break;
+			case 0x02:
+				for(i = 0; i< 10 ;i++){
+				//copy normal key
+					SP_KEY_CODE[i]=Ep2Buffer[2+i];
+				}
+				WriteDataFlash(0x0a,SP_KEY_CODE,10);
+		}
+		
+		if(Ep2Buffer[0] == 0x00){
+			KEY_CODE[0] = 0x06 ;//c
+		}
+		else{
+			KEY_CODE[0] = Ep2Buffer[0];
+		}
+		
+	}
+}
+
+void initKeyValue(){
+	//read from data flash
+	ReadDataFlash(0,10,KEY_CODE);
+	ReadDataFlash(10,10,SP_KEY_CODE);
+}
+
 void main()
 {
   CfgFsys( );                    //CH552时钟选择配置
@@ -293,6 +332,8 @@ void main()
 	
 	USBDeviceInit();              //USB设备模式初始化
 	
+	initKeyValue();
+	
 	EA = 1;                       //允许单片机中断
 	//等待USB枚举成功
 	while(Ready == 0);
@@ -300,19 +341,9 @@ void main()
 	{
 		if(Ready)
 		{
-			if(Endp2Rev != 0)
-			{
-				Endp2Rev = 0;
-				if(Ep2Buffer[0] == 0x10 && Ep2Buffer[1] == 0x08 && \
-					 Ep2Buffer[3] == 0x08 && Ep2Buffer[6] == 0x2A)
-				{
-					//mDelaymS( 1000 );
-				}
-				Ep2Buffer[0] = 0;
-				
-			}
 			scanKey();
 			HIDsend();
+			hadleReceive();
 			FLAG = 0;
 		}
 	}

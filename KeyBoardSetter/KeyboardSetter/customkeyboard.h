@@ -1,6 +1,7 @@
 #ifndef CUSTOMKEYBOARD_H
 #define CUSTOMKEYBOARD_H
 
+#include "hidcodetable.h"
 #include "customkey.h"
 #include <QObject>
 #include <QPushButton>
@@ -26,7 +27,7 @@ public:
     void setKey(int key_id,KeyValue *kv);  //normal single
     void setKey(int key_id,QVector<KeyValue*> kvs); //marco
     //download to device
-    bool download();
+    bool download(HIDCodeTable *table);
     QString getLastError();
     ~CustomKeyboard();
 private:

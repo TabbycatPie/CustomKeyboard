@@ -1,5 +1,6 @@
 #include "customkeyboard.h"
 #include "hidapi.h"
+#include "hidcodetable.h"
 #include <QPushButton>
 #include <QVector>
 #include <QString>
@@ -32,28 +33,36 @@ CustomKeyboard::CustomKeyboard(QString _name,int keynum,unsigned short pid,unsig
 void CustomKeyboard::setKey(int key_id, KeyValue *kv){
     this->key_list[key_id]->setKey(kv);
 }
-bool CustomKeyboard::download(){
+bool CustomKeyboard::download(HIDCodeTable *table){
     //open device
     hid_device *my_device;
     my_device = hid_open(vid,pid,NULL);
     if(my_device!=NULL){
-        //open success,start transfer
-        int res;	// -1 for error
-        unsigned char buf[65];
-        buf[0] = 0x00;	// Report ID
-        for(unsigned int i = 0;i<65;i++){
-            buf[i]=i;
+        //open success,prepare data
+        uchar frame_set_normal[65],frame_set_sp[65];
+        frame_set_normal[0] = 0x00;	// Report ID
+        frame_set_sp[0] = 0x00;
+        frame_set_normal[1] = 0x01;  // set KEY_CODE[10]
+        frame_set_sp[1] = 0x02;      // set SP_KEY_CODE[10]
+        for(unsigned int i = 2;i<65;i++){
+            uchar temp1 = 0x00;
+            uchar temp2 = 0x00;
+            table->convertNormaltKeyValue2Hex(&temp1,&temp2,this->getCustomKeyByID(i)->getKeyValueList()[0]);
+            frame_set_normal[i] = temp1;
+            frame_set_sp[i] = temp2;
         }
-        buf[1] = 0x00;
-        buf[2] = 0x04;
 
-        res = hid_write(my_device, buf, 65);
-        if(res != -1){
+        int res1,res2;	// -1 for error
+        res1 = hid_write(my_device, frame_set_normal, 65);
+        res2 = hid_write(my_device, frame_set_sp, 65);
+        if(res1 != -1){
             qDebug() << "Sending Successfully!" << endl;
+            return true;
         }else{
             last_error = "Data sending is failed!";
             qDebug() << "Sending Failed!" << endl;
             hid_close(my_device);
+            return false;
         }
     }
     else{
