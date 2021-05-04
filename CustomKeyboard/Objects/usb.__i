@@ -1,1 +1,0 @@
-"usar\USB\usb.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(.\usar;.\usar\DataFlash;.\usar\USB) DEBUG OBJECTEXTEND PRINT(.\Listings\usb.lst) TABS (2) OBJECT(.\Objects\usb.obj)

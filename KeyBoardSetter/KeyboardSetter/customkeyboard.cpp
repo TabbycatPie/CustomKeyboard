@@ -39,34 +39,24 @@ bool CustomKeyboard::download(HIDCodeTable *table){
     my_device = hid_open(vid,pid,NULL);
     if(my_device!=NULL){
         //open success,prepare data
-        uchar frame_set_normal[65]={0x00};
-        uchar frame_set_sp[65] = {0x00};
+        uchar frame_set_normal[65],frame_set_sp[65];
         frame_set_normal[0] = 0x00;	// Report ID
         frame_set_sp[0] = 0x00;
-        frame_set_normal[1] = 0x03;  // set KEY_CODE[10]
+        frame_set_normal[1] = 0x01;  // set KEY_CODE[10]
         frame_set_sp[1] = 0x02;      // set SP_KEY_CODE[10]
-        for(unsigned int i = 0;i<10;i++){
-            if(!this->getCustomKeyByID(i)->isMarco()){
-                uchar temp1 = 0x00;
-                uchar temp2 = 0x00;
-                table->convertNormaltKeyValue2Hex(&temp1,&temp2,this->getCustomKeyByID(i)->getKeyValueList()[0]);
-                frame_set_normal[i+2] = temp1;
-                frame_set_sp[i+2] = temp2;
-            }
-            else{
-                //is marco
-                frame_set_normal[i+2] = 0x00;
-                frame_set_sp[i+2] = 0x00;
-            }
+        for(unsigned int i = 2;i<65;i++){
+            uchar temp1 = 0x00;
+            uchar temp2 = 0x00;
+            table->convertNormaltKeyValue2Hex(&temp1,&temp2,this->getCustomKeyByID(i)->getKeyValueList()[0]);
+            frame_set_normal[i] = temp1;
+            frame_set_sp[i] = temp2;
         }
 
         int res1,res2;	// -1 for error
         res1 = hid_write(my_device, frame_set_normal, 65);
         res2 = hid_write(my_device, frame_set_sp, 65);
-
-        if(res1 != -1 && res2!= -1){
+        if(res1 != -1){
             qDebug() << "Sending Successfully!" << endl;
-            hid_close(my_device);
             return true;
         }else{
             last_error = "Data sending is failed!";

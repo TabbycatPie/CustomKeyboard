@@ -138,10 +138,7 @@ void MainWindow::setKey(int key_no){
 
 void MainWindow::commitKeySetting(){
     if(cur_key_sp.size()>0||cur_key_normal.size()>0){
-        int temp=0;
-        if(cur_key_normal.size() != 0)
-            temp = cur_key_normal[0];
-        KeyValue *vkp = table.convertVector2KeyValue(temp,cur_key_sp);
+        KeyValue *vkp = table.convertVector2KeyValue(cur_key_normal[0],cur_key_sp);
         ckb[cur_keyboard_no]->setKey(cur_edit_key_no,vkp);
 
         QModelIndex temp_index = models[cur_keyboard_no]->index(cur_edit_key_no,0);
