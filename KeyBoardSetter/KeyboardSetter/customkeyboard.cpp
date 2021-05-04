@@ -55,7 +55,7 @@ bool CustomKeyboard::download(HIDCodeTable *table){
         int res1,res2;	// -1 for error
         res1 = hid_write(my_device, frame_set_normal, 65);
         res2 = hid_write(my_device, frame_set_sp, 65);
-        if(res1 != -1){
+        if(res1 != -1 && res2 != -1){
             qDebug() << "Sending Successfully!" << endl;
             return true;
         }else{

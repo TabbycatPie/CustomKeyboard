@@ -80,7 +80,8 @@ QString HIDCodeTable::convertKeyValue2QString(KeyValue *kv){
         for(int i =1;i<kv->getSPKeyList().size();i++){
             out += " + " + getKeyString(kv->getSPKeyList()[i]);
         }
-        out += " + " + getKeyString(kv->getNormalKeyIndex());
+        if(kv->getNormalKeyIndex()!=0)
+            out += " + " + getKeyString(kv->getNormalKeyIndex());
     }
     else{
         out = getKeyString(kv->getNormalKeyIndex());
