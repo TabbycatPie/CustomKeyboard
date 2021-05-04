@@ -285,23 +285,16 @@ void hadleReceive(){
 				//set_key_code
 				for(i = 0; i< 10 ;i++){
 				//copy normal key
-					KEY_CODE[i]=Ep2Buffer[2+i];
+					KEY_CODE[i]=Ep2Buffer[1+i];
 				}
 				WriteDataFlash(0x00,KEY_CODE,10);
 				break;
 			case 0x02:
 				for(i = 0; i< 10 ;i++){
 				//copy normal key
-					SP_KEY_CODE[i]=Ep2Buffer[2+i];
+					SP_KEY_CODE[i]=Ep2Buffer[1+i];
 				}
 				WriteDataFlash(0x0a,SP_KEY_CODE,10);
-		}
-		
-		if(Ep2Buffer[0] == 0x00){
-			KEY_CODE[0] = 0x06 ;//c
-		}
-		else{
-			KEY_CODE[0] = Ep2Buffer[0];
 		}
 		
 	}
