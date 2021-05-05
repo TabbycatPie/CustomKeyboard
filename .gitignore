@@ -1,4 +1,3 @@
-
 *.admin
 *.uvopt
 *.obj
@@ -11,14 +10,6 @@ CH551CustomKeyboard/Objects/CH552E-RX
 *.json
 *.exe
 *.o
-*.Release
-*.Debug
-*.Release
-*.Debug
 *.qm
 *.dll
-*.Debug
-*.Debug
-*.Release
-CustomKeyboard/Objects/DIY
 CustomKeyboard/Objects/DIY
