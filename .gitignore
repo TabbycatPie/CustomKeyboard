@@ -9,3 +9,7 @@
 CH551CustomKeyboard/Objects/CH552E-RX
 *.m51
 *.json
+*.dll
+*.o
+*.exe
+*.qm
