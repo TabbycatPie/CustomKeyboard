@@ -725,7 +725,7 @@ public:
 
         layoutWidget_6 = new QWidget(dockWidgetContents);
         layoutWidget_6->setObjectName(QString::fromUtf8("layoutWidget_6"));
-        layoutWidget_6->setGeometry(QRect(569, 180, 121, 28));
+        layoutWidget_6->setGeometry(QRect(570, 180, 111, 28));
         horizontalLayout_8 = new QHBoxLayout(layoutWidget_6);
         horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
         horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
@@ -746,7 +746,7 @@ public:
 
         btn_up = new QToolButton(dockWidgetContents);
         btn_up->setObjectName(QString::fromUtf8("btn_up"));
-        btn_up->setGeometry(QRect(610, 145, 36, 31));
+        btn_up->setGeometry(QRect(610, 147, 31, 31));
         tvkey_out = new QLabel(dockWidgetContents);
         tvkey_out->setObjectName(QString::fromUtf8("tvkey_out"));
         tvkey_out->setGeometry(QRect(60, 4, 811, 21));
@@ -829,7 +829,7 @@ public:
 
         layoutWidget3 = new QWidget(dockWidgetContents);
         layoutWidget3->setObjectName(QString::fromUtf8("layoutWidget3"));
-        layoutWidget3->setGeometry(QRect(570, 30, 121, 28));
+        layoutWidget3->setGeometry(QRect(570, 30, 111, 28));
         sep = new QHBoxLayout(layoutWidget3);
         sep->setObjectName(QString::fromUtf8("sep"));
         sep->setContentsMargins(0, 0, 0, 0);
@@ -850,7 +850,7 @@ public:
 
         layoutWidget_9 = new QWidget(dockWidgetContents);
         layoutWidget_9->setObjectName(QString::fromUtf8("layoutWidget_9"));
-        layoutWidget_9->setGeometry(QRect(570, 60, 121, 28));
+        layoutWidget_9->setGeometry(QRect(570, 60, 111, 28));
         sep_2 = new QHBoxLayout(layoutWidget_9);
         sep_2->setObjectName(QString::fromUtf8("sep_2"));
         sep_2->setContentsMargins(0, 0, 0, 0);
@@ -871,7 +871,7 @@ public:
 
         layoutWidget_12 = new QWidget(dockWidgetContents);
         layoutWidget_12->setObjectName(QString::fromUtf8("layoutWidget_12"));
-        layoutWidget_12->setGeometry(QRect(570, 90, 121, 28));
+        layoutWidget_12->setGeometry(QRect(570, 90, 111, 28));
         sep_3 = new QHBoxLayout(layoutWidget_12);
         sep_3->setObjectName(QString::fromUtf8("sep_3"));
         sep_3->setContentsMargins(0, 0, 0, 0);

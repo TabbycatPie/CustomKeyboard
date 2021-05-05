@@ -48,7 +48,9 @@ bool CustomKeyboard::download(HIDCodeTable *table){
         for(int i = 0;i<this->getKeynum();i++){
             uchar temp1 = 0x00;
             uchar temp2 = 0x00;
-            table->convertNormaltKeyValue2Hex(&temp1,&temp2,this->getCustomKeyByID(i)->getKeyValueList()[0]);
+            if(!this->getCustomKeyByID(i)->isMarco()){
+                 table->convertNormaltKeyValue2Hex(&temp1,&temp2,this->getCustomKeyByID(i)->getKeyValueList()[0]);
+            }
             frame_set_normal[i+2] = temp1;
             frame_set_sp[i+2] = temp2;
         }
