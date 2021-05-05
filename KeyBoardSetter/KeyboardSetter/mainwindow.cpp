@@ -72,9 +72,9 @@ MainWindow::MainWindow(QWidget *parent)
         ui->btn_quakey3,ui->btn_quakey4
     };
 
-    ckb[0] = new CustomKeyboard("Test",10,0x2019,0x5131,100,20,virtual_test_keys);//test keyboard
-    ckb[1] = new CustomKeyboard("DualKey",2,0x2019,0x5131,100,20,virtual_dual_keys);//double-key keyboard
-    ckb[2] = new CustomKeyboard("QuadraKey",4,0x2019,0x5131,100,20,virtual_qua_keys);//quadra-key keyboard
+    ckb[0] = new CustomKeyboard("Test",10,0x2019,0x5131,50,10,virtual_test_keys);//test keyboard
+    ckb[1] = new CustomKeyboard("DualKey",2,0x2019,0x5131,50,10,virtual_dual_keys);//double-key keyboard
+    ckb[2] = new CustomKeyboard("QuadraKey",4,0x2019,0x5131,50,10,virtual_qua_keys);//quadra-key keyboard
 
     int total = (int)(sizeof(keyboard_list)/sizeof(QToolButton*));
     #ifdef DEBUG
@@ -154,6 +154,7 @@ void MainWindow::commitKeySetting(){
 
         QModelIndex temp_index = models[cur_keyboard_no]->index(cur_edit_key_no,0);
         models[cur_keyboard_no]->itemFromIndex(temp_index)->setChild(0,0,new QStandardItem("1"));
+        //models[cur_keyboard_no]->itemFromIndex(temp_index)->child(0,0)->appendRow(new QStandardItem("1"));
         models[cur_keyboard_no]->itemFromIndex(temp_index)->setChild(0,1,new QStandardItem(table.convertKeyValue2QString(vkp)));
 
 
