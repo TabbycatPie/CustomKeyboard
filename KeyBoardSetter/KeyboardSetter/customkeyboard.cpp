@@ -45,7 +45,7 @@ bool CustomKeyboard::download(HIDCodeTable *table){
         frame_set_sp[0] = 0x00;
         frame_set_normal[1] = 0x01;  // set KEY_CODE[10]
         frame_set_sp[1] = 0x02;      // set SP_KEY_CODE[10]
-        for(int i = 0;i<10;i++){
+        for(int i = 0;i<this->getKeynum();i++){
             uchar temp1 = 0x00;
             uchar temp2 = 0x00;
             table->convertNormaltKeyValue2Hex(&temp1,&temp2,this->getCustomKeyByID(i)->getKeyValueList()[0]);

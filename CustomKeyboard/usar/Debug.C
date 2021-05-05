@@ -100,12 +100,7 @@ void mDelayuS( UINT16 n )  // 以uS为单位延时
 void mDelaymS( UINT16 n )                                                  // 以mS为单位延时
 {
 	while ( n ) {
-#ifdef	DELAY_MS_HW
-		while ( ( TKEY_CTRL & bTKC_IF ) == 0 );
-		while ( TKEY_CTRL & bTKC_IF );
-#else
 		mDelayuS( 1000 );
-#endif
 		-- n;
 	}
 }                                         
