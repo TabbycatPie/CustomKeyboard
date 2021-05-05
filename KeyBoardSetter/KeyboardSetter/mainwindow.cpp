@@ -45,8 +45,16 @@ MainWindow::MainWindow(QWidget *parent)
         ui->btn_lshift,ui->btn_z,ui->btn_x,ui->btn_c,ui->btn_v,ui->btn_b,ui->btn_n,ui->btn_m,ui->btn_lessthan,ui->btn_greaterthan,ui->btn_quest,ui->btn_rshift,
         ui->btn_lctrl,ui->btn_lwin,ui->btn_lalt,ui->btn_space,ui->btn_ralt,ui->btn_rwin,ui->btn_rctrl,
         //right area keys
-        ui->btn_ptsr,ui->btn_del,ui->btn_ins,
-        ui->btn_up,ui->btn_left,ui->btn_down,ui->btn_right
+        ui->btn_ptsr,ui->btn_scrolllock,ui->btn_puase,
+        ui->btn_insert,ui->btn_home,ui->btn_pageup,
+        ui->btn_delete,ui->btn_end,ui->btn_pagedown,
+        ui->btn_up,ui->btn_left,ui->btn_down,ui->btn_right,
+        //small keyboard
+        ui->btn_num,ui->btn_sslash,ui->btn_star,ui->btn_sminus,
+        ui->btn_s7,ui->btn_s8,ui->btn_s9,ui->btn_splus,
+        ui->btn_s4,ui->btn_s5,ui->btn_s6,
+        ui->btn_s1,ui->btn_s2,ui->btn_s3,ui->btn_senter,
+        ui->btn_s0,ui->btn_sdot
     };
     //virtual key
     //TEST keyboard page

@@ -12,9 +12,16 @@ static const QString _key_string[]={
     "Left Shift","Z","X","C","V","B","N","M","<",">","?","Right Shift",
     "Left Ctrl","Left Win","Left Alt","Space","Right Alt","Right Win","Right Ctrl",
     //right area keys
-    "Print Screen","Delete","Insert",
-    "Arrow UP","Arrow Left","Arrow Down","Arrow Right"
-
+    "Print Screen","Scroll Lock","Pause",
+    "Insert","Home","PageUp",
+    "Delete","End","PageDown",
+    "Arrow UP","Arrow Left","Arrow Down","Arrow Right",
+    //key board
+    "Num Lock","\\(p)","*(p)","-(p)",
+    "7(p)","8(p)","9(p)","+(p)",
+    "4(p)","5(p)","6(p)",
+    "1(p)","2(p)","3(p)","Enter(p)",
+    "0(p)",".(p)"
 };
 //public key hex
 static const uchar _key_hex[]={
@@ -26,8 +33,16 @@ static const uchar _key_hex[]={
     /*Lshift*/0x02,0x1d,0x1b,0x06,0x19,0x05,0x11,0x10,0x36,0x37,0x38,/*Rshift*/0x20,
     /*Lctrl*/ 0x01,0x08,0x04,0x2c,0x40,0x80,0x10,
     //right area keys
-    0x46,0x4c,0x49,
-    0x52,0x50,0x51,0x45
+    0x46,0x47,0x48,
+    0x49,0x4a,0x61,
+    0x4c,0x4d,0x4e,
+    0x52,0x50,0x51,0x45,
+    //small key board
+    0x53,0x54,0x55,0x56,
+    0x5f,0x60,0x61,0x57,
+    0x5c,0x5d,0x5e,
+    0x59,0x5a,0x5b,0x58,
+    0x62,0x63
 };
 static const int _spkey_index[]={
     /*Left Shift*/55,/*Right Shift*/66,/*Left Ctrl*/67,/*Left Win*/68,/*Left Alt*/69,

@@ -9,19 +9,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
+    <width>1000</width>
     <height>736</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>900</width>
+    <width>1000</width>
     <height>600</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>900</width>
+    <width>1000</width>
     <height>16777215</height>
    </size>
   </property>
@@ -40,7 +40,7 @@
      <rect>
       <x>3</x>
       <y>1</y>
-      <width>501</width>
+      <width>511</width>
       <height>431</height>
      </rect>
     </property>
@@ -349,7 +349,7 @@
    <widget class="QPushButton" name="btn_download">
     <property name="geometry">
      <rect>
-      <x>763</x>
+      <x>860</x>
       <y>40</y>
       <width>121</width>
       <height>41</height>
@@ -362,9 +362,9 @@
    <widget class="QTreeView" name="treeView">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>520</x>
       <y>100</y>
-      <width>381</width>
+      <width>471</width>
       <height>331</height>
      </rect>
     </property>
@@ -378,7 +378,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>900</width>
+     <width>1000</width>
      <height>30</height>
     </rect>
    </property>
@@ -397,13 +397,13 @@
   <widget class="QDockWidget" name="dockKeyboard">
    <property name="minimumSize">
     <size>
-     <width>900</width>
+     <width>1000</width>
      <height>242</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>900</width>
+     <width>1000</width>
      <height>242</height>
     </size>
    </property>
@@ -429,7 +429,7 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>51</x>
+       <x>20</x>
        <y>60</y>
        <width>531</width>
        <height>30</height>
@@ -539,7 +539,7 @@
     <widget class="QWidget" name="layoutWidget_2">
      <property name="geometry">
       <rect>
-       <x>51</x>
+       <x>20</x>
        <y>90</y>
        <width>531</width>
        <height>30</height>
@@ -649,7 +649,7 @@
     <widget class="QWidget" name="layoutWidget_3">
      <property name="geometry">
       <rect>
-       <x>51</x>
+       <x>20</x>
        <y>120</y>
        <width>531</width>
        <height>30</height>
@@ -752,7 +752,7 @@
     <widget class="QWidget" name="layoutWidget_4">
      <property name="geometry">
       <rect>
-       <x>51</x>
+       <x>20</x>
        <y>150</y>
        <width>531</width>
        <height>30</height>
@@ -848,7 +848,7 @@
     <widget class="QWidget" name="layoutWidget_5">
      <property name="geometry">
       <rect>
-       <x>51</x>
+       <x>20</x>
        <y>180</y>
        <width>531</width>
        <height>30</height>
@@ -909,7 +909,7 @@
     <widget class="QWidget" name="layoutWidget_6">
      <property name="geometry">
       <rect>
-       <x>600</x>
+       <x>569</x>
        <y>180</y>
        <width>121</width>
        <height>28</height>
@@ -942,7 +942,7 @@
     <widget class="QToolButton" name="btn_up">
      <property name="geometry">
       <rect>
-       <x>641</x>
+       <x>610</x>
        <y>145</y>
        <width>36</width>
        <height>31</height>
@@ -968,7 +968,7 @@
     <widget class="QPushButton" name="btn_setcommit">
      <property name="geometry">
       <rect>
-       <x>770</x>
+       <x>880</x>
        <y>180</y>
        <width>91</width>
        <height>30</height>
@@ -981,7 +981,7 @@
     <widget class="QPushButton" name="btn_setcancel">
      <property name="geometry">
       <rect>
-       <x>770</x>
+       <x>880</x>
        <y>140</y>
        <width>91</width>
        <height>30</height>
@@ -994,13 +994,13 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>51</x>
+       <x>20</x>
        <y>30</y>
        <width>531</width>
        <height>31</height>
       </rect>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="firstline">
       <item>
        <widget class="QToolButton" name="btn_esc">
         <property name="text">
@@ -1097,13 +1097,13 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>601</x>
+       <x>570</x>
        <y>30</y>
-       <width>111</width>
+       <width>121</width>
        <height>28</height>
       </rect>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <layout class="QHBoxLayout" name="sep">
       <item>
        <widget class="QToolButton" name="btn_ptsr">
         <property name="text">
@@ -1112,20 +1112,277 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="btn_del">
+       <widget class="QToolButton" name="btn_scrolllock">
+        <property name="text">
+         <string>Scl</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btn_puase">
+        <property name="text">
+         <string>Pau</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="layoutWidget_9">
+     <property name="geometry">
+      <rect>
+       <x>570</x>
+       <y>60</y>
+       <width>121</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="sep_2">
+      <item>
+       <widget class="QToolButton" name="btn_insert">
+        <property name="text">
+         <string>Ins</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btn_home">
+        <property name="text">
+         <string>Hom</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btn_pageup">
+        <property name="text">
+         <string>PaU</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="layoutWidget_12">
+     <property name="geometry">
+      <rect>
+       <x>570</x>
+       <y>90</y>
+       <width>121</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="sep_3">
+      <item>
+       <widget class="QToolButton" name="btn_delete">
         <property name="text">
          <string>Del</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="btn_ins">
+       <widget class="QToolButton" name="btn_end">
         <property name="text">
-         <string>Ins</string>
+         <string>End</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btn_pagedown">
+        <property name="text">
+         <string>PaD</string>
         </property>
        </widget>
       </item>
      </layout>
+    </widget>
+    <widget class="QWidget" name="layoutWidget_13">
+     <property name="geometry">
+      <rect>
+       <x>710</x>
+       <y>60</y>
+       <width>131</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="sep_4">
+      <item>
+       <widget class="QToolButton" name="btn_num">
+        <property name="text">
+         <string>Num</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btn_sslash">
+        <property name="text">
+         <string>\</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btn_star">
+        <property name="text">
+         <string>*</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btn_sminus">
+        <property name="text">
+         <string>-</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="layoutWidget_14">
+     <property name="geometry">
+      <rect>
+       <x>710</x>
+       <y>90</y>
+       <width>101</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="sep_5">
+      <item>
+       <widget class="QToolButton" name="btn_s7">
+        <property name="text">
+         <string>7</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btn_s8">
+        <property name="text">
+         <string>8</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btn_s9">
+        <property name="text">
+         <string>9</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="layoutWidget_15">
+     <property name="geometry">
+      <rect>
+       <x>710</x>
+       <y>120</y>
+       <width>101</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="sep_6">
+      <item>
+       <widget class="QToolButton" name="btn_s4">
+        <property name="text">
+         <string>4</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btn_s5">
+        <property name="text">
+         <string>5</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btn_s6">
+        <property name="text">
+         <string>6</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="layoutWidget_16">
+     <property name="geometry">
+      <rect>
+       <x>710</x>
+       <y>150</y>
+       <width>101</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="sep_7">
+      <item>
+       <widget class="QToolButton" name="btn_s1">
+        <property name="text">
+         <string>1</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btn_s2">
+        <property name="text">
+         <string>2</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btn_s3">
+        <property name="text">
+         <string>3</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="layoutWidget_17">
+     <property name="geometry">
+      <rect>
+       <x>710</x>
+       <y>180</y>
+       <width>101</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="sep_8">
+      <item>
+       <widget class="QToolButton" name="btn_s0">
+        <property name="text">
+         <string>  _0_  </string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btn_sdot">
+        <property name="text">
+         <string>.</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QToolButton" name="btn_splus">
+     <property name="geometry">
+      <rect>
+       <x>813</x>
+       <y>90</y>
+       <width>27</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>+</string>
+     </property>
+    </widget>
+    <widget class="QToolButton" name="btn_senter">
+     <property name="geometry">
+      <rect>
+       <x>813</x>
+       <y>146</y>
+       <width>27</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ent</string>
+     </property>
     </widget>
    </widget>
   </widget>
