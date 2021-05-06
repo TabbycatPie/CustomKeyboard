@@ -153,10 +153,16 @@ void MainWindow::commitKeySetting(){
         ckb[cur_keyboard_no]->setKey(cur_edit_key_no,vkp);
 
         QModelIndex temp_index = models[cur_keyboard_no]->index(cur_edit_key_no,0);
-        models[cur_keyboard_no]->itemFromIndex(temp_index)->setChild(0,0,new QStandardItem("1"));
-        //models[cur_keyboard_no]->itemFromIndex(temp_index)->child(0,0)->appendRow(new QStandardItem("1"));
-        models[cur_keyboard_no]->itemFromIndex(temp_index)->setChild(0,1,new QStandardItem(table.convertKeyValue2QString(vkp)));
 
+
+        //models[cur_keyboard_no]->itemFromIndex(temp_index)->setChild(0,0,new QStandardItem("1"));
+        //models[cur_keyboard_no]->itemFromIndex(temp_index)->child(0,0)->setData("1");
+        //models[cur_keyboard_no]->itemFromIndex(temp_index)->setChild(0,1,new QStandardItem(table.convertKeyValue2QString(vkp)));
+        models[cur_keyboard_no]->itemFromIndex(temp_index)->child(0,1)->setText(table.convertKeyValue2QString(vkp));
+//        QList<QStandardItem*> kvs;
+//        kvs.append(new QStandardItem("1"));
+//        kvs.append(new QStandardItem("test"));
+//        models[cur_keyboard_no]->itemFromIndex(temp_index)->appendRow(kvs);
 
         //clear current buffer
         cur_key_normal.clear();
