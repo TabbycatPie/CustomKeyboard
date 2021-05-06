@@ -30,9 +30,20 @@ CustomKeyboard::CustomKeyboard(QString _name,int keynum,unsigned short pid,unsig
     }
 
 }
+//------FUNCTIONS FOR KEY EDITING------//
 void CustomKeyboard::setKey(int key_id, KeyValue *kv){
     this->key_list[key_id]->setKey(kv);
 }
+void CustomKeyboard::setKey(int key_id, QVector<KeyValue *> kvs){
+    this->key_list[key_id]->setKey(kvs);
+}
+void CustomKeyboard::appendKey(int key_id,KeyValue *kv){
+    this->key_list[key_id]->appendKey(kv);
+};
+bool CustomKeyboard::deleteTopKey(int key_id){
+    return this->key_list[key_id]->deleteTopKey();
+};
+//-------------------------------------//
 bool CustomKeyboard::download(HIDCodeTable *table){
     //open device
     hid_device *my_device;

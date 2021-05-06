@@ -118,7 +118,13 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->btn_download,&QPushButton::clicked,this,[=]{
         downloadToDevice(cur_keyboard_no);
     });
-
+    //set add and delete button
+    connect(ui->btn_setadd,&QPushButton::clicked,this,[=]{
+        addKeyValue();
+    });
+    connect(ui->btn_setdelete,&QPushButton::clicked,this,[=]{
+        deleteKeyValue();
+    });
     //init UI
     initTreeView();
     ui->treeView->setModel(models[0]);
@@ -144,6 +150,8 @@ void MainWindow::setKey(int key_no){
     ui->dockKeyboard->show();
 };
 
+//Key listener
+
 void MainWindow::commitKeySetting(){
     if(cur_key_sp.size()>0||cur_key_normal.size()>0){
         int temp = 0;
@@ -153,16 +161,7 @@ void MainWindow::commitKeySetting(){
         ckb[cur_keyboard_no]->setKey(cur_edit_key_no,vkp);
 
         QModelIndex temp_index = models[cur_keyboard_no]->index(cur_edit_key_no,0);
-
-
-        //models[cur_keyboard_no]->itemFromIndex(temp_index)->setChild(0,0,new QStandardItem("1"));
-        //models[cur_keyboard_no]->itemFromIndex(temp_index)->child(0,0)->setData("1");
-        //models[cur_keyboard_no]->itemFromIndex(temp_index)->setChild(0,1,new QStandardItem(table.convertKeyValue2QString(vkp)));
         models[cur_keyboard_no]->itemFromIndex(temp_index)->child(0,1)->setText(table.convertKeyValue2QString(vkp));
-//        QList<QStandardItem*> kvs;
-//        kvs.append(new QStandardItem("1"));
-//        kvs.append(new QStandardItem("test"));
-//        models[cur_keyboard_no]->itemFromIndex(temp_index)->appendRow(kvs);
 
         //clear current buffer
         cur_key_normal.clear();
@@ -281,7 +280,46 @@ bool MainWindow::downloadToDevice(int keyboard_no){
     return result;
 };
 
-
+bool MainWindow::addKeyValue(){
+    //set append key value
+    QVector<KeyValue*> temp_list = ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->getKeyValueList();
+    int temp_normal = 0;
+    if(cur_key_normal.size() > 0)
+        temp_normal = cur_key_normal[0];
+    KeyValue *temp_kv = table.convertVector2KeyValue(temp_normal,cur_key_sp);
+    if(ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->getKeyValueList()[0]->getNormalKeyIndex() == 0 \
+            && ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->getKeyValueList()[0]->getSPKeyList()[0] == 0)
+    {
+        ckb[cur_keyboard_no]->setKey(cur_edit_key_no,temp_kv);
+        //update treeview
+        QModelIndex temp_index = models[cur_keyboard_no]->index(cur_edit_key_no,0);
+        models[cur_keyboard_no]->itemFromIndex(temp_index)->child(0,1)->setText(table.convertKeyValue2QString(temp_kv));
+    }
+    else{
+       //update to class
+       ckb[cur_keyboard_no]->appendKey(cur_edit_key_no,temp_kv);
+       //update treeview
+       QModelIndex temp_index = models[cur_keyboard_no]->index(cur_edit_key_no,0);
+       QList<QStandardItem*> kvs;
+       kvs.append(new QStandardItem(QString::number(temp_list.size()+1)));
+       kvs.append(new QStandardItem(table.convertKeyValue2QString(temp_kv)));
+       models[cur_keyboard_no]->itemFromIndex(temp_index)->appendRow(kvs);
+    }
+}
+bool MainWindow::deleteKeyValue(){
+    //delet from current key
+    if(ckb[cur_keyboard_no]->deleteTopKey(cur_edit_key_no)){
+        //upaate treeview
+        QModelIndex temp_index = models[cur_keyboard_no]->index(cur_edit_key_no,0);
+        int list_size = ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->getKeyValueCount();
+        models[cur_keyboard_no]->itemFromIndex(temp_index)->removeRows(list_size,1);
+    }
+    else{
+        qDebug() << "List is empty!";
+        QModelIndex temp_index = models[cur_keyboard_no]->index(cur_edit_key_no,0);
+        models[cur_keyboard_no]->itemFromIndex(temp_index)->child(0,1)->setText("None");
+    }
+}
 MainWindow::~MainWindow()
 {
     delete ui;

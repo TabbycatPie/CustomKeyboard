@@ -379,7 +379,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>30</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -850,7 +850,7 @@
       <rect>
        <x>20</x>
        <y>180</y>
-       <width>531</width>
+       <width>538</width>
        <height>30</height>
       </rect>
      </property>
@@ -965,32 +965,6 @@
       <string>TextLabel</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="btn_setcommit">
-     <property name="geometry">
-      <rect>
-       <x>880</x>
-       <y>180</y>
-       <width>91</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Commit</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="btn_setcancel">
-     <property name="geometry">
-      <rect>
-       <x>880</x>
-       <y>140</y>
-       <width>91</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Cancel</string>
-     </property>
-    </widget>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
@@ -1099,7 +1073,7 @@
       <rect>
        <x>570</x>
        <y>30</y>
-       <width>111</width>
+       <width>134</width>
        <height>28</height>
       </rect>
      </property>
@@ -1132,7 +1106,7 @@
       <rect>
        <x>570</x>
        <y>60</y>
-       <width>111</width>
+       <width>128</width>
        <height>28</height>
       </rect>
      </property>
@@ -1165,7 +1139,7 @@
       <rect>
        <x>570</x>
        <y>90</y>
-       <width>111</width>
+       <width>128</width>
        <height>28</height>
       </rect>
      </property>
@@ -1198,7 +1172,7 @@
       <rect>
        <x>710</x>
        <y>60</y>
-       <width>131</width>
+       <width>136</width>
        <height>28</height>
       </rect>
      </property>
@@ -1383,6 +1357,46 @@
      <property name="text">
       <string>Ent</string>
      </property>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>880</x>
+       <y>110</y>
+       <width>111</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QPushButton" name="btn_setcancel">
+        <property name="text">
+         <string>Cancel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_setadd">
+        <property name="text">
+         <string>Add</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_setdelete">
+        <property name="text">
+         <string>Delete</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_setcommit">
+        <property name="text">
+         <string>Commit</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
   </widget>

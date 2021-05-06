@@ -18,6 +18,8 @@ public:
     void commitKeySetting();
     void initTreeView();
     bool downloadToDevice(int keyboard_no);
+    bool addKeyValue();
+    bool deleteKeyValue();
     ~MainWindow();
 
 private:
