@@ -34,6 +34,7 @@ bool CustomKey::deleteTopKey(){
             QVector<int> t;
             t.append(0);
             keys[0]->setValue(0,t);
+            this->is_marco = false;
             return false;
         }else
             return false;

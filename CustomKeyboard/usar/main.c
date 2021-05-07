@@ -3,31 +3,32 @@
 #include "DataFlash.h"
 #include "usb.h"
 
-UINT8X MARCO_KEYCODE [50]= { 0x15,0x06,0x10,0x07,0x58,0x15,0x10,0x16,0x17,0x16,  //Win+r,c,m,d,Enter,Win+r,m,s,t,s,
-														 0x06,0x58,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,	 //c,Enter,,,,,,,,,
-														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
-														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
-													 };  //marco keycode
+//UINT8X MARCO_KEYCODE [50]= { 0x15,0x06,0x10,0x07,0x58,0x15,0x10,0x16,0x17,0x16,  //Win+r,c,m,d,Enter,Win+r,m,s,t,s,
+//														 0x06,0x58,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,	 //c,Enter,,,,,,,,,
+//														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+//														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
+//													 };  //marco keycode
+UINT8X MARCO_KEYCODE [50]= {0x00};  //marco keycode
 
-UINT8X MARCO_SPLIT_INDX [5] = {0,5,12,19,19};  //split marco key position
+UINT8X MARCO_SPLIT_INDX [5] = {0};  //split marco key position
 
-UINT8X MARCO_SPE_KEYINDX [10] = {0x00,0x05,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
-UINT8X MARCO_SPE_KEYCODE [10] = {0x08,0x08,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+UINT8X MARCO_SPE_KEYINDX [10] = {0x00};
+UINT8X MARCO_SPE_KEYCODE [10] = {0x00};
 
-UINT8X MARCO_DELAY_INDX  [10] = {0x00,0x04,0x05,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
-UINT8X MARCO_DELAY       [10] = {0x04,0x04,0x04,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+UINT8X MARCO_DELAY_INDX  [10] = {0x00};
+UINT8X MARCO_DELAY       [10] = {0x00};
 
 UINT8X MOUSE_CODE [10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for mouse 
-UINT8X KEY_CODE   [10] = {0x1e,0x1f,0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27};  //temporily used for key 
-UINT8X SP_KEY_CODE[10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for sepcial key
+UINT8X KEY_CODE   [10] = {0x00};  //temporily used for key 
+UINT8X SP_KEY_CODE[10] = {0x00};  //temporily used for sepcial key
 
 //unpressed : 0x00
 //  pressed :key_pressed[n] == 0xff
 //if key(n) is a marco key 
 
 UINT8X KEY_PRESS  [10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  
-UINT8X KEY_MARCO  [10] = {0xff,0xff,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+UINT8X KEY_MARCO  [10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 
 //delay time*100ms
 void MarcoDelay(UINT8 time){
@@ -47,6 +48,13 @@ void HIDsend(){
 //send marco key
 void HIDmarco(UINT8 key_num){
 	UINT8 i,j,delay_n00ms;
+	//get key_num position
+	UINT8 pos = 0;
+	for(i=0;i<key_num;i++){
+		if(KEY_MARCO[i]==0xff){
+			pos++;
+		}
+	}
 	//init HIDKey[]
 	HIDKey[0] = 0x00;  //special key
 	HIDKey[1] = 0x00;  //reserved
@@ -58,18 +66,18 @@ void HIDmarco(UINT8 key_num){
 	HIDKey[7] = 0x00;
 	HIDKey[8] = 0x00;
 	//HIDKeysend();
-	for(i=0;i<(MARCO_SPLIT_INDX[key_num]-MARCO_SPLIT_INDX[key_num-1]);i++){
+	for(i=0;i<(MARCO_SPLIT_INDX[pos]-MARCO_SPLIT_INDX[pos-1]);i++){
 		//prepare special key
 		delay_n00ms = 0;
 		HIDKey[0] = 0x00;
 		for(j=0;j<10;j++){
 			if(!(MARCO_SPE_KEYINDX[j]|MARCO_SPE_KEYCODE[j]))
 				break;
-			if(MARCO_SPE_KEYINDX[j]<MARCO_SPLIT_INDX[key_num-1])
+			if(MARCO_SPE_KEYINDX[j]<MARCO_SPLIT_INDX[pos-1])
 				continue;
-			if(MARCO_SPE_KEYINDX[j]>MARCO_SPLIT_INDX[key_num])
+			if(MARCO_SPE_KEYINDX[j]>MARCO_SPLIT_INDX[pos])
 				break;
-			if(MARCO_SPE_KEYINDX[j] == (MARCO_SPLIT_INDX[key_num-1]+i)){
+			if(MARCO_SPE_KEYINDX[j] == (MARCO_SPLIT_INDX[pos-1]+i)){
 				HIDKey[0] = MARCO_SPE_KEYCODE[j];
 				break;
 			}
@@ -78,17 +86,17 @@ void HIDmarco(UINT8 key_num){
 		for(j=0;j<10;j++){
 			if(!(MARCO_DELAY_INDX[j]|MARCO_DELAY[j]))
 				break;
-			if(MARCO_DELAY_INDX[j]<MARCO_SPLIT_INDX[key_num-1])
+			if(MARCO_DELAY_INDX[j]<MARCO_SPLIT_INDX[pos-1])
 				continue;
-			if(MARCO_DELAY_INDX[j]>MARCO_SPLIT_INDX[key_num])
+			if(MARCO_DELAY_INDX[j]>MARCO_SPLIT_INDX[pos])
 				break;
-			if(MARCO_DELAY_INDX[j] == (MARCO_SPLIT_INDX[key_num-1]+i)){
+			if(MARCO_DELAY_INDX[j] == (MARCO_SPLIT_INDX[pos-1]+i)){
 				delay_n00ms = MARCO_DELAY[j];
 				break;
 			}
 		}
 		//prepare normal key
-		HIDKey [2] = MARCO_KEYCODE[MARCO_SPLIT_INDX[key_num-1]+i];
+		HIDKey [2] = MARCO_KEYCODE[MARCO_SPLIT_INDX[pos-1]+i];
 		HIDsend();
 		//delay
 		MarcoDelay(delay_n00ms);
@@ -118,7 +126,6 @@ sbit Key7  = P3^0;
 sbit Key8  = P1^1;
 sbit Key9  = P3^3;
 sbit Key10 = P3^4;
-sbit Key[10] = {P3^2,P3^2,P3^2,P3^2,P3^2,P3^2,P3^2,P3^2,P3^2,P3^2};
 
 
 void scanKey(){
@@ -245,20 +252,36 @@ void scanKey(){
 		if(KEY_PRESS[6]!=0xff){
 			KEY_PRESS[6] =0x00;
 		}
+		else{
+			if(KEY_MARCO[6]==0xff)
+				HIDmarco(7);
+		}
 	}
 	if(!Key8){
 		if(KEY_PRESS[7]!=0xff){
 			KEY_PRESS[7] =0x00;
+		}
+		else{
+			if(KEY_MARCO[7]==0xff)
+				HIDmarco(8);
 		}
 	}
 	if(!Key9){
 		if(KEY_PRESS[8]!=0xff){
 			KEY_PRESS[8] =0x00;
 		}
+		else{
+			if(KEY_MARCO[8]==0xff)
+				HIDmarco(9);
+		}
 	}
 	if(!Key10){
 		if(KEY_PRESS[9]!=0xff){
 			KEY_PRESS[9] =0x00;
+		}
+		else{
+			if(KEY_MARCO[9]==0xff)
+				HIDmarco(10);
 		}
 	}
 	
@@ -310,6 +333,7 @@ void hadleReceive(){
 	if(Endp2Rev != 0)
 	{
 		char i;
+		char *temp;
 		Endp2Rev = 0;
 		switch (Ep2Buffer[0]){
 			case 0x01:
@@ -330,15 +354,44 @@ void hadleReceive(){
 			case 0x03:
 				//set_marco_key
 				//get marco byte
-				setMarco(Ep2Buffer[1+i],Ep2Buffer[2+i]);
-				UNINT8 temp[2];
-				temp[0] = Ep2Buffer[1+i];
-				temp[1] = Ep2Buffer[2+i];
+				setMarco(Ep2Buffer[1],Ep2Buffer[2]);
+				temp = &Ep2Buffer[1];
 				WriteDataFlash(20,temp,2);
 				//get marco 
 				break;
+			case 0x04:
+				//set marco key
+				//get marco indeices
+			  for(i=0;i<5;i++){
+					MARCO_SPLIT_INDX[i] = Ep2Buffer[1+i];
+				}
+				WriteDataFlash(22,MARCO_SPLIT_INDX,5);
+				break;
+			case 0x05:
+				//set marco key
+				//set sp-keys content
+				for(i=0;i<10;i++){
+					MARCO_SPE_KEYCODE[i] = Ep2Buffer[1+i];
+				}
+				WriteDataFlash(27,MARCO_SPE_KEYCODE,10);
+				break;
+			case 0x06:
+				//set marco key
+				//set sp-keys indeices
+				for(i=0;i<10;i++){
+					MARCO_SPE_KEYINDX[i] = Ep2Buffer[1+i];
+				}
+				WriteDataFlash(37,MARCO_SPE_KEYINDX,10);
+				break;
+			case 0x07:
+				//set marco key
+				//set marco key code
+				for(i=0;i<40;i++){
+					MARCO_KEYCODE[i] = Ep2Buffer[1+i];
+				}
+				WriteDataFlash(47,MARCO_SPE_KEYINDX,40);
+				break;
 		}
-		
 	}
 }
 
