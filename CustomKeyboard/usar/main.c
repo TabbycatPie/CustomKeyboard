@@ -118,6 +118,7 @@ sbit Key7  = P3^0;
 sbit Key8  = P1^1;
 sbit Key9  = P3^3;
 sbit Key10 = P3^4;
+sbit Key[10] = {P3^2,P3^2,P3^2,P3^2,P3^2,P3^2,P3^2,P3^2,P3^2,P3^2};
 
 
 void scanKey(){
@@ -208,20 +209,36 @@ void scanKey(){
 		if(KEY_PRESS[2]!=0xff){
 			KEY_PRESS[2] =0x00;
 		}
+		else{
+			if(KEY_MARCO[2]==0xff)
+				HIDmarco(3);
+		}
 	}
 	if(!Key4){
 		if(KEY_PRESS[3]!=0xff){
 			KEY_PRESS[3] =0x00;
+		}
+		else{
+			if(KEY_MARCO[3]==0xff)
+				HIDmarco(4);
 		}
 	}
 	if(!Key5){
 		if(KEY_PRESS[4]!=0xff){
 			KEY_PRESS[4] =0x00;
 		}
+		else{
+			if(KEY_MARCO[4]==0xff)
+				HIDmarco(5);
+		}
 	}
 	if(!Key6){
 		if(KEY_PRESS[5]!=0xff){
 			KEY_PRESS[5] =0x00;
+		}
+		else{
+			if(KEY_MARCO[5]==0xff)
+				HIDmarco(6);
 		}
 	}
 	if(!Key7){
@@ -271,6 +288,22 @@ void scanKey(){
 	
 }
 
+void setMarco(unsigned char hi,unsigned char lo){
+    unsigned char cur = 0x01;
+    unsigned char i = 0;
+    for(;cur!=0x00;cur<<=1){
+        if((lo&cur)==cur){
+            KEY_MARCO[i] = 0xff;
+        }
+        i++;
+    }
+    for(cur=0x01;cur!=0x04;cur<<=1){
+        if((hi&cur)==cur){
+            KEY_MARCO[i] = 0xff;
+        }
+        i++;
+    }
+}
 
 
 void hadleReceive(){
@@ -285,14 +318,25 @@ void hadleReceive(){
 				//copy normal key
 					KEY_CODE[i]=Ep2Buffer[1+i];
 				}
-				WriteDataFlash(0x00,KEY_CODE,10);
+				WriteDataFlash(0,KEY_CODE,10);
 				break;
 			case 0x02:
 				for(i = 0; i< 10 ;i++){
 				//copy normal key
 					SP_KEY_CODE[i]=Ep2Buffer[1+i];
 				}
-				WriteDataFlash(0x0a,SP_KEY_CODE,10);
+				WriteDataFlash(10,SP_KEY_CODE,10);
+				break;
+			case 0x03:
+				//set_marco_key
+				//get marco byte
+				setMarco(Ep2Buffer[1+i],Ep2Buffer[2+i]);
+				UNINT8 temp[2];
+				temp[0] = Ep2Buffer[1+i];
+				temp[1] = Ep2Buffer[2+i];
+				WriteDataFlash(20,temp,2);
+				//get marco 
+				break;
 		}
 		
 	}
