@@ -49,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->btn_insert,ui->btn_home,ui->btn_pageup,
         ui->btn_delete,ui->btn_end,ui->btn_pagedown,
         ui->btn_up,ui->btn_left,ui->btn_down,ui->btn_right,
-        //small keyboard
+        //key pad
         ui->btn_num,ui->btn_sslash,ui->btn_star,ui->btn_sminus,
         ui->btn_s7,ui->btn_s8,ui->btn_s9,ui->btn_splus,
         ui->btn_s4,ui->btn_s5,ui->btn_s6,
@@ -288,6 +288,7 @@ bool MainWindow::addKeyValue(){
         temp_normal = cur_key_normal[0];
     KeyValue *temp_kv = table.convertVector2KeyValue(temp_normal,cur_key_sp);
     if(ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->getKeyValueList()[0]->getNormalKeyIndex() == 0 \
+            && ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->getKeyValueList()[0]->getSPKeyList().size() > 0 \
             && ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->getKeyValueList()[0]->getSPKeyList()[0] == 0)
     {
         ckb[cur_keyboard_no]->setKey(cur_edit_key_no,temp_kv);
