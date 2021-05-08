@@ -209,6 +209,7 @@ public:
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
     QPushButton *btn_setcancel;
+    QPushButton *btn_advance;
     QPushButton *btn_setadd;
     QPushButton *btn_setdelete;
     QPushButton *btn_setcommit;
@@ -380,7 +381,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1000, 22));
+        menubar->setGeometry(QRect(0, 0, 1000, 30));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         MainWindow->setMenuBar(menubar);
@@ -757,7 +758,7 @@ public:
         tvkey_out->setGeometry(QRect(60, 4, 811, 21));
         layoutWidget2 = new QWidget(dockWidgetContents);
         layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(20, 30, 531, 31));
+        layoutWidget2->setGeometry(QRect(20, 30, 562, 31));
         firstline = new QHBoxLayout(layoutWidget2);
         firstline->setObjectName(QString::fromUtf8("firstline"));
         firstline->setContentsMargins(0, 0, 0, 0);
@@ -828,7 +829,7 @@ public:
 
         layoutWidget3 = new QWidget(dockWidgetContents);
         layoutWidget3->setObjectName(QString::fromUtf8("layoutWidget3"));
-        layoutWidget3->setGeometry(QRect(570, 30, 134, 28));
+        layoutWidget3->setGeometry(QRect(570, 30, 143, 28));
         sep = new QHBoxLayout(layoutWidget3);
         sep->setObjectName(QString::fromUtf8("sep"));
         sep->setContentsMargins(0, 0, 0, 0);
@@ -849,7 +850,7 @@ public:
 
         layoutWidget_9 = new QWidget(dockWidgetContents);
         layoutWidget_9->setObjectName(QString::fromUtf8("layoutWidget_9"));
-        layoutWidget_9->setGeometry(QRect(570, 60, 128, 28));
+        layoutWidget_9->setGeometry(QRect(570, 60, 152, 28));
         sep_2 = new QHBoxLayout(layoutWidget_9);
         sep_2->setObjectName(QString::fromUtf8("sep_2"));
         sep_2->setContentsMargins(0, 0, 0, 0);
@@ -870,7 +871,7 @@ public:
 
         layoutWidget_12 = new QWidget(dockWidgetContents);
         layoutWidget_12->setObjectName(QString::fromUtf8("layoutWidget_12"));
-        layoutWidget_12->setGeometry(QRect(570, 90, 128, 28));
+        layoutWidget_12->setGeometry(QRect(570, 90, 146, 28));
         sep_3 = new QHBoxLayout(layoutWidget_12);
         sep_3->setObjectName(QString::fromUtf8("sep_3"));
         sep_3->setContentsMargins(0, 0, 0, 0);
@@ -891,7 +892,7 @@ public:
 
         layoutWidget_13 = new QWidget(dockWidgetContents);
         layoutWidget_13->setObjectName(QString::fromUtf8("layoutWidget_13"));
-        layoutWidget_13->setGeometry(QRect(710, 60, 136, 28));
+        layoutWidget_13->setGeometry(QRect(710, 60, 147, 28));
         sep_4 = new QHBoxLayout(layoutWidget_13);
         sep_4->setObjectName(QString::fromUtf8("sep_4"));
         sep_4->setContentsMargins(0, 0, 0, 0);
@@ -1002,7 +1003,7 @@ public:
         btn_senter->setGeometry(QRect(813, 146, 27, 61));
         verticalLayoutWidget = new QWidget(dockWidgetContents);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(880, 110, 111, 100));
+        verticalLayoutWidget->setGeometry(QRect(880, 20, 111, 191));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -1010,6 +1011,11 @@ public:
         btn_setcancel->setObjectName(QString::fromUtf8("btn_setcancel"));
 
         verticalLayout->addWidget(btn_setcancel);
+
+        btn_advance = new QPushButton(verticalLayoutWidget);
+        btn_advance->setObjectName(QString::fromUtf8("btn_advance"));
+
+        verticalLayout->addWidget(btn_advance);
 
         btn_setadd = new QPushButton(verticalLayoutWidget);
         btn_setadd->setObjectName(QString::fromUtf8("btn_setadd"));
@@ -1174,6 +1180,7 @@ public:
         btn_splus->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
         btn_senter->setText(QCoreApplication::translate("MainWindow", "Ent", nullptr));
         btn_setcancel->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
+        btn_advance->setText(QCoreApplication::translate("MainWindow", "Advance", nullptr));
         btn_setadd->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
         btn_setdelete->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
         btn_setcommit->setText(QCoreApplication::translate("MainWindow", "Commit", nullptr));

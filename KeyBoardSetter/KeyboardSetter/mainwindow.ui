@@ -379,7 +379,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>22</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -970,7 +970,7 @@
       <rect>
        <x>20</x>
        <y>30</y>
-       <width>531</width>
+       <width>562</width>
        <height>31</height>
       </rect>
      </property>
@@ -1073,7 +1073,7 @@
       <rect>
        <x>570</x>
        <y>30</y>
-       <width>134</width>
+       <width>143</width>
        <height>28</height>
       </rect>
      </property>
@@ -1106,7 +1106,7 @@
       <rect>
        <x>570</x>
        <y>60</y>
-       <width>128</width>
+       <width>152</width>
        <height>28</height>
       </rect>
      </property>
@@ -1139,7 +1139,7 @@
       <rect>
        <x>570</x>
        <y>90</y>
-       <width>128</width>
+       <width>146</width>
        <height>28</height>
       </rect>
      </property>
@@ -1172,7 +1172,7 @@
       <rect>
        <x>710</x>
        <y>60</y>
-       <width>136</width>
+       <width>147</width>
        <height>28</height>
       </rect>
      </property>
@@ -1362,9 +1362,9 @@
      <property name="geometry">
       <rect>
        <x>880</x>
-       <y>110</y>
+       <y>20</y>
        <width>111</width>
-       <height>100</height>
+       <height>191</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -1372,6 +1372,13 @@
        <widget class="QPushButton" name="btn_setcancel">
         <property name="text">
          <string>Cancel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_advance">
+        <property name="text">
+         <string>Advance</string>
         </property>
        </widget>
       </item>
