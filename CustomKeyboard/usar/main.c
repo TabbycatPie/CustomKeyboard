@@ -429,9 +429,24 @@ void main()
 	{
 		if(Ready)
 		{
-			scanKey();
-			HIDsend();
-			hadleReceive();
+			
+			// HIDMultimedia[1] 总共1字节长度
+			// 第一字节：   bit0:音量减 
+			//				bit1:音量加 
+			//				bit2:暂停/播放
+			//				bit3:上一曲
+			//				bit4:下一曲
+			
+			//发送上一曲
+			HIDMultimedia[0] = 0x08;
+			Enp4IntIn();	//上报多媒体按键
+			HIDMultimedia[0] = 0;
+			Enp4IntIn();	//上报多媒体按键
+			mDelaymS(3000);
+			
+//			scanKey();
+//			HIDsend();
+//			hadleReceive();
 			FLAG = 0;
 		}
 	}
