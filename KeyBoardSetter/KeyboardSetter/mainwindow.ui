@@ -473,7 +473,7 @@
         <rect>
          <x>10</x>
          <y>10</y>
-         <width>564</width>
+         <width>551</width>
          <height>204</height>
         </rect>
        </property>
@@ -974,7 +974,7 @@
           <item>
            <widget class="QToolButton" name="btn_lctrl">
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(80, 133, 255);</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string> Ctrl </string>

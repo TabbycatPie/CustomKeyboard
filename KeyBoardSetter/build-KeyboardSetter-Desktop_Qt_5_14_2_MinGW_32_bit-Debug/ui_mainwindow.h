@@ -445,7 +445,7 @@ public:
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
         verticalLayoutWidget_2 = new QWidget(tab_3);
         verticalLayoutWidget_2->setObjectName(QString::fromUtf8("verticalLayoutWidget_2"));
-        verticalLayoutWidget_2->setGeometry(QRect(10, 10, 564, 204));
+        verticalLayoutWidget_2->setGeometry(QRect(10, 10, 551, 204));
         verticalLayout_2 = new QVBoxLayout(verticalLayoutWidget_2);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout_2->setSizeConstraint(QLayout::SetFixedSize);
@@ -811,7 +811,7 @@ public:
         horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
         btn_lctrl = new QToolButton(verticalLayoutWidget_2);
         btn_lctrl->setObjectName(QString::fromUtf8("btn_lctrl"));
-        btn_lctrl->setStyleSheet(QString::fromUtf8("background-color: rgb(80, 133, 255);"));
+        btn_lctrl->setStyleSheet(QString::fromUtf8(""));
 
         horizontalLayout_6->addWidget(btn_lctrl);
 
