@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDockWidget>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -52,6 +53,8 @@ public:
     QPushButton *btn_testkey8;
     QPushButton *btn_testkey9;
     QPushButton *btn_testkey10;
+    QLabel *tvkey_out;
+    QLabel *tv_keyvalue;
     QWidget *tab_dualkeys;
     QWidget *layoutWidget_8;
     QHBoxLayout *horizontalLayout_11;
@@ -73,14 +76,6 @@ public:
     QStatusBar *statusbar;
     QDockWidget *dockKeyboard;
     QWidget *dockWidgetContents;
-    QLabel *tvkey_out;
-    QWidget *verticalLayoutWidget;
-    QVBoxLayout *verticalLayout;
-    QPushButton *btn_setcancel;
-    QPushButton *btn_advance;
-    QPushButton *btn_setadd;
-    QPushButton *btn_setdelete;
-    QPushButton *btn_setcommit;
     QTabWidget *tabNormalKey;
     QWidget *tab_3;
     QWidget *verticalLayoutWidget_2;
@@ -217,9 +212,9 @@ public:
     QWidget *tab_4;
     QWidget *horizontalLayoutWidget_4;
     QHBoxLayout *horizontalLayout_16;
-    QPushButton *btn_mouseleft;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
+    QToolButton *btn_mouseleft;
+    QToolButton *btn_mousemiddle;
+    QToolButton *btn_mouseright;
     QPushButton *pushButton;
     QLineEdit *lineEdit;
     QPushButton *pushButton_4;
@@ -229,6 +224,28 @@ public:
     QPushButton *pushButton_6;
     QLineEdit *lineEdit_4;
     QWidget *tab_5;
+    QGroupBox *groupBox;
+    QWidget *verticalLayoutWidget_4;
+    QVBoxLayout *verticalLayout_8;
+    QToolButton *btn_mmvp;
+    QToolButton *btn_mmvd;
+    QToolButton *btn_mmpp;
+    QToolButton *btn_mmls;
+    QToolButton *btn_mmns;
+    QToolButton *toolButton_5;
+    QGroupBox *groupBox_2;
+    QToolButton *toolButton_6;
+    QLineEdit *lineEdit_5;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton_7;
+    QWidget *verticalLayoutWidget;
+    QVBoxLayout *verticalLayout;
+    QPushButton *btn_setcancel;
+    QPushButton *btn_advance;
+    QPushButton *btn_setadd;
+    QPushButton *btn_setdelete;
+    QPushButton *btn_setcommit;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -248,7 +265,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(3, 1, 511, 431));
+        tabWidget->setGeometry(QRect(3, 1, 601, 391));
         tabWidget->setMinimumSize(QSize(0, 0));
         tabWidget->setMaximumSize(QSize(900, 900));
         tabWidget->setUsesScrollButtons(true);
@@ -326,6 +343,12 @@ public:
 
         horizontalLayout_10->addWidget(btn_testkey10);
 
+        tvkey_out = new QLabel(tab_test);
+        tvkey_out->setObjectName(QString::fromUtf8("tvkey_out"));
+        tvkey_out->setGeometry(QRect(20, 310, 561, 21));
+        tv_keyvalue = new QLabel(tab_test);
+        tv_keyvalue->setObjectName(QString::fromUtf8("tv_keyvalue"));
+        tv_keyvalue->setGeometry(QRect(20, 270, 561, 21));
         tabWidget->addTab(tab_test, QString());
         tab_dualkeys = new QWidget();
         tab_dualkeys->setObjectName(QString::fromUtf8("tab_dualkeys"));
@@ -389,10 +412,10 @@ public:
         tabWidget->addTab(tab_quakeys, QString());
         btn_download = new QPushButton(centralwidget);
         btn_download->setObjectName(QString::fromUtf8("btn_download"));
-        btn_download->setGeometry(QRect(860, 40, 121, 41));
+        btn_download->setGeometry(QRect(870, 330, 121, 41));
         treeView = new QTreeView(centralwidget);
         treeView->setObjectName(QString::fromUtf8("treeView"));
-        treeView->setGeometry(QRect(520, 100, 471, 331));
+        treeView->setGeometry(QRect(620, 30, 381, 271));
         treeView->setAnimated(true);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -406,7 +429,7 @@ public:
         MainWindow->setStatusBar(statusbar);
         dockKeyboard = new QDockWidget(MainWindow);
         dockKeyboard->setObjectName(QString::fromUtf8("dockKeyboard"));
-        dockKeyboard->setMinimumSize(QSize(1000, 300));
+        dockKeyboard->setMinimumSize(QSize(1000, 272));
         dockKeyboard->setMaximumSize(QSize(1000, 350));
         dockKeyboard->setAutoFillBackground(true);
         dockKeyboard->setFloating(false);
@@ -415,50 +438,17 @@ public:
         dockKeyboard->setWindowTitle(QString::fromUtf8(""));
         dockWidgetContents = new QWidget();
         dockWidgetContents->setObjectName(QString::fromUtf8("dockWidgetContents"));
-        tvkey_out = new QLabel(dockWidgetContents);
-        tvkey_out->setObjectName(QString::fromUtf8("tvkey_out"));
-        tvkey_out->setGeometry(QRect(14, 2, 811, 21));
-        verticalLayoutWidget = new QWidget(dockWidgetContents);
-        verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(880, 70, 111, 191));
-        verticalLayout = new QVBoxLayout(verticalLayoutWidget);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        btn_setcancel = new QPushButton(verticalLayoutWidget);
-        btn_setcancel->setObjectName(QString::fromUtf8("btn_setcancel"));
-
-        verticalLayout->addWidget(btn_setcancel);
-
-        btn_advance = new QPushButton(verticalLayoutWidget);
-        btn_advance->setObjectName(QString::fromUtf8("btn_advance"));
-
-        verticalLayout->addWidget(btn_advance);
-
-        btn_setadd = new QPushButton(verticalLayoutWidget);
-        btn_setadd->setObjectName(QString::fromUtf8("btn_setadd"));
-
-        verticalLayout->addWidget(btn_setadd);
-
-        btn_setdelete = new QPushButton(verticalLayoutWidget);
-        btn_setdelete->setObjectName(QString::fromUtf8("btn_setdelete"));
-
-        verticalLayout->addWidget(btn_setdelete);
-
-        btn_setcommit = new QPushButton(verticalLayoutWidget);
-        btn_setcommit->setObjectName(QString::fromUtf8("btn_setcommit"));
-
-        verticalLayout->addWidget(btn_setcommit);
-
         tabNormalKey = new QTabWidget(dockWidgetContents);
         tabNormalKey->setObjectName(QString::fromUtf8("tabNormalKey"));
-        tabNormalKey->setGeometry(QRect(0, 23, 871, 261));
+        tabNormalKey->setGeometry(QRect(0, 0, 871, 261));
         tab_3 = new QWidget();
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
         verticalLayoutWidget_2 = new QWidget(tab_3);
         verticalLayoutWidget_2->setObjectName(QString::fromUtf8("verticalLayoutWidget_2"));
-        verticalLayoutWidget_2->setGeometry(QRect(10, 10, 541, 200));
+        verticalLayoutWidget_2->setGeometry(QRect(10, 10, 564, 204));
         verticalLayout_2 = new QVBoxLayout(verticalLayoutWidget_2);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        verticalLayout_2->setSizeConstraint(QLayout::SetFixedSize);
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         firstline = new QHBoxLayout();
         firstline->setObjectName(QString::fromUtf8("firstline"));
@@ -608,6 +598,7 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        horizontalLayout_3->setSizeConstraint(QLayout::SetFixedSize);
         btn_tab = new QToolButton(verticalLayoutWidget_2);
         btn_tab->setObjectName(QString::fromUtf8("btn_tab"));
 
@@ -820,6 +811,7 @@ public:
         horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
         btn_lctrl = new QToolButton(verticalLayoutWidget_2);
         btn_lctrl->setObjectName(QString::fromUtf8("btn_lctrl"));
+        btn_lctrl->setStyleSheet(QString::fromUtf8("background-color: rgb(80, 133, 255);"));
 
         horizontalLayout_6->addWidget(btn_lctrl);
 
@@ -858,9 +850,10 @@ public:
 
         verticalLayoutWidget_3 = new QWidget(tab_3);
         verticalLayoutWidget_3->setObjectName(QString::fromUtf8("verticalLayoutWidget_3"));
-        verticalLayoutWidget_3->setGeometry(QRect(570, 10, 121, 98));
+        verticalLayoutWidget_3->setGeometry(QRect(575, 10, 121, 98));
         verticalLayout_3 = new QVBoxLayout(verticalLayoutWidget_3);
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        verticalLayout_3->setSizeConstraint(QLayout::SetFixedSize);
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
         sep = new QHBoxLayout();
         sep->setObjectName(QString::fromUtf8("sep"));
@@ -1068,7 +1061,7 @@ public:
 
         verticalLayoutWidget_7 = new QWidget(tab_3);
         verticalLayoutWidget_7->setObjectName(QString::fromUtf8("verticalLayoutWidget_7"));
-        verticalLayoutWidget_7->setGeometry(QRect(570, 140, 121, 71));
+        verticalLayoutWidget_7->setGeometry(QRect(575, 140, 121, 71));
         verticalLayout_7 = new QVBoxLayout(verticalLayoutWidget_7);
         verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
         verticalLayout_7->setContentsMargins(0, 0, 0, 0);
@@ -1107,53 +1100,147 @@ public:
         tab_4->setObjectName(QString::fromUtf8("tab_4"));
         horizontalLayoutWidget_4 = new QWidget(tab_4);
         horizontalLayoutWidget_4->setObjectName(QString::fromUtf8("horizontalLayoutWidget_4"));
-        horizontalLayoutWidget_4->setGeometry(QRect(10, 10, 308, 41));
+        horizontalLayoutWidget_4->setGeometry(QRect(10, 10, 327, 41));
         horizontalLayout_16 = new QHBoxLayout(horizontalLayoutWidget_4);
         horizontalLayout_16->setObjectName(QString::fromUtf8("horizontalLayout_16"));
         horizontalLayout_16->setContentsMargins(0, 0, 0, 0);
-        btn_mouseleft = new QPushButton(horizontalLayoutWidget_4);
+        btn_mouseleft = new QToolButton(horizontalLayoutWidget_4);
         btn_mouseleft->setObjectName(QString::fromUtf8("btn_mouseleft"));
 
         horizontalLayout_16->addWidget(btn_mouseleft);
 
-        pushButton_2 = new QPushButton(horizontalLayoutWidget_4);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        btn_mousemiddle = new QToolButton(horizontalLayoutWidget_4);
+        btn_mousemiddle->setObjectName(QString::fromUtf8("btn_mousemiddle"));
 
-        horizontalLayout_16->addWidget(pushButton_2);
+        horizontalLayout_16->addWidget(btn_mousemiddle);
 
-        pushButton_3 = new QPushButton(horizontalLayoutWidget_4);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        btn_mouseright = new QToolButton(horizontalLayoutWidget_4);
+        btn_mouseright->setObjectName(QString::fromUtf8("btn_mouseright"));
 
-        horizontalLayout_16->addWidget(pushButton_3);
+        horizontalLayout_16->addWidget(btn_mouseright);
 
         pushButton = new QPushButton(tab_4);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setEnabled(false);
         pushButton->setGeometry(QRect(112, 79, 91, 30));
         lineEdit = new QLineEdit(tab_4);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        lineEdit->setEnabled(false);
         lineEdit->setGeometry(QRect(112, 109, 91, 27));
         pushButton_4 = new QPushButton(tab_4);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+        pushButton_4->setEnabled(false);
         pushButton_4->setGeometry(QRect(12, 109, 91, 30));
         lineEdit_2 = new QLineEdit(tab_4);
         lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
+        lineEdit_2->setEnabled(false);
         lineEdit_2->setGeometry(QRect(12, 139, 91, 27));
         pushButton_5 = new QPushButton(tab_4);
         pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
+        pushButton_5->setEnabled(false);
         pushButton_5->setGeometry(QRect(112, 139, 91, 30));
         lineEdit_3 = new QLineEdit(tab_4);
         lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
+        lineEdit_3->setEnabled(false);
         lineEdit_3->setGeometry(QRect(112, 169, 91, 27));
         pushButton_6 = new QPushButton(tab_4);
         pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
+        pushButton_6->setEnabled(false);
         pushButton_6->setGeometry(QRect(212, 109, 91, 30));
         lineEdit_4 = new QLineEdit(tab_4);
         lineEdit_4->setObjectName(QString::fromUtf8("lineEdit_4"));
+        lineEdit_4->setEnabled(false);
         lineEdit_4->setGeometry(QRect(212, 139, 91, 27));
         tabNormalKey->addTab(tab_4, QString());
         tab_5 = new QWidget();
         tab_5->setObjectName(QString::fromUtf8("tab_5"));
+        groupBox = new QGroupBox(tab_5);
+        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        groupBox->setGeometry(QRect(10, 10, 141, 201));
+        verticalLayoutWidget_4 = new QWidget(groupBox);
+        verticalLayoutWidget_4->setObjectName(QString::fromUtf8("verticalLayoutWidget_4"));
+        verticalLayoutWidget_4->setGeometry(QRect(8, 29, 121, 161));
+        verticalLayout_8 = new QVBoxLayout(verticalLayoutWidget_4);
+        verticalLayout_8->setObjectName(QString::fromUtf8("verticalLayout_8"));
+        verticalLayout_8->setContentsMargins(0, 0, 0, 0);
+        btn_mmvp = new QToolButton(verticalLayoutWidget_4);
+        btn_mmvp->setObjectName(QString::fromUtf8("btn_mmvp"));
+
+        verticalLayout_8->addWidget(btn_mmvp);
+
+        btn_mmvd = new QToolButton(verticalLayoutWidget_4);
+        btn_mmvd->setObjectName(QString::fromUtf8("btn_mmvd"));
+
+        verticalLayout_8->addWidget(btn_mmvd);
+
+        btn_mmpp = new QToolButton(verticalLayoutWidget_4);
+        btn_mmpp->setObjectName(QString::fromUtf8("btn_mmpp"));
+
+        verticalLayout_8->addWidget(btn_mmpp);
+
+        btn_mmls = new QToolButton(verticalLayoutWidget_4);
+        btn_mmls->setObjectName(QString::fromUtf8("btn_mmls"));
+
+        verticalLayout_8->addWidget(btn_mmls);
+
+        btn_mmns = new QToolButton(verticalLayoutWidget_4);
+        btn_mmns->setObjectName(QString::fromUtf8("btn_mmns"));
+
+        verticalLayout_8->addWidget(btn_mmns);
+
+        toolButton_5 = new QToolButton(groupBox);
+        toolButton_5->setObjectName(QString::fromUtf8("toolButton_5"));
+        toolButton_5->setGeometry(QRect(150, 170, 82, 26));
+        groupBox_2 = new QGroupBox(tab_5);
+        groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
+        groupBox_2->setGeometry(QRect(160, 10, 271, 81));
+        toolButton_6 = new QToolButton(groupBox_2);
+        toolButton_6->setObjectName(QString::fromUtf8("toolButton_6"));
+        toolButton_6->setGeometry(QRect(150, 170, 82, 26));
+        lineEdit_5 = new QLineEdit(groupBox_2);
+        lineEdit_5->setObjectName(QString::fromUtf8("lineEdit_5"));
+        lineEdit_5->setGeometry(QRect(10, 40, 113, 31));
+        pushButton_2 = new QPushButton(groupBox_2);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setGeometry(QRect(160, 40, 91, 30));
+        pushButton_3 = new QPushButton(groupBox_2);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        pushButton_3->setGeometry(QRect(122, 40, 31, 16));
+        pushButton_7 = new QPushButton(groupBox_2);
+        pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
+        pushButton_7->setGeometry(QRect(122, 55, 31, 16));
         tabNormalKey->addTab(tab_5, QString());
+        verticalLayoutWidget = new QWidget(dockWidgetContents);
+        verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
+        verticalLayoutWidget->setGeometry(QRect(880, 50, 111, 191));
+        verticalLayout = new QVBoxLayout(verticalLayoutWidget);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        btn_setcancel = new QPushButton(verticalLayoutWidget);
+        btn_setcancel->setObjectName(QString::fromUtf8("btn_setcancel"));
+
+        verticalLayout->addWidget(btn_setcancel);
+
+        btn_advance = new QPushButton(verticalLayoutWidget);
+        btn_advance->setObjectName(QString::fromUtf8("btn_advance"));
+
+        verticalLayout->addWidget(btn_advance);
+
+        btn_setadd = new QPushButton(verticalLayoutWidget);
+        btn_setadd->setObjectName(QString::fromUtf8("btn_setadd"));
+
+        verticalLayout->addWidget(btn_setadd);
+
+        btn_setdelete = new QPushButton(verticalLayoutWidget);
+        btn_setdelete->setObjectName(QString::fromUtf8("btn_setdelete"));
+
+        verticalLayout->addWidget(btn_setdelete);
+
+        btn_setcommit = new QPushButton(verticalLayoutWidget);
+        btn_setcommit->setObjectName(QString::fromUtf8("btn_setcommit"));
+
+        verticalLayout->addWidget(btn_setcommit);
+
         dockKeyboard->setWidget(dockWidgetContents);
         MainWindow->addDockWidget(Qt::BottomDockWidgetArea, dockKeyboard);
 
@@ -1187,6 +1274,8 @@ public:
         btn_testkey8->setText(QCoreApplication::translate("MainWindow", "KEY8", nullptr));
         btn_testkey9->setText(QCoreApplication::translate("MainWindow", "KEY9", nullptr));
         btn_testkey10->setText(QCoreApplication::translate("MainWindow", "KEY10", nullptr));
+        tvkey_out->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        tv_keyvalue->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_test), QCoreApplication::translate("MainWindow", "Test", nullptr));
         btn_dualkey1->setText(QCoreApplication::translate("MainWindow", "KEY1", nullptr));
         btn_dualkey2->setText(QCoreApplication::translate("MainWindow", "KEY2", nullptr));
@@ -1198,12 +1287,6 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab_quakeys), QCoreApplication::translate("MainWindow", "QuaKey", nullptr));
         btn_download->setText(QCoreApplication::translate("MainWindow", "Download", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
-        tvkey_out->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        btn_setcancel->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
-        btn_advance->setText(QCoreApplication::translate("MainWindow", "Advance", nullptr));
-        btn_setadd->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
-        btn_setdelete->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
-        btn_setcommit->setText(QCoreApplication::translate("MainWindow", "Commit", nullptr));
         btn_esc->setText(QCoreApplication::translate("MainWindow", "Esc", nullptr));
         btn_f1->setText(QCoreApplication::translate("MainWindow", "F1", nullptr));
         btn_f2->setText(QCoreApplication::translate("MainWindow", "F2", nullptr));
@@ -1308,15 +1391,32 @@ public:
         btn_down->setText(QCoreApplication::translate("MainWindow", " v ", nullptr));
         btn_right->setText(QCoreApplication::translate("MainWindow", ">", nullptr));
         tabNormalKey->setTabText(tabNormalKey->indexOf(tab_3), QCoreApplication::translate("MainWindow", "Key Board", nullptr));
-        btn_mouseleft->setText(QCoreApplication::translate("MainWindow", "Left mouse", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "Middle Mouse", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MainWindow", "Right Mouse", nullptr));
+        btn_mouseleft->setText(QCoreApplication::translate("MainWindow", "Left Mouse", nullptr));
+        btn_mousemiddle->setText(QCoreApplication::translate("MainWindow", "Middle Mouse", nullptr));
+        btn_mouseright->setText(QCoreApplication::translate("MainWindow", "Right Mouse", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "move Up", nullptr));
         pushButton_4->setText(QCoreApplication::translate("MainWindow", "move Left", nullptr));
         pushButton_5->setText(QCoreApplication::translate("MainWindow", "move Down", nullptr));
         pushButton_6->setText(QCoreApplication::translate("MainWindow", "move Right", nullptr));
         tabNormalKey->setTabText(tabNormalKey->indexOf(tab_4), QCoreApplication::translate("MainWindow", "Mouse", nullptr));
+        groupBox->setTitle(QCoreApplication::translate("MainWindow", "MultiMedia", nullptr));
+        btn_mmvp->setText(QCoreApplication::translate("MainWindow", "VolumeUp", nullptr));
+        btn_mmvd->setText(QCoreApplication::translate("MainWindow", "VolumeDown", nullptr));
+        btn_mmpp->setText(QCoreApplication::translate("MainWindow", "Play/Pause ", nullptr));
+        btn_mmls->setText(QCoreApplication::translate("MainWindow", "LastSong", nullptr));
+        btn_mmns->setText(QCoreApplication::translate("MainWindow", "NextSong", nullptr));
+        toolButton_5->setText(QCoreApplication::translate("MainWindow", "LastSong", nullptr));
+        groupBox_2->setTitle(QCoreApplication::translate("MainWindow", "MarcoDelay", nullptr));
+        toolButton_6->setText(QCoreApplication::translate("MainWindow", "LastSong", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MainWindow", "SetDelay", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
+        pushButton_7->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         tabNormalKey->setTabText(tabNormalKey->indexOf(tab_5), QCoreApplication::translate("MainWindow", "Advance", nullptr));
+        btn_setcancel->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
+        btn_advance->setText(QCoreApplication::translate("MainWindow", "Advance", nullptr));
+        btn_setadd->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
+        btn_setdelete->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
+        btn_setcommit->setText(QCoreApplication::translate("MainWindow", "Commit", nullptr));
     } // retranslateUi
 
 };

@@ -11,17 +11,21 @@ class HIDCodeTable : public QObject
 public:
     HIDCodeTable();
     bool isSPkey(int key_no);
+    bool isMouseKey(int key_no);
+    bool isMediaKey(int key_no);
     QString getKeyString(int key_no);
     uchar getHex(int key_no);
     uchar getSpKeyHex(QVector<int> spkey_list);
     void convertNormaltKeyValue2Hex(uchar * normal,uchar * sp_key,KeyValue *kv);
-    KeyValue* convertVector2KeyValue(int normal,const QVector<int> sp_keys);
+    KeyValue* convertVector2KeyValue(int normal,int mouse,int media,const QVector<int> sp_keys);
     QString convertKeyValue2QString(KeyValue *kv);
     ~HIDCodeTable();
 private:
     const QString *key_string;
     const uchar *key_hex;
     const int *spkey_index;
+    const int *mouse_index;
+    const int *media_index;
 signals:
 
 };

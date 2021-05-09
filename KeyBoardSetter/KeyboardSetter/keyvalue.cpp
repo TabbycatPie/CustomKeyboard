@@ -1,9 +1,11 @@
 #include "keyvalue.h"
 #include <QVector>
 
-KeyValue::KeyValue(int _normalkey,QVector<int> spkeys){
+KeyValue::KeyValue(int _normalkey,int _mousekey,int _mediakey,QVector<int> spkeys){
     this->normalkey = _normalkey;
     this->sp_keys = spkeys;
+    this->mousekey = _mousekey;
+    this->mediakey = _mediakey;
 };
 
 KeyValue::KeyValue(int _normalkey){
@@ -11,16 +13,26 @@ KeyValue::KeyValue(int _normalkey){
     QVector<int> *temp = new QVector<int>();
     temp->append(0);
     this->sp_keys = *temp;
+    this->mediakey = 0;
+    this->mousekey = 0;
 };
 
-void KeyValue::setValue(int _normalkey,QVector<int> spkeys){
+void KeyValue::setValue(int _normalkey,int _mousekey,int _mediakey,QVector<int> spkeys){
     this->normalkey = _normalkey;
     this->sp_keys.clear();
     this->sp_keys = spkeys;
+    this->mousekey = _mousekey;
+    this->mediakey = _mediakey;
 };
 
 int KeyValue::getNormalKeyIndex(){
     return this->normalkey;
+};
+int KeyValue::getMouseKeyIndex(){
+    return this->mousekey;
+};
+int KeyValue::getMediaKeyIndex(){
+    return this->mediakey;
 };
 QVector<int> KeyValue::getSPKeyList(){
     return this->sp_keys;

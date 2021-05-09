@@ -40,8 +40,8 @@
      <rect>
       <x>3</x>
       <y>1</y>
-      <width>511</width>
-      <height>431</height>
+      <width>601</width>
+      <height>391</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -220,6 +220,32 @@
        </item>
       </layout>
      </widget>
+     <widget class="QLabel" name="tvkey_out">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>310</y>
+        <width>561</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="tv_keyvalue">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>270</y>
+        <width>561</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_dualkeys">
      <attribute name="title">
@@ -349,8 +375,8 @@
    <widget class="QPushButton" name="btn_download">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>40</y>
+      <x>870</x>
+      <y>330</y>
       <width>121</width>
       <height>41</height>
      </rect>
@@ -362,10 +388,10 @@
    <widget class="QTreeView" name="treeView">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>100</y>
-      <width>471</width>
-      <height>331</height>
+      <x>620</x>
+      <y>30</y>
+      <width>381</width>
+      <height>271</height>
      </rect>
     </property>
     <property name="animated">
@@ -398,7 +424,7 @@
    <property name="minimumSize">
     <size>
      <width>1000</width>
-     <height>300</height>
+     <height>272</height>
     </size>
    </property>
    <property name="maximumSize">
@@ -426,71 +452,11 @@
     <number>8</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents">
-    <widget class="QLabel" name="tvkey_out">
-     <property name="geometry">
-      <rect>
-       <x>14</x>
-       <y>2</y>
-       <width>811</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
-    <widget class="QWidget" name="verticalLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>880</x>
-       <y>70</y>
-       <width>111</width>
-       <height>191</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QPushButton" name="btn_setcancel">
-        <property name="text">
-         <string>Cancel</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btn_advance">
-        <property name="text">
-         <string>Advance</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btn_setadd">
-        <property name="text">
-         <string>Add</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btn_setdelete">
-        <property name="text">
-         <string>Delete</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btn_setcommit">
-        <property name="text">
-         <string>Commit</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
     <widget class="QTabWidget" name="tabNormalKey">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>23</y>
+       <y>0</y>
        <width>871</width>
        <height>261</height>
       </rect>
@@ -507,11 +473,14 @@
         <rect>
          <x>10</x>
          <y>10</y>
-         <width>541</width>
-         <height>200</height>
+         <width>564</width>
+         <height>204</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
         <item>
          <layout class="QHBoxLayout" name="firstline">
           <property name="sizeConstraint">
@@ -714,6 +683,9 @@
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetFixedSize</enum>
+          </property>
           <item>
            <widget class="QToolButton" name="btn_tab">
             <property name="text">
@@ -1001,6 +973,9 @@
          <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
            <widget class="QToolButton" name="btn_lctrl">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(80, 133, 255);</string>
+            </property>
             <property name="text">
              <string> Ctrl </string>
             </property>
@@ -1055,13 +1030,16 @@
       <widget class="QWidget" name="verticalLayoutWidget_3">
        <property name="geometry">
         <rect>
-         <x>570</x>
+         <x>575</x>
          <y>10</y>
          <width>121</width>
          <height>98</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_3">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
         <item>
          <layout class="QHBoxLayout" name="sep">
           <property name="sizeConstraint">
@@ -1345,7 +1323,7 @@
       <widget class="QWidget" name="verticalLayoutWidget_7">
        <property name="geometry">
         <rect>
-         <x>570</x>
+         <x>575</x>
          <y>140</y>
          <width>121</width>
          <height>71</height>
@@ -1400,27 +1378,27 @@
         <rect>
          <x>10</x>
          <y>10</y>
-         <width>308</width>
+         <width>327</width>
          <height>41</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_16">
         <item>
-         <widget class="QPushButton" name="btn_mouseleft">
+         <widget class="QToolButton" name="btn_mouseleft">
           <property name="text">
-           <string>Left mouse</string>
+           <string>Left Mouse</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QToolButton" name="btn_mousemiddle">
           <property name="text">
            <string>Middle Mouse</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QToolButton" name="btn_mouseright">
           <property name="text">
            <string>Right Mouse</string>
           </property>
@@ -1429,6 +1407,9 @@
        </layout>
       </widget>
       <widget class="QPushButton" name="pushButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>112</x>
@@ -1442,6 +1423,9 @@
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>112</x>
@@ -1452,6 +1436,9 @@
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_4">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>12</x>
@@ -1465,6 +1452,9 @@
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_2">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>12</x>
@@ -1475,6 +1465,9 @@
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_5">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>112</x>
@@ -1488,6 +1481,9 @@
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_3">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>112</x>
@@ -1498,6 +1494,9 @@
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_6">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>212</x>
@@ -1511,6 +1510,9 @@
        </property>
       </widget>
       <widget class="QLineEdit" name="lineEdit_4">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>212</x>
@@ -1525,7 +1527,202 @@
       <attribute name="title">
        <string>Advance</string>
       </attribute>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>141</width>
+         <height>201</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>MultiMedia</string>
+       </property>
+       <widget class="QWidget" name="verticalLayoutWidget_4">
+        <property name="geometry">
+         <rect>
+          <x>8</x>
+          <y>29</y>
+          <width>121</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <widget class="QToolButton" name="btn_mmvp">
+           <property name="text">
+            <string>VolumeUp</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btn_mmvd">
+           <property name="text">
+            <string>VolumeDown</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btn_mmpp">
+           <property name="text">
+            <string>Play/Pause </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btn_mmls">
+           <property name="text">
+            <string>LastSong</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btn_mmns">
+           <property name="text">
+            <string>NextSong</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QToolButton" name="toolButton_5">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>170</y>
+          <width>82</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>LastSong</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>10</y>
+         <width>271</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>MarcoDelay</string>
+       </property>
+       <widget class="QToolButton" name="toolButton_6">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>170</y>
+          <width>82</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>LastSong</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_5">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>113</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>40</y>
+          <width>91</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>SetDelay</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="geometry">
+         <rect>
+          <x>122</x>
+          <y>40</y>
+          <width>31</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>+</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_7">
+        <property name="geometry">
+         <rect>
+          <x>122</x>
+          <y>55</y>
+          <width>31</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
+    </widget>
+    <widget class="QWidget" name="verticalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>880</x>
+       <y>50</y>
+       <width>111</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QPushButton" name="btn_setcancel">
+        <property name="text">
+         <string>Cancel</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_advance">
+        <property name="text">
+         <string>Advance</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_setadd">
+        <property name="text">
+         <string>Add</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_setdelete">
+        <property name="text">
+         <string>Delete</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_setcommit">
+        <property name="text">
+         <string>Commit</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
   </widget>

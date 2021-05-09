@@ -9,7 +9,7 @@
 //														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 //														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 //													 };  //marco keycode
-UINT8X MARCO_KEYCODE [50]= {0x00};  //marco keycode
+UINT8X MARCO_KEYCODE [40]= {0x00};  //marco keycode
 
 UINT8X MARCO_SPLIT_INDX [5] = {0};  //split marco key position
 
@@ -19,6 +19,7 @@ UINT8X MARCO_SPE_KEYCODE [10] = {0x00};
 UINT8X MARCO_DELAY_INDX  [10] = {0x00};
 UINT8X MARCO_DELAY       [10] = {0x00};
 
+UINT8X MEDIA_CODE [10] = {0x00};
 UINT8X MOUSE_CODE [10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for mouse 
 UINT8X KEY_CODE   [10] = {0x00};  //temporily used for key 
 UINT8X SP_KEY_CODE[10] = {0x00};  //temporily used for sepcial key
@@ -437,16 +438,16 @@ void main()
 			//				bit3:上一曲
 			//				bit4:下一曲
 			
-			//发送上一曲
-			HIDMultimedia[0] = 0x08;
-			Enp4IntIn();	//上报多媒体按键
-			HIDMultimedia[0] = 0;
-			Enp4IntIn();	//上报多媒体按键
-			mDelaymS(3000);
+//			//发送上一曲
+//			HIDMultimedia[0] = 0x02;
+//			Enp4IntIn();	//上报多媒体按键
+//			HIDMultimedia[0] = 0;
+//			Enp4IntIn();	//上报多媒体按键
+//			mDelaymS(3000);
 			
-//			scanKey();
-//			HIDsend();
-//			hadleReceive();
+			scanKey();
+			HIDsend();
+			hadleReceive();
 			FLAG = 0;
 		}
 	}

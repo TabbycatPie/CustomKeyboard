@@ -18,6 +18,8 @@ public:
     QString getName();
     void setName(QString _name);
     bool isMarco();
+    bool isMouse();
+    bool isMedia();
 
     //edit key
     void setKey(QVector<KeyValue*> _keys);
@@ -35,6 +37,8 @@ private:
     QPushButton *mapping_btn;
     QString name;
     bool is_marco;
+    bool is_mouse;
+    bool is_media;
     int normalkey_index;
 signals:
 

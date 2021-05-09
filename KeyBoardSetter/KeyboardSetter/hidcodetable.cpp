@@ -16,12 +16,17 @@ static const QString _key_string[]={
     "Insert","Home","PageUp",
     "Delete","End","PageDown",
     "Arrow UP","Arrow Left","Arrow Down","Arrow Right",
-    //key board
+    //keypad
     "Num Lock","\\(p)","*(p)","-(p)",
     "7(p)","8(p)","9(p)","+(p)",
     "4(p)","5(p)","6(p)",
     "1(p)","2(p)","3(p)","Enter(p)",
-    "0(p)",".(p)"
+    "0(p)",".(p)",
+    //mouse keys
+    "LMouse","MMouse","RMouse",
+    //multi-media keys
+    "VolumeDown","VolumeUp","Play/Pause","LastSong","NextSong"
+
 };
 //public key hex
 static const uchar _key_hex[]={
@@ -37,16 +42,32 @@ static const uchar _key_hex[]={
     0x49,0x4a,0x61,
     0x4c,0x4d,0x4e,
     0x52,0x50,0x51,0x45,
-    //small key board
+    //keypad keys
     0x53,0x54,0x55,0x56,
     0x5f,0x60,0x61,0x57,
     0x5c,0x5d,0x5e,
     0x59,0x5a,0x5b,0x58,
-    0x62,0x63
+    0x62,0x63,
+    //mouse keys
+    /*Left*/0x01,/*Middle*/0x04,/*Right*/0x02,
+    //multi-media kes
+    /*VolumeDown*/0x01,/*VolumeUp*/0x02,/*PlayPause*/0x04,/*LastSong*/0x08,/*NextSong*/0x10
 };
+
+#define SPKEYY_NUM 8
 static const int _spkey_index[]={
     /*Left Shift*/55,/*Right Shift*/66,/*Left Ctrl*/67,/*Left Win*/68,/*Left Alt*/69,
     /*Right Alt*/71,/*Right Win*/72,/*Right Ctrl*/73
+};
+
+#define MOUSEKEY_NUM 3
+static const int _mousekey_index[]={
+    104,105,106
+};
+
+#define MEDIAKEY_NUM 5
+static const int _mediakey_index[]={
+    107,108,109,110,111
 };
 
 
@@ -55,15 +76,31 @@ HIDCodeTable::HIDCodeTable()
     this->key_string = _key_string;
     this->key_hex = _key_hex;
     this->spkey_index = _spkey_index;
+    this->media_index = _mediakey_index;
+    this->mouse_index = _mousekey_index;
 }
 
 bool HIDCodeTable::isSPkey(int key_no){
-    for(int i =0;i<8;i++){
+    for(int i =0;i<SPKEYY_NUM;i++){
         if(spkey_index[i]==key_no)
             return true;
     }
     return false;
 }
+bool HIDCodeTable::isMouseKey(int key_no){
+    for(int i =0;i<MOUSEKEY_NUM;i++){
+        if(mouse_index[i]==key_no)
+            return true;
+    }
+    return false;
+};
+bool HIDCodeTable::isMediaKey(int key_no){
+    for(int i =0;i<MEDIAKEY_NUM;i++){
+        if(media_index[i]==key_no)
+            return true;
+    }
+    return false;
+};
 
 QString HIDCodeTable::getKeyString(int key_no){
     return this->key_string[key_no];
@@ -85,8 +122,8 @@ void HIDCodeTable::convertNormaltKeyValue2Hex(uchar * normal,uchar * sp_key,KeyV
     *normal = getHex(kv->getNormalKeyIndex());
     *sp_key = getSpKeyHex(kv->getSPKeyList());
 };
-KeyValue* HIDCodeTable::convertVector2KeyValue(int normal,const QVector<int> sp_keys){
-    return new KeyValue(normal,sp_keys);
+KeyValue* HIDCodeTable::convertVector2KeyValue(int normal,int mouse,int media,const QVector<int> sp_keys){
+    return new KeyValue(normal,mouse,media,sp_keys);
 };
 QString HIDCodeTable::convertKeyValue2QString(KeyValue *kv){
     QString out ="";
@@ -99,7 +136,14 @@ QString HIDCodeTable::convertKeyValue2QString(KeyValue *kv){
             out += " + " + getKeyString(kv->getNormalKeyIndex());
     }
     else{
-        out = getKeyString(kv->getNormalKeyIndex());
+        int temp = 0;
+        if(kv->getMediaKeyIndex()!=0)
+            temp = kv->getMediaKeyIndex();
+        if(kv->getMouseKeyIndex()!=0)
+            temp =kv->getMouseKeyIndex();
+        if(kv->getNormalKeyIndex()!=0)
+            temp = kv->getNormalKeyIndex();
+        out = getKeyString(temp);
     }
     return out;
 };
