@@ -38,8 +38,8 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>3</x>
-      <y>1</y>
+      <x>0</x>
+      <y>0</y>
       <width>601</width>
       <height>391</height>
      </rect>
@@ -224,8 +224,8 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>310</y>
-        <width>561</width>
+        <y>290</y>
+        <width>451</width>
         <height>21</height>
        </rect>
       </property>
@@ -236,14 +236,49 @@
      <widget class="QLabel" name="tv_keyvalue">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>270</y>
+        <x>10</x>
+        <y>210</y>
         <width>561</width>
-        <height>21</height>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="lineWidth">
+       <number>2</number>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_setadd_2">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>270</y>
+        <width>80</width>
+        <height>30</height>
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>Add</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_setdelete_2">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>300</y>
+        <width>80</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Delete</string>
       </property>
      </widget>
     </widget>
@@ -457,7 +492,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>871</width>
+       <width>901</width>
        <height>261</height>
       </rect>
      </property>
@@ -473,7 +508,7 @@
         <rect>
          <x>10</x>
          <y>10</y>
-         <width>551</width>
+         <width>564</width>
          <height>204</height>
         </rect>
        </property>
@@ -1030,9 +1065,9 @@
       <widget class="QWidget" name="verticalLayoutWidget_3">
        <property name="geometry">
         <rect>
-         <x>575</x>
+         <x>580</x>
          <y>10</y>
-         <width>121</width>
+         <width>154</width>
          <height>98</height>
         </rect>
        </property>
@@ -1129,8 +1164,8 @@
       <widget class="QWidget" name="verticalLayoutWidget_6">
        <property name="geometry">
         <rect>
-         <x>709</x>
-         <y>31</y>
+         <x>740</x>
+         <y>30</y>
          <width>149</width>
          <height>180</height>
         </rect>
@@ -1323,9 +1358,9 @@
       <widget class="QWidget" name="verticalLayoutWidget_7">
        <property name="geometry">
         <rect>
-         <x>575</x>
+         <x>580</x>
          <y>140</y>
-         <width>121</width>
+         <width>151</width>
          <height>71</height>
         </rect>
        </property>
@@ -1680,10 +1715,10 @@
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>880</x>
-       <y>50</y>
-       <width>111</width>
-       <height>191</height>
+       <x>910</x>
+       <y>60</y>
+       <width>82</width>
+       <height>176</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">

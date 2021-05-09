@@ -427,14 +427,25 @@ bool MainWindow::addKeyValue(){
                 models[cur_keyboard_no]->itemFromIndex(temp_index)->child(0,1)->setText(table.convertKeyValue2QString(temp_kv));
             }
             else{
-               //update to class
-               ckb[cur_keyboard_no]->appendKey(cur_edit_key_no,temp_kv);
-               //update treeview
-               QModelIndex temp_index = models[cur_keyboard_no]->index(cur_edit_key_no,0);
-               QList<QStandardItem*> kvs;
-               kvs.append(new QStandardItem(QString::number(temp_list.size()+1)));
-               kvs.append(new QStandardItem(table.convertKeyValue2QString(temp_kv)));
-               models[cur_keyboard_no]->itemFromIndex(temp_index)->appendRow(kvs);
+                if(ckb[cur_keyboard_no]->checkMarcoAddable(cur_edit_key_no)){
+                    //update to class
+                    ckb[cur_keyboard_no]->appendKey(cur_edit_key_no,temp_kv);
+                    //update treeview
+                    QModelIndex temp_index = models[cur_keyboard_no]->index(cur_edit_key_no,0);
+                    QList<QStandardItem*> kvs;
+                    kvs.append(new QStandardItem(QString::number(temp_list.size()+1)));
+                    kvs.append(new QStandardItem(table.convertKeyValue2QString(temp_kv)));
+                    models[cur_keyboard_no]->itemFromIndex(temp_index)->appendRow(kvs);
+                }
+                else{
+                    //can not add to marco because of hardware limit
+                    QMessageBox msg_info(this);
+                    msg_info.setWindowTitle("Notice");
+                    msg_info.setText("Can NOT add more marco : hardware limit!");
+                    msg_info.setIcon(QMessageBox::Critical);
+                    msg_info.setStandardButtons(QMessageBox::Ok);
+                    msg_info.exec();
+                }
             }
         }
     }

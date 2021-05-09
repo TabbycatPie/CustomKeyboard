@@ -55,6 +55,8 @@ public:
     QPushButton *btn_testkey10;
     QLabel *tvkey_out;
     QLabel *tv_keyvalue;
+    QPushButton *btn_setadd_2;
+    QPushButton *btn_setdelete_2;
     QWidget *tab_dualkeys;
     QWidget *layoutWidget_8;
     QHBoxLayout *horizontalLayout_11;
@@ -265,7 +267,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(3, 1, 601, 391));
+        tabWidget->setGeometry(QRect(0, 0, 601, 391));
         tabWidget->setMinimumSize(QSize(0, 0));
         tabWidget->setMaximumSize(QSize(900, 900));
         tabWidget->setUsesScrollButtons(true);
@@ -345,10 +347,19 @@ public:
 
         tvkey_out = new QLabel(tab_test);
         tvkey_out->setObjectName(QString::fromUtf8("tvkey_out"));
-        tvkey_out->setGeometry(QRect(20, 310, 561, 21));
+        tvkey_out->setGeometry(QRect(20, 290, 451, 21));
         tv_keyvalue = new QLabel(tab_test);
         tv_keyvalue->setObjectName(QString::fromUtf8("tv_keyvalue"));
-        tv_keyvalue->setGeometry(QRect(20, 270, 561, 21));
+        tv_keyvalue->setGeometry(QRect(10, 210, 561, 51));
+        tv_keyvalue->setFrameShape(QFrame::StyledPanel);
+        tv_keyvalue->setFrameShadow(QFrame::Plain);
+        tv_keyvalue->setLineWidth(2);
+        btn_setadd_2 = new QPushButton(tab_test);
+        btn_setadd_2->setObjectName(QString::fromUtf8("btn_setadd_2"));
+        btn_setadd_2->setGeometry(QRect(490, 270, 80, 30));
+        btn_setdelete_2 = new QPushButton(tab_test);
+        btn_setdelete_2->setObjectName(QString::fromUtf8("btn_setdelete_2"));
+        btn_setdelete_2->setGeometry(QRect(490, 300, 80, 30));
         tabWidget->addTab(tab_test, QString());
         tab_dualkeys = new QWidget();
         tab_dualkeys->setObjectName(QString::fromUtf8("tab_dualkeys"));
@@ -440,12 +451,12 @@ public:
         dockWidgetContents->setObjectName(QString::fromUtf8("dockWidgetContents"));
         tabNormalKey = new QTabWidget(dockWidgetContents);
         tabNormalKey->setObjectName(QString::fromUtf8("tabNormalKey"));
-        tabNormalKey->setGeometry(QRect(0, 0, 871, 261));
+        tabNormalKey->setGeometry(QRect(0, 0, 901, 261));
         tab_3 = new QWidget();
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
         verticalLayoutWidget_2 = new QWidget(tab_3);
         verticalLayoutWidget_2->setObjectName(QString::fromUtf8("verticalLayoutWidget_2"));
-        verticalLayoutWidget_2->setGeometry(QRect(10, 10, 551, 204));
+        verticalLayoutWidget_2->setGeometry(QRect(10, 10, 564, 204));
         verticalLayout_2 = new QVBoxLayout(verticalLayoutWidget_2);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout_2->setSizeConstraint(QLayout::SetFixedSize);
@@ -850,7 +861,7 @@ public:
 
         verticalLayoutWidget_3 = new QWidget(tab_3);
         verticalLayoutWidget_3->setObjectName(QString::fromUtf8("verticalLayoutWidget_3"));
-        verticalLayoutWidget_3->setGeometry(QRect(575, 10, 121, 98));
+        verticalLayoutWidget_3->setGeometry(QRect(580, 10, 154, 98));
         verticalLayout_3 = new QVBoxLayout(verticalLayoutWidget_3);
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         verticalLayout_3->setSizeConstraint(QLayout::SetFixedSize);
@@ -920,7 +931,7 @@ public:
 
         verticalLayoutWidget_6 = new QWidget(tab_3);
         verticalLayoutWidget_6->setObjectName(QString::fromUtf8("verticalLayoutWidget_6"));
-        verticalLayoutWidget_6->setGeometry(QRect(709, 31, 149, 180));
+        verticalLayoutWidget_6->setGeometry(QRect(740, 30, 149, 180));
         verticalLayout_6 = new QVBoxLayout(verticalLayoutWidget_6);
         verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
         verticalLayout_6->setContentsMargins(0, 0, 0, 0);
@@ -1061,7 +1072,7 @@ public:
 
         verticalLayoutWidget_7 = new QWidget(tab_3);
         verticalLayoutWidget_7->setObjectName(QString::fromUtf8("verticalLayoutWidget_7"));
-        verticalLayoutWidget_7->setGeometry(QRect(575, 140, 121, 71));
+        verticalLayoutWidget_7->setGeometry(QRect(580, 140, 151, 71));
         verticalLayout_7 = new QVBoxLayout(verticalLayoutWidget_7);
         verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
         verticalLayout_7->setContentsMargins(0, 0, 0, 0);
@@ -1212,7 +1223,7 @@ public:
         tabNormalKey->addTab(tab_5, QString());
         verticalLayoutWidget = new QWidget(dockWidgetContents);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(880, 50, 111, 191));
+        verticalLayoutWidget->setGeometry(QRect(910, 60, 82, 176));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -1275,7 +1286,9 @@ public:
         btn_testkey9->setText(QCoreApplication::translate("MainWindow", "KEY9", nullptr));
         btn_testkey10->setText(QCoreApplication::translate("MainWindow", "KEY10", nullptr));
         tvkey_out->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        tv_keyvalue->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        tv_keyvalue->setText(QString());
+        btn_setadd_2->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
+        btn_setdelete_2->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_test), QCoreApplication::translate("MainWindow", "Test", nullptr));
         btn_dualkey1->setText(QCoreApplication::translate("MainWindow", "KEY1", nullptr));
         btn_dualkey2->setText(QCoreApplication::translate("MainWindow", "KEY2", nullptr));

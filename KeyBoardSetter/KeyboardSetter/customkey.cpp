@@ -71,16 +71,17 @@ bool CustomKey::deleteTopKey(){
             QVector<int> t;
             t.append(0);
             keys[0]->setValue(0,0,0,t);
-            //return to normal key
-            this->is_marco = false;
-            this->is_mouse = false;
-            this->is_media = false;
-            return false;
-        }else
-            return false;
+        }
+        return false;
     }
     else{
         keys.pop_back();
+        if(keys.size() == 1){
+            ////return to normal key
+            this->is_marco = false;
+            this->is_mouse = false;
+            this->is_media = false;
+        }
         return true;
     }
 };

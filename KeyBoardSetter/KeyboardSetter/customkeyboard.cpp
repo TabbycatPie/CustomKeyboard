@@ -39,10 +39,43 @@ void CustomKeyboard::setKey(int key_id, QVector<KeyValue *> kvs){
 }
 void CustomKeyboard::appendKey(int key_id,KeyValue *kv){
     this->key_list[key_id]->appendKey(kv);
-};
+}
 bool CustomKeyboard::deleteTopKey(int key_id){
     return this->key_list[key_id]->deleteTopKey();
-};
+}
+
+bool CustomKeyboard::checkMarcoAddable(int cur_key_no){
+
+    int marco_count = 0;
+    int sum_normal = 0;
+    int sum_sp_key = 0;
+    for(int i =0;i<getKeynum();i++){
+        if(getCustomKeyByID(i)->isMarco()){
+            marco_count++;
+            QVector<KeyValue*> temp_list = getCustomKeyByID(i)->getKeyValueList();
+            for(int j =0;j<temp_list.size();j++){
+                //count normal key
+                if(temp_list[j]->getNormalKeyIndex()!=0)
+                    sum_normal++;
+                //count special key
+                if(temp_list[j]->getSPKeyList().size()>0 && temp_list[j]->getSPKeyList()[0]!=0)
+                    sum_sp_key += temp_list[j]->getSPKeyList().size();
+            }
+        }
+    }
+    //marco-key can only be less than 4
+    if(marco_count>=4){
+        if(!(getCustomKeyByID(cur_key_no)->isMarco() && marco_count ==4))
+            return false;
+    }
+    //special-key can only be less than 10
+    if(sum_sp_key>=10)
+        return false;
+    //normal-key can only be less than 40
+    if(sum_normal>=40)
+        return false;
+    return true;
+}
 //-------------------------------------//
 bool CustomKeyboard::download(HIDCodeTable *table){
     //open device
@@ -185,12 +218,12 @@ bool CustomKeyboard::download(HIDCodeTable *table){
         last_error = "Can not open device!";
         return false;
     }
-};
+}
 QString CustomKeyboard::getLastError(){
     QString temp  = last_error;
     this->last_error = "";
     return temp;
-};
+}
 QString CustomKeyboard::getName(){
     return this->name;
 }
