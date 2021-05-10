@@ -6,6 +6,7 @@ KeyValue::KeyValue(int _normalkey,int _mousekey,int _mediakey,QVector<int> spkey
     this->sp_keys = spkeys;
     this->mousekey = _mousekey;
     this->mediakey = _mediakey;
+    this->delay = 0x00;
 };
 
 KeyValue::KeyValue(int _normalkey){
@@ -15,6 +16,7 @@ KeyValue::KeyValue(int _normalkey){
     this->sp_keys = *temp;
     this->mediakey = 0;
     this->mousekey = 0;
+    this->delay = 0x00;
 };
 
 void KeyValue::setValue(int _normalkey,int _mousekey,int _mediakey,QVector<int> spkeys){
@@ -24,7 +26,12 @@ void KeyValue::setValue(int _normalkey,int _mousekey,int _mediakey,QVector<int> 
     this->mousekey = _mousekey;
     this->mediakey = _mediakey;
 };
-
+uchar KeyValue::getDelay(){
+    return this->delay;
+};
+void KeyValue::setDelay(uchar _delay){
+    this->delay = _delay;
+};
 int KeyValue::getNormalKeyIndex(){
     return this->normalkey;
 };

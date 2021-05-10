@@ -14,12 +14,15 @@ public:
     int getNormalKeyIndex();
     int getMouseKeyIndex();
     int getMediaKeyIndex();
+    uchar getDelay();
+    void setDelay(uchar _delay);
     QVector<int> getSPKeyList();
     ~KeyValue();
 private:
     int normalkey;
     int mousekey;
     int mediakey;
+    uchar delay;
     QVector<int> sp_keys;
 signals:
 

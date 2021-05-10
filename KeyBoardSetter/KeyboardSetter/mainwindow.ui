@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>736</height>
+    <height>600</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -440,7 +440,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>30</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -459,13 +459,13 @@
    <property name="minimumSize">
     <size>
      <width>1000</width>
-     <height>272</height>
+     <height>250</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
      <width>1000</width>
-     <height>350</height>
+     <height>250</height>
     </size>
    </property>
    <property name="autoFillBackground">
@@ -492,8 +492,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>901</width>
-       <height>261</height>
+       <width>861</width>
+       <height>221</height>
       </rect>
      </property>
      <property name="currentIndex">
@@ -503,758 +503,653 @@
       <attribute name="title">
        <string>Key Board</string>
       </attribute>
-      <widget class="QWidget" name="verticalLayoutWidget_2">
+      <widget class="QWidget" name="horizontalLayoutWidget">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>0</x>
          <y>10</y>
-         <width>564</width>
-         <height>204</height>
+         <width>830</width>
+         <height>171</height>
         </rect>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <property name="sizeConstraint">
-         <enum>QLayout::SetFixedSize</enum>
-        </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <layout class="QHBoxLayout" name="firstline">
+         <layout class="QVBoxLayout" name="verticalLayout_2">
           <property name="sizeConstraint">
            <enum>QLayout::SetFixedSize</enum>
           </property>
           <item>
-           <widget class="QToolButton" name="btn_esc">
-            <property name="text">
-             <string>Esc</string>
+           <layout class="QHBoxLayout" name="firstline">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetFixedSize</enum>
             </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_f1">
-            <property name="text">
-             <string>F1</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_f2">
-            <property name="text">
-             <string>F2</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_f3">
-            <property name="text">
-             <string>F3</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_f4">
-            <property name="text">
-             <string>F4</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_f5">
-            <property name="text">
-             <string>F5</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_f6">
-            <property name="text">
-             <string>F6</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_f7">
-            <property name="text">
-             <string>F7</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_f8">
-            <property name="text">
-             <string>F8</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_f9">
-            <property name="text">
-             <string>F9</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_f10">
-            <property name="text">
-             <string>F10</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_f11">
-            <property name="text">
-             <string>F11</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_f12">
-            <property name="text">
-             <string>F12</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QToolButton" name="btn_wave">
-            <property name="text">
-             <string>~</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_1">
-            <property name="text">
-             <string>1</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_2">
-            <property name="text">
-             <string>2</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_3">
-            <property name="text">
-             <string>3</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_4">
-            <property name="text">
-             <string>4</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_5">
-            <property name="text">
-             <string>5</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_6">
-            <property name="text">
-             <string>6</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_7">
-            <property name="text">
-             <string>7</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_8">
-            <property name="text">
-             <string>8</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_9">
-            <property name="text">
-             <string>9</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_0">
-            <property name="text">
-             <string>0</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_minus">
-            <property name="text">
-             <string>_</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_add">
-            <property name="text">
-             <string>+</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_backspace">
-            <property name="text">
-             <string>Backspace</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <property name="sizeConstraint">
-           <enum>QLayout::SetFixedSize</enum>
-          </property>
-          <item>
-           <widget class="QToolButton" name="btn_tab">
-            <property name="text">
-             <string>Tab</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_q">
-            <property name="text">
-             <string>Q</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_w">
-            <property name="text">
-             <string>W</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_e">
-            <property name="text">
-             <string>E</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_r">
-            <property name="text">
-             <string>R</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_t">
-            <property name="text">
-             <string>T</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_y">
-            <property name="text">
-             <string>Y</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_u">
-            <property name="text">
-             <string>U</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_i">
-            <property name="text">
-             <string>I</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_o">
-            <property name="text">
-             <string>O</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_p">
-            <property name="text">
-             <string>P</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_leftbracket">
-            <property name="text">
-             <string>[</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_rightbracket">
-            <property name="text">
-             <string>]</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_splash">
-            <property name="text">
-             <string>\</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <item>
-           <widget class="QToolButton" name="btn_caps">
-            <property name="text">
-             <string>Caps </string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_a">
-            <property name="text">
-             <string>A</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_s">
-            <property name="text">
-             <string>S</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_d">
-            <property name="text">
-             <string>D</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_f">
-            <property name="text">
-             <string>F</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_g">
-            <property name="text">
-             <string>G</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_h">
-            <property name="text">
-             <string>H</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_j">
-            <property name="text">
-             <string>J</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_k">
-            <property name="text">
-             <string>K</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_l">
-            <property name="text">
-             <string>L</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_split">
-            <property name="text">
-             <string>;</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_quote">
-            <property name="text">
-             <string>'</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_enter">
-            <property name="text">
-             <string> Enter </string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <item>
-           <widget class="QToolButton" name="btn_lshift">
-            <property name="text">
-             <string>  Shift  </string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_z">
-            <property name="text">
-             <string>Z</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_x">
-            <property name="text">
-             <string>X</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_c">
-            <property name="text">
-             <string>C</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_v">
-            <property name="text">
-             <string>V</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_b">
-            <property name="text">
-             <string>B</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_n">
-            <property name="text">
-             <string>N</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_m">
-            <property name="text">
-             <string>M</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_lessthan">
-            <property name="text">
-             <string>&lt;</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_greaterthan">
-            <property name="text">
-             <string>&gt;</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_quest">
-            <property name="text">
-             <string>?</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_rshift">
-            <property name="text">
-             <string>  Shift  </string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
-          <item>
-           <widget class="QToolButton" name="btn_lctrl">
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string> Ctrl </string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_lwin">
-            <property name="text">
-             <string>Win</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_lalt">
-            <property name="text">
-             <string>Alt</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_space">
-            <property name="text">
-             <string>                Space                </string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_ralt">
-            <property name="text">
-             <string>Alt</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_rwin">
-            <property name="text">
-             <string>Win</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_rctrl">
-            <property name="text">
-             <string> Ctrl</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="verticalLayoutWidget_3">
-       <property name="geometry">
-        <rect>
-         <x>580</x>
-         <y>10</y>
-         <width>154</width>
-         <height>98</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <property name="sizeConstraint">
-         <enum>QLayout::SetFixedSize</enum>
-        </property>
-        <item>
-         <layout class="QHBoxLayout" name="sep">
-          <property name="sizeConstraint">
-           <enum>QLayout::SetFixedSize</enum>
-          </property>
-          <item>
-           <widget class="QToolButton" name="btn_ptsr">
-            <property name="text">
-             <string>PtSr</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_scrolllock">
-            <property name="text">
-             <string>Scl</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_puase">
-            <property name="text">
-             <string>Pau</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="sep_2">
-          <property name="sizeConstraint">
-           <enum>QLayout::SetFixedSize</enum>
-          </property>
-          <item>
-           <widget class="QToolButton" name="btn_insert">
-            <property name="text">
-             <string>Ins</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_home">
-            <property name="text">
-             <string>Hom</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_pageup">
-            <property name="text">
-             <string>PaU</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="sep_3">
-          <property name="sizeConstraint">
-           <enum>QLayout::SetFixedSize</enum>
-          </property>
-          <item>
-           <widget class="QToolButton" name="btn_delete">
-            <property name="text">
-             <string>Del</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_end">
-            <property name="text">
-             <string>End</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_pagedown">
-            <property name="text">
-             <string>PaD</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="verticalLayoutWidget_6">
-       <property name="geometry">
-        <rect>
-         <x>740</x>
-         <y>30</y>
-         <width>149</width>
-         <height>180</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_6">
-        <item>
-         <layout class="QHBoxLayout" name="sep_4">
-          <property name="sizeConstraint">
-           <enum>QLayout::SetFixedSize</enum>
-          </property>
-          <item>
-           <widget class="QToolButton" name="btn_num">
-            <property name="text">
-             <string>Num</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_sslash">
-            <property name="text">
-             <string>\</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_star">
-            <property name="text">
-             <string>*</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="btn_sminus">
-            <property name="text">
-             <string>-</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_7">
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_4">
             <item>
-             <layout class="QHBoxLayout" name="sep_5">
+             <widget class="QToolButton" name="btn_esc">
+              <property name="text">
+               <string>Esc</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_f1">
+              <property name="text">
+               <string>F1</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_f2">
+              <property name="text">
+               <string>F2</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_f3">
+              <property name="text">
+               <string>F3</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_f4">
+              <property name="text">
+               <string>F4</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_f5">
+              <property name="text">
+               <string>F5</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_f6">
+              <property name="text">
+               <string>F6</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_f7">
+              <property name="text">
+               <string>F7</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_f8">
+              <property name="text">
+               <string>F8</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_f9">
+              <property name="text">
+               <string>F9</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_f10">
+              <property name="text">
+               <string>F10</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_f11">
+              <property name="text">
+               <string>F11</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_f12">
+              <property name="text">
+               <string>F12</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QToolButton" name="btn_wave">
+              <property name="text">
+               <string>~</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_1">
+              <property name="text">
+               <string>1</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_2">
+              <property name="text">
+               <string>2</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_3">
+              <property name="text">
+               <string>3</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_4">
+              <property name="text">
+               <string>4</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_5">
+              <property name="text">
+               <string>5</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_6">
+              <property name="text">
+               <string>6</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_7">
+              <property name="text">
+               <string>7</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_8">
+              <property name="text">
+               <string>8</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_9">
+              <property name="text">
+               <string>9</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_0">
+              <property name="text">
+               <string>0</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_minus">
+              <property name="text">
+               <string>_</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_add">
+              <property name="text">
+               <string>+</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_backspace">
+              <property name="text">
+               <string>Backspace</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetFixedSize</enum>
+            </property>
+            <item>
+             <widget class="QToolButton" name="btn_tab">
+              <property name="text">
+               <string>Tab</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_q">
+              <property name="text">
+               <string>Q</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_w">
+              <property name="text">
+               <string>W</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_e">
+              <property name="text">
+               <string>E</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_r">
+              <property name="text">
+               <string>R</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_t">
+              <property name="text">
+               <string>T</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_y">
+              <property name="text">
+               <string>Y</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_u">
+              <property name="text">
+               <string>U</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_i">
+              <property name="text">
+               <string>I</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_o">
+              <property name="text">
+               <string>O</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_p">
+              <property name="text">
+               <string>P</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_leftbracket">
+              <property name="text">
+               <string>[</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_rightbracket">
+              <property name="text">
+               <string>]</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_splash">
+              <property name="text">
+               <string>\</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QToolButton" name="btn_caps">
+              <property name="text">
+               <string>Caps </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_a">
+              <property name="text">
+               <string>A</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_s">
+              <property name="text">
+               <string>S</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_d">
+              <property name="text">
+               <string>D</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_f">
+              <property name="text">
+               <string>F</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_g">
+              <property name="text">
+               <string>G</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_h">
+              <property name="text">
+               <string>H</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_j">
+              <property name="text">
+               <string>J</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_k">
+              <property name="text">
+               <string>K</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_l">
+              <property name="text">
+               <string>L</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_split">
+              <property name="text">
+               <string>;</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_quote">
+              <property name="text">
+               <string>'</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_enter">
+              <property name="text">
+               <string> Enter </string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QToolButton" name="btn_lshift">
+              <property name="text">
+               <string>  Shift  </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_z">
+              <property name="text">
+               <string>Z</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_x">
+              <property name="text">
+               <string>X</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_c">
+              <property name="text">
+               <string>C</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_v">
+              <property name="text">
+               <string>V</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_b">
+              <property name="text">
+               <string>B</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_n">
+              <property name="text">
+               <string>N</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_m">
+              <property name="text">
+               <string>M</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_lessthan">
+              <property name="text">
+               <string>&lt;</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_greaterthan">
+              <property name="text">
+               <string>&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_quest">
+              <property name="text">
+               <string>?</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_rshift">
+              <property name="text">
+               <string>  Shift  </string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QToolButton" name="btn_lctrl">
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="text">
+               <string> Ctrl </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_lwin">
+              <property name="text">
+               <string>Win</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_lalt">
+              <property name="text">
+               <string>Alt</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_space">
+              <property name="text">
+               <string>                Space                </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_ralt">
+              <property name="text">
+               <string>Alt</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_rwin">
+              <property name="text">
+               <string>Win</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_rctrl">
+              <property name="text">
+               <string> Ctrl</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_9">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetFixedSize</enum>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="sep">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetFixedSize</enum>
+              </property>
               <item>
-               <widget class="QToolButton" name="btn_s7">
+               <widget class="QToolButton" name="btn_ptsr">
                 <property name="text">
-                 <string>7</string>
+                 <string>PtSr</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QToolButton" name="btn_s8">
+               <widget class="QToolButton" name="btn_scrolllock">
                 <property name="text">
-                 <string>8</string>
+                 <string>Scl</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QToolButton" name="btn_s9">
+               <widget class="QToolButton" name="btn_puase">
                 <property name="text">
-                 <string>9</string>
+                 <string>Pau</string>
                 </property>
                </widget>
               </item>
              </layout>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="sep_6">
+             <layout class="QHBoxLayout" name="sep_2">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetFixedSize</enum>
+              </property>
               <item>
-               <widget class="QToolButton" name="btn_s4">
+               <widget class="QToolButton" name="btn_insert">
                 <property name="text">
-                 <string>4</string>
+                 <string>Ins</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QToolButton" name="btn_s5">
+               <widget class="QToolButton" name="btn_home">
                 <property name="text">
-                 <string>5</string>
+                 <string>Hom</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QToolButton" name="btn_s6">
+               <widget class="QToolButton" name="btn_pageup">
                 <property name="text">
-                 <string>6</string>
+                 <string>PaU</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="sep_3">
+              <property name="sizeConstraint">
+               <enum>QLayout::SetFixedSize</enum>
+              </property>
+              <item>
+               <widget class="QToolButton" name="btn_delete">
+                <property name="text">
+                 <string>Del</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="btn_end">
+                <property name="text">
+                 <string>End</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="btn_pagedown">
+                <property name="text">
+                 <string>PaD</string>
                 </property>
                </widget>
               </item>
@@ -1263,68 +1158,38 @@
            </layout>
           </item>
           <item>
-           <widget class="QToolButton" name="btn_splus">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>60</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>30</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>+</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_12">
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_5">
+           <layout class="QVBoxLayout" name="verticalLayout_7">
             <item>
-             <layout class="QHBoxLayout" name="sep_7">
+             <layout class="QHBoxLayout" name="horizontalLayout_15">
               <item>
-               <widget class="QToolButton" name="btn_s1">
+               <widget class="QToolButton" name="btn_up">
                 <property name="text">
-                 <string>1</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QToolButton" name="btn_s2">
-                <property name="text">
-                 <string>2</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QToolButton" name="btn_s3">
-                <property name="text">
-                 <string>3</string>
+                 <string>^</string>
                 </property>
                </widget>
               </item>
              </layout>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="sep_8">
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
               <item>
-               <widget class="QToolButton" name="btn_s0">
+               <widget class="QToolButton" name="btn_left">
                 <property name="text">
-                 <string>  _0_  </string>
+                 <string>&lt;</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QToolButton" name="btn_sdot">
+               <widget class="QToolButton" name="btn_down">
                 <property name="text">
-                 <string>.</string>
+                 <string> v </string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="btn_right">
+                <property name="text">
+                 <string>&gt;</string>
                 </property>
                </widget>
               </item>
@@ -1332,72 +1197,191 @@
             </item>
            </layout>
           </item>
-          <item>
-           <widget class="QToolButton" name="btn_senter">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>70</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>30</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Ent</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="verticalLayoutWidget_7">
-       <property name="geometry">
-        <rect>
-         <x>580</x>
-         <y>140</y>
-         <width>151</width>
-         <height>71</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_7">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_15">
-          <item>
-           <widget class="QToolButton" name="btn_up">
-            <property name="text">
-             <string>^</string>
-            </property>
-           </widget>
-          </item>
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
-           <widget class="QToolButton" name="btn_left">
-            <property name="text">
-             <string>&lt;</string>
+           <layout class="QHBoxLayout" name="sep_4">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetFixedSize</enum>
             </property>
-           </widget>
+            <item>
+             <widget class="QToolButton" name="btn_num">
+              <property name="text">
+               <string>Num</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_sslash">
+              <property name="text">
+               <string>\</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_star">
+              <property name="text">
+               <string>*</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_sminus">
+              <property name="text">
+               <string>-</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QToolButton" name="btn_down">
-            <property name="text">
-             <string> v </string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_4">
+              <item>
+               <layout class="QHBoxLayout" name="sep_5">
+                <item>
+                 <widget class="QToolButton" name="btn_s7">
+                  <property name="text">
+                   <string>7</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="btn_s8">
+                  <property name="text">
+                   <string>8</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="btn_s9">
+                  <property name="text">
+                   <string>9</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="sep_6">
+                <item>
+                 <widget class="QToolButton" name="btn_s4">
+                  <property name="text">
+                   <string>4</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="btn_s5">
+                  <property name="text">
+                   <string>5</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="btn_s6">
+                  <property name="text">
+                   <string>6</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_splus">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>60</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>30</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>+</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QToolButton" name="btn_right">
-            <property name="text">
-             <string>&gt;</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_12">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <layout class="QHBoxLayout" name="sep_7">
+                <item>
+                 <widget class="QToolButton" name="btn_s1">
+                  <property name="text">
+                   <string>1</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="btn_s2">
+                  <property name="text">
+                   <string>2</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="btn_s3">
+                  <property name="text">
+                   <string>3</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="sep_8">
+                <item>
+                 <widget class="QToolButton" name="btn_s0">
+                  <property name="text">
+                   <string>  _0_  </string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QToolButton" name="btn_sdot">
+                  <property name="text">
+                   <string>.</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QToolButton" name="btn_senter">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>60</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>30</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Ent</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </item>
@@ -1447,8 +1431,8 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>112</x>
-         <y>79</y>
+         <x>130</x>
+         <y>60</y>
          <width>91</width>
          <height>30</height>
         </rect>
@@ -1463,8 +1447,8 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>112</x>
-         <y>109</y>
+         <x>130</x>
+         <y>90</y>
          <width>91</width>
          <height>27</height>
         </rect>
@@ -1476,8 +1460,8 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>12</x>
-         <y>109</y>
+         <x>30</x>
+         <y>90</y>
          <width>91</width>
          <height>30</height>
         </rect>
@@ -1492,8 +1476,8 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>12</x>
-         <y>139</y>
+         <x>30</x>
+         <y>120</y>
          <width>91</width>
          <height>27</height>
         </rect>
@@ -1505,8 +1489,8 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>112</x>
-         <y>139</y>
+         <x>130</x>
+         <y>120</y>
          <width>91</width>
          <height>30</height>
         </rect>
@@ -1521,8 +1505,8 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>112</x>
-         <y>169</y>
+         <x>130</x>
+         <y>150</y>
          <width>91</width>
          <height>27</height>
         </rect>
@@ -1534,8 +1518,8 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>212</x>
-         <y>109</y>
+         <x>230</x>
+         <y>90</y>
          <width>91</width>
          <height>30</height>
         </rect>
@@ -1550,8 +1534,8 @@
        </property>
        <property name="geometry">
         <rect>
-         <x>212</x>
-         <y>139</y>
+         <x>230</x>
+         <y>120</y>
          <width>91</width>
          <height>27</height>
         </rect>
@@ -1715,10 +1699,10 @@
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>910</x>
-       <y>60</y>
+       <x>880</x>
+       <y>50</y>
        <width>82</width>
-       <height>176</height>
+       <height>131</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
