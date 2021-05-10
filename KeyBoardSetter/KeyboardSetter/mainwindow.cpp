@@ -140,7 +140,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->treeView->setModel(models[0]);
     ui->dockKeyboard->hide();
 
-
 }
 
 //----------SLOTS
@@ -152,6 +151,11 @@ void MainWindow::setKeyRelease(){
 }
 void MainWindow::switchKeyboard(int keyboard_no){
     cur_keyboard_no = keyboard_no;
+    cur_key_sp.clear();
+    cur_key_normal.clear();
+    cur_mouse =0;
+    cur_media =0;
+    cur_edit_key_no = 0;
     updateUI();
 }
 void MainWindow::setKey(int key_no){
@@ -327,9 +331,6 @@ void MainWindow::updateUI(){
 
     //set cur_temp
     ui->tvkey_out->setText(temp);
-
-    //set button color
-
 }
 
 bool MainWindow::downloadToDevice(int keyboard_no){
