@@ -127,8 +127,11 @@ KeyValue* HIDCodeTable::convertVector2KeyValue(int normal,int mouse,int media,co
 };
 QString HIDCodeTable::convertKeyValue2QString(KeyValue *kv){
     QString out ="";
+    if(kv->getDelay()>0){
+        out = "Delay " + QString::number((int)kv->getDelay()/10)+"s + ";
+    }
     if(kv->getSPKeyList().size()>0 && kv->getSPKeyList()[0]!=0){
-        out = getKeyString(kv->getSPKeyList()[0]);
+        out += getKeyString(kv->getSPKeyList()[0]);
         for(int i =1;i<kv->getSPKeyList().size();i++){
             out += " + " + getKeyString(kv->getSPKeyList()[i]);
         }

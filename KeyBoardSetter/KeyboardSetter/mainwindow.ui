@@ -440,7 +440,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>22</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -459,13 +459,13 @@
    <property name="minimumSize">
     <size>
      <width>1000</width>
-     <height>250</height>
+     <height>270</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
      <width>1000</width>
-     <height>250</height>
+     <height>270</height>
     </size>
    </property>
    <property name="autoFillBackground">
@@ -492,12 +492,12 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>861</width>
-       <height>221</height>
+       <width>891</width>
+       <height>261</height>
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -508,8 +508,8 @@
         <rect>
          <x>0</x>
          <y>10</y>
-         <width>830</width>
-         <height>171</height>
+         <width>883</width>
+         <height>202</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout">
@@ -1552,7 +1552,7 @@
          <x>10</x>
          <y>10</y>
          <width>141</width>
-         <height>201</height>
+         <height>181</height>
         </rect>
        </property>
        <property name="title">
@@ -1564,7 +1564,7 @@
           <x>8</x>
           <y>29</y>
           <width>121</width>
-          <height>161</height>
+          <height>141</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1684,7 +1684,7 @@
         <property name="geometry">
          <rect>
           <x>122</x>
-          <y>55</y>
+          <y>56</y>
           <width>31</width>
           <height>16</height>
          </rect>
@@ -1699,10 +1699,10 @@
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>880</x>
-       <y>50</y>
+       <x>910</x>
+       <y>60</y>
        <width>82</width>
-       <height>131</height>
+       <height>176</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">

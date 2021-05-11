@@ -9,6 +9,7 @@
 //														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
 //														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 //													 };  //marco keycode
+
 UINT8X MARCO_KEYCODE [40]= {0x00};  //marco keycode
 
 UINT8X MARCO_SPLIT_INDX [5] = {0};  //split marco key position
@@ -43,6 +44,8 @@ void HIDsend(){
 	Enp3IntIn();      //send mouse event
 	while(FLAG == 0); /*等待上一包传输完成*/
 	Enp1IntIn();    //send keyboard event
+	while(FLAG == 0); 
+	Enp4IntIn();   //send media event
 	while(FLAG == 0); 
 }
 
@@ -105,14 +108,14 @@ void HIDmarco(UINT8 key_num){
 		//bounce up
 		HIDKey[0] = 0x00;
 		HIDKey[2] = 0x00;
-		//HIDsend();
+		HIDsend();
 	}
 	//clear buffer
-	HIDKey[0] = 0x00;
-	HIDKey[2] = 0x00;
-	HIDsend();
+//	HIDKey[0] = 0x00;
+//	HIDKey[2] = 0x00;
+//	HIDsend();
 	//wait marco-key bounce up
-	mDelaymS(200);
+	mDelaymS(50);
 }
 
 
@@ -128,11 +131,11 @@ sbit Key8  = P1^1;
 sbit Key9  = P3^3;
 sbit Key10 = P3^4;
 
-
 void scanKey(){
 	UINT8 i = 0;
 	UINT8 mouse_code = 0x00;
 	UINT8 sp_key_code = 0x00;
+	UINT8 media_code = 0x00;
 	UINT8 key_count = 0;
 	if(!Key1){
 		KEY_PRESS[0]=0xff;
@@ -289,8 +292,9 @@ void scanKey(){
 	
 	//get final result
 	for(;i<10;i++){
-		mouse_code  |= MOUSE_CODE[i] &KEY_PRESS[i]; //generate mouse_code
+		mouse_code  |= MOUSE_CODE [i]&KEY_PRESS[i]; //generate mouse_code
 		sp_key_code |= SP_KEY_CODE[i]&KEY_PRESS[i]; //generate special_key_code
+		media_code  += MEDIA_CODE [i]&KEY_PRESS[i]; //generate meida_key_code
 		//generate normal key_code
 		if(key_count<6 && (KEY_PRESS[i]==0xff)){
 			HIDKey[2+key_count]=KEY_CODE[i];
@@ -301,6 +305,8 @@ void scanKey(){
 	//FINAL ASSIGNING
 	//mouse codes
 	HIDMouse[0] = mouse_code;
+	//meida codes
+	HIDMultimedia[0] = media_code;
 	//key codes
 	HIDKey  [0] = sp_key_code; //special key Byte
 	HIDKey  [1] = 0x00;        //reserved
@@ -309,7 +315,6 @@ void scanKey(){
 			HIDKey[i]=0x00;
 		}
 	}
-	
 }
 
 void setMarco(unsigned char hi,unsigned char lo){
@@ -319,12 +324,18 @@ void setMarco(unsigned char hi,unsigned char lo){
         if((lo&cur)==cur){
             KEY_MARCO[i] = 0xff;
         }
+				else{
+					 KEY_MARCO[i] = 0x00;
+				}
         i++;
     }
     for(cur=0x01;cur!=0x04;cur<<=1){
         if((hi&cur)==cur){
             KEY_MARCO[i] = 0xff;
         }
+				else{
+					KEY_MARCO[i] = 0x00;
+				}
         i++;
     }
 }
@@ -392,19 +403,61 @@ void hadleReceive(){
 				}
 				WriteDataFlash(47,MARCO_SPE_KEYINDX,40);
 				break;
+			case 0x08:
+				//set marco key
+				//set mouse key code
+				for(i=0;i<10;i++){
+					MOUSE_CODE[i] = Ep2Buffer[1+i];
+				}
+				WriteDataFlash(87,MOUSE_CODE,10);
+				break;
+			case 0x09:
+				//set marco key
+				//set media key code
+				for(i=0;i<10;i++){
+					MEDIA_CODE[i] = Ep2Buffer[1+i];
+				}
+				WriteDataFlash(97,MEDIA_CODE,10);
+				break;
+			case 0x0a:
+				//set marco key
+				//set delay key code
+				for(i=0;i<10;i++){
+					MARCO_DELAY[i] = Ep2Buffer[1+i];
+				}
+				WriteDataFlash(107,MARCO_DELAY,10);
+				break;
+			case 0x0b:
+				//set marco key
+				//set delay index key
+				for(i=0;i<10;i++){
+					MARCO_DELAY_INDX[i] = Ep2Buffer[1+i];
+				}
+				WriteDataFlash(117,MARCO_DELAY_INDX,10);
+				break;
 		}
 	}
 }
 
 void initKeyValue(){
 	//read from data flash
+	UINT8 temp[2] = {0x00,0x00};
 	ReadDataFlash(0,10,KEY_CODE);
 	ReadDataFlash(10,10,SP_KEY_CODE);
+	ReadDataFlash(20,2,temp);
+	setMarco(temp[0],temp[1]);
+	ReadDataFlash(22,5,MARCO_SPLIT_INDX);
+	ReadDataFlash(27,10,MARCO_SPE_KEYCODE);
+	ReadDataFlash(37,10,MARCO_SPE_KEYINDX);
+	ReadDataFlash(47,40,MARCO_KEYCODE);
+	ReadDataFlash(87,10,MOUSE_CODE);
+	ReadDataFlash(97,10,MEDIA_CODE);
+	ReadDataFlash(107,10,MARCO_DELAY);
+	ReadDataFlash(117,10,MARCO_DELAY_INDX);
 }
 
-void main()
-{
-  CfgFsys( );                    //CH552时钟选择配置
+void main(){
+  CfgFsys();                    //CH552时钟选择配置
   mDelaymS(20);                 //修改主频等待内部晶振稳定,必加
 
 	/* 设置P1口为准双向IO口 */
@@ -420,8 +473,7 @@ void main()
 	Ready = 0;
 	
 	USBDeviceInit();              //USB设备模式初始化
-	
-	initKeyValue();
+	initKeyValue();              	//intialize key 
 	
 	EA = 1;                       //允许单片机中断
 	//等待USB枚举成功
@@ -430,21 +482,6 @@ void main()
 	{
 		if(Ready)
 		{
-			
-			// HIDMultimedia[1] 总共1字节长度
-			// 第一字节：   bit0:音量减 
-			//				bit1:音量加 
-			//				bit2:暂停/播放
-			//				bit3:上一曲
-			//				bit4:下一曲
-			
-//			//发送上一曲
-//			HIDMultimedia[0] = 0x02;
-//			Enp4IntIn();	//上报多媒体按键
-//			HIDMultimedia[0] = 0;
-//			Enp4IntIn();	//上报多媒体按键
-//			mDelaymS(3000);
-			
 			scanKey();
 			HIDsend();
 			hadleReceive();

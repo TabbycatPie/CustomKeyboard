@@ -26,6 +26,7 @@ QVector<int> cur_key_sp;
 QVector<int> cur_key_normal;
 int cur_mouse =0;
 int cur_media =0;
+int cur_delay =0;
 
 //current select keyboard
 int cur_keyboard_no = 0;//-1 repersent none
@@ -155,6 +156,7 @@ void MainWindow::switchKeyboard(int keyboard_no){
     cur_key_normal.clear();
     cur_mouse =0;
     cur_media =0;
+    cur_delay =0;
     cur_edit_key_no = 0;
     updateUI();
 }
@@ -367,6 +369,7 @@ bool MainWindow::addKeyValue(){
     if(cur_key_normal.size() > 0)
         temp_normal = cur_key_normal[0];
     KeyValue *temp_kv = table.convertVector2KeyValue(temp_normal,cur_mouse,cur_media,cur_key_sp);
+    temp_kv->setDelay(cur_delay);
     if(cur_mouse != 0 ){
         //add mouse key
         if(temp_list.size()>0 && (temp_list[0]->getNormalKeyIndex() !=0 ||  temp_list[0]->getMediaKeyIndex()!=0 || temp_list[0]->getMouseKeyIndex()!=0)){
@@ -442,7 +445,7 @@ bool MainWindow::addKeyValue(){
                     //can not add to marco because of hardware limit
                     QMessageBox msg_info(this);
                     msg_info.setWindowTitle("Notice");
-                    msg_info.setText("Can NOT add more marco : hardware limit!");
+                    msg_info.setText("Can NOT add key marco : hardware limitation!");
                     msg_info.setIcon(QMessageBox::Critical);
                     msg_info.setStandardButtons(QMessageBox::Ok);
                     msg_info.exec();
@@ -460,6 +463,7 @@ bool MainWindow::addKeyValue(){
     cur_key_normal.clear();
     cur_mouse =0;
     cur_media =0;
+    cur_delay =0;
     updateUI();
 
     return true;

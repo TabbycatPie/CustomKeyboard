@@ -430,7 +430,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1000, 22));
+        menubar->setGeometry(QRect(0, 0, 1000, 30));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         MainWindow->setMenuBar(menubar);
@@ -439,8 +439,8 @@ public:
         MainWindow->setStatusBar(statusbar);
         dockKeyboard = new QDockWidget(MainWindow);
         dockKeyboard->setObjectName(QString::fromUtf8("dockKeyboard"));
-        dockKeyboard->setMinimumSize(QSize(1000, 250));
-        dockKeyboard->setMaximumSize(QSize(1000, 250));
+        dockKeyboard->setMinimumSize(QSize(1000, 270));
+        dockKeyboard->setMaximumSize(QSize(1000, 270));
         dockKeyboard->setAutoFillBackground(true);
         dockKeyboard->setFloating(false);
         dockKeyboard->setFeatures(QDockWidget::NoDockWidgetFeatures);
@@ -450,12 +450,12 @@ public:
         dockWidgetContents->setObjectName(QString::fromUtf8("dockWidgetContents"));
         tabNormalKey = new QTabWidget(dockWidgetContents);
         tabNormalKey->setObjectName(QString::fromUtf8("tabNormalKey"));
-        tabNormalKey->setGeometry(QRect(0, 0, 861, 221));
+        tabNormalKey->setGeometry(QRect(0, 0, 891, 261));
         tab_3 = new QWidget();
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
         horizontalLayoutWidget = new QWidget(tab_3);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(0, 10, 830, 171));
+        horizontalLayoutWidget->setGeometry(QRect(0, 10, 883, 202));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
@@ -1173,10 +1173,10 @@ public:
         tab_5->setObjectName(QString::fromUtf8("tab_5"));
         groupBox = new QGroupBox(tab_5);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(10, 10, 141, 201));
+        groupBox->setGeometry(QRect(10, 10, 141, 181));
         verticalLayoutWidget_4 = new QWidget(groupBox);
         verticalLayoutWidget_4->setObjectName(QString::fromUtf8("verticalLayoutWidget_4"));
-        verticalLayoutWidget_4->setGeometry(QRect(8, 29, 121, 161));
+        verticalLayoutWidget_4->setGeometry(QRect(8, 29, 121, 141));
         verticalLayout_8 = new QVBoxLayout(verticalLayoutWidget_4);
         verticalLayout_8->setObjectName(QString::fromUtf8("verticalLayout_8"));
         verticalLayout_8->setContentsMargins(0, 0, 0, 0);
@@ -1225,11 +1225,11 @@ public:
         pushButton_3->setGeometry(QRect(122, 40, 31, 16));
         pushButton_7 = new QPushButton(groupBox_2);
         pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
-        pushButton_7->setGeometry(QRect(122, 55, 31, 16));
+        pushButton_7->setGeometry(QRect(122, 56, 31, 16));
         tabNormalKey->addTab(tab_5, QString());
         verticalLayoutWidget = new QWidget(dockWidgetContents);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(880, 50, 82, 131));
+        verticalLayoutWidget->setGeometry(QRect(910, 60, 82, 176));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
@@ -1270,7 +1270,7 @@ public:
         retranslateUi(MainWindow);
 
         tabWidget->setCurrentIndex(0);
-        tabNormalKey->setCurrentIndex(0);
+        tabNormalKey->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

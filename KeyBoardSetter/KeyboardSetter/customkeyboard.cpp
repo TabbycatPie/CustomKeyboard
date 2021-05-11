@@ -49,6 +49,7 @@ bool CustomKeyboard::checkMarcoAddable(int cur_key_no){
     int marco_count = 0;
     int sum_normal = 0;
     int sum_sp_key = 0;
+    int sum_dely = 0;
     for(int i =0;i<getKeynum();i++){
         if(getCustomKeyByID(i)->isMarco()){
             marco_count++;
@@ -60,6 +61,8 @@ bool CustomKeyboard::checkMarcoAddable(int cur_key_no){
                 //count special key
                 if(temp_list[j]->getSPKeyList().size()>0 && temp_list[j]->getSPKeyList()[0]!=0)
                     sum_sp_key += temp_list[j]->getSPKeyList().size();
+                if(temp_list[j]->getDelay()!=0)
+                    sum_dely++;
             }
         }
     }
@@ -70,6 +73,9 @@ bool CustomKeyboard::checkMarcoAddable(int cur_key_no){
     }
     //special-key can only be less than 10
     if(sum_sp_key>=10)
+        return false;
+    //delay-key can only be less than 10
+    if(sum_dely>=10)
         return false;
     //normal-key can only be less than 40
     if(sum_normal>=40)
@@ -86,13 +92,18 @@ bool CustomKeyboard::download(HIDCodeTable *table){
         uchar frame_set_normal[65]={0x00};
         uchar frame_set_sp[65]={0x00};
         uchar frame_set_marco_status[65]={0x00};
-        uchar frame_set_marco_index[65]={0xff};
+        uchar frame_set_marco_index[65]={0x00};
         uchar frame_set_marco_sp_key[65]={0x00};
         uchar frame_set_marco_spkey_index[65]={0x00};
         uchar frame_set_marco[65]={0x00};
+        uchar frame_set_mouse[65]={0x00};
+        uchar frame_set_media[65]={0x00};
+        uchar frame_set_delay[65]={0x00};
+        uchar frame_set_delay_index[65]={0x00};
 
-        QVector<uchar> temp_marco_buffer,temp_marco_sp_buffer,
-                temp_marco_sp_index,temp_marco_index_buffer;
+        QVector<uchar> temp_marco_buffer,temp_marco_index_buffer, //marco indecies and buffer
+                       temp_marco_sp_buffer,temp_marco_sp_index,  //marco sp indecies and buffer
+                       temp_delay_index,temp_delay_buffer;        //marco delay indecies ande buffer
 
         //initialize vector
         temp_marco_index_buffer.append(0x00);
@@ -105,29 +116,36 @@ bool CustomKeyboard::download(HIDCodeTable *table){
         frame_set_marco_sp_key     [0]= 0x00;
         frame_set_marco_spkey_index[0]= 0x00;
         frame_set_marco            [0]= 0x00;
+        frame_set_mouse            [0]= 0x00;
+        frame_set_media            [0]= 0x00;
+        frame_set_delay            [0]= 0x00;
+        frame_set_delay_index      [0]= 0x00;
 
         //set frame header
         frame_set_normal           [1]= 0x01;   // set KEY_CODE          [10]
         frame_set_sp               [1]= 0x02;   // set SP_KEY_CODE       [10]
-        frame_set_marco_status     [1]= 0x03;   // set KEY_MARCO         [10]
+        frame_set_marco_status     [1]= 0x03;   // set KEY_MARCO         [2]
         frame_set_marco_index      [1]= 0x04;   // set MARCO_SPLIT_INDX  [5]
         frame_set_marco_sp_key     [1]= 0x05;   // set MARCO_SPE_KEYCODE [10]
         frame_set_marco_spkey_index[1]= 0x06;   // set MARCO_SPE_KEYINDX [10]
-        frame_set_marco            [1]= 0x07;   // set MARCO_KEYCODE     [50]
-
-        //customize frame content
-        frame_set_marco_index      [2]= 0x00;
-        frame_set_marco_index      [3]= 0xff;
-        frame_set_marco_index      [4]= 0xff;
-        frame_set_marco_index      [5]= 0xff;
-        frame_set_marco_index      [6]= 0xff;
+        frame_set_marco            [1]= 0x07;   // set MARCO_KEYCODE     [40]
+        frame_set_mouse            [1]= 0x08;   // set MOUSE_CODE        [10]
+        frame_set_media            [1]= 0x09;   // set MEDIA_CODE        [10]
+        frame_set_delay            [1]= 0x0a;   // set MARCO_DELAY       [10]
+        frame_set_delay_index      [1]= 0x0b;   // set MARCO_DELAY_INDX  [10]
 
         //generate frames
         for(int i = 0;i<this->getKeynum();i++){
-            uchar temp1 = 0x00;
-            uchar temp2 = 0x00;
+            uchar temp_normal = 0x00;   //normal
+            uchar temp_sp = 0x00;       //specoal
+            uchar temp_mouse = 0x00;    //mouse
+            uchar temp_media = 0x00;    //media
             if(!this->getCustomKeyByID(i)->isMarco()){
-                 table->convertNormaltKeyValue2Hex(&temp1,&temp2,this->getCustomKeyByID(i)->getKeyValueList()[0]);
+                //normal key
+                table->convertNormaltKeyValue2Hex(&temp_normal,&temp_sp,this->getCustomKeyByID(i)->getKeyValueList()[0]);
+                //single key
+                temp_mouse = table->getHex(getCustomKeyByID(i)->getKeyValueList()[0]->getMouseKeyIndex());
+                temp_media = table->getHex(getCustomKeyByID(i)->getKeyValueList()[0]->getMediaKeyIndex());
             }
             else{
                 //set one marco key to temp buffer
@@ -135,7 +153,9 @@ bool CustomKeyboard::download(HIDCodeTable *table){
                 for(int x =0;x<tkvs.size();x++){
                     uchar normal = 0x00;
                     uchar special = 0x00;
+                    uchar delay = 0x00;
                     table->convertNormaltKeyValue2Hex(&normal,&special,this->getCustomKeyByID(i)->getKeyValueList()[x]);
+                    delay = getCustomKeyByID(i)->getKeyValueList()[x]->getDelay();
                     //set normal key buffer
                     temp_marco_buffer.append(normal);
                     //set special key buffer
@@ -143,12 +163,19 @@ bool CustomKeyboard::download(HIDCodeTable *table){
                         temp_marco_sp_buffer.append(special);
                         temp_marco_sp_index.append((uchar)(temp_marco_buffer.size()-1));
                     }
+                    //set delay to key
+                    if(delay!=0x00){
+                        temp_delay_buffer.append(delay);
+                        temp_delay_index.append((uchar)(temp_marco_buffer.size()-1));
+                    }
                 }
                 temp_marco_index_buffer.append((uchar)temp_marco_buffer.size());
             }
             //construct normal key frame
-            frame_set_normal[i+2] = temp1;
-            frame_set_sp[i+2] = temp2;
+            frame_set_mouse[i+2] = temp_mouse;
+            frame_set_media[i+2] = temp_media;
+            frame_set_normal[i+2] = temp_normal;
+            frame_set_sp[i+2] = temp_sp;
         }
         //construct marco key frames
         //1.frame_set_marco_status
@@ -173,10 +200,13 @@ bool CustomKeyboard::download(HIDCodeTable *table){
         frame_set_marco_status[3] = lo;//set lo
 
         //set frame_set_marco_index
-        for(int i=1;i<temp_marco_index_buffer.size();i++){
+        int i = 1;
+        for(;i<temp_marco_index_buffer.size();i++){
             frame_set_marco_index[i+2] = temp_marco_index_buffer[i];
         }
-
+        for(;i<5;i++){
+            frame_set_marco_index[i+2] = temp_marco_buffer.size();
+        }
         //set frame_set_marco_sp_key
         for(int i =0;i<temp_marco_sp_buffer.size();i++){
             frame_set_marco_sp_key[i+2] = temp_marco_sp_buffer[i];
@@ -187,10 +217,21 @@ bool CustomKeyboard::download(HIDCodeTable *table){
             frame_set_marco_spkey_index[i+2] = temp_marco_sp_index[i];
         }
 
+        //set frame_set_delay
+        for(int i =0;i<temp_delay_buffer.size();i++){
+            frame_set_delay[i+2] = temp_delay_buffer[i];
+        }
+
+        //set frame_set_delay_index
+        for(int i =0;i<temp_delay_index.size();i++){
+            frame_set_delay_index[i+2] = temp_delay_index[i];
+        }
+
         //set frame_set_marco
         for(int i =0;i<temp_marco_buffer.size();i++){
             frame_set_marco[i+2] = temp_marco_buffer[i];
         }
+
 
 
 
@@ -201,9 +242,16 @@ bool CustomKeyboard::download(HIDCodeTable *table){
         int res4 = hid_write(my_device,frame_set_marco_index,65);
         int res5 = hid_write(my_device,frame_set_marco_sp_key,65);
         int res6 = hid_write(my_device,frame_set_marco_spkey_index,65);
+        int res8 = hid_write(my_device,frame_set_mouse,65);
+        int res9 = hid_write(my_device,frame_set_media,65);
+        int res10= hid_write(my_device,frame_set_delay,65);
+        int res11= hid_write(my_device,frame_set_delay_index,65);
         int res7 = hid_write(my_device,frame_set_marco,65);
 
-        if(res1 != -1 && res2 != -1 && res3!= -1 && res4 != -1 && res5 != -1 && res6 != -1 && res7 != -1){
+        if(res1 != -1 && res2 != -1 && res3!= -1 && res4 != -1 && res5 != -1
+                && res6 != -1 && res7 != -1 && res8 != -1 && res9 !=-1 && res10 != -1
+                && res11!= -1)
+        {
             qDebug() << "Sending Successfully!" << endl;
             hid_close(my_device);
             return true;
