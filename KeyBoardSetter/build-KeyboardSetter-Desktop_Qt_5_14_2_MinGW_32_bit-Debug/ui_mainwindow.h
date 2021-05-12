@@ -253,7 +253,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->setWindowModality(Qt::NonModal);
-        MainWindow->resize(1000, 600);
+        MainWindow->resize(1000, 719);
         MainWindow->setMinimumSize(QSize(1000, 600));
         MainWindow->setMaximumSize(QSize(1000, 16777215));
         MainWindow->setAnimated(true);
@@ -355,9 +355,11 @@ public:
         tv_keyvalue->setLineWidth(2);
         btn_setadd_2 = new QPushButton(tab_test);
         btn_setadd_2->setObjectName(QString::fromUtf8("btn_setadd_2"));
+        btn_setadd_2->setEnabled(false);
         btn_setadd_2->setGeometry(QRect(490, 270, 80, 30));
         btn_setdelete_2 = new QPushButton(tab_test);
         btn_setdelete_2->setObjectName(QString::fromUtf8("btn_setdelete_2"));
+        btn_setdelete_2->setEnabled(false);
         btn_setdelete_2->setGeometry(QRect(490, 300, 80, 30));
         tabWidget->addTab(tab_test, QString());
         tab_dualkeys = new QWidget();
@@ -1219,12 +1221,15 @@ public:
         lineEdit_5->setGeometry(QRect(10, 40, 113, 31));
         pushButton_2 = new QPushButton(groupBox_2);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setEnabled(false);
         pushButton_2->setGeometry(QRect(160, 40, 91, 30));
         pushButton_3 = new QPushButton(groupBox_2);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        pushButton_3->setEnabled(false);
         pushButton_3->setGeometry(QRect(122, 40, 31, 16));
         pushButton_7 = new QPushButton(groupBox_2);
         pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
+        pushButton_7->setEnabled(false);
         pushButton_7->setGeometry(QRect(122, 56, 31, 16));
         tabNormalKey->addTab(tab_5, QString());
         verticalLayoutWidget = new QWidget(dockWidgetContents);
@@ -1240,6 +1245,7 @@ public:
 
         btn_advance = new QPushButton(verticalLayoutWidget);
         btn_advance->setObjectName(QString::fromUtf8("btn_advance"));
+        btn_advance->setEnabled(false);
 
         verticalLayout->addWidget(btn_advance);
 
@@ -1255,6 +1261,7 @@ public:
 
         btn_setcommit = new QPushButton(verticalLayoutWidget);
         btn_setcommit->setObjectName(QString::fromUtf8("btn_setcommit"));
+        btn_setcommit->setEnabled(false);
 
         verticalLayout->addWidget(btn_setcommit);
 

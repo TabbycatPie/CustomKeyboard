@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>600</height>
+    <height>719</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -256,6 +256,9 @@
       </property>
      </widget>
      <widget class="QPushButton" name="btn_setadd_2">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>490</x>
@@ -269,6 +272,9 @@
       </property>
      </widget>
      <widget class="QPushButton" name="btn_setdelete_2">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>490</x>
@@ -1655,6 +1661,9 @@
         </property>
        </widget>
        <widget class="QPushButton" name="pushButton_2">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>160</x>
@@ -1668,6 +1677,9 @@
         </property>
        </widget>
        <widget class="QPushButton" name="pushButton_3">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>122</x>
@@ -1681,6 +1693,9 @@
         </property>
        </widget>
        <widget class="QPushButton" name="pushButton_7">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="geometry">
          <rect>
           <x>122</x>
@@ -1715,6 +1730,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="btn_advance">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Advance</string>
         </property>
@@ -1736,6 +1754,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="btn_setcommit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Commit</string>
         </property>
