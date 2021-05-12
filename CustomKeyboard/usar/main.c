@@ -32,12 +32,51 @@ UINT8X SP_KEY_CODE[10] = {0x00};  //temporily used for sepcial key
 UINT8X KEY_PRESS  [10] = {0x00};  
 UINT8X KEY_MARCO  [10] = {0x00};
 
+UINT8X LAST_MEDIA_KEY = 0xff;
+UINT8X CUR_MEDIA_KEY = 0xff;
+UINT8X CUR_MEDIA_LAG = 0x0a;
+
 //delay time*100ms
 void MarcoDelay(UINT8 time){
 	while(time--)
 		mDelaymS(100);
 }
 
+
+void HIDmediasned(){
+	if(CUR_MEDIA_KEY!= 0xff){
+		//valid key triggered
+		if(CUR_MEDIA_KEY!=LAST_MEDIA_KEY){
+			//pressed frist time
+			Enp4IntIn();   //send media event
+			while(FLAG == 0);
+			HIDMultimedia[0] = 0;
+			Enp4IntIn();   //send media event
+			while(FLAG == 0);
+		}
+		else if(CUR_MEDIA_LAG == 0){
+			Enp4IntIn();   //send media event
+			while(FLAG == 0);
+			HIDMultimedia[0] = 0;
+			Enp4IntIn();   //send media event
+			while(FLAG == 0);
+			CUR_MEDIA_LAG = 0x0f;
+		}
+		else if(CUR_MEDIA_KEY!= 0xff && CUR_MEDIA_KEY==LAST_MEDIA_KEY){
+			CUR_MEDIA_LAG--;
+		}
+		LAST_MEDIA_KEY = CUR_MEDIA_KEY;
+	}
+	else{
+		CUR_MEDIA_LAG = 0x2f;
+		LAST_MEDIA_KEY = 0xff;
+	}
+	
+	
+//	HIDMultimedia[0] = 0;
+//	Enp4IntIn();   //send media event
+//	while(FLAG == 0); 
+}
 //report key code to computer
 void HIDsend(){
 	FLAG = 0;
@@ -45,10 +84,8 @@ void HIDsend(){
 	while(FLAG == 0); /*等待上一包传输完成*/
 	Enp1IntIn();    //send keyboard event
 	while(FLAG == 0); 
-	Enp4IntIn();   //send media event
-	while(FLAG == 0); 
+	HIDmediasned();
 }
-
 //send marco key
 void HIDmarco(UINT8 key_num){
 	UINT8 i,j,delay_n00ms;
@@ -117,8 +154,6 @@ void HIDmarco(UINT8 key_num){
 	//wait marco-key bounce up
 	mDelaymS(50);
 }
-
-
 //10-key maping 
 sbit Key1  = P3^2;
 sbit Key2  = P1^4;
@@ -136,6 +171,7 @@ void scanKey(){
 	UINT8 mouse_code = 0x00;
 	UINT8 sp_key_code = 0x00;
 	UINT8 media_code = 0x00;
+	UINT8 temp_code=0x00;
 	UINT8 key_count = 0;
 	if(!Key1){
 		KEY_PRESS[0]=0xff;
@@ -289,12 +325,16 @@ void scanKey(){
 		}
 	}
 	
-	
+	CUR_MEDIA_KEY = 0xff;
 	//get final result
 	for(;i<10;i++){
 		mouse_code  |= MOUSE_CODE [i]&KEY_PRESS[i]; //generate mouse_code
 		sp_key_code |= SP_KEY_CODE[i]&KEY_PRESS[i]; //generate special_key_code
-		media_code  += MEDIA_CODE [i]&KEY_PRESS[i]; //generate meida_key_code
+		temp_code  = MEDIA_CODE [i]&KEY_PRESS[i]; //generate meida_key_code
+		if(temp_code!=0){
+			media_code = temp_code;
+			CUR_MEDIA_KEY=i;
+		}
 		//generate normal key_code
 		if(key_count<6 && (KEY_PRESS[i]==0xff)){
 			HIDKey[2+key_count]=KEY_CODE[i];
