@@ -22,15 +22,15 @@ UINT8X MARCO_DELAY       [10] = {0x00};
 
 UINT8X MEDIA_CODE [10] = {0x00};
 UINT8X MOUSE_CODE [10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for mouse 
-UINT8X KEY_CODE   [10] = {0x00};  //temporily used for key 
-UINT8X SP_KEY_CODE[10] = {0x00};  //temporily used for sepcial key
+UINT8 KEY_CODE   [10] = {0x00};  //temporily used for key 
+UINT8 SP_KEY_CODE[10] = {0x00};  //temporily used for sepcial key
 
 //unpressed : 0x00
 //  pressed :key_pressed[n] == 0xff
 //if key(n) is a marco key 
 
-UINT8X KEY_PRESS  [10] = {0x00};  
-UINT8X KEY_MARCO  [10] = {0x00};
+UINT8 KEY_PRESS  [10] = {0x00};  
+UINT8 KEY_MARCO  [10] = {0x00};
 
 UINT8X LAST_MEDIA_KEY = 0xff;
 UINT8X CUR_MEDIA_KEY = 0xff;
@@ -136,16 +136,21 @@ void HIDmarco(UINT8 key_num){
 				break;
 			}
 		}
+		//send delay
+		MarcoDelay(delay_n00ms);
+		//send sp keys
+		
 		//prepare normal key
 		HIDKey [2] = MARCO_KEYCODE[MARCO_SPLIT_INDX[pos-1]+i];
 		HIDsend();
 		//delay
-		MarcoDelay(delay_n00ms);
-		mDelaymS(5);
 		//bounce up
 		HIDKey[0] = 0x00;
 		HIDKey[2] = 0x00;
 		HIDsend();
+		
+		mDelaymS(5);
+		
 	}
 	//clear buffer
 //	HIDKey[0] = 0x00;
@@ -165,7 +170,6 @@ sbit Key7  = P3^0;
 sbit Key8  = P1^1;
 sbit Key9  = P3^3;
 sbit Key10 = P3^4;
-
 void scanKey(){
 	UINT8 i = 0;
 	UINT8 mouse_code = 0x00;
@@ -385,7 +389,7 @@ void hadleReceive(){
 	if(Endp2Rev != 0)
 	{
 		char i;
-		char *temp;
+		UINT8 temp[2];
 		Endp2Rev = 0;
 		switch (Ep2Buffer[0]){
 			case 0x01:
@@ -406,8 +410,9 @@ void hadleReceive(){
 			case 0x03:
 				//set_marco_key
 				//get marco byte
-				setMarco(Ep2Buffer[1],Ep2Buffer[2]);
-				temp = &Ep2Buffer[1];
+				temp[0] = Ep2Buffer[1];
+				temp[1] = Ep2Buffer[2];
+				setMarco(temp[0],temp[1]);
 				WriteDataFlash(20,temp,2);
 				//get marco 
 				break;
@@ -441,7 +446,7 @@ void hadleReceive(){
 				for(i=0;i<40;i++){
 					MARCO_KEYCODE[i] = Ep2Buffer[1+i];
 				}
-				WriteDataFlash(47,MARCO_SPE_KEYINDX,40);
+				WriteDataFlash(47,MARCO_KEYCODE,40);
 				break;
 			case 0x08:
 				//set marco key
@@ -481,11 +486,11 @@ void hadleReceive(){
 
 void initKeyValue(){
 	//read from data flash
-	UINT8 temp[2] = {0x00,0x00};
+	UINT8 _temp[2];
 	ReadDataFlash(0,10,KEY_CODE);
 	ReadDataFlash(10,10,SP_KEY_CODE);
-	ReadDataFlash(20,2,temp);
-	setMarco(temp[0],temp[1]);
+	ReadDataFlash(20,2,_temp);
+	setMarco(_temp[0],_temp[1]);
 	ReadDataFlash(22,5,MARCO_SPLIT_INDX);
 	ReadDataFlash(27,10,MARCO_SPE_KEYCODE);
 	ReadDataFlash(37,10,MARCO_SPE_KEYINDX);

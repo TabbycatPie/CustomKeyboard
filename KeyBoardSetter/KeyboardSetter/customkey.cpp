@@ -71,6 +71,7 @@ bool CustomKey::deleteTopKey(){
             QVector<int> t;
             t.append(0);
             keys[0]->setValue(0,0,0,t);
+            keys[0]->setDelay(0);
             ////return to normal key
             this->is_marco = false;
             this->is_mouse = false;

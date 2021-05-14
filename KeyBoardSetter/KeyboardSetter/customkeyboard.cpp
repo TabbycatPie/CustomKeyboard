@@ -89,6 +89,7 @@ bool CustomKeyboard::download(HIDCodeTable *table){
     my_device = hid_open(vid,pid,NULL);
     if(my_device!=NULL){
         //open success,prepare data
+        qDebug() << "device opened" <<endl;
         uchar frame_set_normal[65]={0x00};
         uchar frame_set_sp[65]={0x00};
         uchar frame_set_marco_status[65]={0x00};
@@ -257,7 +258,8 @@ bool CustomKeyboard::download(HIDCodeTable *table){
             return true;
         }else{
             last_error = "Data sending is failed!";
-            qDebug() << "Sending Failed!" << endl;
+            QString text = QString::fromWCharArray(hid_error(my_device));
+            qDebug() << "Sending Failed! Error:"<< text << endl;
             hid_close(my_device);
             return false;
         }
