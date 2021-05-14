@@ -503,7 +503,7 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
@@ -1570,7 +1570,7 @@
           <x>8</x>
           <y>29</y>
           <width>121</width>
-          <height>141</height>
+          <height>156</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1650,7 +1650,7 @@
          <string>LastSong</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="lineEdit_5">
+       <widget class="QLineEdit" name="et_delay">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -1659,10 +1659,13 @@
           <height>31</height>
          </rect>
         </property>
+        <property name="text">
+         <string>0.0</string>
+        </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="btn_setdelay">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>
@@ -1676,9 +1679,9 @@
          <string>SetDelay</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="btn_delayplus">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>
@@ -1692,9 +1695,9 @@
          <string>+</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_7">
+       <widget class="QPushButton" name="btn_delayminus">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>

@@ -236,10 +236,10 @@ public:
     QToolButton *toolButton_5;
     QGroupBox *groupBox_2;
     QToolButton *toolButton_6;
-    QLineEdit *lineEdit_5;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_7;
+    QLineEdit *et_delay;
+    QPushButton *btn_setdelay;
+    QPushButton *btn_delayplus;
+    QPushButton *btn_delayminus;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
     QPushButton *btn_setcancel;
@@ -1178,7 +1178,7 @@ public:
         groupBox->setGeometry(QRect(10, 10, 141, 181));
         verticalLayoutWidget_4 = new QWidget(groupBox);
         verticalLayoutWidget_4->setObjectName(QString::fromUtf8("verticalLayoutWidget_4"));
-        verticalLayoutWidget_4->setGeometry(QRect(8, 29, 121, 141));
+        verticalLayoutWidget_4->setGeometry(QRect(8, 29, 121, 156));
         verticalLayout_8 = new QVBoxLayout(verticalLayoutWidget_4);
         verticalLayout_8->setObjectName(QString::fromUtf8("verticalLayout_8"));
         verticalLayout_8->setContentsMargins(0, 0, 0, 0);
@@ -1216,21 +1216,21 @@ public:
         toolButton_6 = new QToolButton(groupBox_2);
         toolButton_6->setObjectName(QString::fromUtf8("toolButton_6"));
         toolButton_6->setGeometry(QRect(150, 170, 82, 26));
-        lineEdit_5 = new QLineEdit(groupBox_2);
-        lineEdit_5->setObjectName(QString::fromUtf8("lineEdit_5"));
-        lineEdit_5->setGeometry(QRect(10, 40, 113, 31));
-        pushButton_2 = new QPushButton(groupBox_2);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setEnabled(false);
-        pushButton_2->setGeometry(QRect(160, 40, 91, 30));
-        pushButton_3 = new QPushButton(groupBox_2);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setEnabled(false);
-        pushButton_3->setGeometry(QRect(122, 40, 31, 16));
-        pushButton_7 = new QPushButton(groupBox_2);
-        pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
-        pushButton_7->setEnabled(false);
-        pushButton_7->setGeometry(QRect(122, 56, 31, 16));
+        et_delay = new QLineEdit(groupBox_2);
+        et_delay->setObjectName(QString::fromUtf8("et_delay"));
+        et_delay->setGeometry(QRect(10, 40, 113, 31));
+        btn_setdelay = new QPushButton(groupBox_2);
+        btn_setdelay->setObjectName(QString::fromUtf8("btn_setdelay"));
+        btn_setdelay->setEnabled(true);
+        btn_setdelay->setGeometry(QRect(160, 40, 91, 30));
+        btn_delayplus = new QPushButton(groupBox_2);
+        btn_delayplus->setObjectName(QString::fromUtf8("btn_delayplus"));
+        btn_delayplus->setEnabled(true);
+        btn_delayplus->setGeometry(QRect(122, 40, 31, 16));
+        btn_delayminus = new QPushButton(groupBox_2);
+        btn_delayminus->setObjectName(QString::fromUtf8("btn_delayminus"));
+        btn_delayminus->setEnabled(true);
+        btn_delayminus->setGeometry(QRect(122, 56, 31, 16));
         tabNormalKey->addTab(tab_5, QString());
         verticalLayoutWidget = new QWidget(dockWidgetContents);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
@@ -1277,7 +1277,7 @@ public:
         retranslateUi(MainWindow);
 
         tabWidget->setCurrentIndex(0);
-        tabNormalKey->setCurrentIndex(0);
+        tabNormalKey->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1434,9 +1434,10 @@ public:
         toolButton_5->setText(QCoreApplication::translate("MainWindow", "LastSong", nullptr));
         groupBox_2->setTitle(QCoreApplication::translate("MainWindow", "MarcoDelay", nullptr));
         toolButton_6->setText(QCoreApplication::translate("MainWindow", "LastSong", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "SetDelay", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
-        pushButton_7->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
+        et_delay->setText(QCoreApplication::translate("MainWindow", "0.0", nullptr));
+        btn_setdelay->setText(QCoreApplication::translate("MainWindow", "SetDelay", nullptr));
+        btn_delayplus->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
+        btn_delayminus->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         tabNormalKey->setTabText(tabNormalKey->indexOf(tab_5), QCoreApplication::translate("MainWindow", "Advance", nullptr));
         btn_setcancel->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
         btn_advance->setText(QCoreApplication::translate("MainWindow", "Advance", nullptr));

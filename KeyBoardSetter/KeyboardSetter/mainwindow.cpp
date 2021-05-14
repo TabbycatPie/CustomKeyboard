@@ -136,7 +136,24 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->btn_setdelete,&QPushButton::clicked,this,[=]{
         deleteKeyValue();
     });
+    //set delay increasement and decreasement
+    connect(ui->btn_delayplus,&QPushButton::clicked,this,[=]{
+        delayindecrease();
+    });
+    connect(ui->btn_delayminus,&QPushButton::clicked,this,[=]{
+        delayindecrease(false);
+    });
+    //set set-delay button
+    connect(ui->btn_setdelay,&QPushButton::clicked,this,[=]{
+        setDelay();
+    });
+
     //init UI
+    //init et_delay
+    QRegExp rx("[12]?\\d\\.[0-9]");
+    QRegExpValidator *pRevalidotor = new QRegExpValidator(rx,this);
+    ui->et_delay->setValidator(pRevalidotor);
+
     initTreeView();
     ui->treeView->setModel(models[0]);
     ui->dockKeyboard->hide();
@@ -194,6 +211,33 @@ void MainWindow::commitKeySetting(){
     }
 }
 
+void MainWindow::setDelay(){
+    QString temp = ui->et_delay->text();
+    float delay = temp.toFloat();
+    int delay_int = (int)(delay * 10);
+    cur_delay = (uchar) delay_int;
+    updateUI();
+}
+void MainWindow::delayindecrease(bool is_add){
+    QString temp = ui->et_delay->text();
+    float delay = temp.toFloat();
+    if(is_add){
+        //increase delay
+        if(delay < 25.5f)
+            delay += 0.1f;
+        else{
+            delay = 25.5f;
+        }
+    }
+    else{
+        //decrease delay
+        if(delay > 0.1f)
+            delay -= 0.1f;
+        else
+            delay = 0.0f;
+    }
+    ui->et_delay->setText(QString::number(delay));
+}
 void MainWindow::initTreeView(){
     for(int x =0;x<TYPENUM;x++){
         QStandardItemModel* model = new QStandardItemModel(ui->treeView);
@@ -312,6 +356,9 @@ void MainWindow::updateUI(){
             temp += " + " +  table.getKeyString(cur_key_normal[i]);
         }
     }
+    if(cur_delay!=0){
+        temp = "Delay"+ ui->et_delay->text() +"s + "+temp;
+    }
     // these keys is single
     if(cur_media!=0){
         temp = table.getKeyString(cur_media);
@@ -334,6 +381,8 @@ void MainWindow::updateUI(){
     //set cur_temp
     ui->tvkey_out->setText(temp);
 }
+
+
 
 bool MainWindow::downloadToDevice(int keyboard_no){
     bool result = false;
