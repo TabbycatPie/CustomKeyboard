@@ -18,6 +18,11 @@ public:
     void commitKeySetting();
     void initTreeView();
     bool downloadToDevice(int keyboard_no);
+    bool addKeyValue();
+    bool deleteKeyValue();
+    //functions of delay
+    void delayindecrease(bool is_add=true);
+    void setDelay();
     ~MainWindow();
 
 private:

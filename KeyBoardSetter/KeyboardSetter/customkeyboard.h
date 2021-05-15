@@ -26,6 +26,9 @@ public:
     //set key
     void setKey(int key_id,KeyValue *kv);  //normal single
     void setKey(int key_id,QVector<KeyValue*> kvs); //marco
+    void appendKey(int key_id,KeyValue *kv);
+    bool deleteTopKey(int key_id);
+    bool checkMarcoAddable(int cur_key_no);
     //download to device
     bool download(HIDCodeTable *table);
     QString getLastError();

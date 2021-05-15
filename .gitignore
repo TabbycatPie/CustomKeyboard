@@ -1,4 +1,3 @@
-
 *.admin
 *.uvopt
 *.obj
@@ -16,5 +15,11 @@ CH551CustomKeyboard/Objects/CH552E-RX
 CustomKeyboard/Objects/DIY
 *.Debug
 *.Release
+KeyBoardSetter/build-KeyboardSetter-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/Makefile
+CustomKeyboard/CH552E.uvgui.Oscar
+CustomKeyboard/Objects/main.__i
 KeyBoardSetter/build-KeyboardSetter-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/usersoscarappdatalocal*
 *.Oscar
+*.Administrator
+*.__i
+KeyBoardSetter/build-KeyboardSetter-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/usersadminappdatalocal*

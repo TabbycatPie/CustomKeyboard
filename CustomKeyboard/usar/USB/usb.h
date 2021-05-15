@@ -9,7 +9,8 @@ extern UINT8X Ep2Buffer[];
 extern UINT8 HIDKey[8];
 /*鼠标数据*/
 extern UINT8 HIDMouse[4];
-
+/* 多媒体数据 */
+extern UINT8 HIDMultimedia[];
 
 extern UINT8 SetupReq,SetupLen,Ready,Count,FLAG,UsbConfig;
 extern UINT8 Endp2Rev;
@@ -20,5 +21,6 @@ void USBDeviceInit(void);
 void Enp1IntIn( );
 void Enp2IntIn( );
 void Enp3IntIn( );
+void Enp4IntIn( );
 
 #endif
