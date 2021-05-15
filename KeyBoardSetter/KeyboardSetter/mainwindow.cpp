@@ -64,7 +64,10 @@ MainWindow::MainWindow(QWidget *parent)
         //mouse
         ui->btn_mouseleft,ui->btn_mousemiddle,ui->btn_mouseright,
         //media
-        ui->btn_mmvd,ui->btn_mmvp,ui->btn_mmpp,ui->btn_mmls,ui->btn_mmns
+        ui->btn_mmvd,ui->btn_mmvp,ui->btn_mmpp,ui->btn_mmls,ui->btn_mmns,
+        //f13-f24
+        ui->btn_f13,ui->btn_f14,ui->btn_f15,ui->btn_f16,ui->btn_f17,ui->btn_f18,
+        ui->btn_f19,ui->btn_f20,ui->btn_f21,ui->btn_f22,ui->btn_f23,ui->btn_f24
     };
     keyboard_list_g = keyboard_list;
     //virtual key
@@ -113,11 +116,24 @@ MainWindow::MainWindow(QWidget *parent)
     //connect menu bar action
     connect(ui->actionExit,&QAction::triggered,this,&MainWindow::close);
     connect(ui->btn_setcancel,&QPushButton::clicked,ui->dockKeyboard,[=]{
+        //clear current stat
         cur_key_sp.clear();
         cur_key_normal.clear();
+        cur_mouse =0;
+        cur_media =0;
+        cur_delay =0;
+        ui->btn_lshift->setStyleSheet("");
+        ui->btn_lctrl->setStyleSheet("");
+        ui->btn_lalt->setStyleSheet("");
+        ui->btn_lwin->setStyleSheet("");
+        ui->btn_rshift->setStyleSheet("");
+        ui->btn_rctrl->setStyleSheet("");
+        ui->btn_ralt->setStyleSheet("");
+        ui->btn_rwin->setStyleSheet("");
         updateUI();
         //hide key board
         ui->dockKeyboard->hide();
+        this->resize(1000,370);
     });
 
     //commit key setting
@@ -157,6 +173,10 @@ MainWindow::MainWindow(QWidget *parent)
     initTreeView();
     ui->treeView->setModel(models[0]);
     ui->dockKeyboard->hide();
+    ui->btn_setadd->hide();
+
+    //init window size
+    this->resize(1000,370);
 
 }
 
@@ -178,13 +198,9 @@ void MainWindow::switchKeyboard(int keyboard_no){
     updateUI();
 }
 void MainWindow::setKey(int key_no){
-    //clear color
-    if(cur_edit_key_no!= -1)
-        ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->getMappingButton()->setStyleSheet("");
     cur_edit_key_no = key_no;
-    //set color
-    ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->getMappingButton()->setStyleSheet("background-color: rgb(255, 100, 100);");
     ui->dockKeyboard->setWindowTitle("Current Keyboard:"+ckb[cur_keyboard_no]->getName()+"   Current Seletion:KEY"+QString::number(key_no+1));
+    this->resize(1000,650);
     ui->dockKeyboard->show();
     updateUI();
 };
@@ -273,6 +289,7 @@ void MainWindow::initTreeView(){
 
 //soft key press function
 void MainWindow::softKeyPressed(int i){
+    ui->btn_setadd->show();
     if(table.isSPkey(i)){
         //clear single key except normal key
         cur_media = 0;
@@ -357,7 +374,7 @@ void MainWindow::updateUI(){
         }
     }
     if(cur_delay!=0){
-        temp = "Delay"+ ui->et_delay->text() +"s + "+temp;
+        temp = "Delay"+ ui->et_delay->text() +"s"+temp;
     }
     // these keys is single
     if(cur_media!=0){
@@ -376,10 +393,43 @@ void MainWindow::updateUI(){
             str_temp += " + ("+table.convertKeyValue2QString(kvs[i])+")";
         }
     }
-    ui->tv_keyvalue->setText(str_temp);
+    //set text
+    if(temp != ""){
+        if(str_temp == "(None)")
+            ui->tv_keyvalue->setText("("+ temp + " + )");
+        else
+            ui->tv_keyvalue->setText(str_temp + " + ("+ temp + " + )");
+    }
+    else
+        ui->tv_keyvalue->setText(str_temp);
 
-    //set cur_temp
-    ui->tvkey_out->setText(temp);
+    //set selector color
+    if(cur_edit_key_no != -1){
+        ckb[cur_keyboard_no]->getButtonByID(cur_edit_key_no)->setStyleSheet("background-color: rgb(255, 100, 100);"); //red for selected
+    }
+
+    //set color color
+    for(int i=0;i<ckb[cur_keyboard_no]->getKeynum();i++){
+        if(i == cur_edit_key_no)
+            continue;
+        QPushButton *pbtn = ckb[cur_keyboard_no]->getButtonByID(i);
+        if(ckb[cur_keyboard_no]->getCustomKeyByID(i)->isMarco())
+            pbtn->setStyleSheet("background-color: rgb(255, 100, 255);"); //purple for marco
+        else if(ckb[cur_keyboard_no]->getCustomKeyByID(i)->isMedia())
+            pbtn->setStyleSheet("background-color: rgb(255, 200, 100);"); //yellow for media
+        else if(ckb[cur_keyboard_no]->getCustomKeyByID(i)->isMouse())
+            pbtn->setStyleSheet("background-color: rgb(100, 255, 100);"); //green for mouse
+        else{
+            if(ckb[cur_keyboard_no]->getCustomKeyByID(i)->getKeyValueCount()==1
+                    && (ckb[cur_keyboard_no]->getCustomKeyByID(i)->getKeyValueList()[0]->getNormalKeyIndex()!=0
+                        ||ckb[cur_keyboard_no]->getCustomKeyByID(i)->getKeyValueList()[0]->getSPKeyList()[0]!=0))
+                pbtn->setStyleSheet("background-color: rgb(20, 150, 255);"); //blue for normal
+            else
+                pbtn->setStyleSheet(""); //none for unset
+        }
+
+    }
+
 }
 
 
@@ -503,16 +553,21 @@ bool MainWindow::addKeyValue(){
         }
     }
 
-    //clear color
-    for(int i =0;i<cur_key_sp.size();i++){
-        keyboard_list_g[cur_key_sp[i]-1]->setStyleSheet("");
-    }
     //clear current stat
+    ui->btn_setadd->hide();
     cur_key_sp.clear();
     cur_key_normal.clear();
     cur_mouse =0;
     cur_media =0;
     cur_delay =0;
+    ui->btn_lshift->setStyleSheet("");
+    ui->btn_lctrl->setStyleSheet("");
+    ui->btn_lalt->setStyleSheet("");
+    ui->btn_lwin->setStyleSheet("");
+    ui->btn_rshift->setStyleSheet("");
+    ui->btn_rctrl->setStyleSheet("");
+    ui->btn_ralt->setStyleSheet("");
+    ui->btn_rwin->setStyleSheet("");
     updateUI();
 
     return true;

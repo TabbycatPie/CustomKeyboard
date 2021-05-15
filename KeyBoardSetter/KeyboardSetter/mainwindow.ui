@@ -10,13 +10,13 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>719</height>
+    <height>683</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>1000</width>
-    <height>600</height>
+    <height>350</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -40,8 +40,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>601</width>
-      <height>391</height>
+      <width>981</width>
+      <height>341</height>
      </rect>
     </property>
     <property name="minimumSize">
@@ -52,7 +52,7 @@
     </property>
     <property name="maximumSize">
      <size>
-      <width>900</width>
+      <width>1000</width>
       <height>900</height>
      </size>
     </property>
@@ -220,73 +220,289 @@
        </item>
       </layout>
      </widget>
-     <widget class="QLabel" name="tvkey_out">
+     <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>290</y>
-        <width>451</width>
-        <height>21</height>
+        <x>880</x>
+        <y>60</y>
+        <width>84</width>
+        <height>81</height>
        </rect>
       </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QPushButton" name="btn_setcancel">
+         <property name="text">
+          <string>Cancel</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_advance">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Advance</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_setcommit">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Commit</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QLabel" name="tv_keyvalue">
+     <widget class="QPushButton" name="btn_setadd">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>900</x>
         <y>210</y>
-        <width>561</width>
-        <height>51</height>
+        <width>61</width>
+        <height>71</height>
        </rect>
       </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Plain</enum>
-      </property>
-      <property name="lineWidth">
-       <number>2</number>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="btn_setadd_2">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>490</x>
-        <y>270</y>
-        <width>80</width>
-        <height>30</height>
-       </rect>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(1, 230, 143);</string>
       </property>
       <property name="text">
        <string>Add</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="btn_setdelete_2">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
+     <widget class="QPushButton" name="btn_setdelete">
       <property name="geometry">
        <rect>
-        <x>490</x>
-        <y>300</y>
-        <width>80</width>
-        <height>30</height>
+        <x>900</x>
+        <y>210</y>
+        <width>61</width>
+        <height>71</height>
        </rect>
       </property>
       <property name="text">
        <string>Delete</string>
       </property>
      </widget>
+     <widget class="QTextBrowser" name="tv_keyvalue">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>210</y>
+        <width>891</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_download">
+      <property name="geometry">
+       <rect>
+        <x>861</x>
+        <y>150</y>
+        <width>101</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Download</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="verticalLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>30</y>
+        <width>111</width>
+        <height>136</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_10">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_23">
+         <item>
+          <widget class="QLabel" name="label_11">
+           <property name="minimumSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 100, 100);</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_12">
+           <property name="text">
+            <string>Selected</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_18">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="minimumSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(20, 150, 255);</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Normal</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_24">
+         <item>
+          <widget class="QLabel" name="label_13">
+           <property name="minimumSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(100, 255, 100);</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_14">
+           <property name="text">
+            <string>Mouse</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_22">
+         <item>
+          <widget class="QLabel" name="label_9">
+           <property name="minimumSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 200, 100);</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>Media</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_19">
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="minimumSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 100, 255);</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Marco</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <zorder>layoutWidget</zorder>
+     <zorder>layoutWidget_7</zorder>
+     <zorder>verticalLayoutWidget</zorder>
+     <zorder>btn_setdelete</zorder>
+     <zorder>tv_keyvalue</zorder>
+     <zorder>btn_download</zorder>
+     <zorder>verticalLayoutWidget_2</zorder>
+     <zorder>btn_setadd</zorder>
     </widget>
     <widget class="QWidget" name="tab_dualkeys">
      <attribute name="title">
@@ -413,26 +629,13 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QPushButton" name="btn_download">
-    <property name="geometry">
-     <rect>
-      <x>870</x>
-      <y>330</y>
-      <width>121</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Download</string>
-    </property>
-   </widget>
    <widget class="QTreeView" name="treeView">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>30</y>
-      <width>381</width>
-      <height>271</height>
+      <x>10</x>
+      <y>350</y>
+      <width>971</width>
+      <height>281</height>
      </rect>
     </property>
     <property name="animated">
@@ -498,7 +701,7 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>891</width>
+       <width>991</width>
        <height>261</height>
       </rect>
      </property>
@@ -513,9 +716,9 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>10</y>
-         <width>883</width>
-         <height>202</height>
+         <y>0</y>
+         <width>981</width>
+         <height>211</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout">
@@ -1557,8 +1760,8 @@
         <rect>
          <x>10</x>
          <y>10</y>
-         <width>141</width>
-         <height>181</height>
+         <width>131</width>
+         <height>191</height>
         </rect>
        </property>
        <property name="title">
@@ -1610,19 +1813,6 @@
           </widget>
          </item>
         </layout>
-       </widget>
-       <widget class="QToolButton" name="toolButton_5">
-        <property name="geometry">
-         <rect>
-          <x>150</x>
-          <y>170</y>
-          <width>82</width>
-          <height>26</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>LastSong</string>
-        </property>
        </widget>
       </widget>
       <widget class="QGroupBox" name="groupBox_2">
@@ -1712,60 +1902,131 @@
         </property>
        </widget>
       </widget>
+      <widget class="QGroupBox" name="groupBox_3">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>10</y>
+         <width>441</width>
+         <height>191</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>F13~F24</string>
+       </property>
+       <widget class="QWidget" name="layoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>60</y>
+          <width>311</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="firstline_2">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetFixedSize</enum>
+         </property>
+         <item>
+          <widget class="QToolButton" name="btn_f19">
+           <property name="text">
+            <string>F19</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btn_f20">
+           <property name="text">
+            <string>F20</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btn_f21">
+           <property name="text">
+            <string>F21</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btn_f22">
+           <property name="text">
+            <string>F22</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btn_f23">
+           <property name="text">
+            <string>F23</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btn_f24">
+           <property name="text">
+            <string>F24</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>311</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_17">
+         <item>
+          <widget class="QToolButton" name="btn_f13">
+           <property name="text">
+            <string>F13</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btn_f14">
+           <property name="text">
+            <string>F14</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btn_f15">
+           <property name="text">
+            <string>F15</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btn_f16">
+           <property name="text">
+            <string>F16</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btn_f17">
+           <property name="text">
+            <string>F17</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="btn_f18">
+           <property name="text">
+            <string>F18</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
      </widget>
-    </widget>
-    <widget class="QWidget" name="verticalLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>910</x>
-       <y>60</y>
-       <width>82</width>
-       <height>176</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QPushButton" name="btn_setcancel">
-        <property name="text">
-         <string>Cancel</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btn_advance">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Advance</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btn_setadd">
-        <property name="text">
-         <string>Add</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btn_setdelete">
-        <property name="text">
-         <string>Delete</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btn_setcommit">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Commit</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </widget>
    </widget>
   </widget>
