@@ -60,7 +60,7 @@ void HIDmediasned(){
 			HIDMultimedia[0] = 0;
 			Enp4IntIn();   //send media event
 			while(FLAG == 0);
-			CUR_MEDIA_LAG = 0x0f;
+			CUR_MEDIA_LAG = 0x02;
 		}
 		else if(CUR_MEDIA_KEY!= 0xff && CUR_MEDIA_KEY==LAST_MEDIA_KEY){
 			CUR_MEDIA_LAG--;
