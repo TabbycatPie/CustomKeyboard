@@ -9,8 +9,8 @@ static const QString _key_string[]={
     "~","1","2","3","4","5","6","7","8","9","0","-","+","Backspace",
     "Tab","Q","W","E","R","T","Y","U","I","O","P","[","]","\\",
     "Caps Lock","A","S","D","F","G","H","J","K","L",";","\'","Enter",
-    "LShift","Z","X","C","V","B","N","M","<",">","?","RShift",
-    "LCtrl","LWin","LAlt","Space","RAlt","RWin","RCtrl",
+    "左Shift","Z","X","C","V","B","N","M","<",">","?","右Shift",
+    "左Ctrl","左Win","左Alt","Space","右Alt","右Win","右Ctrl",
     //right area keys
     "Print Screen","Scroll Lock","Pause",
     "Insert","Home","PageUp",
@@ -23,9 +23,9 @@ static const QString _key_string[]={
     "1(p)","2(p)","3(p)","Enter(p)",
     "0(p)",".(p)",
     //mouse keys
-    "LMouse","MMouse","RMouse",
+    "鼠标左键","鼠标中键","鼠标右键",
     //multi-media keys
-    "VolumeDown","VolumeUp","Play/Pause","LastSong","NextSong",
+    "音量+","音量-","播放/暂停","上一曲","下一曲",
     //f13~f24
     "F13","F14","F15","F16","F17","F18",
     "F19","F20","F21","F22","F23","F24"

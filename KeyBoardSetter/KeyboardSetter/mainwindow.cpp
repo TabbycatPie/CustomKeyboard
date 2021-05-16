@@ -145,7 +145,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->dockKeyboard->setWindowFlags (Qt::FramelessWindowHint);
 
     //init window
-    this->setWindowTitle("ZDDKeyboardSetter");
+    this->setWindowTitle("ZDD键盘设置器");
     this->resize(1000,370);
 
 }
@@ -345,7 +345,7 @@ void MainWindow::updateUI(){
         }
     }
     if(cur_delay!=0){
-        temp = "Delay"+ ui->et_delay->text() +"s"+temp;
+        temp = "延时"+ ui->et_delay->text() +"秒"+temp;
     }
     // these keys is single
     if(cur_media!=0){
@@ -397,22 +397,22 @@ void MainWindow::updateUI(){
 bool MainWindow::downloadToDevice(int keyboard_no){
     bool result = false;
     QMessageBox msg_info(this);
-    msg_info.setWindowTitle("Notice");
-    msg_info.setText("Are you sure to download config to your device:" + ckb[keyboard_no]->getName()+"?");
+    msg_info.setWindowTitle("提示");
+    msg_info.setText("确定下载到设备:" + ckb[keyboard_no]->getName()+"?");
     msg_info.setIcon(QMessageBox::Question);
     msg_info.setStandardButtons(QMessageBox::Ok | QMessageBox:: Cancel);
     if(msg_info.exec() == QMessageBox::Ok){
         QMessageBox msg_result(this);
         result = ckb[keyboard_no]->download(&table);
         if(result){
-            msg_result.setWindowTitle("Notice");
-            msg_result.setText("Download finished!");
+            msg_result.setWindowTitle("提示");
+            msg_result.setText("下载成功!");
             msg_result.setIcon(QMessageBox::Information);
             msg_result.setStandardButtons(QMessageBox::Ok);
         }
         else{
-            msg_result.setWindowTitle("Error");
-            msg_result.setText("Download Error :" + ckb[keyboard_no]->getLastError());
+            msg_result.setWindowTitle("错误");
+            msg_result.setText("下载失败 :" + ckb[keyboard_no]->getLastError());
             msg_result.setIcon(QMessageBox::Critical);
             msg_result.setStandardButtons(QMessageBox::Ok);
         }
@@ -434,8 +434,8 @@ bool MainWindow::addKeyValue(){
         if(temp_list.size()>0 && (temp_list[0]->getNormalKeyIndex() !=0 ||  temp_list[0]->getMediaKeyIndex()!=0 || temp_list[0]->getMouseKeyIndex()!=0)){
             //mouse key is single can not be added
             QMessageBox msg_info(this);
-            msg_info.setWindowTitle("Notice");
-            msg_info.setText("You can NOT add mouse event to Marco!");
+            msg_info.setWindowTitle("提示");
+            msg_info.setText("鼠标键不能设置为宏，只能设置单键!");
             msg_info.setIcon(QMessageBox::Critical);
             msg_info.setStandardButtons(QMessageBox::Ok);
             msg_info.exec();
@@ -453,8 +453,8 @@ bool MainWindow::addKeyValue(){
         if(temp_list.size()>0 && (temp_list[0]->getNormalKeyIndex() !=0 ||  temp_list[0]->getMediaKeyIndex()!=0 || temp_list[0]->getMouseKeyIndex()!=0)){
             //media key is single can not be added
             QMessageBox msg_info(this);
-            msg_info.setWindowTitle("Notice");
-            msg_info.setText("You can NOT add meida key to Marco!");
+            msg_info.setWindowTitle("提示");
+            msg_info.setText("多媒体键不能设置为宏，只能设置单键!");
             msg_info.setIcon(QMessageBox::Critical);
             msg_info.setStandardButtons(QMessageBox::Ok);
             msg_info.exec();
@@ -472,8 +472,8 @@ bool MainWindow::addKeyValue(){
         //justify whether there is any single key
         if(ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->isMedia()||ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->isMouse()){
             QMessageBox msg_info(this);
-            msg_info.setWindowTitle("Notice");
-            msg_info.setText("You can NOT set MEDIA or MOUSE key to Marco!");
+            msg_info.setWindowTitle("提示");
+            msg_info.setText("多媒体键或鼠标键不能设置为宏，只能设置单键!");
             msg_info.setIcon(QMessageBox::Critical);
             msg_info.setStandardButtons(QMessageBox::Ok);
             msg_info.exec();
@@ -503,8 +503,8 @@ bool MainWindow::addKeyValue(){
                 else{
                     //can not add to marco because of hardware limit
                     QMessageBox msg_info(this);
-                    msg_info.setWindowTitle("Notice");
-                    msg_info.setText("Can NOT add key marco : hardware limitation!");
+                    msg_info.setWindowTitle("提示");
+                    msg_info.setText("无法添加更多的宏：已达到硬件限制!");
                     msg_info.setIcon(QMessageBox::Critical);
                     msg_info.setStandardButtons(QMessageBox::Ok);
                     msg_info.exec();

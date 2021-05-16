@@ -94,7 +94,7 @@
           </size>
          </property>
          <property name="text">
-          <string>KEY1</string>
+          <string>按键1</string>
          </property>
         </widget>
        </item>
@@ -107,7 +107,7 @@
           </size>
          </property>
          <property name="text">
-          <string>KEY2</string>
+          <string>按键2</string>
          </property>
         </widget>
        </item>
@@ -120,7 +120,7 @@
           </size>
          </property>
          <property name="text">
-          <string>KEY3</string>
+          <string>按键3</string>
          </property>
         </widget>
        </item>
@@ -133,7 +133,7 @@
           </size>
          </property>
          <property name="text">
-          <string>KEY4</string>
+          <string>按键4</string>
          </property>
         </widget>
        </item>
@@ -146,7 +146,7 @@
           </size>
          </property>
          <property name="text">
-          <string>KEY5</string>
+          <string>按键5</string>
          </property>
         </widget>
        </item>
@@ -171,7 +171,7 @@
           </size>
          </property>
          <property name="text">
-          <string>KEY6</string>
+          <string>按键6</string>
          </property>
         </widget>
        </item>
@@ -184,7 +184,7 @@
           </size>
          </property>
          <property name="text">
-          <string>KEY7</string>
+          <string>按键7</string>
          </property>
         </widget>
        </item>
@@ -197,7 +197,7 @@
           </size>
          </property>
          <property name="text">
-          <string>KEY8</string>
+          <string>按键8</string>
          </property>
         </widget>
        </item>
@@ -210,7 +210,7 @@
           </size>
          </property>
          <property name="text">
-          <string>KEY9</string>
+          <string>按键9</string>
          </property>
         </widget>
        </item>
@@ -223,7 +223,7 @@
           </size>
          </property>
          <property name="text">
-          <string>KEY10</string>
+          <string>按键10</string>
          </property>
         </widget>
        </item>
@@ -242,7 +242,7 @@
        <string notr="true">background-color: rgb(1, 230, 143);</string>
       </property>
       <property name="text">
-       <string>Add</string>
+       <string>添加</string>
       </property>
      </widget>
      <widget class="QPushButton" name="btn_setdelete">
@@ -255,7 +255,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Delete</string>
+       <string>删除</string>
       </property>
      </widget>
      <widget class="QTextBrowser" name="tv_keyvalue">
@@ -285,7 +285,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Download</string>
+       <string>下载</string>
       </property>
      </widget>
      <zorder>layoutWidget</zorder>
@@ -357,7 +357,7 @@
      </property>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
-       <string>Key Board</string>
+       <string>键盘键位</string>
       </attribute>
       <widget class="QWidget" name="horizontalLayoutWidget">
        <property name="geometry">
@@ -1246,7 +1246,7 @@
      </widget>
      <widget class="QWidget" name="tab_4">
       <attribute name="title">
-       <string>Mouse</string>
+       <string>鼠标</string>
       </attribute>
       <widget class="QWidget" name="horizontalLayoutWidget_4">
        <property name="geometry">
@@ -1400,7 +1400,7 @@
      </widget>
      <widget class="QWidget" name="tab_5">
       <attribute name="title">
-       <string>Advance</string>
+       <string>高级</string>
       </attribute>
       <widget class="QGroupBox" name="groupBox">
        <property name="geometry">
@@ -1412,7 +1412,7 @@
         </rect>
        </property>
        <property name="title">
-        <string>MultiMedia</string>
+        <string>多媒体</string>
        </property>
        <widget class="QWidget" name="verticalLayoutWidget_4">
         <property name="geometry">
@@ -1427,35 +1427,35 @@
          <item>
           <widget class="QToolButton" name="btn_mmvp">
            <property name="text">
-            <string>VolumeUp</string>
+            <string>音量+</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QToolButton" name="btn_mmvd">
            <property name="text">
-            <string>VolumeDown</string>
+            <string>音量-</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QToolButton" name="btn_mmpp">
            <property name="text">
-            <string>Play/Pause </string>
+            <string>播放/暂停</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QToolButton" name="btn_mmls">
            <property name="text">
-            <string>LastSong</string>
+            <string>上一曲</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QToolButton" name="btn_mmns">
            <property name="text">
-            <string>NextSong</string>
+            <string>下一曲</string>
            </property>
           </widget>
          </item>
@@ -1472,7 +1472,7 @@
         </rect>
        </property>
        <property name="title">
-        <string>MarcoDelay</string>
+        <string>宏延时</string>
        </property>
        <widget class="QToolButton" name="toolButton_6">
         <property name="geometry">
@@ -1513,7 +1513,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>SetDelay</string>
+         <string>设置延时</string>
         </property>
        </widget>
        <widget class="QPushButton" name="btn_delayplus">
