@@ -398,7 +398,7 @@ bool MainWindow::downloadToDevice(int keyboard_no){
     bool result = false;
     QMessageBox msg_info(this);
     msg_info.setWindowTitle("提示");
-    msg_info.setText("确定下载到设备:" + ckb[keyboard_no]->getName()+"?");
+    msg_info.setText("确定更新键盘键值?");
     msg_info.setIcon(QMessageBox::Question);
     msg_info.setStandardButtons(QMessageBox::Ok | QMessageBox:: Cancel);
     if(msg_info.exec() == QMessageBox::Ok){

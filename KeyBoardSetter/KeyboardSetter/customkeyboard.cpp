@@ -4,6 +4,7 @@
 #include <QPushButton>
 #include <QVector>
 #include <QString>
+#include <QThread>
 
 #include<QDebug>
 
@@ -238,16 +239,27 @@ bool CustomKeyboard::download(HIDCodeTable *table){
 
         //send setting frames to device
         int res1 = hid_write(my_device, frame_set_normal, 65);  // -1 for error
+        QThread::msleep(20);
         int res2 = hid_write(my_device, frame_set_sp, 65);      // -1 for error
+        QThread::msleep(20);
         int res3 = hid_write(my_device,frame_set_marco_status,65);
+        QThread::msleep(20);
         int res4 = hid_write(my_device,frame_set_marco_index,65);
+        QThread::msleep(20);
         int res5 = hid_write(my_device,frame_set_marco_sp_key,65);
+        QThread::msleep(20);
         int res6 = hid_write(my_device,frame_set_marco_spkey_index,65);
+        QThread::msleep(20);
         int res8 = hid_write(my_device,frame_set_mouse,65);
+        QThread::msleep(20);
         int res9 = hid_write(my_device,frame_set_media,65);
+        QThread::msleep(20);
         int res10= hid_write(my_device,frame_set_delay,65);
+        QThread::msleep(20);
         int res11= hid_write(my_device,frame_set_delay_index,65);
+        QThread::msleep(20);
         int res7 = hid_write(my_device,frame_set_marco,65);
+        QThread::msleep(20);
 
         if(res1 != -1 && res2 != -1 && res3!= -1 && res4 != -1 && res5 != -1
                 && res6 != -1 && res7 != -1 && res8 != -1 && res9 !=-1 && res10 != -1
@@ -257,7 +269,7 @@ bool CustomKeyboard::download(HIDCodeTable *table){
             hid_close(my_device);
             return true;
         }else{
-            last_error = "数据发送时发生错误!";
+            last_error = "数据发送时发生错误，请切换端口后重试!";
             QString text = QString::fromWCharArray(hid_error(my_device));
             qDebug() << "Sending Failed! Error:"<< text << endl;
             hid_close(my_device);
