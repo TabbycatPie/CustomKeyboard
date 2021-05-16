@@ -1049,7 +1049,7 @@ public:
         tab_4->setObjectName(QString::fromUtf8("tab_4"));
         horizontalLayoutWidget_4 = new QWidget(tab_4);
         horizontalLayoutWidget_4->setObjectName(QString::fromUtf8("horizontalLayoutWidget_4"));
-        horizontalLayoutWidget_4->setGeometry(QRect(10, 10, 327, 41));
+        horizontalLayoutWidget_4->setGeometry(QRect(10, 10, 342, 41));
         horizontalLayout_16 = new QHBoxLayout(horizontalLayoutWidget_4);
         horizontalLayout_16->setObjectName(QString::fromUtf8("horizontalLayout_16"));
         horizontalLayout_16->setContentsMargins(0, 0, 0, 0);
@@ -1370,9 +1370,9 @@ public:
         btn_sdot->setText(QCoreApplication::translate("MainWindow", ".", nullptr));
         btn_senter->setText(QCoreApplication::translate("MainWindow", "Ent", nullptr));
         tabNormalKey->setTabText(tabNormalKey->indexOf(tab_3), QCoreApplication::translate("MainWindow", "\351\224\256\347\233\230\351\224\256\344\275\215", nullptr));
-        btn_mouseleft->setText(QCoreApplication::translate("MainWindow", "Left Mouse", nullptr));
-        btn_mousemiddle->setText(QCoreApplication::translate("MainWindow", "Middle Mouse", nullptr));
-        btn_mouseright->setText(QCoreApplication::translate("MainWindow", "Right Mouse", nullptr));
+        btn_mouseleft->setText(QCoreApplication::translate("MainWindow", "\351\274\240\346\240\207\345\267\246\351\224\256", nullptr));
+        btn_mousemiddle->setText(QCoreApplication::translate("MainWindow", "\351\274\240\346\240\207\344\270\255\351\224\256", nullptr));
+        btn_mouseright->setText(QCoreApplication::translate("MainWindow", "\351\274\240\346\240\207\345\217\263\351\224\256", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "move Up", nullptr));
         pushButton_4->setText(QCoreApplication::translate("MainWindow", "move Left", nullptr));
         pushButton_5->setText(QCoreApplication::translate("MainWindow", "move Down", nullptr));

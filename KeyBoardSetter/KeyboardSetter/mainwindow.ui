@@ -1253,7 +1253,7 @@
         <rect>
          <x>10</x>
          <y>10</y>
-         <width>327</width>
+         <width>342</width>
          <height>41</height>
         </rect>
        </property>
@@ -1261,21 +1261,21 @@
         <item>
          <widget class="QToolButton" name="btn_mouseleft">
           <property name="text">
-           <string>Left Mouse</string>
+           <string>鼠标左键</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QToolButton" name="btn_mousemiddle">
           <property name="text">
-           <string>Middle Mouse</string>
+           <string>鼠标中键</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QToolButton" name="btn_mouseright">
           <property name="text">
-           <string>Right Mouse</string>
+           <string>鼠标右键</string>
           </property>
          </widget>
         </item>
