@@ -144,7 +144,8 @@ MainWindow::MainWindow(QWidget *parent)
     //init soft keyboard
     ui->dockKeyboard->setWindowFlags (Qt::FramelessWindowHint);
 
-    //init window size
+    //init window
+    this->setWindowTitle("ZDDKeyboardSetter");
     this->resize(1000,370);
 
 }

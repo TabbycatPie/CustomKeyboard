@@ -18,8 +18,6 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenu>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
@@ -58,8 +56,6 @@ public:
     QTextBrowser *tv_keyvalue;
     QPushButton *btn_download;
     QTreeView *treeView;
-    QMenuBar *menubar;
-    QMenu *menuFile;
     QStatusBar *statusbar;
     QDockWidget *dockKeyboard;
     QWidget *dockWidgetContents;
@@ -250,6 +246,8 @@ public:
         MainWindow->resize(1000, 683);
         MainWindow->setMinimumSize(QSize(1000, 350));
         MainWindow->setMaximumSize(QSize(1000, 16777215));
+        MainWindow->setIconSize(QSize(77, 32));
+        MainWindow->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
         MainWindow->setAnimated(true);
         MainWindow->setDockOptions(QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::ForceTabbedDocks);
         actionExit = new QAction(MainWindow);
@@ -368,12 +366,6 @@ public:
         treeView->setGeometry(QRect(10, 350, 971, 281));
         treeView->setAnimated(true);
         MainWindow->setCentralWidget(centralwidget);
-        menubar = new QMenuBar(MainWindow);
-        menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1000, 30));
-        menuFile = new QMenu(menubar);
-        menuFile->setObjectName(QString::fromUtf8("menuFile"));
-        MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
@@ -1246,12 +1238,6 @@ public:
         dockKeyboard->setWidget(dockWidgetContents);
         MainWindow->addDockWidget(Qt::BottomDockWidgetArea, dockKeyboard);
 
-        menubar->addAction(menuFile->menuAction());
-        menuFile->addSeparator();
-        menuFile->addAction(actionOpen_Device);
-        menuFile->addSeparator();
-        menuFile->addAction(actionExit);
-
         retranslateUi(MainWindow);
 
         tabWidget->setCurrentIndex(0);
@@ -1279,8 +1265,7 @@ public:
         btn_setadd->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
         btn_setdelete->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
         btn_download->setText(QCoreApplication::translate("MainWindow", "Download", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_test), QCoreApplication::translate("MainWindow", "Test", nullptr));
-        menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_test), QString());
         btn_esc->setText(QCoreApplication::translate("MainWindow", "Esc", nullptr));
         btn_f1->setText(QCoreApplication::translate("MainWindow", "F1", nullptr));
         btn_f2->setText(QCoreApplication::translate("MainWindow", "F2", nullptr));
@@ -1305,8 +1290,8 @@ public:
         btn_8->setText(QCoreApplication::translate("MainWindow", "8", nullptr));
         btn_9->setText(QCoreApplication::translate("MainWindow", "9", nullptr));
         btn_0->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        btn_minus->setText(QCoreApplication::translate("MainWindow", "_", nullptr));
-        btn_add->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
+        btn_minus->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
+        btn_add->setText(QCoreApplication::translate("MainWindow", "=", nullptr));
         btn_backspace->setText(QCoreApplication::translate("MainWindow", "Backspace", nullptr));
         btn_tab->setText(QCoreApplication::translate("MainWindow", "Tab", nullptr));
         btn_q->setText(QCoreApplication::translate("MainWindow", "Q", nullptr));
@@ -1343,9 +1328,9 @@ public:
         btn_b->setText(QCoreApplication::translate("MainWindow", "B", nullptr));
         btn_n->setText(QCoreApplication::translate("MainWindow", "N", nullptr));
         btn_m->setText(QCoreApplication::translate("MainWindow", "M", nullptr));
-        btn_lessthan->setText(QCoreApplication::translate("MainWindow", "<", nullptr));
-        btn_greaterthan->setText(QCoreApplication::translate("MainWindow", ">", nullptr));
-        btn_quest->setText(QCoreApplication::translate("MainWindow", "?", nullptr));
+        btn_lessthan->setText(QCoreApplication::translate("MainWindow", ",", nullptr));
+        btn_greaterthan->setText(QCoreApplication::translate("MainWindow", ".", nullptr));
+        btn_quest->setText(QCoreApplication::translate("MainWindow", "/", nullptr));
         btn_rshift->setText(QCoreApplication::translate("MainWindow", "  Shift  ", nullptr));
         btn_lctrl->setText(QCoreApplication::translate("MainWindow", " Ctrl ", nullptr));
         btn_lwin->setText(QCoreApplication::translate("MainWindow", "Win", nullptr));
@@ -1368,7 +1353,7 @@ public:
         btn_down->setText(QCoreApplication::translate("MainWindow", " v ", nullptr));
         btn_right->setText(QCoreApplication::translate("MainWindow", ">", nullptr));
         btn_num->setText(QCoreApplication::translate("MainWindow", "Num", nullptr));
-        btn_sslash->setText(QCoreApplication::translate("MainWindow", "\\", nullptr));
+        btn_sslash->setText(QCoreApplication::translate("MainWindow", "/", nullptr));
         btn_star->setText(QCoreApplication::translate("MainWindow", "*", nullptr));
         btn_sminus->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         btn_s7->setText(QCoreApplication::translate("MainWindow", "7", nullptr));

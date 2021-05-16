@@ -38,6 +38,7 @@ LIBS += -L$$_PRO_FILE_PWD_/  -l hidapi
 
 TRANSLATIONS += trans_zh_CN.ts
 
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -45,3 +46,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     trans_zh_CN.ts
+
+RC_FILE+= logo.rc

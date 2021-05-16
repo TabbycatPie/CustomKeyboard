@@ -28,6 +28,15 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="iconSize">
+   <size>
+    <width>77</width>
+    <height>32</height>
+   </size>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonTextBesideIcon</enum>
+  </property>
   <property name="animated">
    <bool>true</bool>
   </property>
@@ -64,7 +73,7 @@
     </property>
     <widget class="QWidget" name="tab_test">
      <attribute name="title">
-      <string>Test</string>
+      <string>         </string>
      </attribute>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
@@ -300,26 +309,6 @@
      <bool>true</bool>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1000</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="separator"/>
-    <addaction name="actionOpen_Device"/>
-    <addaction name="separator"/>
-    <addaction name="actionExit"/>
-   </widget>
-   <addaction name="menuFile"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="dockKeyboard">
@@ -565,14 +554,14 @@
             <item>
              <widget class="QToolButton" name="btn_minus">
               <property name="text">
-               <string>_</string>
+               <string>-</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QToolButton" name="btn_add">
               <property name="text">
-               <string>+</string>
+               <string>=</string>
               </property>
              </widget>
             </item>
@@ -846,21 +835,21 @@
             <item>
              <widget class="QToolButton" name="btn_lessthan">
               <property name="text">
-               <string>&lt;</string>
+               <string>,</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QToolButton" name="btn_greaterthan">
               <property name="text">
-               <string>&gt;</string>
+               <string>.</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QToolButton" name="btn_quest">
               <property name="text">
-               <string>?</string>
+               <string>/</string>
               </property>
              </widget>
             </item>
@@ -1083,7 +1072,7 @@
             <item>
              <widget class="QToolButton" name="btn_sslash">
               <property name="text">
-               <string>\</string>
+               <string>/</string>
               </property>
              </widget>
             </item>
