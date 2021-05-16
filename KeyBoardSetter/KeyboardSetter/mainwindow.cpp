@@ -146,7 +146,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //init window
     this->setWindowTitle("ZDD键盘设置器");
-    this->setToolTip("点此键可把ctrl、shift、alt或win键单独设置");
+    ui->btn_setadd->setToolTip("点此键可把ctrl、shift、alt或win键单独设置");
     this->resize(1000,370);
 
 }
