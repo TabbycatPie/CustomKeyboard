@@ -341,7 +341,7 @@ public:
 
         layoutWidget_7 = new QWidget(tab_test);
         layoutWidget_7->setObjectName(QString::fromUtf8("layoutWidget_7"));
-        layoutWidget_7->setGeometry(QRect(10, 110, 481, 92));
+        layoutWidget_7->setGeometry(QRect(10, 110, 481, 91));
         horizontalLayout_10 = new QHBoxLayout(layoutWidget_7);
         horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
         horizontalLayout_10->setContentsMargins(0, 0, 0, 0);
@@ -377,7 +377,7 @@ public:
 
         verticalLayoutWidget = new QWidget(tab_test);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(880, 40, 84, 104));
+        verticalLayoutWidget->setGeometry(QRect(880, 30, 84, 104));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
