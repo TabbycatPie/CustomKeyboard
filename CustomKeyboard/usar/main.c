@@ -36,6 +36,10 @@ UINT8X LAST_MEDIA_KEY = 0xff;
 UINT8X CUR_MEDIA_KEY = 0xff;
 UINT8X CUR_MEDIA_LAG = 0x0a;
 
+UINT8X LAST_MARCO_KEY = 0xff;
+UINT8X CUR_MARCO_KEY = 0xff;
+UINT8X CUR_MARCO_LAG = 0x0a;
+
 //delay time*100ms
 void MarcoDelay(UINT8 time){
 	while(time--)
@@ -43,7 +47,7 @@ void MarcoDelay(UINT8 time){
 }
 
 
-void HIDmediasned(){
+void HIDmediasend(){
 	if(CUR_MEDIA_KEY!= 0xff){
 		//valid key triggered
 		if(CUR_MEDIA_KEY!=LAST_MEDIA_KEY){
@@ -77,15 +81,7 @@ void HIDmediasned(){
 //	Enp4IntIn();   //send media event
 //	while(FLAG == 0); 
 }
-//report key code to computer
-void HIDsend(){
-	FLAG = 0;
-	Enp3IntIn();      //send mouse event
-	while(FLAG == 0); /*等待上一包传输完成*/
-	Enp1IntIn();    //send keyboard event
-	while(FLAG == 0); 
-	HIDmediasned();
-}
+
 //send marco key
 void HIDmarco(UINT8 key_num){
 	UINT8 i,j,delay_n00ms;
@@ -142,12 +138,14 @@ void HIDmarco(UINT8 key_num){
 		
 		//prepare normal key
 		HIDKey [2] = MARCO_KEYCODE[MARCO_SPLIT_INDX[pos-1]+i];
-		HIDsend();
+		Enp1IntIn();    //send keyboard event
+		while(FLAG == 0); 
 		//delay
 		//bounce up
 		HIDKey[0] = 0x00;
 		HIDKey[2] = 0x00;
-		HIDsend();
+		Enp1IntIn();    //send keyboard event
+		while(FLAG == 0); 
 		
 		mDelaymS(5);
 		
@@ -155,10 +153,43 @@ void HIDmarco(UINT8 key_num){
 	//clear buffer
 //	HIDKey[0] = 0x00;
 //	HIDKey[2] = 0x00;
-//	HIDsend();
+//	Enp1IntIn();    //send keyboard event
+//	while(FLAG == 0); 
 	//wait marco-key bounce up
 	mDelaymS(50);
 }
+void HIDmarcosend(){
+	if(CUR_MARCO_KEY!= 0xff){
+		//valid key triggered
+		if(CUR_MARCO_KEY!=LAST_MARCO_KEY){
+			//pressed frist time
+			HIDmarco(CUR_MARCO_KEY);
+		}
+		else if(CUR_MARCO_LAG == 0){
+			HIDmarco(CUR_MARCO_KEY);
+			CUR_MARCO_LAG = 0x02;
+		}
+		else if(CUR_MARCO_KEY!= 0xff && CUR_MARCO_KEY==LAST_MARCO_KEY){
+			CUR_MARCO_LAG--;
+		}
+		LAST_MARCO_KEY = CUR_MARCO_KEY;
+	}
+	else{
+		CUR_MARCO_LAG = 0x2f;
+		LAST_MARCO_KEY = 0xff;
+	}
+}
+//report key code to computer
+void HIDsend(){
+	FLAG = 0;
+	Enp3IntIn();      //send mouse event
+	while(FLAG == 0); /*等待上一包传输完成*/
+	Enp1IntIn();    //send keyboard event
+	while(FLAG == 0); 
+	HIDmediasend();
+	HIDmarcosend();
+}
+
 //10-key maping 
 sbit Key1  = P3^2;
 sbit Key2  = P1^4;
@@ -177,6 +208,7 @@ void scanKey(){
 	UINT8 media_code = 0x00;
 	UINT8 temp_code=0x00;
 	UINT8 key_count = 0;
+	CUR_MARCO_KEY = 0xff;
 	if(!Key1){
 		KEY_PRESS[0]=0xff;
 	}
@@ -244,7 +276,7 @@ void scanKey(){
 		}
 		else{
 			if(KEY_MARCO[0]==0xff)
-				HIDmarco(1);
+				CUR_MARCO_KEY = 1;
 		}
 	}
 	if(!Key2){
@@ -253,7 +285,7 @@ void scanKey(){
 		}
 		else{
 			if(KEY_MARCO[1]==0xff)
-				HIDmarco(2);
+				CUR_MARCO_KEY = 2;
 		}
 	}
 	if(!Key3){
@@ -262,7 +294,7 @@ void scanKey(){
 		}
 		else{
 			if(KEY_MARCO[2]==0xff)
-				HIDmarco(3);
+				CUR_MARCO_KEY = 3;
 		}
 	}
 	if(!Key4){
@@ -271,7 +303,7 @@ void scanKey(){
 		}
 		else{
 			if(KEY_MARCO[3]==0xff)
-				HIDmarco(4);
+				CUR_MARCO_KEY = 4;
 		}
 	}
 	if(!Key5){
@@ -280,7 +312,7 @@ void scanKey(){
 		}
 		else{
 			if(KEY_MARCO[4]==0xff)
-				HIDmarco(5);
+				CUR_MARCO_KEY = 5;
 		}
 	}
 	if(!Key6){
@@ -289,7 +321,7 @@ void scanKey(){
 		}
 		else{
 			if(KEY_MARCO[5]==0xff)
-				HIDmarco(6);
+				CUR_MARCO_KEY = 6;
 		}
 	}
 	if(!Key7){
@@ -298,7 +330,7 @@ void scanKey(){
 		}
 		else{
 			if(KEY_MARCO[6]==0xff)
-				HIDmarco(7);
+				CUR_MARCO_KEY = 7;
 		}
 	}
 	if(!Key8){
@@ -307,7 +339,7 @@ void scanKey(){
 		}
 		else{
 			if(KEY_MARCO[7]==0xff)
-				HIDmarco(8);
+				CUR_MARCO_KEY = 8;
 		}
 	}
 	if(!Key9){
@@ -316,7 +348,7 @@ void scanKey(){
 		}
 		else{
 			if(KEY_MARCO[8]==0xff)
-				HIDmarco(9);
+				CUR_MARCO_KEY = 9;
 		}
 	}
 	if(!Key10){
@@ -325,7 +357,7 @@ void scanKey(){
 		}
 		else{
 			if(KEY_MARCO[9]==0xff)
-				HIDmarco(10);
+				CUR_MARCO_KEY = 10;
 		}
 	}
 	
