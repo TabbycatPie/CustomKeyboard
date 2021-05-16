@@ -86,7 +86,7 @@ bool CustomKeyboard::checkMarcoAddable(int cur_key_no){
 bool CustomKeyboard::download(HIDCodeTable *table){
     //open device
     hid_device *my_device;
-    my_device = hid_open(vid,pid,NULL);
+    my_device = hid_open(vid,pid,nullptr);
     if(my_device!=NULL){
         //open success,prepare data
         qDebug() << "device opened" <<endl;
@@ -232,7 +232,6 @@ bool CustomKeyboard::download(HIDCodeTable *table){
         for(int i =0;i<temp_marco_buffer.size();i++){
             frame_set_marco[i+2] = temp_marco_buffer[i];
         }
-
 
 
 
