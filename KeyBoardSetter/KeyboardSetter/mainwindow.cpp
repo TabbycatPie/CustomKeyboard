@@ -10,7 +10,7 @@
 #include <QMessageBox>
 
 #define DEBUG 1
-#define TYPENUM 3
+#define TYPENUM 1
 #define KEYNUM 10
 
 //global vars
@@ -77,18 +77,8 @@ MainWindow::MainWindow(QWidget *parent)
         ui->btn_testkey6,ui->btn_testkey7,ui->btn_testkey8,ui->btn_testkey9,ui->btn_testkey10
     };
     //Dual keyboard page
-    QPushButton *virtual_dual_keys[]{
-        ui->btn_dualkey1,ui->btn_dualkey2
-    };
-    //Qua keyboard page
-    QPushButton *virtual_qua_keys[]{
-        ui->btn_quakey1,ui->btn_quakey2,
-        ui->btn_quakey3,ui->btn_quakey4
-    };
 
     ckb[0] = new CustomKeyboard("Test",10,0x2019,0x5131,50,10,virtual_test_keys);//test keyboard
-    ckb[1] = new CustomKeyboard("DualKey",2,0x2019,0x5131,50,10,virtual_dual_keys);//double-key keyboard
-    ckb[2] = new CustomKeyboard("QuadraKey",4,0x2019,0x5131,50,10,virtual_qua_keys);//quadra-key keyboard
 
     int total = (int)(sizeof(keyboard_list)/sizeof(QToolButton*));
     #ifdef DEBUG
@@ -115,31 +105,7 @@ MainWindow::MainWindow(QWidget *parent)
     });
     //connect menu bar action
     connect(ui->actionExit,&QAction::triggered,this,&MainWindow::close);
-    connect(ui->btn_setcancel,&QPushButton::clicked,ui->dockKeyboard,[=]{
-        //clear current stat
-        cur_key_sp.clear();
-        cur_key_normal.clear();
-        cur_mouse =0;
-        cur_media =0;
-        cur_delay =0;
-        ui->btn_lshift->setStyleSheet("");
-        ui->btn_lctrl->setStyleSheet("");
-        ui->btn_lalt->setStyleSheet("");
-        ui->btn_lwin->setStyleSheet("");
-        ui->btn_rshift->setStyleSheet("");
-        ui->btn_rctrl->setStyleSheet("");
-        ui->btn_ralt->setStyleSheet("");
-        ui->btn_rwin->setStyleSheet("");
-        updateUI();
-        //hide key board
-        ui->dockKeyboard->hide();
-        this->resize(1000,370);
-    });
 
-    //commit key setting
-    connect(ui->btn_setcommit,&QPushButton::clicked,this,[=]{
-       commitKeySetting();
-    });
 
     //download button
     connect(ui->btn_download,&QPushButton::clicked,this,[=]{
@@ -175,6 +141,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->dockKeyboard->hide();
     ui->btn_setadd->hide();
 
+    //init soft keyboard
+    ui->dockKeyboard->setWindowFlags (Qt::FramelessWindowHint);
+
     //init window size
     this->resize(1000,370);
 
@@ -199,7 +168,8 @@ void MainWindow::switchKeyboard(int keyboard_no){
 }
 void MainWindow::setKey(int key_no){
     cur_edit_key_no = key_no;
-    ui->dockKeyboard->setWindowTitle("Current Keyboard:"+ckb[cur_keyboard_no]->getName()+"   Current Seletion:KEY"+QString::number(key_no+1));
+
+    //ui->dockKeyboard->setWindowTitle("Current Keyboard:"+ckb[cur_keyboard_no]->getName()+"   Current Seletion:KEY"+QString::number(key_no+1));
     this->resize(1000,650);
     ui->dockKeyboard->show();
     updateUI();
@@ -410,23 +380,12 @@ void MainWindow::updateUI(){
 
     //set color color
     for(int i=0;i<ckb[cur_keyboard_no]->getKeynum();i++){
-        if(i == cur_edit_key_no)
-            continue;
         QPushButton *pbtn = ckb[cur_keyboard_no]->getButtonByID(i);
-        if(ckb[cur_keyboard_no]->getCustomKeyByID(i)->isMarco())
-            pbtn->setStyleSheet("background-color: rgb(255, 100, 255);"); //purple for marco
-        else if(ckb[cur_keyboard_no]->getCustomKeyByID(i)->isMedia())
-            pbtn->setStyleSheet("background-color: rgb(255, 200, 100);"); //yellow for media
-        else if(ckb[cur_keyboard_no]->getCustomKeyByID(i)->isMouse())
-            pbtn->setStyleSheet("background-color: rgb(100, 255, 100);"); //green for mouse
-        else{
-            if(ckb[cur_keyboard_no]->getCustomKeyByID(i)->getKeyValueCount()==1
-                    && (ckb[cur_keyboard_no]->getCustomKeyByID(i)->getKeyValueList()[0]->getNormalKeyIndex()!=0
-                        ||ckb[cur_keyboard_no]->getCustomKeyByID(i)->getKeyValueList()[0]->getSPKeyList()[0]!=0))
-                pbtn->setStyleSheet("background-color: rgb(20, 150, 255);"); //blue for normal
-            else
-                pbtn->setStyleSheet(""); //none for unset
-        }
+        if(i == cur_edit_key_no)
+            pbtn->setStyleSheet("background-color: rgb(255, 100, 100);"); //green for mouse;
+        else
+            pbtn->setStyleSheet(""); //none for unset
+
 
     }
 
@@ -574,7 +533,7 @@ bool MainWindow::addKeyValue(){
 }
 
 bool MainWindow::deleteKeyValue(){
-    //delet from current key
+    //delet from
     if(ckb[cur_keyboard_no]->deleteTopKey(cur_edit_key_no)){
         //upaate treeview
         QModelIndex temp_index = models[cur_keyboard_no]->index(cur_edit_key_no,0);
