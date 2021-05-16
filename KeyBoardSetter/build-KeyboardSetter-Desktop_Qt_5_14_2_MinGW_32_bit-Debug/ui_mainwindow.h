@@ -377,7 +377,7 @@ public:
 
         verticalLayoutWidget = new QWidget(tab_test);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(880, 60, 84, 81));
+        verticalLayoutWidget->setGeometry(QRect(880, 40, 84, 104));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
