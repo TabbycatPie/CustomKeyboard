@@ -45,3 +45,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     trans_zh_CN.ts
+RC_FILE = logo.rc

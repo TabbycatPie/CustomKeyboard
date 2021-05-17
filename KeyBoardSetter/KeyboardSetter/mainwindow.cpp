@@ -175,8 +175,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->dockKeyboard->hide();
     ui->btn_setadd->hide();
 
-    //init window size
+    //init window
     this->resize(1000,370);
+
+
     ui->btn_setadd->setToolTip("Click this to add single Crtl,Alt,Shift to key value");
 
 }

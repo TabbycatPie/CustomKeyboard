@@ -1481,7 +1481,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "ZDDKeyboardSetter", nullptr));
         actionExit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
         actionOpen_Device->setText(QCoreApplication::translate("MainWindow", "Open Device", nullptr));
         btn_testkey1->setText(QCoreApplication::translate("MainWindow", "KEY1", nullptr));

@@ -26,7 +26,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>ZDDKeyboardSetter</string>
   </property>
   <property name="animated">
    <bool>true</bool>
