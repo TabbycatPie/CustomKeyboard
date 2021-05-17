@@ -149,7 +149,7 @@
         <x>10</x>
         <y>110</y>
         <width>481</width>
-        <height>91</height>
+        <height>92</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_10">
@@ -649,7 +649,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>30</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -830,7 +830,7 @@
             <item>
              <widget class="QToolButton" name="btn_wave">
               <property name="text">
-               <string>~</string>
+               <string>·</string>
               </property>
              </widget>
             </item>
@@ -1373,7 +1373,7 @@
               <item>
                <widget class="QToolButton" name="btn_up">
                 <property name="text">
-                 <string>^</string>
+                 <string>↑</string>
                 </property>
                </widget>
               </item>
@@ -1384,21 +1384,21 @@
               <item>
                <widget class="QToolButton" name="btn_left">
                 <property name="text">
-                 <string>&lt;</string>
+                 <string>←</string>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QToolButton" name="btn_down">
                 <property name="text">
-                 <string> v </string>
+                 <string>↓</string>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QToolButton" name="btn_right">
                 <property name="text">
-                 <string>&gt;</string>
+                 <string>→</string>
                 </property>
                </widget>
               </item>
@@ -1425,7 +1425,7 @@
             <item>
              <widget class="QToolButton" name="btn_sslash">
               <property name="text">
-               <string>\</string>
+               <string>/</string>
               </property>
              </widget>
             </item>
@@ -1556,7 +1556,7 @@
                 <item>
                  <widget class="QToolButton" name="btn_s0">
                   <property name="text">
-                   <string>  _0_  </string>
+                   <string>   0   </string>
                   </property>
                  </widget>
                 </item>

@@ -177,6 +177,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //init window size
     this->resize(1000,370);
+    ui->btn_setadd->setToolTip("Click this to add single Crtl,Alt,Shift to key value");
 
 }
 

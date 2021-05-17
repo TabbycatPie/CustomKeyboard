@@ -341,7 +341,7 @@ public:
 
         layoutWidget_7 = new QWidget(tab_test);
         layoutWidget_7->setObjectName(QString::fromUtf8("layoutWidget_7"));
-        layoutWidget_7->setGeometry(QRect(10, 110, 481, 91));
+        layoutWidget_7->setGeometry(QRect(10, 110, 481, 92));
         horizontalLayout_10 = new QHBoxLayout(layoutWidget_7);
         horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
         horizontalLayout_10->setContentsMargins(0, 0, 0, 0);
@@ -588,7 +588,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1000, 30));
+        menubar->setGeometry(QRect(0, 0, 1000, 22));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         MainWindow->setMenuBar(menubar);
@@ -1533,7 +1533,7 @@ public:
         btn_f10->setText(QCoreApplication::translate("MainWindow", "F10", nullptr));
         btn_f11->setText(QCoreApplication::translate("MainWindow", "F11", nullptr));
         btn_f12->setText(QCoreApplication::translate("MainWindow", "F12", nullptr));
-        btn_wave->setText(QCoreApplication::translate("MainWindow", "~", nullptr));
+        btn_wave->setText(QCoreApplication::translate("MainWindow", "\302\267", nullptr));
         btn_1->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
         btn_2->setText(QCoreApplication::translate("MainWindow", "2", nullptr));
         btn_3->setText(QCoreApplication::translate("MainWindow", "3", nullptr));
@@ -1602,12 +1602,12 @@ public:
         btn_delete->setText(QCoreApplication::translate("MainWindow", "Del", nullptr));
         btn_end->setText(QCoreApplication::translate("MainWindow", "End", nullptr));
         btn_pagedown->setText(QCoreApplication::translate("MainWindow", "PaD", nullptr));
-        btn_up->setText(QCoreApplication::translate("MainWindow", "^", nullptr));
-        btn_left->setText(QCoreApplication::translate("MainWindow", "<", nullptr));
-        btn_down->setText(QCoreApplication::translate("MainWindow", " v ", nullptr));
-        btn_right->setText(QCoreApplication::translate("MainWindow", ">", nullptr));
+        btn_up->setText(QCoreApplication::translate("MainWindow", "\342\206\221", nullptr));
+        btn_left->setText(QCoreApplication::translate("MainWindow", "\342\206\220", nullptr));
+        btn_down->setText(QCoreApplication::translate("MainWindow", "\342\206\223", nullptr));
+        btn_right->setText(QCoreApplication::translate("MainWindow", "\342\206\222", nullptr));
         btn_num->setText(QCoreApplication::translate("MainWindow", "Num", nullptr));
-        btn_sslash->setText(QCoreApplication::translate("MainWindow", "\\", nullptr));
+        btn_sslash->setText(QCoreApplication::translate("MainWindow", "/", nullptr));
         btn_star->setText(QCoreApplication::translate("MainWindow", "*", nullptr));
         btn_sminus->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         btn_s7->setText(QCoreApplication::translate("MainWindow", "7", nullptr));
@@ -1620,7 +1620,7 @@ public:
         btn_s1->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
         btn_s2->setText(QCoreApplication::translate("MainWindow", "2", nullptr));
         btn_s3->setText(QCoreApplication::translate("MainWindow", "3", nullptr));
-        btn_s0->setText(QCoreApplication::translate("MainWindow", "  _0_  ", nullptr));
+        btn_s0->setText(QCoreApplication::translate("MainWindow", "   0   ", nullptr));
         btn_sdot->setText(QCoreApplication::translate("MainWindow", ".", nullptr));
         btn_senter->setText(QCoreApplication::translate("MainWindow", "Ent", nullptr));
         tabNormalKey->setTabText(tabNormalKey->indexOf(tab_3), QCoreApplication::translate("MainWindow", "Key Board", nullptr));

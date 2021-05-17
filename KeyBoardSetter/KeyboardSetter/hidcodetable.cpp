@@ -6,18 +6,18 @@ static const QString _key_string[]={
     "None",
     //normal keys
     "Escape","F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","F11","F12",
-    "~","1","2","3","4","5","6","7","8","9","0","-","+","Backspace",
+    "`","1","2","3","4","5","6","7","8","9","0","-","+","Backspace",
     "Tab","Q","W","E","R","T","Y","U","I","O","P","[","]","\\",
     "Caps Lock","A","S","D","F","G","H","J","K","L",";","\'","Enter",
-    "Left Shift","Z","X","C","V","B","N","M","<",">","?","Right Shift",
-    "Left Ctrl","Left Win","Left Alt","Space","Right Alt","Right Win","Right Ctrl",
+    "LShift","Z","X","C","V","B","N","M","<",">","/","RShift",
+    "LCtrl","LWin","LAlt","Space","RAlt","RWin","RCtrl",
     //right area keys
     "Print Screen","Scroll Lock","Pause",
     "Insert","Home","PageUp",
     "Delete","End","PageDown",
     "Arrow UP","Arrow Left","Arrow Down","Arrow Right",
     //keypad
-    "Num Lock","\\(p)","*(p)","-(p)",
+    "Num Lock","/(p)","*(p)","-(p)",
     "7(p)","8(p)","9(p)","+(p)",
     "4(p)","5(p)","6(p)",
     "1(p)","2(p)","3(p)","Enter(p)",
