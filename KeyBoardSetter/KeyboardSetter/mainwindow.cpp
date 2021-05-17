@@ -179,7 +179,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->resize(1000,370);
 
 
-    ui->btn_setadd->setToolTip("Click this to add single Crtl,Alt,Shift to key value");
+    ui->btn_setadd->setToolTip(tr("Click this to add single Crtl,Alt,Shift to key value"));
 
 }
 
@@ -202,7 +202,7 @@ void MainWindow::switchKeyboard(int keyboard_no){
 }
 void MainWindow::setKey(int key_no){
     cur_edit_key_no = key_no;
-    ui->dockKeyboard->setWindowTitle("Current Keyboard:"+ckb[cur_keyboard_no]->getName()+"   Current Seletion:KEY"+QString::number(key_no+1));
+    ui->dockKeyboard->setWindowTitle(tr("Current Keyboard")+":"+ckb[cur_keyboard_no]->getName()+"   "+tr("Current Seletion")+":KEY"+QString::number(key_no+1));
     this->resize(1000,650);
     ui->dockKeyboard->show();
     updateUI();
@@ -440,22 +440,22 @@ void MainWindow::updateUI(){
 bool MainWindow::downloadToDevice(int keyboard_no){
     bool result = false;
     QMessageBox msg_info(this);
-    msg_info.setWindowTitle("Notice");
-    msg_info.setText("Are you sure to download config to your device:" + ckb[keyboard_no]->getName()+"?");
+    msg_info.setWindowTitle(tr("Notice"));
+    msg_info.setText(tr("Are you sure to download config to your device:") + ckb[keyboard_no]->getName()+"?");
     msg_info.setIcon(QMessageBox::Question);
     msg_info.setStandardButtons(QMessageBox::Ok | QMessageBox:: Cancel);
     if(msg_info.exec() == QMessageBox::Ok){
         QMessageBox msg_result(this);
         result = ckb[keyboard_no]->download(&table);
         if(result){
-            msg_result.setWindowTitle("Notice");
-            msg_result.setText("Download finished!");
+            msg_result.setWindowTitle(tr("Notice"));
+            msg_result.setText(tr("Download finished!"));
             msg_result.setIcon(QMessageBox::Information);
             msg_result.setStandardButtons(QMessageBox::Ok);
         }
         else{
-            msg_result.setWindowTitle("Error");
-            msg_result.setText("Download Error :" + ckb[keyboard_no]->getLastError());
+            msg_result.setWindowTitle(tr("Error"));
+            msg_result.setText(tr("Download Error :") + ckb[keyboard_no]->getLastError());
             msg_result.setIcon(QMessageBox::Critical);
             msg_result.setStandardButtons(QMessageBox::Ok);
         }
@@ -477,8 +477,8 @@ bool MainWindow::addKeyValue(){
         if(temp_list.size()>0 && (temp_list[0]->getNormalKeyIndex() !=0 ||  temp_list[0]->getMediaKeyIndex()!=0 || temp_list[0]->getMouseKeyIndex()!=0)){
             //mouse key is single can not be added
             QMessageBox msg_info(this);
-            msg_info.setWindowTitle("Notice");
-            msg_info.setText("You can NOT add mouse event to Marco!");
+            msg_info.setWindowTitle(tr("Notice"));
+            msg_info.setText(tr("You can NOT add mouse event to Marco!"));
             msg_info.setIcon(QMessageBox::Critical);
             msg_info.setStandardButtons(QMessageBox::Ok);
             msg_info.exec();
@@ -496,8 +496,8 @@ bool MainWindow::addKeyValue(){
         if(temp_list.size()>0 && (temp_list[0]->getNormalKeyIndex() !=0 ||  temp_list[0]->getMediaKeyIndex()!=0 || temp_list[0]->getMouseKeyIndex()!=0)){
             //media key is single can not be added
             QMessageBox msg_info(this);
-            msg_info.setWindowTitle("Notice");
-            msg_info.setText("You can NOT add meida key to Marco!");
+            msg_info.setWindowTitle(tr("Notice"));
+            msg_info.setText(tr("You can NOT add meida key to Marco!"));
             msg_info.setIcon(QMessageBox::Critical);
             msg_info.setStandardButtons(QMessageBox::Ok);
             msg_info.exec();
@@ -515,8 +515,8 @@ bool MainWindow::addKeyValue(){
         //justify whether there is any single key
         if(ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->isMedia()||ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->isMouse()){
             QMessageBox msg_info(this);
-            msg_info.setWindowTitle("Notice");
-            msg_info.setText("You can NOT set MEDIA or MOUSE key to Marco!");
+            msg_info.setWindowTitle(tr("Notice"));
+            msg_info.setText(tr("You can NOT set MEDIA or MOUSE key to Marco!"));
             msg_info.setIcon(QMessageBox::Critical);
             msg_info.setStandardButtons(QMessageBox::Ok);
             msg_info.exec();
@@ -546,8 +546,8 @@ bool MainWindow::addKeyValue(){
                 else{
                     //can not add to marco because of hardware limit
                     QMessageBox msg_info(this);
-                    msg_info.setWindowTitle("Notice");
-                    msg_info.setText("Can NOT add key marco : hardware limitation!");
+                    msg_info.setWindowTitle(tr("Notice"));
+                    msg_info.setText(tr("Can NOT add key marco : hardware limitation!"));
                     msg_info.setIcon(QMessageBox::Critical);
                     msg_info.setStandardButtons(QMessageBox::Ok);
                     msg_info.exec();
