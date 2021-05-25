@@ -138,7 +138,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="490"/>
-        <source>Marco</source>
+        <source>Macro</source>
         <translation>宏</translation>
     </message>
     <message>
@@ -689,7 +689,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="1828"/>
-        <source>MarcoDelay</source>
+        <source>MacroDelay</source>
         <translation>宏延时</translation>
     </message>
     <message>
@@ -824,22 +824,22 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="481"/>
-        <source>You can NOT add mouse event to Marco!</source>
+        <source>You can NOT add mouse event to Macro!</source>
         <translation>无法将鼠标键添加到宏！</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="500"/>
-        <source>You can NOT add meida key to Marco!</source>
+        <source>You can NOT add meida key to Macro!</source>
         <translation>无法将多媒体键添加到宏！</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="519"/>
-        <source>You can NOT set MEDIA or MOUSE key to Marco!</source>
+        <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
         <translation>无法在宏键中添加鼠标或多媒体键值！</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="550"/>
-        <source>Can NOT add key marco : hardware limitation!</source>
+        <source>Can NOT add key macro : hardware limitation!</source>
         <translation>无法添加更多的宏键值：已达到硬件限制！</translation>
     </message>
 </context>

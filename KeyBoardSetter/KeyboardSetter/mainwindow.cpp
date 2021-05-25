@@ -267,8 +267,8 @@ void MainWindow::initTreeView(){
             QList<QStandardItem*> ikeys;
             QStandardItem* ikey = new QStandardItem(ckd_temp->getCustomKeyByID(i)->getName());
             QStandardItem* detail;
-            if(ckd_temp->getCustomKeyByID(i)->isMarco())
-                detail =new QStandardItem(QStringLiteral("Marco"));
+            if(ckd_temp->getCustomKeyByID(i)->isMacro())
+                detail =new QStandardItem(QStringLiteral("Macro"));
             else
                 detail =new QStandardItem(QStringLiteral("Normal"));
             ikeys.append(ikey);
@@ -416,8 +416,8 @@ void MainWindow::updateUI(){
         if(i == cur_edit_key_no)
             continue;
         QPushButton *pbtn = ckb[cur_keyboard_no]->getButtonByID(i);
-        if(ckb[cur_keyboard_no]->getCustomKeyByID(i)->isMarco())
-            pbtn->setStyleSheet("background-color: rgb(255, 100, 255);"); //purple for marco
+        if(ckb[cur_keyboard_no]->getCustomKeyByID(i)->isMacro())
+            pbtn->setStyleSheet("background-color: rgb(255, 100, 255);"); //purple for macro
         else if(ckb[cur_keyboard_no]->getCustomKeyByID(i)->isMedia())
             pbtn->setStyleSheet("background-color: rgb(255, 200, 100);"); //yellow for media
         else if(ckb[cur_keyboard_no]->getCustomKeyByID(i)->isMouse())
@@ -478,7 +478,7 @@ bool MainWindow::addKeyValue(){
             //mouse key is single can not be added
             QMessageBox msg_info(this);
             msg_info.setWindowTitle(tr("Notice"));
-            msg_info.setText(tr("You can NOT add mouse event to Marco!"));
+            msg_info.setText(tr("You can NOT add mouse event to Macro!"));
             msg_info.setIcon(QMessageBox::Critical);
             msg_info.setStandardButtons(QMessageBox::Ok);
             msg_info.exec();
@@ -497,7 +497,7 @@ bool MainWindow::addKeyValue(){
             //media key is single can not be added
             QMessageBox msg_info(this);
             msg_info.setWindowTitle(tr("Notice"));
-            msg_info.setText(tr("You can NOT add meida key to Marco!"));
+            msg_info.setText(tr("You can NOT add meida key to Macro!"));
             msg_info.setIcon(QMessageBox::Critical);
             msg_info.setStandardButtons(QMessageBox::Ok);
             msg_info.exec();
@@ -516,7 +516,7 @@ bool MainWindow::addKeyValue(){
         if(ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->isMedia()||ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->isMouse()){
             QMessageBox msg_info(this);
             msg_info.setWindowTitle(tr("Notice"));
-            msg_info.setText(tr("You can NOT set MEDIA or MOUSE key to Marco!"));
+            msg_info.setText(tr("You can NOT set MEDIA or MOUSE key to Macro!"));
             msg_info.setIcon(QMessageBox::Critical);
             msg_info.setStandardButtons(QMessageBox::Ok);
             msg_info.exec();
@@ -533,7 +533,7 @@ bool MainWindow::addKeyValue(){
                 models[cur_keyboard_no]->itemFromIndex(temp_index)->child(0,1)->setText(table.convertKeyValue2QString(temp_kv));
             }
             else{
-                if(ckb[cur_keyboard_no]->checkMarcoAddable(cur_edit_key_no)){
+                if(ckb[cur_keyboard_no]->checkMacroAddable(cur_edit_key_no)){
                     //update to class
                     ckb[cur_keyboard_no]->appendKey(cur_edit_key_no,temp_kv);
                     //update treeview
@@ -544,10 +544,10 @@ bool MainWindow::addKeyValue(){
                     models[cur_keyboard_no]->itemFromIndex(temp_index)->appendRow(kvs);
                 }
                 else{
-                    //can not add to marco because of hardware limit
+                    //can not add to macro because of hardware limit
                     QMessageBox msg_info(this);
                     msg_info.setWindowTitle(tr("Notice"));
-                    msg_info.setText(tr("Can NOT add key marco : hardware limitation!"));
+                    msg_info.setText(tr("Can NOT add key macro : hardware limitation!"));
                     msg_info.setIcon(QMessageBox::Critical);
                     msg_info.setStandardButtons(QMessageBox::Ok);
                     msg_info.exec();

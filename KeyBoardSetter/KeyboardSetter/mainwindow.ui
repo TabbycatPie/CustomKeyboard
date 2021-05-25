@@ -487,7 +487,7 @@
          <item>
           <widget class="QLabel" name="label_4">
            <property name="text">
-            <string>Marco</string>
+            <string>Macro</string>
            </property>
           </widget>
          </item>
@@ -1825,7 +1825,7 @@
         </rect>
        </property>
        <property name="title">
-        <string>MarcoDelay</string>
+        <string>MacroDelay</string>
        </property>
        <widget class="QToolButton" name="toolButton_6">
         <property name="geometry">

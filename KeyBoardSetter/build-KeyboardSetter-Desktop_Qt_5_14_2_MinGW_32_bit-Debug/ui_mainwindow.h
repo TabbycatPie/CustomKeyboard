@@ -1509,7 +1509,7 @@ public:
         label_9->setText(QString());
         label_10->setText(QCoreApplication::translate("MainWindow", "Media", nullptr));
         label_3->setText(QString());
-        label_4->setText(QCoreApplication::translate("MainWindow", "Marco", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "Macro", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_test), QCoreApplication::translate("MainWindow", "Test", nullptr));
         btn_dualkey1->setText(QCoreApplication::translate("MainWindow", "KEY1", nullptr));
         btn_dualkey2->setText(QCoreApplication::translate("MainWindow", "KEY2", nullptr));
@@ -1638,7 +1638,7 @@ public:
         btn_mmpp->setText(QCoreApplication::translate("MainWindow", "Play/Pause ", nullptr));
         btn_mmls->setText(QCoreApplication::translate("MainWindow", "LastSong", nullptr));
         btn_mmns->setText(QCoreApplication::translate("MainWindow", "NextSong", nullptr));
-        groupBox_2->setTitle(QCoreApplication::translate("MainWindow", "MarcoDelay", nullptr));
+        groupBox_2->setTitle(QCoreApplication::translate("MainWindow", "MacroDelay", nullptr));
         toolButton_6->setText(QCoreApplication::translate("MainWindow", "LastSong", nullptr));
         et_delay->setText(QCoreApplication::translate("MainWindow", "0.0", nullptr));
         btn_setdelay->setText(QCoreApplication::translate("MainWindow", "SetDelay", nullptr));

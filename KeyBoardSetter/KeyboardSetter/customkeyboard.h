@@ -12,23 +12,23 @@ class CustomKeyboard : public QObject
     Q_OBJECT
 public:
     //contructor
-    CustomKeyboard(QString _name,int keynum,unsigned short pid,unsigned short vid,int marco_mem,int marco_spkey_mem,QPushButton *(*_btn_list));
+    CustomKeyboard(QString _name,int keynum,unsigned short pid,unsigned short vid,int macro_mem,int macro_spkey_mem,QPushButton *(*_btn_list));
     //getter and setter
     unsigned short getPid();
     unsigned short getVid();
     int getKeynum();
-    int getMarcoMem();
-    int getMarcoSPkeyMem();
+    int getMacroMem();
+    int getMacroSPkeyMem();
     QPushButton *getButtonByID(int key_no);
     CustomKey *getCustomKeyByID(int key_no);
     QString getName();
 
     //set key
     void setKey(int key_id,KeyValue *kv);  //normal single
-    void setKey(int key_id,QVector<KeyValue*> kvs); //marco
+    void setKey(int key_id,QVector<KeyValue*> kvs); //macro
     void appendKey(int key_id,KeyValue *kv);
     bool deleteTopKey(int key_id);
-    bool checkMarcoAddable(int cur_key_no);
+    bool checkMacroAddable(int cur_key_no);
     //download to device
     bool download(HIDCodeTable *table);
     QString getLastError();
@@ -38,8 +38,8 @@ private:
     unsigned short pid;       //production id
     unsigned short vid;       //vender     id
     int keynum;         //how many keys your device have
-    int marco_mem;      //max number of marco_key memory on device
-    int marco_spkey;    //max number of marco special key memort on device
+    int macro_mem;      //max number of macro_key memory on device
+    int macro_spkey;    //max number of macro special key memort on device
     uchar *normal_keycode;  //normal key code
     uchar *spkey_mixcode;   //special key mix code
     QString name;           //keyboard Name

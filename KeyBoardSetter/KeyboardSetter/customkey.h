@@ -11,13 +11,13 @@ class CustomKey : public QObject
 {
     Q_OBJECT
 public:
-    CustomKey(QString _name,QPushButton *mapping_key,bool _is_marco);
+    CustomKey(QString _name,QPushButton *mapping_key,bool _is_macro);
     //getter and setter
-    void setMarco(bool is_marco);
+    void setMacro(bool is_macro);
     QPushButton *getMappingButton();
     QString getName();
     void setName(QString _name);
-    bool isMarco();
+    bool isMacro();
     bool isMouse();
     bool isMedia();
 
@@ -36,7 +36,7 @@ private:
     QVector<KeyValue*> keys;
     QPushButton *mapping_btn;
     QString name;
-    bool is_marco;
+    bool is_macro;
     bool is_mouse;
     bool is_media;
     int normalkey_index;

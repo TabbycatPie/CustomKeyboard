@@ -1,24 +1,24 @@
 #include "customkey.h"
 #include "keyvalue.h"
 
-CustomKey::CustomKey(QString _name,QPushButton *mapping_key,bool _is_marco=false){
+CustomKey::CustomKey(QString _name,QPushButton *mapping_key,bool _is_macro=false){
     this->name = _name;
     this->mapping_btn = mapping_key;
-    this->is_marco = _is_marco;
+    this->is_macro = _is_macro;
     setKey(new KeyValue(0));
 }
 
 void CustomKey::setKey(QVector<KeyValue*> _keys){
     //auto justify the key's type
     if(keys.size()>1){
-        //marco key ,because of the vector's size is larger than one
-        is_marco = true;
+        //macro key ,because of the vector's size is larger than one
+        is_macro = true;
         is_mouse = false;
         is_media = false;
     }
     else{
-        //this is not a marco key,because there is only one keyvalue in the vector
-        is_marco = false;
+        //this is not a macro key,because there is only one keyvalue in the vector
+        is_macro = false;
         if(_keys[0]->getMediaKeyIndex()!=0){
             //this is a media key
             is_media = true;
@@ -40,14 +40,14 @@ void CustomKey::setKey(QVector<KeyValue*> _keys){
 void CustomKey::appendKey(KeyValue* _key){
     keys.append(_key);
     if(keys.size()>1){
-        //marco key
-        is_marco = true;
+        //macro key
+        is_macro = true;
         is_media = false;
         is_mouse = false;
     }
     else{
-        //this is not a marco key,because there is only one keyvalue in the vector
-        is_marco = false;
+        //this is not a macro key,because there is only one keyvalue in the vector
+        is_macro = false;
         if(_key->getMediaKeyIndex()!=0){
             //this is a media key
             is_media = true;
@@ -73,7 +73,7 @@ bool CustomKey::deleteTopKey(){
             keys[0]->setValue(0,0,0,t);
             keys[0]->setDelay(0);
             ////return to normal key
-            this->is_marco = false;
+            this->is_macro = false;
             this->is_mouse = false;
             this->is_media = false;
         }
@@ -83,7 +83,7 @@ bool CustomKey::deleteTopKey(){
         keys.pop_back();
         if(keys.size() == 1){
             ////return to normal key
-            this->is_marco = false;
+            this->is_macro = false;
             this->is_mouse = false;
             this->is_media = false;
         }
@@ -91,8 +91,8 @@ bool CustomKey::deleteTopKey(){
     }
 };
 void CustomKey::setKey(KeyValue *_key){
-    //this is not a marco key,because there is only one keyvalue in the vector
-    is_marco = false;
+    //this is not a macro key,because there is only one keyvalue in the vector
+    is_macro = false;
     if(_key->getMediaKeyIndex()!=0){
         //this is a media key
         is_media = true;
@@ -122,8 +122,8 @@ QString CustomKey::getName(){
 void CustomKey::setName(QString _name){
     this->name = _name;
 }
-bool CustomKey::isMarco(){
-    return this->is_marco;
+bool CustomKey::isMacro(){
+    return this->is_macro;
 };
 bool CustomKey::isMouse(){
     return this->is_mouse;
