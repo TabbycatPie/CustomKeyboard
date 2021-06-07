@@ -12,7 +12,7 @@ CustomKey::CustomKey(QString _name,QPushButton *mapping_key,bool _is_macro=false
 
 void CustomKey::setKey(QVector<KeyValue*> _keys){
     //auto justify the key's type
-    if(keys.size()>1){
+    if(_keys.size()>1){
         //macro key ,because of the vector's size is larger than one
         is_macro = true;
         is_mouse = false;
@@ -145,7 +145,7 @@ QJsonObject CustomKey::toJsonObj()
 {
     QJsonObject ckjson = QJsonObject();
     ckjson.insert("name",this->name);
-    ckjson.insert("is_marco",this->is_macro);
+    ckjson.insert("is_macro",this->is_macro);
     ckjson.insert("is_mouse",this->is_mouse);
     ckjson.insert("is_media",this->is_media);
     //ckjson.insert("normalkey_index",this->normalkey_index);
@@ -160,10 +160,8 @@ QJsonObject CustomKey::toJsonObj()
 
 CustomKey *CustomKey::fromJson(QJsonObject jsonobj,QPushButton *mapping_button)
 {
-    QString _name;
-    bool _is_macro;
-    _is_macro = jsonobj.value("is_marco").toBool();
-    _name = jsonobj.value("name").toString();
+    bool _is_macro = jsonobj.value("is_macro").toBool();
+    QString _name = jsonobj.value("name").toString();
     QJsonArray jsonarray = jsonobj.value("kv_list").toArray();
     QVector<KeyValue*> *kv_list = new QVector<KeyValue*>();
     foreach(QJsonValue jsonvalue,jsonarray){

@@ -133,15 +133,15 @@ bool CustomKeyboard::download(HIDCodeTable *table){
         //set frame header
         frame_set_normal           [1]= 0x01;   // set KEY_CODE          [10]
         frame_set_sp               [1]= 0x02;   // set SP_KEY_CODE       [10]
-        frame_set_macro_status     [1]= 0x03;   // set KEY_MARCO         [2]
-        frame_set_macro_index      [1]= 0x04;   // set MARCO_SPLIT_INDX  [5]
-        frame_set_macro_sp_key     [1]= 0x05;   // set MARCO_SPE_KEYCODE [10]
-        frame_set_macro_spkey_index[1]= 0x06;   // set MARCO_SPE_KEYINDX [10]
-        frame_set_macro            [1]= 0x07;   // set MARCO_KEYCODE     [40]
+        frame_set_macro_status     [1]= 0x03;   // set KEY_marco         [2]
+        frame_set_macro_index      [1]= 0x04;   // set marco_SPLIT_INDX  [5]
+        frame_set_macro_sp_key     [1]= 0x05;   // set marco_SPE_KEYCODE [10]
+        frame_set_macro_spkey_index[1]= 0x06;   // set marco_SPE_KEYINDX [10]
+        frame_set_macro            [1]= 0x07;   // set marco_KEYCODE     [40]
         frame_set_mouse            [1]= 0x08;   // set MOUSE_CODE        [10]
         frame_set_media            [1]= 0x09;   // set MEDIA_CODE        [10]
-        frame_set_delay            [1]= 0x0a;   // set MARCO_DELAY       [10]
-        frame_set_delay_index      [1]= 0x0b;   // set MARCO_DELAY_INDX  [10]
+        frame_set_delay            [1]= 0x0a;   // set marco_DELAY       [10]
+        frame_set_delay_index      [1]= 0x0b;   // set marco_DELAY_INDX  [10]
 
         //generate frames
         for(int i = 0;i<this->getKeynum();i++){
