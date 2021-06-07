@@ -1,6 +1,8 @@
 #include "customkey.h"
 #include "keyvalue.h"
 
+#include <qjsonarray.h>
+
 CustomKey::CustomKey(QString _name,QPushButton *mapping_key,bool _is_macro=false){
     this->name = _name;
     this->mapping_btn = mapping_key;
@@ -137,6 +139,23 @@ int CustomKey::getKeyValueCount(){
 
 QVector<KeyValue*> CustomKey::getKeyValueList(){
     return this->keys;
+}
+
+QJsonObject CustomKey::toJsonObj()
+{
+    QJsonObject ckjson = QJsonObject();
+    ckjson.insert("name",this->name);
+    ckjson.insert("is_marco",this->is_macro);
+    ckjson.insert("is_mouse",this->is_mouse);
+    ckjson.insert("is_media",this->is_media);
+    //ckjson.insert("normalkey_index",this->normalkey_index);
+    QJsonArray kvarray = QJsonArray();
+    foreach(KeyValue *tempkv,this->keys){
+        kvarray.append(tempkv->toJsonObj());
+    }
+    ckjson.insert("kv_list",kvarray);
+    return ckjson;
+
 };
 
 CustomKey::~CustomKey(){

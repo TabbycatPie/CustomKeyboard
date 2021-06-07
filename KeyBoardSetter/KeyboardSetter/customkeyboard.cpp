@@ -7,6 +7,7 @@
 #include <QThread>
 
 #include<QDebug>
+#include <qjsonarray.h>
 
 //constructor of class CustomKeyboard
 CustomKeyboard::CustomKeyboard(QString _name,int keynum,unsigned short pid,unsigned short vid,int macro_mem,int macro_spkey_mem,QPushButton *(*_btn_list)){
@@ -238,25 +239,25 @@ bool CustomKeyboard::download(HIDCodeTable *table){
 
         //send setting frames to device
         int res1 = hid_write(my_device, frame_set_normal, 65);  // -1 for error
-        QThread::msleep(2000);
+        QThread::msleep(30);
         int res2 = hid_write(my_device, frame_set_sp, 65);      // -1 for error
-        QThread::msleep(20);
+        QThread::msleep(30);
         int res3 = hid_write(my_device,frame_set_macro_status,65);
-        QThread::msleep(20);
+        QThread::msleep(30);
         int res4 = hid_write(my_device,frame_set_macro_index,65);
-        QThread::msleep(20);
+        QThread::msleep(30);
         int res5 = hid_write(my_device,frame_set_macro_sp_key,65);
-        QThread::msleep(20);
+        QThread::msleep(30);
         int res6 = hid_write(my_device,frame_set_macro_spkey_index,65);
-        QThread::msleep(20);
+        QThread::msleep(30);
         int res8 = hid_write(my_device,frame_set_mouse,65);
-        QThread::msleep(20);
+        QThread::msleep(30);
         int res9 = hid_write(my_device,frame_set_media,65);
-        QThread::msleep(20);
+        QThread::msleep(30);
         int res10= hid_write(my_device,frame_set_delay,65);
-        QThread::msleep(20);
+        QThread::msleep(30);
         int res11= hid_write(my_device,frame_set_delay_index,65);
-        QThread::msleep(20);
+        QThread::msleep(30);
         int res7 = hid_write(my_device,frame_set_macro,65);
 
         if(res1 != -1 && res2 != -1 && res3!= -1 && res4 != -1 && res5 != -1
@@ -313,5 +314,22 @@ CustomKeyboard::~CustomKeyboard(){
     delete this->normal_keycode;
     delete this->spkey_mixcode;
     qDeleteAll(this->key_list);
+}
+
+QJsonObject CustomKeyboard::toJsonObj()
+{
+    QJsonObject ckbjson = QJsonObject();
+    ckbjson.insert("name",this->name);
+    ckbjson.insert("pid",this->pid);
+    ckbjson.insert("vid",this->vid);
+    ckbjson.insert("keynum",this->keynum);
+    ckbjson.insert("macro_mem",this->macro_mem);
+    ckbjson.insert("macro_spkey",this->macro_spkey);
+    QJsonArray cklist = QJsonArray();
+    for(int i = 0;i<this->key_list.size();i++){
+        cklist.append(this->key_list[i]->toJsonObj());
+    }
+    ckbjson.insert("ck_list",cklist);
+    return ckbjson;
 }
 

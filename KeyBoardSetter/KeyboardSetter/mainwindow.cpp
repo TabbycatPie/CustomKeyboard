@@ -4,10 +4,13 @@
 #include "hidcodetable.h"
 #include "keyvalue.h"
 #include "hidapi.h"
+#include "configsaver.h"
 #include <QDebug>
 #include <QTimer>
 #include <QStandardItem>
 #include <QMessageBox>
+#include <qjsondocument.h>
+#include <QFileDialog>
 
 #define DEBUG 1
 #define TYPENUM 3
@@ -93,6 +96,10 @@ MainWindow::MainWindow(QWidget *parent)
     int total = (int)(sizeof(keyboard_list)/sizeof(QToolButton*));
     #ifdef DEBUG
     qDebug() << "Total key number is :" + QString::number(total)<<endl;
+    QJsonDocument *jsondoc = new QJsonDocument();
+    jsondoc->setObject(ckb[0]->toJsonObj());
+    qDebug() << "The Json of keyboard0 is:" +  jsondoc->toJson();
+    delete jsondoc;
     #endif
     //CONNECT FUNCTIONS
     //connect soft-keyboard toolbuttons
@@ -162,6 +169,10 @@ MainWindow::MainWindow(QWidget *parent)
     //set set-delay button
     connect(ui->btn_setdelay,&QPushButton::clicked,this,[=]{
         setDelay();
+    });
+    //set save button
+    connect(ui->btn_save,&QPushButton::clicked,this,[=]{
+        saveConfigToFile();
     });
 
     //init UI
@@ -236,6 +247,42 @@ void MainWindow::setDelay(){
     int delay_int = (int)(delay * 10);
     cur_delay = (uchar) delay_int;
     updateUI();
+}
+
+bool MainWindow::saveConfigToFile()
+{
+    QMessageBox msg_info(this);
+    msg_info.setWindowTitle(tr("Notice"));
+    msg_info.setText(tr("Save config to file?"));
+    msg_info.setIcon(QMessageBox::Question);
+    msg_info.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
+    if(msg_info.exec()){
+        //press ok
+        QString filePath = QFileDialog::getSaveFileName(this, tr("Save File"),".//untitled.zdd",tr("zddConfig (*.zdd)"));
+        qDebug() << filePath << "is selected";
+        if(filePath != ""){
+            ConfigSaver* saver =new ConfigSaver();
+            if(!saver->saveConfig(filePath,ckb[cur_keyboard_no]->toJsonObj())){
+                //can not save
+                QMessageBox msg_info(this);
+                msg_info.setWindowTitle(tr("Error"));
+                msg_info.setText(tr("Can not save ")+filePath+" "+saver->getLastError());
+                msg_info.setIcon(QMessageBox::Critical);
+                msg_info.setStandardButtons(QMessageBox::Ok);
+                msg_info.exec();
+            }else{
+                QMessageBox msg_info(this);
+                msg_info.setWindowTitle(tr("Notice"));
+                msg_info.setText(tr("Saved Successfully!"));
+                msg_info.setIcon(QMessageBox::Information);
+                msg_info.setStandardButtons(QMessageBox::Ok);
+                msg_info.exec();
+            }
+            delete saver;
+
+        }
+    }
+
 }
 void MainWindow::delayindecrease(bool is_add){
     QString temp = ui->et_delay->text();

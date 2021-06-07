@@ -6,7 +6,6 @@
 #include <QObject>
 #include <QPushButton>
 #include <QVector>
-
 class CustomKeyboard : public QObject
 {
     Q_OBJECT
@@ -33,6 +32,9 @@ public:
     bool download(HIDCodeTable *table);
     QString getLastError();
     ~CustomKeyboard();
+
+    //tojson
+    QJsonObject toJsonObj();
 private:
     QVector<CustomKey*> key_list;//soft-keyboard mapping
     unsigned short pid;       //production id

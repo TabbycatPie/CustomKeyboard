@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QVector>
+#include <qjsonobject.h>
 
 class KeyValue : public QObject
 {
@@ -17,6 +18,7 @@ public:
     uchar getDelay();
     void setDelay(uchar _delay);
     QVector<int> getSPKeyList();
+    QJsonObject toJsonObj();
     ~KeyValue();
 private:
     int normalkey;

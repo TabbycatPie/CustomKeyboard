@@ -3,6 +3,7 @@
 
 #include "keyvalue.h"
 
+
 #include <QObject>
 #include <QPushButton>
 #include <QVector>
@@ -31,6 +32,9 @@ public:
     int getKeyValueCount();//return the total count of keyvalues in the kv_list
     QVector<KeyValue*> getKeyValueList();
 
+    //tojson
+    QJsonObject toJsonObj();
+
     ~CustomKey();
 private:
     QVector<KeyValue*> keys;
@@ -39,7 +43,7 @@ private:
     bool is_macro;
     bool is_mouse;
     bool is_media;
-    int normalkey_index;
+    //int normalkey_index;
 signals:
 
 };

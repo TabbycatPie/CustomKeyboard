@@ -1,4 +1,5 @@
 #include "keyvalue.h"
+#include <QJsonArray>
 #include <QVector>
 
 KeyValue::KeyValue(int _normalkey,int _mousekey,int _mediakey,QVector<int> spkeys){
@@ -43,6 +44,22 @@ int KeyValue::getMediaKeyIndex(){
 };
 QVector<int> KeyValue::getSPKeyList(){
     return this->sp_keys;
+}
+
+QJsonObject KeyValue::toJsonObj()
+{
+    QJsonObject kvjson = QJsonObject();
+    QJsonArray sparray = QJsonArray();
+    //generate json
+    kvjson.insert("mouse_key_index",this->mousekey);
+    kvjson.insert("media_key_index",this->mediakey);
+    kvjson.insert("normal_key_index",this->normalkey);
+    kvjson.insert("delay",this->delay);
+    for(int i = 0; i< this->sp_keys.size();i++){
+        sparray.append(sp_keys[i]);
+    }
+    kvjson.insert("sp_key_list",sparray);
+    return kvjson;
 };
 KeyValue::~KeyValue(){
 

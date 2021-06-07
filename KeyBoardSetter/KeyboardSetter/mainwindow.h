@@ -23,6 +23,7 @@ public:
     //functions of delay
     void delayindecrease(bool is_add=true);
     void setDelay();
+    bool saveConfigToFile();
     ~MainWindow();
 
 private:
