@@ -46,6 +46,7 @@ QVector<int> KeyValue::getSPKeyList(){
     return this->sp_keys;
 }
 
+
 QJsonObject KeyValue::toJsonObj()
 {
     QJsonObject kvjson = QJsonObject();
@@ -60,7 +61,26 @@ QJsonObject KeyValue::toJsonObj()
     }
     kvjson.insert("sp_key_list",sparray);
     return kvjson;
+}
+
+KeyValue* KeyValue::fromJson(QJsonObject jsonobj)
+{
+    int _mousekey,_mediakey,_normalkey;
+    uchar _delay;
+    _mousekey = jsonobj.value("mouse_key_index").toInt();
+    _mediakey = jsonobj.value("media_key_index").toInt();
+    _normalkey = jsonobj.value("normal_key_index").toInt();
+    _delay = (uchar)(jsonobj.value("delay").toInt());
+    QVector<int> *_sp_keys = new QVector<int>();
+    QJsonArray jsonarray = QJsonArray();
+    jsonarray = jsonobj.value("sp_key_list").toArray();
+    foreach(QJsonValue jsonvalue,jsonarray){
+        _sp_keys->append(jsonvalue.toInt());
+    }
+    KeyValue *tempkv = new KeyValue(_normalkey,_mousekey,_mediakey,*_sp_keys);
+    return tempkv;
 };
 KeyValue::~KeyValue(){
-
+    sp_keys.clear();
+    delete sp_keys;
 };

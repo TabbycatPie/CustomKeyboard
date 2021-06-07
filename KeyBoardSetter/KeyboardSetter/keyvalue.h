@@ -19,6 +19,7 @@ public:
     void setDelay(uchar _delay);
     QVector<int> getSPKeyList();
     QJsonObject toJsonObj();
+    static KeyValue* fromJson(QJsonObject jsonobj);
     ~KeyValue();
 private:
     int normalkey;
