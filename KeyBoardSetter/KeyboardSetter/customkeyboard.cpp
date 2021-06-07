@@ -42,6 +42,12 @@ void CustomKeyboard::setKey(int key_id, QVector<KeyValue *> kvs){
 void CustomKeyboard::appendKey(int key_id,KeyValue *kv){
     this->key_list[key_id]->appendKey(kv);
 }
+
+void CustomKeyboard::setKeyList(QVector<CustomKey *> list)
+{
+    this->key_list.clear();
+    this->key_list = list;
+}
 bool CustomKeyboard::deleteTopKey(int key_id){
     return this->key_list[key_id]->deleteTopKey();
 }
@@ -331,5 +337,25 @@ QJsonObject CustomKeyboard::toJsonObj()
     }
     ckbjson.insert("ck_list",cklist);
     return ckbjson;
+}
+
+CustomKeyboard *CustomKeyboard::fromJson(QJsonObject jsonobj, QPushButton *(*mapping_button_list))
+{
+    QString _name = jsonobj.value("name").toString();
+    unsigned short _pid = (unsigned short)jsonobj.value("pid").toInt();
+    unsigned short _vid = (unsigned short)jsonobj.value("vid").toInt();
+    int _keynum = jsonobj.value("keynum").toInt();
+    int _macro_mem = jsonobj.value("macro_mem").toInt();
+    int _macro_spkey = jsonobj.value("macro_spkey").toInt();
+    QJsonArray jsonarray = jsonobj.value("ck_list").toArray();
+    QVector<CustomKey*> *ck_list = new QVector<CustomKey*>();
+    for(int i = 0;i<_keynum;i++){
+        QJsonValue qjv = jsonarray[i];
+        CustomKey *ck = CustomKey::fromJson(qjv.toObject(),mapping_button_list[i]);
+        ck_list->append(ck);
+    }
+    CustomKeyboard *ckb = new CustomKeyboard(_name,_keynum,_pid,_vid,_macro_mem,_macro_spkey,mapping_button_list);
+    ckb->setKeyList(*ck_list);
+    return ckb;
 }
 

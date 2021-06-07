@@ -248,12 +248,12 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="btn_setcommit">
+        <widget class="QPushButton" name="btn_load">
          <property name="enabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="text">
-          <string>Commit</string>
+          <string>Load</string>
          </property>
         </widget>
        </item>

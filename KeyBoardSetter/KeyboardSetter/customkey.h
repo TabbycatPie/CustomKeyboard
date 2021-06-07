@@ -34,6 +34,7 @@ public:
 
     //tojson
     QJsonObject toJsonObj();
+    static CustomKey *fromJson(QJsonObject jsonobj,QPushButton *mapping_button);
 
     ~CustomKey();
 private:

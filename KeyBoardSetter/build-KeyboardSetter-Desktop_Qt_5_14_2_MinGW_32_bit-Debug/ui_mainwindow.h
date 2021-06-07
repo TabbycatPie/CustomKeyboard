@@ -58,7 +58,7 @@ public:
     QVBoxLayout *verticalLayout;
     QPushButton *btn_setcancel;
     QPushButton *btn_save;
-    QPushButton *btn_setcommit;
+    QPushButton *btn_load;
     QPushButton *btn_setadd;
     QPushButton *btn_setdelete;
     QTextBrowser *tv_keyvalue;
@@ -392,11 +392,11 @@ public:
 
         verticalLayout->addWidget(btn_save);
 
-        btn_setcommit = new QPushButton(verticalLayoutWidget);
-        btn_setcommit->setObjectName(QString::fromUtf8("btn_setcommit"));
-        btn_setcommit->setEnabled(false);
+        btn_load = new QPushButton(verticalLayoutWidget);
+        btn_load->setObjectName(QString::fromUtf8("btn_load"));
+        btn_load->setEnabled(true);
 
-        verticalLayout->addWidget(btn_setcommit);
+        verticalLayout->addWidget(btn_load);
 
         btn_setadd = new QPushButton(tab_test);
         btn_setadd->setObjectName(QString::fromUtf8("btn_setadd"));
@@ -1496,7 +1496,7 @@ public:
         btn_testkey10->setText(QCoreApplication::translate("MainWindow", "KEY10", nullptr));
         btn_setcancel->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
         btn_save->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
-        btn_setcommit->setText(QCoreApplication::translate("MainWindow", "Commit", nullptr));
+        btn_load->setText(QCoreApplication::translate("MainWindow", "Load", nullptr));
         btn_setadd->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
         btn_setdelete->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
         btn_download->setText(QCoreApplication::translate("MainWindow", "Download", nullptr));

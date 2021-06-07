@@ -96,10 +96,6 @@ MainWindow::MainWindow(QWidget *parent)
     int total = (int)(sizeof(keyboard_list)/sizeof(QToolButton*));
     #ifdef DEBUG
     qDebug() << "Total key number is :" + QString::number(total)<<endl;
-    QJsonDocument *jsondoc = new QJsonDocument();
-    jsondoc->setObject(ckb[0]->toJsonObj());
-    qDebug() << "The Json of keyboard0 is:" +  jsondoc->toJson();
-    delete jsondoc;
     #endif
     //CONNECT FUNCTIONS
     //connect soft-keyboard toolbuttons
@@ -144,8 +140,9 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     //commit key setting
-    connect(ui->btn_setcommit,&QPushButton::clicked,this,[=]{
-       commitKeySetting();
+    connect(ui->btn_load,&QPushButton::clicked,this,[=]{
+       //commitKeySetting();
+       loadConfigFromFile();
     });
 
     //download button
@@ -220,7 +217,7 @@ void MainWindow::setKey(int key_no){
 };
 
 //Key listener
-
+QT_DEPRECATED
 void MainWindow::commitKeySetting(){
     if(cur_key_sp.size()>0||cur_key_normal.size()>0){
         int temp = 0;
@@ -256,7 +253,7 @@ bool MainWindow::saveConfigToFile()
     msg_info.setText(tr("Save config to file?"));
     msg_info.setIcon(QMessageBox::Question);
     msg_info.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    if(msg_info.exec()){
+    if(msg_info.exec()==QMessageBox::Ok){
         //press ok
         QString filePath = QFileDialog::getSaveFileName(this, tr("Save File"),".//untitled.zdd",tr("zddConfig (*.zdd)"));
         qDebug() << filePath << "is selected";
@@ -283,6 +280,50 @@ bool MainWindow::saveConfigToFile()
         }
     }
 
+}
+
+CustomKeyboard *MainWindow::loadConfigFromFile()
+{
+    QMessageBox msg_info(this);
+    msg_info.setWindowTitle(tr("Notice"));
+    msg_info.setText(tr("Load config?"));
+    msg_info.setIcon(QMessageBox::Question);
+    msg_info.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
+    if(msg_info.exec()==QMessageBox::Ok){
+        //press ok
+        QString filePath = QFileDialog::getOpenFileName(this,tr("Open file"),"./",tr("zddConfig (*.zdd)"));
+        qDebug() << filePath << "is selected";
+        if(filePath != ""){
+            ConfigSaver* saver =new ConfigSaver();
+            QJsonObject ckbjsonobj;
+            if(!saver->readConfig(filePath,&ckbjsonobj)){
+                //can not save
+                QMessageBox msg_info(this);
+                msg_info.setWindowTitle(tr("Error"));
+                msg_info.setText(tr("Can not load file ")+filePath+" "+saver->getLastError());
+                msg_info.setIcon(QMessageBox::Critical);
+                msg_info.setStandardButtons(QMessageBox::Ok);
+                msg_info.exec();
+            }else{
+                //virtual key
+                //TEST keyboard page
+                QPushButton *virtual_test_keys[]{
+                    ui->btn_testkey1,ui->btn_testkey2,ui->btn_testkey3,ui->btn_testkey4,ui->btn_testkey5,
+                    ui->btn_testkey6,ui->btn_testkey7,ui->btn_testkey8,ui->btn_testkey9,ui->btn_testkey10
+                };
+
+                ckb[0] = CustomKeyboard::fromJson(ckbjsonobj,virtual_test_keys);
+                updateUI();
+                QMessageBox msg_info(this);
+                msg_info.setWindowTitle(tr("Notice"));
+                msg_info.setText(tr("Loaded Successfully!"));
+                msg_info.setIcon(QMessageBox::Information);
+                msg_info.setStandardButtons(QMessageBox::Ok);
+                msg_info.exec();
+            }
+            delete saver;
+        }
+    }
 }
 void MainWindow::delayindecrease(bool is_add){
     QString temp = ui->et_delay->text();
@@ -434,27 +475,28 @@ void MainWindow::updateUI(){
         temp = table.getKeyString(cur_mouse);
     }
 
-    //show cur key
-    QString str_temp ="";
-    QVector<KeyValue*> kvs = ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->getKeyValueList();
-    if(!kvs.isEmpty()){
-        str_temp = "(" + table.convertKeyValue2QString(kvs[0])+")";
-        for(int i =1;i<kvs.size();i++){
-            str_temp += " + ("+table.convertKeyValue2QString(kvs[i])+")";
-        }
-    }
-    //set text
-    if(temp != ""){
-        if(str_temp == "(None)")
-            ui->tv_keyvalue->setText("("+ temp + " + )");
-        else
-            ui->tv_keyvalue->setText(str_temp + " + ("+ temp + " + )");
-    }
-    else
-        ui->tv_keyvalue->setText(str_temp);
+
 
     //set selector color
     if(cur_edit_key_no != -1){
+        //show cur key
+        QString str_temp ="";
+        QVector<KeyValue*> kvs = ckb[cur_keyboard_no]->getCustomKeyByID(cur_edit_key_no)->getKeyValueList();
+        if(!kvs.isEmpty()){
+            str_temp = "(" + table.convertKeyValue2QString(kvs[0])+")";
+            for(int i =1;i<kvs.size();i++){
+                str_temp += " + ("+table.convertKeyValue2QString(kvs[i])+")";
+            }
+        }
+        //set text
+        if(temp != ""){
+            if(str_temp == "(None)")
+                ui->tv_keyvalue->setText("("+ temp + " + )");
+            else
+                ui->tv_keyvalue->setText(str_temp + " + ("+ temp + " + )");
+        }
+        else
+            ui->tv_keyvalue->setText(str_temp);
         ckb[cur_keyboard_no]->getButtonByID(cur_edit_key_no)->setStyleSheet("background-color: rgb(255, 100, 100);"); //red for selected
     }
 

@@ -26,6 +26,7 @@ public:
     void setKey(int key_id,KeyValue *kv);  //normal single
     void setKey(int key_id,QVector<KeyValue*> kvs); //macro
     void appendKey(int key_id,KeyValue *kv);
+    void setKeyList(QVector<CustomKey*> list);
     bool deleteTopKey(int key_id);
     bool checkMacroAddable(int cur_key_no);
     //download to device
@@ -35,6 +36,7 @@ public:
 
     //tojson
     QJsonObject toJsonObj();
+    static CustomKeyboard *fromJson(QJsonObject jsonobj,QPushButton* (*mapping_button_list));
 private:
     QVector<CustomKey*> key_list;//soft-keyboard mapping
     unsigned short pid;       //production id

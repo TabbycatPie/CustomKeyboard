@@ -82,5 +82,5 @@ KeyValue* KeyValue::fromJson(QJsonObject jsonobj)
 };
 KeyValue::~KeyValue(){
     sp_keys.clear();
-    delete sp_keys;
+    //delete sp_keys;
 };

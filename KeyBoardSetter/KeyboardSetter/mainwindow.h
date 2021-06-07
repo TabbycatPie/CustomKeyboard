@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "customkeyboard.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,6 +25,7 @@ public:
     void delayindecrease(bool is_add=true);
     void setDelay();
     bool saveConfigToFile();
+    CustomKeyboard* loadConfigFromFile();
     ~MainWindow();
 
 private:

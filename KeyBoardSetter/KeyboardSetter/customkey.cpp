@@ -156,6 +156,23 @@ QJsonObject CustomKey::toJsonObj()
     ckjson.insert("kv_list",kvarray);
     return ckjson;
 
+}
+
+CustomKey *CustomKey::fromJson(QJsonObject jsonobj,QPushButton *mapping_button)
+{
+    QString _name;
+    bool _is_macro;
+    _is_macro = jsonobj.value("is_marco").toBool();
+    _name = jsonobj.value("name").toString();
+    QJsonArray jsonarray = jsonobj.value("kv_list").toArray();
+    QVector<KeyValue*> *kv_list = new QVector<KeyValue*>();
+    foreach(QJsonValue jsonvalue,jsonarray){
+        KeyValue* kv = KeyValue::fromJson(jsonvalue.toObject());
+        kv_list->append(kv);
+    }
+    CustomKey *ck = new CustomKey(_name,mapping_button,_is_macro);
+    ck->setKey(*kv_list);
+    return ck;
 };
 
 CustomKey::~CustomKey(){

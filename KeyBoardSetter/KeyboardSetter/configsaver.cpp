@@ -30,6 +30,30 @@ bool ConfigSaver::saveConfig(QString filename, QJsonObject obj)
     return true;
 }
 
+bool ConfigSaver::readConfig(QString filename, QJsonObject *obj)
+{
+    QFile file(filename);
+    //open file failed
+    if (!(file.open(QIODevice::ReadOnly))){
+        last_error = tr("Can not open file.");
+        return false;
+    }
+    //write object to file
+    QJsonParseError jsonerror;
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(file.readAll(),&jsonerror);
+    if (!jsonDoc.isNull() && (jsonerror.error == QJsonParseError::NoError)){
+        //json parse success
+        *obj = jsonDoc.object();
+    }
+    else{
+        //json parse error
+        last_error = tr("Json parse error,File is broken!");
+        return false;
+    }
+
+    return true;
+}
+
 QString ConfigSaver::getLastError()
 {
     return last_error;
