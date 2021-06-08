@@ -21,7 +21,7 @@ UINT8X MARCO_DELAY_INDX  [10] = {0x00};
 UINT8X MARCO_DELAY       [10] = {0x00};
 
 UINT8X MEDIA_CODE [10] = {0x00};
-UINT8X MOUSE_CODE [10] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};  //temporily used for mouse 
+UINT8X MOUSE_CODE [10] = {0x00};  //temporily used for mouse 
 UINT8 KEY_CODE   [10] = {0x00};  //temporily used for key 
 UINT8 SP_KEY_CODE[10] = {0x00};  //temporily used for sepcial key
 
@@ -36,9 +36,12 @@ UINT8X LAST_MEDIA_KEY = 0xff;
 UINT8X CUR_MEDIA_KEY = 0xff;
 UINT8X CUR_MEDIA_LAG = 0x0a;
 
+UINT8X CUR_MOUSE_KEY = 0xff;
+
 UINT8X LAST_MARCO_KEY = 0xff;
 UINT8X CUR_MARCO_KEY = 0xff;
 UINT8X CUR_MARCO_LAG = 0x0a;
+
 
 //delay time*100ms
 void MarcoDelay(UINT8 time){
@@ -46,6 +49,11 @@ void MarcoDelay(UINT8 time){
 		mDelaymS(100);
 }
 
+void HIDMousesend(){
+	Flag = 0;
+	Enp3IntIn();    //send mouse event
+	while(FLAG == 0); 
+}
 
 void HIDmediasend(){
 	if(CUR_MEDIA_KEY!= 0xff){
@@ -182,10 +190,9 @@ void HIDmarcosend(){
 //report key code to computer
 void HIDsend(){
 	FLAG = 0;
-	Enp3IntIn();      //send mouse event
+	Enp1IntIn();      //send keyboard event
 	while(FLAG == 0); /*等待上一包传输完成*/
-	Enp1IntIn();    //send keyboard event
-	while(FLAG == 0); 
+	HIDMousesend();
 	HIDmediasend();
 	HIDmarcosend();
 }
