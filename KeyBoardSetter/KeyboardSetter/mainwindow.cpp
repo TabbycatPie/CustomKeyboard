@@ -172,6 +172,12 @@ MainWindow::MainWindow(QWidget *parent)
         saveConfigToFile();
     });
 
+    //test button
+    connect(ui->btn_test_read,&QPushButton::clicked,this,[=]{
+        ui->et_test->setFocus();
+        ckb[0]->testHardware();
+    });
+
     //init UI
     //init et_delay
     QRegExp rx("[12]?\\d\\.[0-9]");

@@ -495,6 +495,29 @@
        </item>
       </layout>
      </widget>
+     <widget class="QPushButton" name="btn_test_read">
+      <property name="geometry">
+       <rect>
+        <x>780</x>
+        <y>30</y>
+        <width>91</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Test</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="et_test">
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>30</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
      <zorder>layoutWidget</zorder>
      <zorder>layoutWidget_7</zorder>
      <zorder>verticalLayoutWidget</zorder>
@@ -503,6 +526,8 @@
      <zorder>btn_download</zorder>
      <zorder>verticalLayoutWidget_2</zorder>
      <zorder>btn_setadd</zorder>
+     <zorder>btn_test_read</zorder>
+     <zorder>et_test</zorder>
     </widget>
     <widget class="QWidget" name="tab_dualkeys">
      <attribute name="title">

@@ -50,8 +50,20 @@ void MarcoDelay(UINT8 time){
 }
 
 void HIDMousesend(){
-	Flag = 0;
+	FLAG = 0;
 	Enp3IntIn();    //send mouse event
+	while(FLAG == 0); 
+}
+
+void HIDKeysend(){
+	FLAG = 0;
+	Enp1IntIn();      //send keyboard event
+	while(FLAG == 0); /*等待上一包传输完成*/
+}
+//send message to computer
+void HIDsendMessage(){
+	FLAG = 0;
+	Enp2IntIn();    //send message
 	while(FLAG == 0); 
 }
 
@@ -189,13 +201,57 @@ void HIDmarcosend(){
 }
 //report key code to computer
 void HIDsend(){
-	FLAG = 0;
-	Enp1IntIn();      //send keyboard event
-	while(FLAG == 0); /*等待上一包传输完成*/
+	HIDKeysend();
 	HIDMousesend();
 	HIDmediasend();
 	HIDmarcosend();
 }
+
+void HIDtestsend(unsigned char error){
+	unsigned char i =0;
+	//clear keyboard report
+	for(;i<8;i++){
+		HIDKey[i] = 0x00;
+	}
+	if(error == 0xff){
+		HIDKey[2] = 0x08;//   'e'
+		HIDKeysend();
+		HIDKey[2] = 0x00;
+		HIDKeysend();
+		
+		HIDKey[2] = 0x15;//   'r'
+		HIDKeysend();
+		HIDKey[2] = 0x00;
+		HIDKeysend();
+		
+		HIDKey[2] = 0x15;//   'r'
+		HIDKeysend();
+		HIDKey[2] = 0x00;
+		HIDKeysend();
+		
+		HIDKey[2] = 0x12;//   'o'
+		HIDKeysend();
+		HIDKey[2] = 0x00;
+		HIDKeysend();
+		
+		HIDKey[2] = 0x15;//   'r'
+		HIDKeysend();
+		HIDKey[2] = 0x00;
+		HIDKeysend();
+	}
+	else{
+		HIDKey[2] = 0x12;//   'o'
+		HIDKeysend();
+		HIDKey[2] = 0x00;
+		HIDKeysend();
+		
+		HIDKey[2] = 0x0e;//   'k'
+		HIDKeysend();
+		HIDKey[2] = 0x00;
+		HIDKeysend();
+	}
+}
+
 
 //10-key maping 
 sbit Key1  = P3^2;
@@ -423,7 +479,16 @@ void setMarco(unsigned char hi,unsigned char lo){
     }
 }
 
-
+UINT8 isEqual(UINT8 array[10]){
+	UINT8 temp[10]={0x00};
+	UINT8 i = 0;
+	ReadDataFlash(87,10,temp);
+	for(;i<10;i++){
+		if(array[i]!=temp[i])
+			return 0;
+	}
+	return 1;
+}
 void hadleReceive(){
 	if(Endp2Rev != 0)
 	{
@@ -518,6 +583,22 @@ void hadleReceive(){
 					MARCO_DELAY_INDX[i] = Ep2Buffer[1+i];
 				}
 				WriteDataFlash(117,MARCO_DELAY_INDX,10);
+				break;
+			default:
+				//test
+//				for(i=0;i<64;i++){
+//					 Ep2Buffer[i] = i;
+//				}
+//				for(i=0;i<64;i++){
+//					 UserEp2Buf[i] = i;
+//				}
+//				FLAG = 0;
+//				Enp2IntIn();    //send message
+//				while(FLAG == 0); 
+				if(!isEqual(MOUSE_CODE))
+					HIDtestsend(0xff); //send 'error'
+				else
+					HIDtestsend(0x00); //send 'error'
 				break;
 		}
 	}

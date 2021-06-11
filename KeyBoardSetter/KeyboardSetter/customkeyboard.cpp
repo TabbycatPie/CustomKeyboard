@@ -286,6 +286,46 @@ bool CustomKeyboard::download(HIDCodeTable *table){
         return false;
     }
 }
+
+bool CustomKeyboard::testHardware()
+{
+    //open device
+    hid_device *my_device;
+    my_device = hid_open(vid,pid,nullptr);
+    if(my_device!=NULL){
+        qDebug() << "device opened.";
+        //opened
+        uchar test_frame[65]={0xff};
+        test_frame[0] = 0xff;
+        int res = hid_write(my_device, test_frame, 65);
+        if(res == -1){
+            qDebug() << "can not send test framed.";
+        }
+        else{
+            uchar test_receive[128] = {0x00};
+            qDebug() << "send test framed ok.";
+            int read_count =  hid_read(my_device,test_receive,128);
+            if(read_count == -1){
+                 qDebug() << "can not read.";
+            }
+            else{
+                qDebug() << "read from device. read_count =" << read_count;
+                QString tempstr = "";
+                for(int i =0 ;i<read_count;i++){
+                    tempstr += QString::number((int)test_receive[i])+ " ";
+                }
+                qDebug() << "test_receive = "+tempstr;
+            }
+        }
+
+    }
+    else{
+        qDebug() << "can not open device.";
+        return false;
+    }
+    hid_close(my_device);
+    return true;
+}
 QString CustomKeyboard::getLastError(){
     QString temp  = last_error;
     this->last_error = "";

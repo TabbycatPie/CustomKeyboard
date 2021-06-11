@@ -25,6 +25,7 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextBrowser>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QTreeView>
 #include <QtWidgets/QVBoxLayout>
@@ -80,6 +81,8 @@ public:
     QHBoxLayout *horizontalLayout_19;
     QLabel *label_3;
     QLabel *label_4;
+    QPushButton *btn_test_read;
+    QTextEdit *et_test;
     QWidget *tab_dualkeys;
     QWidget *layoutWidget_8;
     QHBoxLayout *horizontalLayout_11;
@@ -512,6 +515,12 @@ public:
 
         verticalLayout_10->addLayout(horizontalLayout_19);
 
+        btn_test_read = new QPushButton(tab_test);
+        btn_test_read->setObjectName(QString::fromUtf8("btn_test_read"));
+        btn_test_read->setGeometry(QRect(780, 30, 91, 30));
+        et_test = new QTextEdit(tab_test);
+        et_test->setObjectName(QString::fromUtf8("et_test"));
+        et_test->setGeometry(QRect(640, 30, 131, 31));
         tabWidget->addTab(tab_test, QString());
         layoutWidget->raise();
         layoutWidget_7->raise();
@@ -521,6 +530,8 @@ public:
         btn_download->raise();
         verticalLayoutWidget_2->raise();
         btn_setadd->raise();
+        btn_test_read->raise();
+        et_test->raise();
         tab_dualkeys = new QWidget();
         tab_dualkeys->setObjectName(QString::fromUtf8("tab_dualkeys"));
         layoutWidget_8 = new QWidget(tab_dualkeys);
@@ -1510,6 +1521,7 @@ public:
         label_10->setText(QCoreApplication::translate("MainWindow", "Media", nullptr));
         label_3->setText(QString());
         label_4->setText(QCoreApplication::translate("MainWindow", "Macro", nullptr));
+        btn_test_read->setText(QCoreApplication::translate("MainWindow", "Test", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_test), QCoreApplication::translate("MainWindow", "Test", nullptr));
         btn_dualkey1->setText(QCoreApplication::translate("MainWindow", "KEY1", nullptr));
         btn_dualkey2->setText(QCoreApplication::translate("MainWindow", "KEY2", nullptr));

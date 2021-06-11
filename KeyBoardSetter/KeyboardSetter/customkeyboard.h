@@ -31,6 +31,8 @@ public:
     bool checkMacroAddable(int cur_key_no);
     //download to device
     bool download(HIDCodeTable *table);
+    //test
+    bool testHardware();
     QString getLastError();
     ~CustomKeyboard();
 
