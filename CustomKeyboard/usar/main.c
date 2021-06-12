@@ -36,7 +36,7 @@ UINT8X LAST_MEDIA_KEY = 0xff;
 UINT8X CUR_MEDIA_KEY = 0xff;
 UINT8X CUR_MEDIA_LAG = 0x0a;
 
-UINT8X CUR_MOUSE_KEY = 0xff;
+UINT8X MOUSE_KEY_USEAGE = 0xff; //0xff mouse-key is used,0x00:mouse-key not used
 
 UINT8X LAST_MARCO_KEY = 0xff;
 UINT8X CUR_MARCO_KEY = 0xff;
@@ -50,9 +50,11 @@ void MarcoDelay(UINT8 time){
 }
 
 void HIDMousesend(){
-	FLAG = 0;
-	Enp3IntIn();    //send mouse event
-	while(FLAG == 0); 
+	if(MOUSE_KEY_USEAGE == 0xff){
+		FLAG = 0;
+		Enp3IntIn();    //if mouse key is set,then send mouse event
+		while(FLAG == 0); 
+	}
 }
 
 void HIDKeysend(){
@@ -606,6 +608,7 @@ void hadleReceive(){
 
 void initKeyValue(){
 	//read from data flash
+	UINT8 i=0;
 	UINT8 _temp[2];
 	ReadDataFlash(0,10,KEY_CODE);
 	ReadDataFlash(10,10,SP_KEY_CODE);
@@ -615,7 +618,17 @@ void initKeyValue(){
 	ReadDataFlash(27,10,MARCO_SPE_KEYCODE);
 	ReadDataFlash(37,10,MARCO_SPE_KEYINDX);
 	ReadDataFlash(47,40,MARCO_KEYCODE);
+  //if mouse key is used send mouse every time
 	ReadDataFlash(87,10,MOUSE_CODE);
+	for(i=0;i<10;i++){
+		if(MOUSE_CODE!=0x00){
+			MOUSE_KEY_USEAGE = 0xff;
+			break;
+		}
+		else{
+			MOUSE_KEY_USEAGE = 0x00;
+		}
+	}
 	ReadDataFlash(97,10,MEDIA_CODE);
 	ReadDataFlash(107,10,MARCO_DELAY);
 	ReadDataFlash(117,10,MARCO_DELAY_INDX);
