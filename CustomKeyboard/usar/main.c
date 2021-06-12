@@ -480,6 +480,18 @@ void setMarco(unsigned char hi,unsigned char lo){
         i++;
     }
 }
+void setMouseUseage(){
+	UINT8 i;
+	for(i=0;i<10;i++){
+		if(MOUSE_CODE[i]!=0x00){
+			MOUSE_KEY_USEAGE = 0xff;
+			break;
+		}
+		else{
+			MOUSE_KEY_USEAGE = 0x00;
+		}
+	}
+}
 
 UINT8 isEqual(UINT8 array[10]){
 	UINT8 temp[10]={0x00};
@@ -561,6 +573,7 @@ void hadleReceive(){
 					MOUSE_CODE[i] = Ep2Buffer[1+i];
 				}
 				WriteDataFlash(87,MOUSE_CODE,10);
+				setMouseUseage();
 				break;
 			case 0x09:
 				//set marco key
@@ -600,7 +613,11 @@ void hadleReceive(){
 				if(!isEqual(MOUSE_CODE))
 					HIDtestsend(0xff); //send 'error'
 				else
-					HIDtestsend(0x00); //send 'error'
+					HIDtestsend(0x00); //send 'ok'
+				if(MOUSE_KEY_USEAGE == 0xff)
+					HIDtestsend(0x00); //send 'ok'
+				else
+					HIDtestsend(0xff); //send 'error'
 				break;
 		}
 	}
@@ -608,7 +625,6 @@ void hadleReceive(){
 
 void initKeyValue(){
 	//read from data flash
-	UINT8 i=0;
 	UINT8 _temp[2];
 	ReadDataFlash(0,10,KEY_CODE);
 	ReadDataFlash(10,10,SP_KEY_CODE);
@@ -620,15 +636,7 @@ void initKeyValue(){
 	ReadDataFlash(47,40,MARCO_KEYCODE);
   //if mouse key is used send mouse every time
 	ReadDataFlash(87,10,MOUSE_CODE);
-	for(i=0;i<10;i++){
-		if(MOUSE_CODE!=0x00){
-			MOUSE_KEY_USEAGE = 0xff;
-			break;
-		}
-		else{
-			MOUSE_KEY_USEAGE = 0x00;
-		}
-	}
+	setMouseUseage();
 	ReadDataFlash(97,10,MEDIA_CODE);
 	ReadDataFlash(107,10,MARCO_DELAY);
 	ReadDataFlash(117,10,MARCO_DELAY_INDX);
