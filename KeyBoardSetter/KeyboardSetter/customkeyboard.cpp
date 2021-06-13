@@ -295,17 +295,24 @@ bool CustomKeyboard::testHardware()
     if(my_device!=NULL){
         qDebug() << "device opened.";
         //opened
-        uchar test_frame[65]={0xff};
-        test_frame[0] = 0xff;
+        uchar test_frame[65]={0x00};
+        //init array
+        for(int i=0;i<65;i++){
+            test_frame[i] = 0x05;
+        }
+        test_frame[0] = 0x00;
+        test_frame[1] = 0x0c;
         int res = hid_write(my_device, test_frame, 65);
         if(res == -1){
             qDebug() << "can not send test framed.";
         }
         else{
             uchar test_receive[128] = {0x00};
+            uchar test_receive2[128] = {0x00};
             qDebug() << "send test framed ok.";
             int read_count =  hid_read(my_device,test_receive,128);
-            if(read_count == -1){
+            int read_count2 =  hid_read_timeout(my_device,test_receive2,128,1000);
+            if(read_count == -1 || read_count2 == -1){
                  qDebug() << "can not read.";
             }
             else{
@@ -315,6 +322,13 @@ bool CustomKeyboard::testHardware()
                     tempstr += QString::number((int)test_receive[i])+ " ";
                 }
                 qDebug() << "test_receive = "+tempstr;
+
+                qDebug() << "read from device. read_count2 =" << read_count2;
+                QString tempstr2 = "";
+                for(int i =0 ;i<read_count2;i++){
+                    tempstr2 += QString::number((int)test_receive2[i])+ " ";
+                }
+                qDebug() << "test_receive2 = "+tempstr2;
             }
         }
 

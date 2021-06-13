@@ -599,25 +599,21 @@ void hadleReceive(){
 				}
 				WriteDataFlash(117,MARCO_DELAY_INDX,10);
 				break;
-			default:
+			case 0x0c:
 				//test
-//				for(i=0;i<64;i++){
-//					 Ep2Buffer[i] = i;
-//				}
-//				for(i=0;i<64;i++){
-//					 UserEp2Buf[i] = i;
-//				}
-//				FLAG = 0;
-//				Enp2IntIn();    //send message
-//				while(FLAG == 0); 
-				if(!isEqual(MOUSE_CODE))
-					HIDtestsend(0xff); //send 'error'
-				else
-					HIDtestsend(0x00); //send 'ok'
-				if(MOUSE_KEY_USEAGE == 0xff)
-					HIDtestsend(0x00); //send 'ok'
-				else
-					HIDtestsend(0xff); //send 'error'
+				for(i=0;i<64;i++){
+					 UserEp2Buf[i] = 0x55;
+				}
+				HIDsendMessage();
+					
+//				if(!isEqual(MOUSE_CODE))
+//					HIDtestsend(0xff); //send 'error'
+//				else
+//					HIDtestsend(0x00); //send 'ok'
+//				if(MOUSE_KEY_USEAGE == 0xff)
+//					HIDtestsend(0x00); //send 'ok'
+//				else
+//					HIDtestsend(0xff); //send 'error'
 				break;
 		}
 	}
