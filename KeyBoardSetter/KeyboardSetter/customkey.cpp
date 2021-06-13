@@ -175,4 +175,4 @@ CustomKey *CustomKey::fromJson(QJsonObject jsonobj,QPushButton *mapping_button)
 
 CustomKey::~CustomKey(){
 
-};
+}

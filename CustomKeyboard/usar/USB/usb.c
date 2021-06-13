@@ -413,6 +413,7 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB using 1                      /
             UEP4_T_LEN = 0;                                                    //预使用发送长度一定要清空
 			UEP4_CTRL ^= bUEP_T_TOG;                                           //端点4只能手动翻转
 			UEP4_CTRL = UEP4_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_NAK;          //默认应答NAK
+            FLAG = 1;
             break;
 		case UIS_TOKEN_IN | 3:        //endpoint 3# 端点批量上传
             UEP3_T_LEN = 0;           //预使用发送长度一定要清空
@@ -424,6 +425,7 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB using 1                      /
             UEP2_T_LEN = 0;           //预使用发送长度一定要清空
             UEP2_CTRL = UEP2_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_NAK;          //默认应答NAK
 			Endp2Busy = 0;
+            FLAG = 1;
             break;
 		
 		case UIS_TOKEN_OUT | 2:        //endpoint 2# 端点批量下传
@@ -437,6 +439,8 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB using 1                      /
 				UEP2_T_LEN = len;
 				UEP2_CTRL = UEP2_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_ACK;       // 允许上传
 				Endp2Rev = 1;
+                
+                FLAG = 1;
 			}
             break;
 			

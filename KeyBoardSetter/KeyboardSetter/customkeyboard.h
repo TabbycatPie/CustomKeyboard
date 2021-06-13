@@ -1,6 +1,7 @@
 #ifndef CUSTOMKEYBOARD_H
 #define CUSTOMKEYBOARD_H
 
+#include "hidapi.h"
 #include "hidcodetable.h"
 #include "customkey.h"
 #include <QObject>
@@ -50,6 +51,7 @@ private:
     uchar *spkey_mixcode;   //special key mix code
     QString name;           //keyboard Name
     QString last_error;
+    bool getACK(hid_device *opened_device);
 
 signals:
 

@@ -242,41 +242,42 @@ bool CustomKeyboard::download(HIDCodeTable *table){
         }
 
 
-
+        bool get_ack = false;
         //send setting frames to device
         int res1 = hid_write(my_device, frame_set_normal, 65);  // -1 for error
-        QThread::msleep(30);
+        get_ack = getACK(my_device);
         int res2 = hid_write(my_device, frame_set_sp, 65);      // -1 for error
-        QThread::msleep(30);
+        get_ack |= getACK(my_device);
         int res3 = hid_write(my_device,frame_set_macro_status,65);
-        QThread::msleep(30);
+        get_ack |= getACK(my_device);
         int res4 = hid_write(my_device,frame_set_macro_index,65);
-        QThread::msleep(30);
+        get_ack |= getACK(my_device);
         int res5 = hid_write(my_device,frame_set_macro_sp_key,65);
-        QThread::msleep(30);
+        get_ack |= getACK(my_device);
         int res6 = hid_write(my_device,frame_set_macro_spkey_index,65);
-        QThread::msleep(30);
+        get_ack |= getACK(my_device);
         int res8 = hid_write(my_device,frame_set_mouse,65);
-        QThread::msleep(30);
+        get_ack |= getACK(my_device);
         int res9 = hid_write(my_device,frame_set_media,65);
-        QThread::msleep(30);
+        get_ack |= getACK(my_device);
         int res10= hid_write(my_device,frame_set_delay,65);
-        QThread::msleep(30);
+        get_ack |= getACK(my_device);
         int res11= hid_write(my_device,frame_set_delay_index,65);
-        QThread::msleep(30);
+        get_ack |= getACK(my_device);
         int res7 = hid_write(my_device,frame_set_macro,65);
+        get_ack |= getACK(my_device);
 
         if(res1 != -1 && res2 != -1 && res3!= -1 && res4 != -1 && res5 != -1
                 && res6 != -1 && res7 != -1 && res8 != -1 && res9 !=-1 && res10 != -1
-                && res11!= -1)
+                && res11!= -1 && get_ack)
         {
-            qDebug() << "Sending Successfully!" << endl;
+            qDebug() << "Sending Successfully!";
             hid_close(my_device);
             return true;
         }else{
             last_error = "Data sending is failed!";
             QString text = QString::fromWCharArray(hid_error(my_device));
-            qDebug() << "Sending Failed! Error:"<< text << endl;
+            qDebug() << "Sending Failed! Error:"<< text;
             hid_close(my_device);
             return false;
         }
@@ -286,7 +287,32 @@ bool CustomKeyboard::download(HIDCodeTable *table){
         return false;
     }
 }
-
+bool CustomKeyboard::getACK(hid_device *opened_device)
+{
+    uchar feedback[64] = {0x00};
+    uchar ACK[64]      = {0x00};
+    int read_count =  hid_read(opened_device,feedback,64);
+    if(read_count < 0){
+        last_error = tr("Can not read feedback frame.");
+        return false;
+    }else{
+        //read ack
+        read_count =  hid_read_timeout(opened_device,ACK,64,500);
+        if(read_count < 0){
+            last_error = tr("Can not read ACK frame.");
+            return false;
+        }else{
+            //check ACK
+            if(ACK[0]==0x55 && ACK[1] == 0x55 && ACK[2] == 0x55){
+                qDebug() << "ACK correct.";
+                return true;
+            }else{
+                last_error =tr( "ACK not correct.");
+                return false;
+            }
+        }
+    }
+}
 bool CustomKeyboard::testHardware()
 {
     //open device
@@ -412,4 +438,8 @@ CustomKeyboard *CustomKeyboard::fromJson(QJsonObject jsonobj, QPushButton *(*map
     ckb->setKeyList(*ck_list);
     return ckb;
 }
+
+
+
+
 
