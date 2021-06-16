@@ -8,8 +8,8 @@ class ConfigSaver : public QObject
     Q_OBJECT
 public:
     explicit ConfigSaver(QObject *parent = nullptr);
-    bool saveConfig(QString name,QJsonObject obj);
-    bool readConfig(QString name,QJsonObject* obj);
+    bool saveConfig(QString filename,QJsonObject obj);
+    bool readConfig(QString filename,QJsonObject* obj);
     QString getLastError();
 private:
     QString default_path;
