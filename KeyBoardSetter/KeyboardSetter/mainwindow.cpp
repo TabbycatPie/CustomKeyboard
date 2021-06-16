@@ -67,7 +67,7 @@ MainWindow::MainWindow(QWidget *parent)
         //mouse
         ui->btn_mouseleft,ui->btn_mousemiddle,ui->btn_mouseright,
         //media
-        ui->btn_mmvd,ui->btn_mmvp,ui->btn_mmpp,ui->btn_mmls,ui->btn_mmns,
+        ui->btn_mmvd,ui->btn_mmvp,ui->btn_mmpp,ui->btn_mmls,ui->btn_mmns,ui->btn_mmmute,
         //f13-f24
         ui->btn_f13,ui->btn_f14,ui->btn_f15,ui->btn_f16,ui->btn_f17,ui->btn_f18,
         ui->btn_f19,ui->btn_f20,ui->btn_f21,ui->btn_f22,ui->btn_f23,ui->btn_f24

@@ -255,6 +255,7 @@ public:
     QVBoxLayout *verticalLayout_8;
     QToolButton *btn_mmvp;
     QToolButton *btn_mmvd;
+    QToolButton *btn_mmmute;
     QToolButton *btn_mmpp;
     QToolButton *btn_mmls;
     QToolButton *btn_mmns;
@@ -599,7 +600,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1000, 30));
+        menubar->setGeometry(QRect(0, 0, 1000, 22));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         MainWindow->setMenuBar(menubar);
@@ -1345,7 +1346,7 @@ public:
         groupBox->setGeometry(QRect(10, 10, 131, 191));
         verticalLayoutWidget_4 = new QWidget(groupBox);
         verticalLayoutWidget_4->setObjectName(QString::fromUtf8("verticalLayoutWidget_4"));
-        verticalLayoutWidget_4->setGeometry(QRect(8, 29, 121, 156));
+        verticalLayoutWidget_4->setGeometry(QRect(8, 29, 121, 151));
         verticalLayout_8 = new QVBoxLayout(verticalLayoutWidget_4);
         verticalLayout_8->setObjectName(QString::fromUtf8("verticalLayout_8"));
         verticalLayout_8->setContentsMargins(0, 0, 0, 0);
@@ -1358,6 +1359,11 @@ public:
         btn_mmvd->setObjectName(QString::fromUtf8("btn_mmvd"));
 
         verticalLayout_8->addWidget(btn_mmvd);
+
+        btn_mmmute = new QToolButton(verticalLayoutWidget_4);
+        btn_mmmute->setObjectName(QString::fromUtf8("btn_mmmute"));
+
+        verticalLayout_8->addWidget(btn_mmmute);
 
         btn_mmpp = new QToolButton(verticalLayoutWidget_4);
         btn_mmpp->setObjectName(QString::fromUtf8("btn_mmpp"));
@@ -1484,7 +1490,7 @@ public:
         retranslateUi(MainWindow);
 
         tabWidget->setCurrentIndex(0);
-        tabNormalKey->setCurrentIndex(0);
+        tabNormalKey->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1647,6 +1653,7 @@ public:
         groupBox->setTitle(QCoreApplication::translate("MainWindow", "MultiMedia", nullptr));
         btn_mmvp->setText(QCoreApplication::translate("MainWindow", "VolumeUp", nullptr));
         btn_mmvd->setText(QCoreApplication::translate("MainWindow", "VolumeDown", nullptr));
+        btn_mmmute->setText(QCoreApplication::translate("MainWindow", "Mute", nullptr));
         btn_mmpp->setText(QCoreApplication::translate("MainWindow", "Play/Pause ", nullptr));
         btn_mmls->setText(QCoreApplication::translate("MainWindow", "LastSong", nullptr));
         btn_mmns->setText(QCoreApplication::translate("MainWindow", "NextSong", nullptr));
