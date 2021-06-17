@@ -21,7 +21,7 @@ QJsonObject UserConfig::toJsonObj()
 {
     QJsonObject temp = QJsonObject();
     //generate json
-    temp.insert("user_lan",this->language);
+    temp.insert("user_language",this->language);
     return temp;
 }
 

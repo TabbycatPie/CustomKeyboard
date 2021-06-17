@@ -5,6 +5,7 @@
 #include "keyvalue.h"
 #include "hidapi.h"
 #include "configsaver.h"
+#include "userconfig.h"
 #include <QDebug>
 #include <QTimer>
 #include <QStandardItem>
@@ -216,14 +217,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //inti translator
     translator = new QTranslator();
-    //get locale
-    QLocale sys_locale = QLocale::c();
-    QString name = QLocale::system().name();
-    int country_code = (int)sys_locale.country();
-    if(country_code == QLocale::China)
-        changeLanguage("cn");
-    else
-        changeLanguage("en");
+
 
 
 }
@@ -274,10 +268,13 @@ void MainWindow::changeLanguage(QString language)
         ui->actionChinese->setChecked(false);
         ui->actionEnglish->setChecked(true);
         qDebug() << "Using english as UI language.";
-
     }
     //release
     //delete translator;
+    UserConfig *userconfig = new UserConfig("english");
+     userconfig->toJsonObj();
+
+
 }
 
 void MainWindow::setKey(int key_no){
@@ -513,7 +510,6 @@ void MainWindow::softKeyPressed(int i){
             addKeyValue();
         }
     }
-
     updateUI();
 }
 // update ui
@@ -546,8 +542,6 @@ void MainWindow::updateUI(){
     if(cur_mouse!=0){
         temp = table.getKeyString(cur_mouse);
     }
-
-
 
     //set selector color
     if(cur_edit_key_no != -1){
