@@ -23,3 +23,6 @@ KeyBoardSetter/build-KeyboardSetter-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/usersos
 *.Administrator
 *.__i
 KeyBoardSetter/build-KeyboardSetter-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/usersadminappdatalocal*
+*.7z
+*.ini
+KeyBoardSetter/build-KeyboardSetter-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/debug/moc*
