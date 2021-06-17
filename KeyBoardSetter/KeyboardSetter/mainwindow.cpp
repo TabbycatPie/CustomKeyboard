@@ -217,9 +217,20 @@ MainWindow::MainWindow(QWidget *parent)
 
     //inti translator
     translator = new QTranslator();
-
-
-
+    //load from config
+    ConfigSaver cs;
+    QString filename =  QCoreApplication::applicationDirPath() + "//usercondif.ini";
+    QJsonObject *jsonobj = new QJsonObject();
+    if(!cs.readConfig(filename,jsonobj))
+        qDebug() << "Can not read userconfig.ini";
+    UserConfig *uc = UserConfig::fromJson(*jsonobj);
+    if(uc->getLanguage()=="english"){
+        changeLanguage("en");
+    }else{
+        changeLanguage("cn");
+    }
+    //release
+    delete jsonobj;
 }
 
 //----------SLOTS
@@ -249,7 +260,7 @@ void MainWindow::switchKeyboard(int keyboard_no){
 ***************************************************/
 void MainWindow::changeLanguage(QString language)
 {
-
+    QString flag = "english";
     if(language=="cn"){
         QString path = QCoreApplication::applicationDirPath() + "//trans_zh_CN.qm";
         translator->load(path);
@@ -257,6 +268,7 @@ void MainWindow::changeLanguage(QString language)
             ui->retranslateUi(this);   //refresh ui
             ui->actionChinese->setChecked(true);
             ui->actionEnglish->setChecked(false);
+            flag = "chinese";
         }
         else{
             qDebug() << "Can not load UI language.";
@@ -267,14 +279,17 @@ void MainWindow::changeLanguage(QString language)
         ui->retranslateUi(this);    //refresh ui
         ui->actionChinese->setChecked(false);
         ui->actionEnglish->setChecked(true);
+        flag = "english";
         qDebug() << "Using english as UI language.";
     }
-    //release
-    //delete translator;
-    UserConfig *userconfig = new UserConfig("english");
-    asd  userconfig->toJsonObj();
 
-
+    //save user language information to file
+    UserConfig *userconfig = new UserConfig(flag);
+    ConfigSaver cs;
+    QString filename =  QCoreApplication::applicationDirPath() + "//usercondif.ini";
+    if(!cs.saveConfig(filename,userconfig->toJsonObj()))
+        qDebug()  << cs.getLastError();
+    delete userconfig;
 }
 
 void MainWindow::setKey(int key_no){

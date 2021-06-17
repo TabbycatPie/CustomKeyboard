@@ -18,6 +18,16 @@
 <context>
     <name>CustomKeyboard</name>
     <message>
+        <location filename="customkeyboard.cpp" line="278"/>
+        <source>Data sending is failed!</source>
+        <translation>数据发送过程中错误!</translation>
+    </message>
+    <message>
+        <location filename="customkeyboard.cpp" line="286"/>
+        <source>Can not open device!</source>
+        <translation>设备未找到！</translation>
+    </message>
+    <message>
         <location filename="customkeyboard.cpp" line="296"/>
         <source>Can not read feedback frame.</source>
         <translation>无法获取校验帧.</translation>
@@ -851,119 +861,119 @@
         <translation>打开设备</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="212"/>
+        <location filename="mainwindow.cpp" line="216"/>
         <source>Click this to add single Crtl,Alt,Shift to key value</source>
         <translation>点击此键可将Ctrl、Alt、Shift、Win单独设置</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="271"/>
+        <location filename="mainwindow.cpp" line="297"/>
         <source>Current Keyboard</source>
         <translation>当前键盘</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="271"/>
+        <location filename="mainwindow.cpp" line="297"/>
         <source>Current Seletion</source>
         <translation>当前选择</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="310"/>
-        <location filename="mainwindow.cpp" line="330"/>
-        <location filename="mainwindow.cpp" line="346"/>
-        <location filename="mainwindow.cpp" line="376"/>
-        <location filename="mainwindow.cpp" line="590"/>
-        <location filename="mainwindow.cpp" line="598"/>
-        <location filename="mainwindow.cpp" line="627"/>
-        <location filename="mainwindow.cpp" line="646"/>
-        <location filename="mainwindow.cpp" line="665"/>
-        <location filename="mainwindow.cpp" line="696"/>
+        <location filename="mainwindow.cpp" line="336"/>
+        <location filename="mainwindow.cpp" line="356"/>
+        <location filename="mainwindow.cpp" line="372"/>
+        <location filename="mainwindow.cpp" line="402"/>
+        <location filename="mainwindow.cpp" line="613"/>
+        <location filename="mainwindow.cpp" line="621"/>
+        <location filename="mainwindow.cpp" line="650"/>
+        <location filename="mainwindow.cpp" line="669"/>
+        <location filename="mainwindow.cpp" line="688"/>
+        <location filename="mainwindow.cpp" line="719"/>
         <source>Notice</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="311"/>
+        <location filename="mainwindow.cpp" line="337"/>
         <source>Save config to file?</source>
         <translation>你确定要保存配置文件吗？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="316"/>
+        <location filename="mainwindow.cpp" line="342"/>
         <source>Save File</source>
         <translation>文件保存</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="316"/>
-        <location filename="mainwindow.cpp" line="352"/>
+        <location filename="mainwindow.cpp" line="342"/>
+        <location filename="mainwindow.cpp" line="378"/>
         <source>zddConfig (*.zdd)</source>
-        <translation>zdd键盘配置文件</translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="324"/>
+        <location filename="mainwindow.cpp" line="350"/>
         <source>Can not save </source>
         <translation>无法保存 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="331"/>
+        <location filename="mainwindow.cpp" line="357"/>
         <source>Saved Successfully!</source>
         <translation>保存成功!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="347"/>
+        <location filename="mainwindow.cpp" line="373"/>
         <source>Load config?</source>
         <translation>你确定要打开配置文件吗？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="352"/>
+        <location filename="mainwindow.cpp" line="378"/>
         <source>Open file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="361"/>
+        <location filename="mainwindow.cpp" line="387"/>
         <source>Can not load file </source>
         <translation>无法打开文件 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="377"/>
+        <location filename="mainwindow.cpp" line="403"/>
         <source>Loaded Successfully!</source>
         <translation>已经成功加载配置！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="591"/>
+        <location filename="mainwindow.cpp" line="614"/>
         <source>Are you sure to download config to your device:</source>
         <translation>确定下载到设备：</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="599"/>
+        <location filename="mainwindow.cpp" line="622"/>
         <source>Download finished!</source>
         <translation>下载完成！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="323"/>
-        <location filename="mainwindow.cpp" line="360"/>
-        <location filename="mainwindow.cpp" line="604"/>
+        <location filename="mainwindow.cpp" line="349"/>
+        <location filename="mainwindow.cpp" line="386"/>
+        <location filename="mainwindow.cpp" line="627"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="605"/>
+        <location filename="mainwindow.cpp" line="628"/>
         <source>Download Error :</source>
         <translation>下载错误：</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="628"/>
+        <location filename="mainwindow.cpp" line="651"/>
         <source>You can NOT add mouse event to Macro!</source>
         <translation>无法将鼠标键添加到宏！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="647"/>
+        <location filename="mainwindow.cpp" line="670"/>
         <source>You can NOT add meida key to Macro!</source>
         <translation>无法将多媒体键添加到宏！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="666"/>
+        <location filename="mainwindow.cpp" line="689"/>
         <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
         <translation>无法在宏键中添加鼠标或多媒体键值！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="697"/>
+        <location filename="mainwindow.cpp" line="720"/>
         <source>Can NOT add key macro : hardware limitation!</source>
         <translation>无法添加更多的宏键值：已达到硬件限制！</translation>
     </message>

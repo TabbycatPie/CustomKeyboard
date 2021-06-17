@@ -275,7 +275,7 @@ bool CustomKeyboard::download(HIDCodeTable *table){
             hid_close(my_device);
             return true;
         }else{
-            last_error = "Data sending is failed!";
+            last_error = tr("Data sending is failed!");
             QString text = QString::fromWCharArray(hid_error(my_device));
             qDebug() << "Sending Failed! Error:"<< text;
             hid_close(my_device);
@@ -283,7 +283,7 @@ bool CustomKeyboard::download(HIDCodeTable *table){
         }
     }
     else{
-        last_error = "Can not open device!";
+        last_error = tr("Can not open device!");
         return false;
     }
 }

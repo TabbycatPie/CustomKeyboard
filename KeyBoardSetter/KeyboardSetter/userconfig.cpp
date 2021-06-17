@@ -27,6 +27,6 @@ QJsonObject UserConfig::toJsonObj()
 
 UserConfig *UserConfig::fromJson(QJsonObject jsonobj)
 {
-    UserConfig *new_config = new UserConfig(jsonobj.value("user_lan").toString());
+    UserConfig *new_config = new UserConfig(jsonobj.value("user_language").toString());
     return new_config;
 }
