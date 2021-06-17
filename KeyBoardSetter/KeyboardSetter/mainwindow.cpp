@@ -11,8 +11,8 @@
 #include <QMessageBox>
 #include <qjsondocument.h>
 #include <QFileDialog>
+#include <qtranslator.h>
 
-#define DEBUG 1
 #define TYPENUM 3
 #define KEYNUM 10
 
@@ -38,6 +38,9 @@ int cur_edit_key_no = -1;
 //timer for long press
 QTimer *press_timer = new QTimer;
 //delay 500ms and jump to funtion setKey()
+
+//Translator
+QTranslator *translator;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -94,9 +97,7 @@ MainWindow::MainWindow(QWidget *parent)
     ckb[2] = new CustomKeyboard("QuadraKey",4,0x2019,0x5131,50,10,virtual_qua_keys);//quadra-key keyboard
 
     int total = (int)(sizeof(keyboard_list)/sizeof(QToolButton*));
-    #ifdef DEBUG
     qDebug() << "Total key number is :" + QString::number(total)<<endl;
-    #endif
     //CONNECT FUNCTIONS
     //connect soft-keyboard toolbuttons
     for(int i = 1;i<total+1;i++){
@@ -116,8 +117,32 @@ MainWindow::MainWindow(QWidget *parent)
         switchKeyboard(ui->tabWidget->currentIndex());
         ui->dockKeyboard->hide();
     });
+
     //connect menu bar action
     connect(ui->actionExit,&QAction::triggered,this,&MainWindow::close);
+    connect(ui->actionSave,&QAction::triggered,this,[=]{
+        saveConfigToFile();
+    });
+    connect(ui->actionLoad,&QAction::triggered,this,[=]{
+        loadConfigFromFile();
+    });
+    connect(ui->actionTest_Device,&QAction::triggered,this,[=]{
+        ckb[0]->testHardware();
+    });
+    connect(ui->actionEnglish,&QAction::triggered,this,[=]{
+        //set UI to english
+        ui->actionChinese->setChecked(false);
+        changeLanguage("en");
+    });
+    connect(ui->actionChinese,&QAction::triggered,this,[=]{
+        //set UI to english
+        ui->actionEnglish->setChecked(false);
+        changeLanguage("cn");
+    });
+    //
+
+
+    //connect button
     connect(ui->btn_setcancel,&QPushButton::clicked,ui->dockKeyboard,[=]{
         //clear current stat
         cur_key_sp.clear();
@@ -172,12 +197,6 @@ MainWindow::MainWindow(QWidget *parent)
         saveConfigToFile();
     });
 
-    //test button
-    connect(ui->btn_test_read,&QPushButton::clicked,this,[=]{
-        ui->et_test->setFocus();
-        ckb[0]->testHardware();
-    });
-
     //init UI
     //init et_delay
     QRegExp rx("[12]?\\d\\.[0-9]");
@@ -192,8 +211,20 @@ MainWindow::MainWindow(QWidget *parent)
     //init window
     this->resize(1000,370);
 
-
+    //set tips
     ui->btn_setadd->setToolTip(tr("Click this to add single Crtl,Alt,Shift to key value"));
+
+    //inti translator
+    translator = new QTranslator();
+    //get locale
+    QLocale sys_locale = QLocale::c();
+    QString name = QLocale::system().name();
+    int country_code = (int)sys_locale.country();
+    if(country_code == QLocale::China)
+        changeLanguage("cn");
+    else
+        changeLanguage("en");
+
 
 }
 
@@ -214,6 +245,41 @@ void MainWindow::switchKeyboard(int keyboard_no){
     cur_edit_key_no = 0;
     updateUI();
 }
+/** ***********************************************
+*
+* Set UI language in real time
+* @author   oscar
+* @date     2021/06/17
+* @param   QString language: "cn" for chinese , "en" for english
+*
+***************************************************/
+void MainWindow::changeLanguage(QString language)
+{
+
+    if(language=="cn"){
+        QString path = QCoreApplication::applicationDirPath() + "//trans_zh_CN.qm";
+        translator->load(path);
+        if(qApp->installTranslator(translator)){
+            ui->retranslateUi(this);   //refresh ui
+            ui->actionChinese->setChecked(true);
+            ui->actionEnglish->setChecked(false);
+        }
+        else{
+            qDebug() << "Can not load UI language.";
+        }
+    }else if(language=="en"){
+        translator->load("");
+        qApp->installTranslator(translator);
+        ui->retranslateUi(this);    //refresh ui
+        ui->actionChinese->setChecked(false);
+        ui->actionEnglish->setChecked(true);
+        qDebug() << "Using english as UI language.";
+
+    }
+    //release
+    //delete translator;
+}
+
 void MainWindow::setKey(int key_no){
     cur_edit_key_no = key_no;
     ui->dockKeyboard->setWindowTitle(tr("Current Keyboard")+":"+ckb[cur_keyboard_no]->getName()+"   "+tr("Current Seletion")+":KEY"+QString::number(key_no+1));
@@ -689,6 +755,7 @@ bool MainWindow::deleteKeyValue(){
 }
 MainWindow::~MainWindow()
 {
+    delete translator;
     delete ui;
 }
 

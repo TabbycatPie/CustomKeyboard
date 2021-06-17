@@ -25,7 +25,6 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextBrowser>
-#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QTreeView>
 #include <QtWidgets/QVBoxLayout>
@@ -38,6 +37,11 @@ class Ui_MainWindow
 public:
     QAction *actionExit;
     QAction *actionOpen_Device;
+    QAction *actionSave;
+    QAction *actionLoad;
+    QAction *actionEnglish;
+    QAction *actionChinese;
+    QAction *actionTest_Device;
     QWidget *centralwidget;
     QTabWidget *tabWidget;
     QWidget *tab_test;
@@ -81,8 +85,6 @@ public:
     QHBoxLayout *horizontalLayout_19;
     QLabel *label_3;
     QLabel *label_4;
-    QPushButton *btn_test_read;
-    QTextEdit *et_test;
     QWidget *tab_dualkeys;
     QWidget *layoutWidget_8;
     QHBoxLayout *horizontalLayout_11;
@@ -100,6 +102,9 @@ public:
     QTreeView *treeView;
     QMenuBar *menubar;
     QMenu *menuFile;
+    QMenu *menuSetting;
+    QMenu *menuLanguage;
+    QMenu *menuAdvance;
     QStatusBar *statusbar;
     QDockWidget *dockKeyboard;
     QWidget *dockWidgetContents;
@@ -297,6 +302,18 @@ public:
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
         actionOpen_Device = new QAction(MainWindow);
         actionOpen_Device->setObjectName(QString::fromUtf8("actionOpen_Device"));
+        actionSave = new QAction(MainWindow);
+        actionSave->setObjectName(QString::fromUtf8("actionSave"));
+        actionLoad = new QAction(MainWindow);
+        actionLoad->setObjectName(QString::fromUtf8("actionLoad"));
+        actionEnglish = new QAction(MainWindow);
+        actionEnglish->setObjectName(QString::fromUtf8("actionEnglish"));
+        actionEnglish->setCheckable(true);
+        actionChinese = new QAction(MainWindow);
+        actionChinese->setObjectName(QString::fromUtf8("actionChinese"));
+        actionChinese->setCheckable(true);
+        actionTest_Device = new QAction(MainWindow);
+        actionTest_Device->setObjectName(QString::fromUtf8("actionTest_Device"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         tabWidget = new QTabWidget(centralwidget);
@@ -516,12 +533,6 @@ public:
 
         verticalLayout_10->addLayout(horizontalLayout_19);
 
-        btn_test_read = new QPushButton(tab_test);
-        btn_test_read->setObjectName(QString::fromUtf8("btn_test_read"));
-        btn_test_read->setGeometry(QRect(780, 30, 91, 30));
-        et_test = new QTextEdit(tab_test);
-        et_test->setObjectName(QString::fromUtf8("et_test"));
-        et_test->setGeometry(QRect(640, 30, 131, 31));
         tabWidget->addTab(tab_test, QString());
         layoutWidget->raise();
         layoutWidget_7->raise();
@@ -531,8 +542,6 @@ public:
         btn_download->raise();
         verticalLayoutWidget_2->raise();
         btn_setadd->raise();
-        btn_test_read->raise();
-        et_test->raise();
         tab_dualkeys = new QWidget();
         tab_dualkeys->setObjectName(QString::fromUtf8("tab_dualkeys"));
         layoutWidget_8 = new QWidget(tab_dualkeys);
@@ -603,6 +612,12 @@ public:
         menubar->setGeometry(QRect(0, 0, 1000, 22));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
+        menuSetting = new QMenu(menubar);
+        menuSetting->setObjectName(QString::fromUtf8("menuSetting"));
+        menuLanguage = new QMenu(menuSetting);
+        menuLanguage->setObjectName(QString::fromUtf8("menuLanguage"));
+        menuAdvance = new QMenu(menubar);
+        menuAdvance->setObjectName(QString::fromUtf8("menuAdvance"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -1482,10 +1497,17 @@ public:
         MainWindow->addDockWidget(Qt::BottomDockWidgetArea, dockKeyboard);
 
         menubar->addAction(menuFile->menuAction());
+        menubar->addAction(menuSetting->menuAction());
+        menubar->addAction(menuAdvance->menuAction());
         menuFile->addSeparator();
-        menuFile->addAction(actionOpen_Device);
+        menuFile->addAction(actionSave);
+        menuFile->addAction(actionLoad);
         menuFile->addSeparator();
         menuFile->addAction(actionExit);
+        menuSetting->addAction(menuLanguage->menuAction());
+        menuLanguage->addAction(actionEnglish);
+        menuLanguage->addAction(actionChinese);
+        menuAdvance->addAction(actionTest_Device);
 
         retranslateUi(MainWindow);
 
@@ -1501,6 +1523,11 @@ public:
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "ZDDKeyboardSetter", nullptr));
         actionExit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
         actionOpen_Device->setText(QCoreApplication::translate("MainWindow", "Open Device", nullptr));
+        actionSave->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
+        actionLoad->setText(QCoreApplication::translate("MainWindow", "Load", nullptr));
+        actionEnglish->setText(QCoreApplication::translate("MainWindow", "English", nullptr));
+        actionChinese->setText(QCoreApplication::translate("MainWindow", "Chinese", nullptr));
+        actionTest_Device->setText(QCoreApplication::translate("MainWindow", "Test Device", nullptr));
         btn_testkey1->setText(QCoreApplication::translate("MainWindow", "KEY1", nullptr));
         btn_testkey2->setText(QCoreApplication::translate("MainWindow", "KEY2", nullptr));
         btn_testkey3->setText(QCoreApplication::translate("MainWindow", "KEY3", nullptr));
@@ -1527,7 +1554,6 @@ public:
         label_10->setText(QCoreApplication::translate("MainWindow", "Media", nullptr));
         label_3->setText(QString());
         label_4->setText(QCoreApplication::translate("MainWindow", "Macro", nullptr));
-        btn_test_read->setText(QCoreApplication::translate("MainWindow", "Test", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_test), QCoreApplication::translate("MainWindow", "Test", nullptr));
         btn_dualkey1->setText(QCoreApplication::translate("MainWindow", "KEY1", nullptr));
         btn_dualkey2->setText(QCoreApplication::translate("MainWindow", "KEY2", nullptr));
@@ -1538,6 +1564,9 @@ public:
         btn_quakey2->setText(QCoreApplication::translate("MainWindow", "KEY2", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_quakeys), QCoreApplication::translate("MainWindow", "QuaKey", nullptr));
         menuFile->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
+        menuSetting->setTitle(QCoreApplication::translate("MainWindow", "Option", nullptr));
+        menuLanguage->setTitle(QCoreApplication::translate("MainWindow", "Language", nullptr));
+        menuAdvance->setTitle(QCoreApplication::translate("MainWindow", "Advance", nullptr));
         btn_esc->setText(QCoreApplication::translate("MainWindow", "Esc", nullptr));
         btn_f1->setText(QCoreApplication::translate("MainWindow", "F1", nullptr));
         btn_f2->setText(QCoreApplication::translate("MainWindow", "F2", nullptr));

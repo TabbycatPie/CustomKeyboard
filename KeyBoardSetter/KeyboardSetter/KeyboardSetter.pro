@@ -22,7 +22,8 @@ SOURCES += \
     hidcodetable.cpp \
     keyvalue.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    userconfig.cpp
 
 HEADERS += \
     configsaver.h \
@@ -31,7 +32,8 @@ HEADERS += \
     hidapi.h \
     hidcodetable.h \
     keyvalue.h \
-    mainwindow.h
+    mainwindow.h \
+    userconfig.h
 
 FORMS += \
     mainwindow.ui

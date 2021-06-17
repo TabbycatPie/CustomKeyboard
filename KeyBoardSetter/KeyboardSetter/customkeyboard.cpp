@@ -318,6 +318,7 @@ bool CustomKeyboard::testHardware()
     //open device
     hid_device *my_device;
     my_device = hid_open(vid,pid,nullptr);
+    bool is_ok = false;
     if(my_device!=NULL){
         qDebug() << "device opened.";
         //opened
@@ -340,6 +341,7 @@ bool CustomKeyboard::testHardware()
             int read_count2 =  hid_read_timeout(my_device,test_receive2,128,1000);
             if(read_count == -1 || read_count2 == -1){
                  qDebug() << "can not read.";
+                 //failed
             }
             else{
                 qDebug() << "read from device. read_count =" << read_count;
@@ -355,6 +357,7 @@ bool CustomKeyboard::testHardware()
                     tempstr2 += QString::number((int)test_receive2[i])+ " ";
                 }
                 qDebug() << "test_receive2 = "+tempstr2;
+                return true;
             }
         }
 
@@ -364,7 +367,7 @@ bool CustomKeyboard::testHardware()
         return false;
     }
     hid_close(my_device);
-    return true;
+    return is_ok;
 }
 QString CustomKeyboard::getLastError(){
     QString temp  = last_error;

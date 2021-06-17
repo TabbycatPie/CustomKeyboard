@@ -2,6 +2,38 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>ConfigSaver</name>
+    <message>
+        <location filename="configsaver.cpp" line="21"/>
+        <location filename="configsaver.cpp" line="38"/>
+        <source>Can not open file.</source>
+        <translation>无法打开文件.</translation>
+    </message>
+    <message>
+        <location filename="configsaver.cpp" line="50"/>
+        <source>Json parse error,File is broken!</source>
+        <translation>Json转换错误,文件损坏！</translation>
+    </message>
+</context>
+<context>
+    <name>CustomKeyboard</name>
+    <message>
+        <location filename="customkeyboard.cpp" line="296"/>
+        <source>Can not read feedback frame.</source>
+        <translation>无法获取校验帧.</translation>
+    </message>
+    <message>
+        <location filename="customkeyboard.cpp" line="302"/>
+        <source>Can not read ACK frame.</source>
+        <translation>无法读取ACK帧.</translation>
+    </message>
+    <message>
+        <location filename="customkeyboard.cpp" line="310"/>
+        <source>ACK not correct.</source>
+        <translation>ACK帧不正确.</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>MainWindow</source>
@@ -96,8 +128,8 @@
         <translation>取消设置</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="246"/>
-        <location filename="mainwindow.ui" line="1756"/>
+        <location filename="mainwindow.ui" line="680"/>
+        <location filename="mainwindow.ui" line="1778"/>
         <source>Advance</source>
         <translation>高级</translation>
     </message>
@@ -112,14 +144,25 @@
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="256"/>
         <source>Commit</source>
-        <translation>提交</translation>
+        <translation type="vanished">提交</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="29"/>
         <source>ZDDKeyboardSetter</source>
         <translation>ZDD键盘设置器</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="246"/>
+        <location filename="mainwindow.ui" line="2074"/>
+        <source>Save</source>
+        <translation>保存配置</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="256"/>
+        <location filename="mainwindow.ui" line="2079"/>
+        <source>Load</source>
+        <translation>加载配置</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="358"/>
@@ -142,483 +185,508 @@
         <translation>宏</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="713"/>
+        <location filename="mainwindow.ui" line="667"/>
+        <source>Option</source>
+        <translation>选项</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="671"/>
+        <source>Language</source>
+        <translation>语言(Language)</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="735"/>
         <source>Key Board</source>
         <translation>键盘按键</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="738"/>
+        <location filename="mainwindow.ui" line="760"/>
         <source>Esc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="745"/>
+        <location filename="mainwindow.ui" line="767"/>
         <source>F1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="752"/>
+        <location filename="mainwindow.ui" line="774"/>
         <source>F2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="759"/>
+        <location filename="mainwindow.ui" line="781"/>
         <source>F3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="766"/>
+        <location filename="mainwindow.ui" line="788"/>
         <source>F4</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="773"/>
+        <location filename="mainwindow.ui" line="795"/>
         <source>F5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="780"/>
+        <location filename="mainwindow.ui" line="802"/>
         <source>F6</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="787"/>
+        <location filename="mainwindow.ui" line="809"/>
         <source>F7</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="794"/>
+        <location filename="mainwindow.ui" line="816"/>
         <source>F8</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="801"/>
+        <location filename="mainwindow.ui" line="823"/>
         <source>F9</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="808"/>
+        <location filename="mainwindow.ui" line="830"/>
         <source>F10</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="815"/>
+        <location filename="mainwindow.ui" line="837"/>
         <source>F11</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="822"/>
+        <location filename="mainwindow.ui" line="844"/>
         <source>F12</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="833"/>
+        <location filename="mainwindow.ui" line="855"/>
         <source>·</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="840"/>
-        <location filename="mainwindow.ui" line="1534"/>
+        <location filename="mainwindow.ui" line="862"/>
+        <location filename="mainwindow.ui" line="1556"/>
         <source>1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="847"/>
-        <location filename="mainwindow.ui" line="1541"/>
+        <location filename="mainwindow.ui" line="869"/>
+        <location filename="mainwindow.ui" line="1563"/>
         <source>2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="854"/>
-        <location filename="mainwindow.ui" line="1548"/>
+        <location filename="mainwindow.ui" line="876"/>
+        <location filename="mainwindow.ui" line="1570"/>
         <source>3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="861"/>
-        <location filename="mainwindow.ui" line="1482"/>
+        <location filename="mainwindow.ui" line="883"/>
+        <location filename="mainwindow.ui" line="1504"/>
         <source>4</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="868"/>
-        <location filename="mainwindow.ui" line="1489"/>
+        <location filename="mainwindow.ui" line="890"/>
+        <location filename="mainwindow.ui" line="1511"/>
         <source>5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="875"/>
-        <location filename="mainwindow.ui" line="1496"/>
+        <location filename="mainwindow.ui" line="897"/>
+        <location filename="mainwindow.ui" line="1518"/>
         <source>6</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="882"/>
-        <location filename="mainwindow.ui" line="1457"/>
+        <location filename="mainwindow.ui" line="904"/>
+        <location filename="mainwindow.ui" line="1479"/>
         <source>7</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="889"/>
-        <location filename="mainwindow.ui" line="1464"/>
+        <location filename="mainwindow.ui" line="911"/>
+        <location filename="mainwindow.ui" line="1486"/>
         <source>8</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="896"/>
-        <location filename="mainwindow.ui" line="1471"/>
+        <location filename="mainwindow.ui" line="918"/>
+        <location filename="mainwindow.ui" line="1493"/>
         <source>9</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="903"/>
+        <location filename="mainwindow.ui" line="925"/>
         <source>0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="910"/>
+        <location filename="mainwindow.ui" line="932"/>
         <source>_</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="917"/>
-        <location filename="mainwindow.ui" line="1519"/>
-        <location filename="mainwindow.ui" line="1885"/>
+        <location filename="mainwindow.ui" line="939"/>
+        <location filename="mainwindow.ui" line="1541"/>
+        <location filename="mainwindow.ui" line="1914"/>
         <source>+</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="924"/>
+        <location filename="mainwindow.ui" line="946"/>
         <source>Backspace</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="938"/>
+        <location filename="mainwindow.ui" line="960"/>
         <source>Tab</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="945"/>
+        <location filename="mainwindow.ui" line="967"/>
         <source>Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="952"/>
+        <location filename="mainwindow.ui" line="974"/>
         <source>W</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="959"/>
+        <location filename="mainwindow.ui" line="981"/>
         <source>E</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="966"/>
+        <location filename="mainwindow.ui" line="988"/>
         <source>R</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="973"/>
+        <location filename="mainwindow.ui" line="995"/>
         <source>T</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="980"/>
+        <location filename="mainwindow.ui" line="1002"/>
         <source>Y</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="987"/>
+        <location filename="mainwindow.ui" line="1009"/>
         <source>U</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="994"/>
+        <location filename="mainwindow.ui" line="1016"/>
         <source>I</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1001"/>
+        <location filename="mainwindow.ui" line="1023"/>
         <source>O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1008"/>
+        <location filename="mainwindow.ui" line="1030"/>
         <source>P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1015"/>
+        <location filename="mainwindow.ui" line="1037"/>
         <source>[</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1022"/>
+        <location filename="mainwindow.ui" line="1044"/>
         <source>]</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1029"/>
+        <location filename="mainwindow.ui" line="1051"/>
         <source>\</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1040"/>
+        <location filename="mainwindow.ui" line="1062"/>
         <source>Caps </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1047"/>
+        <location filename="mainwindow.ui" line="1069"/>
         <source>A</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1054"/>
+        <location filename="mainwindow.ui" line="1076"/>
         <source>S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1061"/>
+        <location filename="mainwindow.ui" line="1083"/>
         <source>D</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1068"/>
+        <location filename="mainwindow.ui" line="1090"/>
         <source>F</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1075"/>
+        <location filename="mainwindow.ui" line="1097"/>
         <source>G</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1082"/>
+        <location filename="mainwindow.ui" line="1104"/>
         <source>H</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1089"/>
+        <location filename="mainwindow.ui" line="1111"/>
         <source>J</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1096"/>
+        <location filename="mainwindow.ui" line="1118"/>
         <source>K</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1103"/>
+        <location filename="mainwindow.ui" line="1125"/>
         <source>L</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1110"/>
+        <location filename="mainwindow.ui" line="1132"/>
         <source>;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1117"/>
+        <location filename="mainwindow.ui" line="1139"/>
         <source>&apos;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1124"/>
+        <location filename="mainwindow.ui" line="1146"/>
         <source> Enter </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1135"/>
-        <location filename="mainwindow.ui" line="1212"/>
+        <location filename="mainwindow.ui" line="1157"/>
+        <location filename="mainwindow.ui" line="1234"/>
         <source>  Shift  </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1142"/>
+        <location filename="mainwindow.ui" line="1164"/>
         <source>Z</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1149"/>
+        <location filename="mainwindow.ui" line="1171"/>
         <source>X</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1156"/>
+        <location filename="mainwindow.ui" line="1178"/>
         <source>C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1163"/>
+        <location filename="mainwindow.ui" line="1185"/>
         <source>V</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1170"/>
+        <location filename="mainwindow.ui" line="1192"/>
         <source>B</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1177"/>
+        <location filename="mainwindow.ui" line="1199"/>
         <source>N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1184"/>
+        <location filename="mainwindow.ui" line="1206"/>
         <source>M</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1191"/>
+        <location filename="mainwindow.ui" line="1213"/>
         <source>&lt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1198"/>
+        <location filename="mainwindow.ui" line="1220"/>
         <source>&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1205"/>
+        <location filename="mainwindow.ui" line="1227"/>
         <source>?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1226"/>
+        <location filename="mainwindow.ui" line="1248"/>
         <source> Ctrl </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1233"/>
-        <location filename="mainwindow.ui" line="1261"/>
+        <location filename="mainwindow.ui" line="1255"/>
+        <location filename="mainwindow.ui" line="1283"/>
         <source>Win</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1240"/>
-        <location filename="mainwindow.ui" line="1254"/>
+        <location filename="mainwindow.ui" line="1262"/>
+        <location filename="mainwindow.ui" line="1276"/>
         <source>Alt</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1247"/>
+        <location filename="mainwindow.ui" line="1269"/>
         <source>                Space                </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1268"/>
+        <location filename="mainwindow.ui" line="1290"/>
         <source> Ctrl</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1291"/>
+        <location filename="mainwindow.ui" line="1313"/>
         <source>PtSr</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1298"/>
+        <location filename="mainwindow.ui" line="1320"/>
         <source>Scl</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1305"/>
+        <location filename="mainwindow.ui" line="1327"/>
         <source>Pau</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1319"/>
+        <location filename="mainwindow.ui" line="1341"/>
         <source>Ins</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1326"/>
+        <location filename="mainwindow.ui" line="1348"/>
         <source>Hom</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1333"/>
+        <location filename="mainwindow.ui" line="1355"/>
         <source>PaU</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1347"/>
+        <location filename="mainwindow.ui" line="1369"/>
         <source>Del</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1354"/>
+        <location filename="mainwindow.ui" line="1376"/>
         <source>End</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1361"/>
+        <location filename="mainwindow.ui" line="1383"/>
         <source>PaD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1376"/>
+        <location filename="mainwindow.ui" line="1398"/>
         <source>↑</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1387"/>
+        <location filename="mainwindow.ui" line="1409"/>
         <source>←</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1394"/>
+        <location filename="mainwindow.ui" line="1416"/>
         <source>↓</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1401"/>
+        <location filename="mainwindow.ui" line="1423"/>
         <source>→</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1421"/>
+        <location filename="mainwindow.ui" line="1443"/>
         <source>Num</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1428"/>
+        <location filename="mainwindow.ui" line="1450"/>
         <source>/</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1435"/>
+        <location filename="mainwindow.ui" line="1457"/>
         <source>*</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1442"/>
-        <location filename="mainwindow.ui" line="1901"/>
+        <location filename="mainwindow.ui" line="1464"/>
+        <location filename="mainwindow.ui" line="1930"/>
         <source>-</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1559"/>
+        <location filename="mainwindow.ui" line="1581"/>
         <source>   0   </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1617"/>
+        <location filename="mainwindow.ui" line="1639"/>
         <source>Left Mouse</source>
         <translation>鼠标左键</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1566"/>
+        <location filename="mainwindow.ui" line="2087"/>
+        <source>English</source>
+        <translation>English</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="2095"/>
+        <source>Chinese</source>
+        <translation>中文（简体）</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="2100"/>
+        <source>Test Device</source>
+        <translation>测试设备</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1588"/>
         <source>.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1589"/>
+        <location filename="mainwindow.ui" line="1611"/>
         <source>Ent</source>
         <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="424"/>
-        <location filename="mainwindow.ui" line="1602"/>
+        <location filename="mainwindow.ui" line="1624"/>
         <source>Mouse</source>
         <translation>鼠标按键</translation>
     </message>
@@ -627,218 +695,275 @@
         <translation type="vanished">鼠标左键</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1624"/>
+        <location filename="mainwindow.ui" line="1646"/>
         <source>Middle Mouse</source>
         <translation>鼠标中键</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1631"/>
+        <location filename="mainwindow.ui" line="1653"/>
         <source>Right Mouse</source>
         <translation>鼠标右键</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1650"/>
+        <location filename="mainwindow.ui" line="1672"/>
         <source>move Up</source>
         <translation>上移</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1679"/>
+        <location filename="mainwindow.ui" line="1701"/>
         <source>move Left</source>
         <translation>左移</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1708"/>
+        <location filename="mainwindow.ui" line="1730"/>
         <source>move Down</source>
         <translation>下移</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1737"/>
+        <location filename="mainwindow.ui" line="1759"/>
         <source>move Right</source>
         <translation>右移</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1768"/>
+        <location filename="mainwindow.ui" line="1790"/>
         <source>MultiMedia</source>
         <translation>多媒体功能</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1783"/>
+        <location filename="mainwindow.ui" line="1805"/>
         <source>VolumeUp</source>
         <translation>音量+</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1790"/>
+        <location filename="mainwindow.ui" line="1812"/>
         <source>VolumeDown</source>
         <translation>音量-</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1797"/>
+        <location filename="mainwindow.ui" line="1819"/>
+        <source>Mute</source>
+        <translation>静音</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1826"/>
         <source>Play/Pause </source>
         <translation>播放/暂停 </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1804"/>
-        <location filename="mainwindow.ui" line="1840"/>
+        <location filename="mainwindow.ui" line="1833"/>
+        <location filename="mainwindow.ui" line="1869"/>
         <source>LastSong</source>
         <translation>上一曲</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1811"/>
+        <location filename="mainwindow.ui" line="1840"/>
         <source>NextSong</source>
         <translation>下一曲</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1828"/>
+        <location filename="mainwindow.ui" line="1857"/>
         <source>MacroDelay</source>
         <translation>宏延时</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1853"/>
+        <location filename="mainwindow.ui" line="1882"/>
         <source>0.0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1869"/>
+        <location filename="mainwindow.ui" line="1898"/>
         <source>SetDelay</source>
         <translation>设置延时</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1915"/>
+        <location filename="mainwindow.ui" line="1944"/>
         <source>F13~F24</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1933"/>
+        <location filename="mainwindow.ui" line="1962"/>
         <source>F19</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1940"/>
+        <location filename="mainwindow.ui" line="1969"/>
         <source>F20</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1947"/>
+        <location filename="mainwindow.ui" line="1976"/>
         <source>F21</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1954"/>
+        <location filename="mainwindow.ui" line="1983"/>
         <source>F22</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1961"/>
+        <location filename="mainwindow.ui" line="1990"/>
         <source>F23</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1968"/>
+        <location filename="mainwindow.ui" line="1997"/>
         <source>F24</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1987"/>
+        <location filename="mainwindow.ui" line="2016"/>
         <source>F13</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1994"/>
+        <location filename="mainwindow.ui" line="2023"/>
         <source>F14</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2001"/>
+        <location filename="mainwindow.ui" line="2030"/>
         <source>F15</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2008"/>
+        <location filename="mainwindow.ui" line="2037"/>
         <source>F16</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2015"/>
+        <location filename="mainwindow.ui" line="2044"/>
         <source>F17</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2022"/>
+        <location filename="mainwindow.ui" line="2051"/>
         <source>F18</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2035"/>
+        <location filename="mainwindow.ui" line="2064"/>
         <source>Exit</source>
         <translation>退出程序</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="2040"/>
+        <location filename="mainwindow.ui" line="2069"/>
         <source>Open Device</source>
         <translation>打开设备</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="182"/>
+        <location filename="mainwindow.cpp" line="212"/>
         <source>Click this to add single Crtl,Alt,Shift to key value</source>
         <translation>点击此键可将Ctrl、Alt、Shift、Win单独设置</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="205"/>
+        <location filename="mainwindow.cpp" line="271"/>
         <source>Current Keyboard</source>
         <translation>当前键盘</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="205"/>
+        <location filename="mainwindow.cpp" line="271"/>
         <source>Current Seletion</source>
         <translation>当前选择</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="443"/>
-        <location filename="mainwindow.cpp" line="451"/>
-        <location filename="mainwindow.cpp" line="480"/>
-        <location filename="mainwindow.cpp" line="499"/>
-        <location filename="mainwindow.cpp" line="518"/>
-        <location filename="mainwindow.cpp" line="549"/>
+        <location filename="mainwindow.cpp" line="310"/>
+        <location filename="mainwindow.cpp" line="330"/>
+        <location filename="mainwindow.cpp" line="346"/>
+        <location filename="mainwindow.cpp" line="376"/>
+        <location filename="mainwindow.cpp" line="590"/>
+        <location filename="mainwindow.cpp" line="598"/>
+        <location filename="mainwindow.cpp" line="627"/>
+        <location filename="mainwindow.cpp" line="646"/>
+        <location filename="mainwindow.cpp" line="665"/>
+        <location filename="mainwindow.cpp" line="696"/>
         <source>Notice</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="444"/>
+        <location filename="mainwindow.cpp" line="311"/>
+        <source>Save config to file?</source>
+        <translation>你确定要保存配置文件吗？</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="316"/>
+        <source>Save File</source>
+        <translation>文件保存</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="316"/>
+        <location filename="mainwindow.cpp" line="352"/>
+        <source>zddConfig (*.zdd)</source>
+        <translation>zdd键盘配置文件</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="324"/>
+        <source>Can not save </source>
+        <translation>无法保存 </translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="331"/>
+        <source>Saved Successfully!</source>
+        <translation>保存成功!</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="347"/>
+        <source>Load config?</source>
+        <translation>你确定要打开配置文件吗？</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="352"/>
+        <source>Open file</source>
+        <translation>打开文件</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="361"/>
+        <source>Can not load file </source>
+        <translation>无法打开文件 </translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="377"/>
+        <source>Loaded Successfully!</source>
+        <translation>已经成功加载配置！</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="591"/>
         <source>Are you sure to download config to your device:</source>
         <translation>确定下载到设备：</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="452"/>
+        <location filename="mainwindow.cpp" line="599"/>
         <source>Download finished!</source>
         <translation>下载完成！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="457"/>
+        <location filename="mainwindow.cpp" line="323"/>
+        <location filename="mainwindow.cpp" line="360"/>
+        <location filename="mainwindow.cpp" line="604"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="458"/>
+        <location filename="mainwindow.cpp" line="605"/>
         <source>Download Error :</source>
         <translation>下载错误：</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="481"/>
+        <location filename="mainwindow.cpp" line="628"/>
         <source>You can NOT add mouse event to Macro!</source>
         <translation>无法将鼠标键添加到宏！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="500"/>
+        <location filename="mainwindow.cpp" line="647"/>
         <source>You can NOT add meida key to Macro!</source>
         <translation>无法将多媒体键添加到宏！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="519"/>
+        <location filename="mainwindow.cpp" line="666"/>
         <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
         <translation>无法在宏键中添加鼠标或多媒体键值！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="550"/>
+        <location filename="mainwindow.cpp" line="697"/>
         <source>Can NOT add key macro : hardware limitation!</source>
         <translation>无法添加更多的宏键值：已达到硬件限制！</translation>
     </message>

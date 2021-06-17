@@ -37,5 +37,6 @@ private slots:
     void setKeyRelease();
     void setKey(int key_no);      //open softkey board window
     void switchKeyboard(int keyboard_no);
+    void changeLanguage(QString language);
 };
 #endif // MAINWINDOW_H
