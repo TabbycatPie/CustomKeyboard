@@ -25,7 +25,7 @@ static const QString _key_string[]={
     //mouse keys
     "LMouse","MMouse","RMouse",
     //multi-media keys
-    "VolumeDown","VolumeUp","Play/Pause","LastSong","NextSong",
+    "VolumeDown","VolumeUp","Play/Pause","LastSong","NextSong","Mute",
     //f13~f24
     "F13","F14","F15","F16","F17","F18",
     "F19","F20","F21","F22","F23","F24"
@@ -54,7 +54,7 @@ static const uchar _key_hex[]={
     //mouse keys
     /*Left*/0x01,/*Middle*/0x04,/*Right*/0x02,
     //multi-media kes
-    /*VolumeDown*/0x01,/*VolumeUp*/0x02,/*PlayPause*/0x04,/*LastSong*/0x08,/*NextSong*/0x10,
+    /*VolumeDown*/0x01,/*VolumeUp*/0x02,/*PlayPause*/0x04,/*LastSong*/0x08,/*NextSong*/0x10,/*Mute*/0x20,
     //f13~f24
     0x68,0x69,0x6a,0x6b,0x6c,0x6d,
     0x6e,0x6f,0x70,0x71,0x72,0x73
@@ -71,9 +71,9 @@ static const int _mousekey_index[]={
     104,105,106
 };
 
-#define MEDIAKEY_NUM 5
+#define MEDIAKEY_NUM 6
 static const int _mediakey_index[]={
-    107,108,109,110,111
+    107,108,109,110,111,112
 };
 
 
