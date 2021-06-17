@@ -272,7 +272,7 @@ void MainWindow::changeLanguage(QString language)
     //release
     //delete translator;
     UserConfig *userconfig = new UserConfig("english");
-     userconfig->toJsonObj();
+    asd  userconfig->toJsonObj();
 
 
 }
