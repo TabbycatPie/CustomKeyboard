@@ -269,24 +269,25 @@ int CustomKeyboard::download(HIDCodeTable *table){
 
         if(res1 != -1 && res2 != -1 && res3!= -1 && res4 != -1 && res5 != -1
                 && res6 != -1 && res7 != -1 && res8 != -1 && res9 !=-1 && res10 != -1
-                && res11!= -1)
+                && res11!= -1 )
         {
-            qDebug() << "Sending Successfully!";
-            hid_close(my_device);
-            return 1;
-        }else{
             if(!get_ack){
-                last_error = tr("Data sending is failed!");
-                QString text = QString::fromWCharArray(hid_error(my_device));
-                qDebug() << "Sending Failed! Error:"<< text;
-                hid_close(my_device);
-                return -1;
-            }else{
                 last_error = tr("Can not get all ACKs!");
                 qDebug() << "Can not get all ACKs.";
                 hid_close(my_device);
                 return 0;
+            }else{
+                qDebug() << "Sending Successfully!";
+                hid_close(my_device);
+                return 1;
             }
+        }else{
+            //wirte failed
+            last_error = tr("Data sending is failed!");
+            QString text = QString::fromWCharArray(hid_error(my_device));
+            qDebug() << "Sending Failed! Error:"<< text;
+            hid_close(my_device);
+            return -1;
         }
     }
     else{

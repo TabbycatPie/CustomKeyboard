@@ -18,32 +18,32 @@
 <context>
     <name>CustomKeyboard</name>
     <message>
-        <location filename="customkeyboard.cpp" line="279"/>
+        <location filename="customkeyboard.cpp" line="286"/>
         <source>Data sending is failed!</source>
         <translation>数据发送过程中错误!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="285"/>
+        <location filename="customkeyboard.cpp" line="275"/>
         <source>Can not get all ACKs!</source>
         <translation>未获取所有ACK帧!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="293"/>
+        <location filename="customkeyboard.cpp" line="294"/>
         <source>Can not open device!</source>
         <translation>设备未找到！</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="303"/>
+        <location filename="customkeyboard.cpp" line="304"/>
         <source>Can not read feedback frame.</source>
         <translation>无法获取校验帧.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="309"/>
+        <location filename="customkeyboard.cpp" line="310"/>
         <source>Can not read ACK frame.</source>
         <translation>无法读取ACK帧.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="317"/>
+        <location filename="customkeyboard.cpp" line="318"/>
         <source>ACK not correct.</source>
         <translation>ACK帧不正确.</translation>
     </message>
