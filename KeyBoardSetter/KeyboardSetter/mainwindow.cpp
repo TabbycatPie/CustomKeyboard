@@ -608,7 +608,7 @@ void MainWindow::updateUI(){
 
 
 bool MainWindow::downloadToDevice(int keyboard_no){
-    bool result = false;
+    int result = -1;
     QMessageBox msg_info(this);
     msg_info.setWindowTitle(tr("Notice"));
     msg_info.setText(tr("Are you sure to download config to your device:") + ckb[keyboard_no]->getName()+"?");
@@ -617,16 +617,22 @@ bool MainWindow::downloadToDevice(int keyboard_no){
     if(msg_info.exec() == QMessageBox::Ok){
         QMessageBox msg_result(this);
         result = ckb[keyboard_no]->download(&table);
-        if(result){
+        if(result == 1){
             msg_result.setWindowTitle(tr("Notice"));
             msg_result.setText(tr("Download finished!"));
             msg_result.setIcon(QMessageBox::Information);
             msg_result.setStandardButtons(QMessageBox::Ok);
         }
-        else{
+        else if(result == -1){
             msg_result.setWindowTitle(tr("Error"));
             msg_result.setText(tr("Download Error :") + ckb[keyboard_no]->getLastError());
             msg_result.setIcon(QMessageBox::Critical);
+            msg_result.setStandardButtons(QMessageBox::Ok);
+        }
+        else{
+            msg_result.setWindowTitle(tr("Notice"));
+            msg_result.setText(tr("Download finished! But there may be some errors."));
+            msg_result.setIcon(QMessageBox::Information);
             msg_result.setStandardButtons(QMessageBox::Ok);
         }
         msg_result.exec();

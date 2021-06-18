@@ -26,3 +26,4 @@ KeyBoardSetter/build-KeyboardSetter-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/usersad
 *.7z
 *.ini
 KeyBoardSetter/build-KeyboardSetter-Desktop_Qt_5_14_2_MinGW_32_bit-Debug/debug/moc*
+KeyBoardSetter/build-KeyboardSetter-Desktop_Qt_5_14_2_MinGW_32_bit-Release/release/moc*

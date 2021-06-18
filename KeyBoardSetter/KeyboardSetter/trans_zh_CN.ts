@@ -18,27 +18,32 @@
 <context>
     <name>CustomKeyboard</name>
     <message>
-        <location filename="customkeyboard.cpp" line="278"/>
+        <location filename="customkeyboard.cpp" line="279"/>
         <source>Data sending is failed!</source>
         <translation>数据发送过程中错误!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="286"/>
+        <location filename="customkeyboard.cpp" line="285"/>
+        <source>Can not get all ACKs!</source>
+        <translation>未获取所有ACK帧!</translation>
+    </message>
+    <message>
+        <location filename="customkeyboard.cpp" line="293"/>
         <source>Can not open device!</source>
         <translation>设备未找到！</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="296"/>
+        <location filename="customkeyboard.cpp" line="303"/>
         <source>Can not read feedback frame.</source>
         <translation>无法获取校验帧.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="302"/>
+        <location filename="customkeyboard.cpp" line="309"/>
         <source>Can not read ACK frame.</source>
         <translation>无法读取ACK帧.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="310"/>
+        <location filename="customkeyboard.cpp" line="317"/>
         <source>ACK not correct.</source>
         <translation>ACK帧不正确.</translation>
     </message>
@@ -882,10 +887,11 @@
         <location filename="mainwindow.cpp" line="402"/>
         <location filename="mainwindow.cpp" line="613"/>
         <location filename="mainwindow.cpp" line="621"/>
-        <location filename="mainwindow.cpp" line="650"/>
-        <location filename="mainwindow.cpp" line="669"/>
-        <location filename="mainwindow.cpp" line="688"/>
-        <location filename="mainwindow.cpp" line="719"/>
+        <location filename="mainwindow.cpp" line="633"/>
+        <location filename="mainwindow.cpp" line="656"/>
+        <location filename="mainwindow.cpp" line="675"/>
+        <location filename="mainwindow.cpp" line="694"/>
+        <location filename="mainwindow.cpp" line="725"/>
         <source>Notice</source>
         <translation>提示</translation>
     </message>
@@ -958,22 +964,27 @@
         <translation>下载错误：</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="651"/>
+        <location filename="mainwindow.cpp" line="634"/>
+        <source>Download finished! But there may be some errors.</source>
+        <translation>下载完成,但是可能存在一些问题.</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="657"/>
         <source>You can NOT add mouse event to Macro!</source>
         <translation>无法将鼠标键添加到宏！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="670"/>
+        <location filename="mainwindow.cpp" line="676"/>
         <source>You can NOT add meida key to Macro!</source>
         <translation>无法将多媒体键添加到宏！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="689"/>
+        <location filename="mainwindow.cpp" line="695"/>
         <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
         <translation>无法在宏键中添加鼠标或多媒体键值！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="720"/>
+        <location filename="mainwindow.cpp" line="726"/>
         <source>Can NOT add key macro : hardware limitation!</source>
         <translation>无法添加更多的宏键值：已达到硬件限制！</translation>
     </message>

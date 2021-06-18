@@ -31,7 +31,7 @@ public:
     bool deleteTopKey(int key_id);
     bool checkMacroAddable(int cur_key_no);
     //download to device
-    bool download(HIDCodeTable *table);
+    int download(HIDCodeTable *table);
     //test
     bool testHardware();
     QString getLastError();
