@@ -247,25 +247,25 @@ int CustomKeyboard::download(HIDCodeTable *table){
         int res1 = hid_write(my_device, frame_set_normal, 65);  // -1 for error
         get_ack = getACK(my_device);
         int res2 = hid_write(my_device, frame_set_sp, 65);      // -1 for error
-        get_ack |= getACK(my_device);
+        get_ack = (getACK(my_device) && get_ack);
         int res3 = hid_write(my_device,frame_set_macro_status,65);
-        get_ack |= getACK(my_device);
+        get_ack = (getACK(my_device) && get_ack);
         int res4 = hid_write(my_device,frame_set_macro_index,65);
-        get_ack |= getACK(my_device);
+        get_ack = (getACK(my_device) && get_ack);
         int res5 = hid_write(my_device,frame_set_macro_sp_key,65);
-        get_ack |= getACK(my_device);
+        get_ack = (getACK(my_device) && get_ack);
         int res6 = hid_write(my_device,frame_set_macro_spkey_index,65);
-        get_ack |= getACK(my_device);
+        get_ack = (getACK(my_device) && get_ack);
         int res8 = hid_write(my_device,frame_set_mouse,65);
-        get_ack |= getACK(my_device);
+        get_ack = (getACK(my_device) && get_ack);
         int res9 = hid_write(my_device,frame_set_media,65);
-        get_ack |= getACK(my_device);
+        get_ack = (getACK(my_device) && get_ack);
         int res10= hid_write(my_device,frame_set_delay,65);
-        get_ack |= getACK(my_device);
+        get_ack = (getACK(my_device) && get_ack);
         int res11= hid_write(my_device,frame_set_delay_index,65);
-        get_ack |= getACK(my_device);
+        get_ack = (getACK(my_device) && get_ack);
         int res7 = hid_write(my_device,frame_set_macro,65);
-        get_ack |= getACK(my_device);
+        get_ack = (getACK(my_device) && get_ack);
 
         if(res1 != -1 && res2 != -1 && res3!= -1 && res4 != -1 && res5 != -1
                 && res6 != -1 && res7 != -1 && res8 != -1 && res9 !=-1 && res10 != -1
@@ -299,9 +299,10 @@ bool CustomKeyboard::getACK(hid_device *opened_device)
 {
     uchar feedback[64] = {0x00};
     uchar ACK[64]      = {0x00};
-    int read_count =  hid_read(opened_device,feedback,64);
+    int read_count =  hid_read_timeout(opened_device,feedback,64,200);
     if(read_count < 0){
         last_error = tr("Can not read feedback frame.");
+        qDebug() << "Feedback NOT correct.";
         return false;
     }else{
         //read ack
@@ -316,6 +317,7 @@ bool CustomKeyboard::getACK(hid_device *opened_device)
                 return true;
             }else{
                 last_error =tr( "ACK not correct.");
+                qDebug() << "ACK NOT correct.";
                 return false;
             }
         }

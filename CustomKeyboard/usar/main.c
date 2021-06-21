@@ -536,6 +536,7 @@ void hadleReceive(){
 				}
 				WriteDataFlash(87,MOUSE_CODE,10);
 				setMouseUseage();
+				HIDsendACK();
 				break;
 			case 0x09:
 				//set marco key
