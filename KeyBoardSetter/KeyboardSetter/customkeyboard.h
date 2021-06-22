@@ -54,7 +54,7 @@ private:
     bool getACK(hid_device *opened_device);
 
 signals:
-
+    void logToMain(QString text);
 };
 
 #endif // CUSTOMKEYBOARD_H

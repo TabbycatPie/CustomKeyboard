@@ -495,6 +495,38 @@
        </item>
       </layout>
      </widget>
+     <widget class="QTextEdit" name="tv_log">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>40</y>
+        <width>201</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>13</y>
+        <width>68</width>
+        <height>19</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>LOG:</string>
+      </property>
+     </widget>
      <zorder>layoutWidget</zorder>
      <zorder>layoutWidget_7</zorder>
      <zorder>verticalLayoutWidget</zorder>
@@ -503,6 +535,8 @@
      <zorder>btn_download</zorder>
      <zorder>verticalLayoutWidget_2</zorder>
      <zorder>btn_setadd</zorder>
+     <zorder>tv_log</zorder>
+     <zorder>label_5</zorder>
     </widget>
     <widget class="QWidget" name="tab_dualkeys">
      <attribute name="title">
@@ -649,7 +683,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>22</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -1795,7 +1829,7 @@
           <x>8</x>
           <y>29</y>
           <width>121</width>
-          <height>151</height>
+          <height>188</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_8">

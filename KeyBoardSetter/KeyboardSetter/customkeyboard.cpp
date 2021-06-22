@@ -274,10 +274,12 @@ int CustomKeyboard::download(HIDCodeTable *table){
             if(!get_ack){
                 last_error = tr("Can not get all ACKs!");
                 qDebug() << "Can not get all ACKs.";
+                logToMain("Can not get all ACKs.");
                 hid_close(my_device);
                 return 0;
             }else{
                 qDebug() << "Sending Successfully!";
+                logToMain("Sending Successfully!");
                 hid_close(my_device);
                 return 1;
             }
@@ -286,6 +288,7 @@ int CustomKeyboard::download(HIDCodeTable *table){
             last_error = tr("Data sending is failed!");
             QString text = QString::fromWCharArray(hid_error(my_device));
             qDebug() << "Sending Failed! Error:"<< text;
+            logToMain("Data sending is failed!");
             hid_close(my_device);
             return -1;
         }
@@ -303,21 +306,25 @@ bool CustomKeyboard::getACK(hid_device *opened_device)
     if(read_count < 0){
         last_error = tr("Can not read feedback frame.");
         qDebug() << "Feedback NOT correct.";
+        logToMain("Feedback NOT correct.");
         return false;
     }else{
         //read ack
         read_count =  hid_read_timeout(opened_device,ACK,64,500);
         if(read_count < 0){
             last_error = tr("Can not read ACK frame.");
+            logToMain("Can not read ACK frame.");
             return false;
         }else{
             //check ACK
             if(ACK[0]==0x55 && ACK[1] == 0x55 && ACK[2] == 0x55){
                 qDebug() << "ACK correct.";
+                logToMain("ACK correct.");
                 return true;
             }else{
                 last_error =tr( "ACK not correct.");
                 qDebug() << "ACK NOT correct.";
+                logToMain("ACK NOT correct.");
                 return false;
             }
         }
@@ -331,6 +338,7 @@ bool CustomKeyboard::testHardware()
     bool is_ok = false;
     if(my_device!=NULL){
         qDebug() << "device opened.";
+        logToMain("Device is opened.");
         //opened
         uchar test_frame[65]={0x00};
         //init array
@@ -342,38 +350,46 @@ bool CustomKeyboard::testHardware()
         int res = hid_write(my_device, test_frame, 65);
         if(res == -1){
             qDebug() << "can not send test framed.";
+            logToMain("Can NOT send test framed.");
         }
         else{
             uchar test_receive[128] = {0x00};
             uchar test_receive2[128] = {0x00};
             qDebug() << "send test framed ok.";
+            logToMain("send test framed ok.");
             int read_count =  hid_read(my_device,test_receive,128);
             int read_count2 =  hid_read_timeout(my_device,test_receive2,128,1000);
             if(read_count == -1 || read_count2 == -1){
                  qDebug() << "can not read.";
+                 logToMain("Can NOT read");
                  //failed
             }
             else{
                 qDebug() << "read from device. read_count =" << read_count;
+                logToMain("read from device. read_count ="+ QString::number(read_count));
                 QString tempstr = "";
                 for(int i =0 ;i<read_count;i++){
                     tempstr += QString::number((int)test_receive[i])+ " ";
                 }
                 qDebug() << "test_receive = "+tempstr;
+                logToMain("test_receive = "+tempstr);
 
                 qDebug() << "read from device. read_count2 =" << read_count2;
+                logToMain("read from device. read_count2 ="+QString::number(read_count2));
                 QString tempstr2 = "";
                 for(int i =0 ;i<read_count2;i++){
                     tempstr2 += QString::number((int)test_receive2[i])+ " ";
                 }
                 qDebug() << "test_receive2 = "+tempstr2;
-                return true;
+                logToMain("test_receive2 = "+tempstr2);
+                is_ok = true;
             }
         }
 
     }
     else{
         qDebug() << "can not open device.";
+        logToMain("Can Not open device.");
         return false;
     }
     hid_close(my_device);

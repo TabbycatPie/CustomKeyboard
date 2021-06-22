@@ -118,7 +118,8 @@ MainWindow::MainWindow(QWidget *parent)
         switchKeyboard(ui->tabWidget->currentIndex());
         ui->dockKeyboard->hide();
     });
-
+    //connect log event slot
+    connect(ckb[0],&CustomKeyboard::logToMain,this,&MainWindow::logUpdate);
     //connect menu bar action
     connect(ui->actionExit,&QAction::triggered,this,&MainWindow::close);
     connect(ui->actionSave,&QAction::triggered,this,[=]{
@@ -272,6 +273,7 @@ void MainWindow::changeLanguage(QString language)
         }
         else{
             qDebug() << "Can not load UI language.";
+            logUpdate("Can not load UI language.");
         }
     }else if(language=="en"){
         translator->load("");
@@ -281,6 +283,7 @@ void MainWindow::changeLanguage(QString language)
         ui->actionEnglish->setChecked(true);
         flag = "english";
         qDebug() << "Using english as UI language.";
+        logUpdate("Using english as UI language.");
     }
 
     //save user language information to file
@@ -290,6 +293,11 @@ void MainWindow::changeLanguage(QString language)
     if(!cs.saveConfig(filename,userconfig->toJsonObj()))
         qDebug()  << cs.getLastError();
     delete userconfig;
+}
+
+void MainWindow::logUpdate(QString text)
+{
+     ui->tv_log->append(text);
 }
 
 void MainWindow::setKey(int key_no){

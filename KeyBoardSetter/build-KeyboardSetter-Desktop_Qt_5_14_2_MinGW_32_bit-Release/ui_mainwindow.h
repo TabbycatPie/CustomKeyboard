@@ -25,6 +25,7 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextBrowser>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QTreeView>
 #include <QtWidgets/QVBoxLayout>
@@ -85,6 +86,8 @@ public:
     QHBoxLayout *horizontalLayout_19;
     QLabel *label_3;
     QLabel *label_4;
+    QTextEdit *textEdit;
+    QLabel *label_5;
     QWidget *tab_dualkeys;
     QWidget *layoutWidget_8;
     QHBoxLayout *horizontalLayout_11;
@@ -533,6 +536,12 @@ public:
 
         verticalLayout_10->addLayout(horizontalLayout_19);
 
+        textEdit = new QTextEdit(tab_test);
+        textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        textEdit->setGeometry(QRect(640, 40, 201, 161));
+        label_5 = new QLabel(tab_test);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setGeometry(QRect(640, 13, 68, 19));
         tabWidget->addTab(tab_test, QString());
         layoutWidget->raise();
         layoutWidget_7->raise();
@@ -542,6 +551,8 @@ public:
         btn_download->raise();
         verticalLayoutWidget_2->raise();
         btn_setadd->raise();
+        textEdit->raise();
+        label_5->raise();
         tab_dualkeys = new QWidget();
         tab_dualkeys->setObjectName(QString::fromUtf8("tab_dualkeys"));
         layoutWidget_8 = new QWidget(tab_dualkeys);
@@ -609,7 +620,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1000, 22));
+        menubar->setGeometry(QRect(0, 0, 1000, 30));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuSetting = new QMenu(menubar);
@@ -1361,7 +1372,7 @@ public:
         groupBox->setGeometry(QRect(10, 10, 131, 191));
         verticalLayoutWidget_4 = new QWidget(groupBox);
         verticalLayoutWidget_4->setObjectName(QString::fromUtf8("verticalLayoutWidget_4"));
-        verticalLayoutWidget_4->setGeometry(QRect(8, 29, 121, 151));
+        verticalLayoutWidget_4->setGeometry(QRect(8, 29, 121, 188));
         verticalLayout_8 = new QVBoxLayout(verticalLayoutWidget_4);
         verticalLayout_8->setObjectName(QString::fromUtf8("verticalLayout_8"));
         verticalLayout_8->setContentsMargins(0, 0, 0, 0);
@@ -1554,6 +1565,7 @@ public:
         label_10->setText(QCoreApplication::translate("MainWindow", "Media", nullptr));
         label_3->setText(QString());
         label_4->setText(QCoreApplication::translate("MainWindow", "Macro", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "LOG", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_test), QCoreApplication::translate("MainWindow", "Test", nullptr));
         btn_dualkey1->setText(QCoreApplication::translate("MainWindow", "KEY1", nullptr));
         btn_dualkey2->setText(QCoreApplication::translate("MainWindow", "KEY2", nullptr));
