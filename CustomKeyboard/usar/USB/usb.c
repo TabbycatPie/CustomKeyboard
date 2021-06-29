@@ -404,7 +404,7 @@ void Enp4IntIn( )
 *******************************************************************************/
 void DeviceInterrupt( void ) interrupt INT_NO_USB using 1                      //USB中断服务程序,使用寄存器组1
 {
-    UINT8 len,i;
+    UINT8 len;
     if(UIF_TRANSFER)                                                           //USB传输完成标志
     {
         switch (USB_INT_ST & (MASK_UIS_TOKEN | MASK_UIS_ENDP))
@@ -432,10 +432,10 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB using 1                      /
             if(U_TOG_OK)
 			{
 				len = USB_RX_LEN;	//接收数据长度,数据从Ep2Buffer首地址开始存放
-				for(i=0;i<len;i++)
-				{
-					Ep2Buffer[MAX_PACKET_SIZE+i] = Ep2Buffer[i] ^ 0xFF; // OUT数据取反到IN由计算机验证
-				}
+//				for(i=0;i<len;i++)
+//				{
+//					Ep2Buffer[MAX_PACKET_SIZE+i] = Ep2Buffer[i] ^ 0xFF; // OUT数据取反到IN由计算机验证
+//				}
 				UEP2_T_LEN = len;
 				UEP2_CTRL = UEP2_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_ACK;       // 允许上传
 				Endp2Rev = 1;

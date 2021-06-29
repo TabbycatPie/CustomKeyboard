@@ -300,33 +300,24 @@ int CustomKeyboard::download(HIDCodeTable *table){
 }
 bool CustomKeyboard::getACK(hid_device *opened_device)
 {
-    uchar feedback[64] = {0x00};
     uchar ACK[64]      = {0x00};
-    int read_count =  hid_read_timeout(opened_device,feedback,64,200);
+    //read ack
+    int read_count =  hid_read_timeout(opened_device,ACK,64,300);
     if(read_count < 0){
-        last_error = tr("Can not read feedback frame.");
-        qDebug() << "Feedback NOT correct.";
-        logToMain("Feedback NOT correct.");
+        last_error = tr("Can not read ACK frame.");
+        logToMain("Can not read ACK frame.");
         return false;
     }else{
-        //read ack
-        read_count =  hid_read_timeout(opened_device,ACK,64,500);
-        if(read_count < 0){
-            last_error = tr("Can not read ACK frame.");
-            logToMain("Can not read ACK frame.");
-            return false;
+        //check ACK
+        if(ACK[0]==0x55 && ACK[1] == 0x55 && ACK[2] == 0x55){
+            qDebug() << "ACK correct.";
+            logToMain("ACK correct.");
+            return true;
         }else{
-            //check ACK
-            if(ACK[0]==0x55 && ACK[1] == 0x55 && ACK[2] == 0x55){
-                qDebug() << "ACK correct.";
-                logToMain("ACK correct.");
-                return true;
-            }else{
-                last_error =tr( "ACK not correct.");
-                qDebug() << "ACK NOT correct.";
-                logToMain("ACK NOT correct.");
-                return false;
-            }
+            last_error =tr( "ACK not correct.");
+            qDebug() << "ACK NOT correct.";
+            logToMain("ACK NOT correct.");
+            return false;
         }
     }
 }
