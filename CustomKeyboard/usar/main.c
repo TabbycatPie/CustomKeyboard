@@ -52,20 +52,20 @@ void MarcoDelay(UINT8 time){
 void HIDMousesend(){
 	if(MOUSE_KEY_USEAGE == 0xff){
 		FLAG = 0;
-		Enp3IntIn();    //if mouse key is set,then send mouse event
+		Mouse_Send();    //if mouse key is set,then send mouse event
 		while(FLAG == 0); 
 	}
 }
 
 void HIDKeysend(){
 	FLAG = 0;
-	Enp1IntIn();      //send keyboard event
+	Keyboard_Send();      //send keyboard event
 	while(FLAG == 0); /*等待上一包传输完成*/
 }
 //send message to computer
 void HIDsendMessage(){
 	FLAG = 0;
-	Enp2IntIn();    //send message
+	HID_Send();    //send message
 	while(FLAG == 0); 
 }
 
@@ -73,18 +73,20 @@ void HIDmediasend(){
 	if(CUR_MEDIA_KEY!= 0xff){
 		//valid key triggered
 		if(CUR_MEDIA_KEY!=LAST_MEDIA_KEY){
+			FLAG = 0;
 			//pressed frist time
-			Enp4IntIn();   //send media event
+			Multimedia_Send();   //send media event
 			while(FLAG == 0);
 			HIDMultimedia[0] = 0;
-			Enp4IntIn();   //send media event
+			Multimedia_Send();   //send media event
 			while(FLAG == 0);
 		}
 		else if(CUR_MEDIA_LAG == 0){
-			Enp4IntIn();   //send media event
+			FLAG = 0;
+			Multimedia_Send();   //send media event
 			while(FLAG == 0);
 			HIDMultimedia[0] = 0;
-			Enp4IntIn();   //send media event
+			Multimedia_Send();   //send media event
 			while(FLAG == 0);
 			CUR_MEDIA_LAG = 0x02;
 		}
@@ -105,13 +107,13 @@ void HIDmediasend(){
 }
 
 void HIDsendACK(){
-	UserEp2Buf[0] = 0x55;
-	UserEp2Buf[1] = 0x55;
-	UserEp2Buf[2] = 0x55;
+	User_Ep2Buf_send[0] = 0x55;
+	User_Ep2Buf_send[1] = 0x55;
+	User_Ep2Buf_send[2] = 0x55;
 	HIDsendMessage();
-	UserEp2Buf[0] = 0x00;
-	UserEp2Buf[1] = 0x00;
-	UserEp2Buf[2] = 0x00;
+	User_Ep2Buf_send[0] = 0x00;
+	User_Ep2Buf_send[1] = 0x00;
+	User_Ep2Buf_send[2] = 0x00;
 }
 //send marco key
 void HIDmarco(UINT8 key_num){
@@ -169,13 +171,13 @@ void HIDmarco(UINT8 key_num){
 		
 		//prepare normal key
 		HIDKey [2] = MARCO_KEYCODE[MARCO_SPLIT_INDX[pos-1]+i];
-		Enp1IntIn();    //send keyboard event
+		Keyboard_Send();    //send keyboard event
 		while(FLAG == 0); 
 		//delay
 		//bounce up
 		HIDKey[0] = 0x00;
 		HIDKey[2] = 0x00;
-		Enp1IntIn();    //send keyboard event
+		Keyboard_Send();    //send keyboard event
 		while(FLAG == 0); 
 		
 		mDelaymS(5);
@@ -460,17 +462,17 @@ void setMouseUseage(){
 
 
 void hadleReceive(){
-	if(Endp2Rev != 0)
+	if(HID_Rev != 0)
 	{
 		char i;
 		UINT8 temp[2];
-		Endp2Rev = 0;
-		switch (Ep2Buffer[0]){
+		HID_Rev = 0;
+		switch (User_Ep2Buf_rev[0]){
 			case 0x01:
 				//set_key_code
 				for(i = 0; i< 10 ;i++){
 				//copy normal key
-					KEY_CODE[i]=Ep2Buffer[1+i];
+					KEY_CODE[i]=User_Ep2Buf_rev[1+i];
 				}
 				WriteDataFlash(0,KEY_CODE,10);
 				HIDsendACK();
@@ -478,7 +480,7 @@ void hadleReceive(){
 			case 0x02:
 				for(i = 0; i< 10 ;i++){
 				//copy normal key
-					SP_KEY_CODE[i]=Ep2Buffer[1+i];
+					SP_KEY_CODE[i]=User_Ep2Buf_rev[1+i];
 				}
 				WriteDataFlash(10,SP_KEY_CODE,10);
 				HIDsendACK();
@@ -486,8 +488,8 @@ void hadleReceive(){
 			case 0x03:
 				//set_marco_key
 				//get marco byte
-				temp[0] = Ep2Buffer[1];
-				temp[1] = Ep2Buffer[2];
+				temp[0] = User_Ep2Buf_rev[1];
+				temp[1] = User_Ep2Buf_rev[2];
 				setMarco(temp[0],temp[1]);
 				WriteDataFlash(20,temp,2);
 				HIDsendACK();
@@ -496,7 +498,7 @@ void hadleReceive(){
 				//set marco key
 				//get marco indeices
 			  for(i=0;i<5;i++){
-					MARCO_SPLIT_INDX[i] = Ep2Buffer[1+i];
+					MARCO_SPLIT_INDX[i] = User_Ep2Buf_rev[1+i];
 				}
 				WriteDataFlash(22,MARCO_SPLIT_INDX,5);
 				HIDsendACK();
@@ -505,7 +507,7 @@ void hadleReceive(){
 				//set marco key
 				//set sp-keys content
 				for(i=0;i<10;i++){
-					MARCO_SPE_KEYCODE[i] = Ep2Buffer[1+i];
+					MARCO_SPE_KEYCODE[i] = User_Ep2Buf_rev[1+i];
 				}
 				WriteDataFlash(27,MARCO_SPE_KEYCODE,10);
 				HIDsendACK();
@@ -514,7 +516,7 @@ void hadleReceive(){
 				//set marco key
 				//set sp-keys indeices
 				for(i=0;i<10;i++){
-					MARCO_SPE_KEYINDX[i] = Ep2Buffer[1+i];
+					MARCO_SPE_KEYINDX[i] = User_Ep2Buf_rev[1+i];
 				}
 				WriteDataFlash(37,MARCO_SPE_KEYINDX,10);
 				HIDsendACK();
@@ -523,7 +525,7 @@ void hadleReceive(){
 				//set marco key
 				//set marco key code
 				for(i=0;i<40;i++){
-					MARCO_KEYCODE[i] = Ep2Buffer[1+i];
+					MARCO_KEYCODE[i] = User_Ep2Buf_rev[1+i];
 				}
 				WriteDataFlash(47,MARCO_KEYCODE,40);
 				HIDsendACK();
@@ -532,7 +534,7 @@ void hadleReceive(){
 				//set marco key
 				//set mouse key code
 				for(i=0;i<10;i++){
-					MOUSE_CODE[i] = Ep2Buffer[1+i];
+					MOUSE_CODE[i] = User_Ep2Buf_rev[1+i];
 				}
 				WriteDataFlash(87,MOUSE_CODE,10);
 				setMouseUseage();
@@ -542,7 +544,7 @@ void hadleReceive(){
 				//set marco key
 				//set media key code
 				for(i=0;i<10;i++){
-					MEDIA_CODE[i] = Ep2Buffer[1+i];
+					MEDIA_CODE[i] = User_Ep2Buf_rev[1+i];
 				}
 				WriteDataFlash(97,MEDIA_CODE,10);
 				HIDsendACK();
@@ -551,7 +553,7 @@ void hadleReceive(){
 				//set marco key
 				//set delay key code
 				for(i=0;i<10;i++){
-					MARCO_DELAY[i] = Ep2Buffer[1+i];
+					MARCO_DELAY[i] = User_Ep2Buf_rev[1+i];
 				}
 				WriteDataFlash(107,MARCO_DELAY,10);
 				HIDsendACK();
@@ -560,7 +562,7 @@ void hadleReceive(){
 				//set marco key
 				//set delay index key
 				for(i=0;i<10;i++){
-					MARCO_DELAY_INDX[i] = Ep2Buffer[1+i];
+					MARCO_DELAY_INDX[i] = User_Ep2Buf_rev[1+i];
 				}
 				WriteDataFlash(117,MARCO_DELAY_INDX,10);
 				HIDsendACK();
