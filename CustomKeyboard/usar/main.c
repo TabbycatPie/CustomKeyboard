@@ -64,9 +64,9 @@ void HIDKeysend(){
 }
 //send message to computer
 void HIDsendMessage(){
-	FLAG = 0;
+	HID_Busy = 0;
 	HID_Send();    //send message
-	while(FLAG == 0); 
+	while(HID_Busy == 0); 
 }
 
 void HIDmediasend(){
