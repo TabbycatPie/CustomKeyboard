@@ -36,7 +36,8 @@ UINT8X LAST_MEDIA_KEY = 0xff;
 UINT8X CUR_MEDIA_KEY = 0xff;
 UINT8X CUR_MEDIA_LAG = 0x0a;
 
-UINT8X MOUSE_KEY_USEAGE = 0xff; //0xff mouse-key is used,0x00:mouse-key not used
+UINT8X CUR_MOUSE_KEY = 0x00; //0xff mouse-key is pressed ,0xf0 send blank
+UINT8X CUR_KEYBOARD = 0x00;  //0xff keboard-key is pressed,0xf0 send blank
 
 UINT8X LAST_MARCO_KEY = 0xff;
 UINT8X CUR_MARCO_KEY = 0xff;
@@ -50,7 +51,7 @@ void MarcoDelay(UINT8 time){
 }
 
 void HIDMousesend(){
-	if(MOUSE_KEY_USEAGE == 0xff){
+	if(CUR_MOUSE_KEY == 0xff){
 		FLAG = 0;
 		Mouse_Send();    //if mouse key is set,then send mouse event
 		while(FLAG == 0); 
@@ -58,9 +59,11 @@ void HIDMousesend(){
 }
 
 void HIDKeysend(){
-	FLAG = 0;
-	Keyboard_Send();      //send keyboard event
-	while(FLAG == 0); /*等待上一包传输完成*/
+	if(CUR_KEYBOARD == 0xff){
+		FLAG = 0;
+		Keyboard_Send();      //send keyboard event
+		while(FLAG == 0); /*等待上一包传输完成*/
+	}
 }
 //send message to computer
 void HIDsendMessage(){
@@ -77,7 +80,9 @@ void HIDmediasend(){
 			//pressed frist time
 			Multimedia_Send();   //send media event
 			while(FLAG == 0);
+			
 			HIDMultimedia[0] = 0;
+			FLAG = 0;
 			Multimedia_Send();   //send media event
 			while(FLAG == 0);
 		}
@@ -86,6 +91,7 @@ void HIDmediasend(){
 			Multimedia_Send();   //send media event
 			while(FLAG == 0);
 			HIDMultimedia[0] = 0;
+			FLAG = 0;
 			Multimedia_Send();   //send media event
 			while(FLAG == 0);
 			CUR_MEDIA_LAG = 0x02;
@@ -393,6 +399,8 @@ void scanKey(){
 		}
 	}
 	
+	CUR_MOUSE_KEY = 0x00;
+	CUR_KEYBOARD = 0x00;
 	CUR_MEDIA_KEY = 0xff;
 	//get final result
 	for(;i<10;i++){
@@ -403,23 +411,35 @@ void scanKey(){
 			media_code = temp_code;
 			CUR_MEDIA_KEY=i;
 		}
+		if(mouse_code!=0x00){
+			CUR_MOUSE_KEY = 0xff;
+		}
+		if(sp_key_code!=0x00){
+			CUR_KEYBOARD = 0xff;
+		}
 		//generate normal key_code
 		if(key_count<6 && (KEY_PRESS[i]==0xff)){
 			HIDKey[2+key_count]=KEY_CODE[i];
 			key_count ++;
+			CUR_KEYBOARD = 0xff;
 		}
 	}
-	
 	//FINAL ASSIGNING
 	//mouse codes
+	if(HIDMouse[0]!=0x00 && mouse_code==0x00)
+		CUR_MOUSE_KEY = 0xff;
 	HIDMouse[0] = mouse_code;
 	//meida codes
 	HIDMultimedia[0] = media_code;
 	//key codes
+	if(HIDKey[0]!=0x00 && sp_key_code==0x00)
+		CUR_KEYBOARD = 0xff;
 	HIDKey  [0] = sp_key_code; //special key Byte
 	HIDKey  [1] = 0x00;        //reserved
 	if(key_count<6){					 //fill blank
 		for(i=7;i>=key_count+2;i--){
+			if(HIDKey[i]!=0x00 && key_count == 0)
+				CUR_KEYBOARD = 0xff;
 			HIDKey[i]=0x00;
 		}
 	}
@@ -446,18 +466,6 @@ void setMarco(unsigned char hi,unsigned char lo){
 				}
         i++;
     }
-}
-void setMouseUseage(){
-	UINT8 i;
-	for(i=0;i<10;i++){
-		if(MOUSE_CODE[i]!=0x00){
-			MOUSE_KEY_USEAGE = 0xff;
-			break;
-		}
-		else{
-			MOUSE_KEY_USEAGE = 0x00;
-		}
-	}
 }
 
 
@@ -537,7 +545,6 @@ void hadleReceive(){
 					MOUSE_CODE[i] = User_Ep2Buf_rev[1+i];
 				}
 				WriteDataFlash(87,MOUSE_CODE,10);
-				setMouseUseage();
 				HIDsendACK();
 				break;
 			case 0x09:
@@ -588,7 +595,6 @@ void initKeyValue(){
 	ReadDataFlash(47,40,MARCO_KEYCODE);
   //if mouse key is used send mouse every time
 	ReadDataFlash(87,10,MOUSE_CODE);
-	setMouseUseage();
 	ReadDataFlash(97,10,MEDIA_CODE);
 	ReadDataFlash(107,10,MARCO_DELAY);
 	ReadDataFlash(117,10,MARCO_DELAY_INDX);
