@@ -75,8 +75,8 @@ bool CustomKeyboard::checkMacroAddable(int cur_key_no){
         }
     }
     //macro-key can only be less than 4
-    if(macro_count>=4){
-        if(!(getCustomKeyByID(cur_key_no)->isMacro() && macro_count ==4))
+    if(macro_count>=10){
+        if(!(getCustomKeyByID(cur_key_no)->isMacro() && macro_count ==10))
             return false;
     }
     //special-key can only be less than 10
@@ -85,8 +85,8 @@ bool CustomKeyboard::checkMacroAddable(int cur_key_no){
     //delay-key can only be less than 10
     if(sum_dely>=10)
         return false;
-    //normal-key can only be less than 40
-    if(sum_normal>=40)
+    //normal-key can only be less than 34
+    if(sum_normal>=34)
         return false;
     return true;
 }

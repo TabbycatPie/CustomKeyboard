@@ -10,9 +10,9 @@
 //														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00
 //													 };  //marco keycode
 
-UINT8X MARCO_KEYCODE [40]= {0x00};  //marco keycode
+UINT8X MARCO_KEYCODE [34]= {0x00};  //marco keycode
 
-UINT8X MARCO_SPLIT_INDX [5] = {0};  //split marco key position
+UINT8X MARCO_SPLIT_INDX [11] = {0};  //split marco key position
 
 UINT8X MARCO_SPE_KEYINDX [10] = {0x00};
 UINT8X MARCO_SPE_KEYCODE [10] = {0x00};
@@ -505,10 +505,10 @@ void hadleReceive(){
 			case 0x04:
 				//set marco key
 				//get marco indeices
-			  for(i=0;i<5;i++){
+			  for(i=0;i<11;i++){
 					MARCO_SPLIT_INDX[i] = User_Ep2Buf_rev[1+i];
 				}
-				WriteDataFlash(22,MARCO_SPLIT_INDX,5);
+				WriteDataFlash(22,MARCO_SPLIT_INDX,11);
 				HIDsendACK();
 				break;
 			case 0x05:
@@ -517,7 +517,7 @@ void hadleReceive(){
 				for(i=0;i<10;i++){
 					MARCO_SPE_KEYCODE[i] = User_Ep2Buf_rev[1+i];
 				}
-				WriteDataFlash(27,MARCO_SPE_KEYCODE,10);
+				WriteDataFlash(33,MARCO_SPE_KEYCODE,10);
 				HIDsendACK();
 				break;
 			case 0x06:
@@ -526,16 +526,16 @@ void hadleReceive(){
 				for(i=0;i<10;i++){
 					MARCO_SPE_KEYINDX[i] = User_Ep2Buf_rev[1+i];
 				}
-				WriteDataFlash(37,MARCO_SPE_KEYINDX,10);
+				WriteDataFlash(43,MARCO_SPE_KEYINDX,10);
 				HIDsendACK();
 				break;
 			case 0x07:
 				//set marco key
 				//set marco key code
-				for(i=0;i<40;i++){
+				for(i=0;i<34;i++){
 					MARCO_KEYCODE[i] = User_Ep2Buf_rev[1+i];
 				}
-				WriteDataFlash(47,MARCO_KEYCODE,40);
+				WriteDataFlash(53,MARCO_KEYCODE,34);
 				HIDsendACK();
 				break;
 			case 0x08:
@@ -589,10 +589,10 @@ void initKeyValue(){
 	ReadDataFlash(10,10,SP_KEY_CODE);
 	ReadDataFlash(20,2,_temp);
 	setMarco(_temp[0],_temp[1]);
-	ReadDataFlash(22,5,MARCO_SPLIT_INDX);
-	ReadDataFlash(27,10,MARCO_SPE_KEYCODE);
-	ReadDataFlash(37,10,MARCO_SPE_KEYINDX);
-	ReadDataFlash(47,40,MARCO_KEYCODE);
+	ReadDataFlash(22,11,MARCO_SPLIT_INDX);
+	ReadDataFlash(33,10,MARCO_SPE_KEYCODE);
+	ReadDataFlash(43,10,MARCO_SPE_KEYINDX);
+	ReadDataFlash(53,34,MARCO_KEYCODE);
   //if mouse key is used send mouse every time
 	ReadDataFlash(87,10,MOUSE_CODE);
 	ReadDataFlash(97,10,MEDIA_CODE);
