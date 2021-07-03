@@ -93,9 +93,9 @@ MainWindow::MainWindow(QWidget *parent)
         ui->btn_quakey3,ui->btn_quakey4
     };
 
-    ckb[0] = new CustomKeyboard("Test",10,0x2019,0x5131,50,10,virtual_test_keys);//test keyboard
-    ckb[1] = new CustomKeyboard("DualKey",2,0x2019,0x5131,50,10,virtual_dual_keys);//double-key keyboard
-    ckb[2] = new CustomKeyboard("QuadraKey",4,0x2019,0x5131,50,10,virtual_qua_keys);//quadra-key keyboard
+    ckb[0] = new CustomKeyboard("Test",10,0x2019,0x5131,virtual_test_keys);//test keyboard
+    ckb[1] = new CustomKeyboard("DualKey",2,0x2019,0x5131,virtual_dual_keys);//double-key keyboard
+    ckb[2] = new CustomKeyboard("QuadraKey",4,0x2019,0x5131,virtual_qua_keys);//quadra-key keyboard
 
     int total = (int)(sizeof(keyboard_list)/sizeof(QToolButton*));
     qDebug() << "Total key number is :" + QString::number(total)<<endl;
@@ -140,6 +140,9 @@ MainWindow::MainWindow(QWidget *parent)
         //set UI to english
         ui->actionEnglish->setChecked(false);
         changeLanguage("cn");
+    });
+    connect(ui->actionGetVersion,&QAction::triggered,this,[=]{
+        ckb[0]->getVersion();
     });
     //
 
@@ -297,7 +300,15 @@ void MainWindow::changeLanguage(QString language)
 
 void MainWindow::logUpdate(QString text)
 {
-     ui->tv_log->append(text);
+    ui->tv_log->append(text);
+}
+
+void MainWindow::findDevice(CustomKeyboard *my_ckb)
+{
+    hid_device *my_device = hid_open(my_ckb->getVid(),my_ckb->getPid(),nullptr);
+    if(my_device!=nullptr){
+
+    }
 }
 
 void MainWindow::setKey(int key_no){

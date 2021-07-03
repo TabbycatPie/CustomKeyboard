@@ -683,7 +683,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>30</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -714,6 +714,7 @@
      <string>Advance</string>
     </property>
     <addaction name="actionTest_Device"/>
+    <addaction name="actionGetVersion"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuSetting"/>
@@ -2132,6 +2133,11 @@
   <action name="actionTest_Device">
    <property name="text">
     <string>Test Device</string>
+   </property>
+  </action>
+  <action name="actionGetVersion">
+   <property name="text">
+    <string>Get Firmware Version</string>
    </property>
   </action>
  </widget>

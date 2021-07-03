@@ -43,6 +43,7 @@ public:
     QAction *actionEnglish;
     QAction *actionChinese;
     QAction *actionTest_Device;
+    QAction *actionGetVersion;
     QWidget *centralwidget;
     QTabWidget *tabWidget;
     QWidget *tab_test;
@@ -317,6 +318,8 @@ public:
         actionChinese->setCheckable(true);
         actionTest_Device = new QAction(MainWindow);
         actionTest_Device->setObjectName(QString::fromUtf8("actionTest_Device"));
+        actionGetVersion = new QAction(MainWindow);
+        actionGetVersion->setObjectName(QString::fromUtf8("actionGetVersion"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         tabWidget = new QTabWidget(centralwidget);
@@ -623,7 +626,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1000, 30));
+        menubar->setGeometry(QRect(0, 0, 1000, 22));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuSetting = new QMenu(menubar);
@@ -1522,6 +1525,7 @@ public:
         menuLanguage->addAction(actionEnglish);
         menuLanguage->addAction(actionChinese);
         menuAdvance->addAction(actionTest_Device);
+        menuAdvance->addAction(actionGetVersion);
 
         retranslateUi(MainWindow);
 
@@ -1542,6 +1546,7 @@ public:
         actionEnglish->setText(QCoreApplication::translate("MainWindow", "English", nullptr));
         actionChinese->setText(QCoreApplication::translate("MainWindow", "Chinese", nullptr));
         actionTest_Device->setText(QCoreApplication::translate("MainWindow", "Test Device", nullptr));
+        actionGetVersion->setText(QCoreApplication::translate("MainWindow", "Get Firmware Version", nullptr));
         btn_testkey1->setText(QCoreApplication::translate("MainWindow", "KEY1", nullptr));
         btn_testkey2->setText(QCoreApplication::translate("MainWindow", "KEY2", nullptr));
         btn_testkey3->setText(QCoreApplication::translate("MainWindow", "KEY3", nullptr));

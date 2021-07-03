@@ -39,5 +39,6 @@ private slots:
     void switchKeyboard(int keyboard_no);
     void changeLanguage(QString language);
     void logUpdate(QString text);
+    void findDevice(CustomKeyboard *my_ckb);
 };
 #endif // MAINWINDOW_H

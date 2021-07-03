@@ -10,13 +10,17 @@
 #include <qjsonarray.h>
 
 //constructor of class CustomKeyboard
-CustomKeyboard::CustomKeyboard(QString _name,int keynum,unsigned short pid,unsigned short vid,int macro_mem,int macro_spkey_mem,QPushButton *(*_btn_list)){
+CustomKeyboard::CustomKeyboard(QString _name,int keynum,unsigned short pid,unsigned short vid,QPushButton *(*_btn_list)){
     this->name = _name;
     this->keynum = keynum;
     this->pid = pid;
     this->vid = vid;
-    this->macro_mem = macro_mem;
-    this->macro_spkey = macro_spkey_mem;
+    //set macro setting to default
+    this->macro_mem = 34;
+    this->macro_spkey = 10;
+    this->macro_delay = 10;
+    this->macro_key_count = 10;
+
     this->last_error = "";
 
     this->normal_keycode = new uchar[keynum];
@@ -31,6 +35,14 @@ CustomKeyboard::CustomKeyboard(QString _name,int keynum,unsigned short pid,unsig
         spkey_mixcode[x]=0x00;
     }
 
+}
+
+void CustomKeyboard::setMacroConfig(int mlen, int mcount, int mspkey, int mdelay)
+{
+    this->macro_mem = mlen;
+    this->macro_key_count = mcount;
+    this->macro_spkey = mspkey;
+    this->macro_delay = mdelay;
 }
 //------FUNCTIONS FOR KEY EDITING------//
 void CustomKeyboard::setKey(int key_id, KeyValue *kv){
@@ -75,18 +87,18 @@ bool CustomKeyboard::checkMacroAddable(int cur_key_no){
         }
     }
     //macro-key can only be less than 4
-    if(macro_count>=10){
+    if(macro_count>=this->macro_key_count){
         if(!(getCustomKeyByID(cur_key_no)->isMacro() && macro_count ==10))
             return false;
     }
     //special-key can only be less than 10
-    if(sum_sp_key>=10)
+    if(sum_sp_key>=this->macro_spkey)
         return false;
     //delay-key can only be less than 10
-    if(sum_dely>=10)
+    if(sum_dely>=this->macro_delay)
         return false;
     //normal-key can only be less than 34
-    if(sum_normal>=34)
+    if(sum_normal>=this->macro_mem)
         return false;
     return true;
 }
@@ -386,6 +398,46 @@ bool CustomKeyboard::testHardware()
     hid_close(my_device);
     return is_ok;
 }
+
+int CustomKeyboard::getVersion()
+{
+    //open device
+    hid_device *my_device;
+    my_device = hid_open(vid,pid,nullptr);
+    if(my_device!=nullptr){
+        uchar test_frame[65]={0x00};
+        test_frame[0] = 0x00;
+        test_frame[1] = 0x0d;
+        //send get-version frame
+        int res = hid_write(my_device, test_frame, 65);
+        res = hid_write(my_device, test_frame, 65);
+        if(res == -1){
+            logToMain("Can not wirte to device:-2.");
+            return -2;//can not write to deive
+        }
+        else{
+            uchar VER[128] = {0x00};
+            int read_count =  hid_read_timeout(my_device,VER,128,500);
+            if(read_count>0){
+                if(VER[0] == 0x00){
+                    logToMain("device version = 0.");
+                    return 0;
+                }else if(VER[0] == 0x01){
+                    logToMain("device version is new:1.");
+                    return 1;
+                }
+            }else{
+                logToMain("Can not receive VERSION frameP:-3.");
+                logToMain("Firmware version is out of date.");
+                return 0;
+            }
+        }
+    }
+    else{
+        logToMain("Can not open device:-1.");
+        return -1; //can not open device
+    }
+}
 QString CustomKeyboard::getLastError(){
     QString temp  = last_error;
     this->last_error = "";
@@ -429,8 +481,6 @@ QJsonObject CustomKeyboard::toJsonObj()
     ckbjson.insert("pid",this->pid);
     ckbjson.insert("vid",this->vid);
     ckbjson.insert("keynum",this->keynum);
-    ckbjson.insert("macro_mem",this->macro_mem);
-    ckbjson.insert("macro_spkey",this->macro_spkey);
     QJsonArray cklist = QJsonArray();
     for(int i = 0;i<this->key_list.size();i++){
         cklist.append(this->key_list[i]->toJsonObj());
@@ -445,8 +495,6 @@ CustomKeyboard *CustomKeyboard::fromJson(QJsonObject jsonobj, QPushButton *(*map
     unsigned short _pid = (unsigned short)jsonobj.value("pid").toInt();
     unsigned short _vid = (unsigned short)jsonobj.value("vid").toInt();
     int _keynum = jsonobj.value("keynum").toInt();
-    int _macro_mem = jsonobj.value("macro_mem").toInt();
-    int _macro_spkey = jsonobj.value("macro_spkey").toInt();
     QJsonArray jsonarray = jsonobj.value("ck_list").toArray();
     QVector<CustomKey*> *ck_list = new QVector<CustomKey*>();
     for(int i = 0;i<_keynum;i++){
@@ -454,9 +502,29 @@ CustomKeyboard *CustomKeyboard::fromJson(QJsonObject jsonobj, QPushButton *(*map
         CustomKey *ck = CustomKey::fromJson(qjv.toObject(),mapping_button_list[i]);
         ck_list->append(ck);
     }
-    CustomKeyboard *ckb = new CustomKeyboard(_name,_keynum,_pid,_vid,_macro_mem,_macro_spkey,mapping_button_list);
+    CustomKeyboard *ckb = new CustomKeyboard(_name,_keynum,_pid,_vid,mapping_button_list);
     ckb->setKeyList(*ck_list);
     return ckb;
+}
+
+int CustomKeyboard::getMacro_mem() const
+{
+    return macro_mem;
+}
+
+int CustomKeyboard::getMacro_spkey() const
+{
+    return macro_spkey;
+}
+
+int CustomKeyboard::getMacro_delay() const
+{
+    return macro_delay;
+}
+
+int CustomKeyboard::getMacro_key_count() const
+{
+    return macro_key_count;
 }
 
 

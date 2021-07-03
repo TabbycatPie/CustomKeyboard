@@ -12,13 +12,18 @@ class CustomKeyboard : public QObject
     Q_OBJECT
 public:
     //contructor
-    CustomKeyboard(QString _name,int keynum,unsigned short pid,unsigned short vid,int macro_mem,int macro_spkey_mem,QPushButton *(*_btn_list));
+    CustomKeyboard(QString _name,int keynum,unsigned short pid,unsigned short vid,QPushButton *(*_btn_list));
     //getter and setter
+    void setMacroConfig(int mlen,int mcount,int mspkey,int mdelay);
     unsigned short getPid();
     unsigned short getVid();
     int getKeynum();
     int getMacroMem();
     int getMacroSPkeyMem();
+    int getMacro_mem() const;
+    int getMacro_spkey() const;
+    int getMacro_delay() const;
+    int getMacro_key_count() const;
     QPushButton *getButtonByID(int key_no);
     CustomKey *getCustomKeyByID(int key_no);
     QString getName();
@@ -34,19 +39,24 @@ public:
     int download(HIDCodeTable *table);
     //test
     bool testHardware();
+    int getVersion();
+
     QString getLastError();
     ~CustomKeyboard();
 
     //tojson
     QJsonObject toJsonObj();
     static CustomKeyboard *fromJson(QJsonObject jsonobj,QPushButton* (*mapping_button_list));
+
 private:
     QVector<CustomKey*> key_list;//soft-keyboard mapping
     unsigned short pid;       //production id
     unsigned short vid;       //vender     id
     int keynum;         //how many keys your device have
-    int macro_mem;      //max number of macro_key memory on device
-    int macro_spkey;    //max number of macro special key memort on device
+    int macro_mem;      //max number of macro_key memory on device            default is 34
+    int macro_spkey;    //max number of macro special key on device           default is 10
+    int macro_delay;    //max number of macro delay key on device             default is 10
+    int macro_key_count;//max number of macro key on device                   default is 10
     uchar *normal_keycode;  //normal key code
     uchar *spkey_mixcode;   //special key mix code
     QString name;           //keyboard Name
