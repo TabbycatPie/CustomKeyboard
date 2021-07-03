@@ -88,7 +88,7 @@ bool CustomKeyboard::checkMacroAddable(int cur_key_no){
     }
     //macro-key can only be less than 4
     if(macro_count>=this->macro_key_count){
-        if(!(getCustomKeyByID(cur_key_no)->isMacro() && macro_count ==10))
+        if(!(getCustomKeyByID(cur_key_no)->isMacro() && macro_count ==this->macro_key_count))
             return false;
     }
     //special-key can only be less than 10
@@ -403,6 +403,7 @@ int CustomKeyboard::getVersion()
 {
     //open device
     hid_device *my_device;
+    int ret = 0;
     my_device = hid_open(vid,pid,nullptr);
     if(my_device!=nullptr){
         uchar test_frame[65]={0x00};
@@ -410,10 +411,10 @@ int CustomKeyboard::getVersion()
         test_frame[1] = 0x0d;
         //send get-version frame
         int res = hid_write(my_device, test_frame, 65);
-        res = hid_write(my_device, test_frame, 65);
+        logToMain("getting version...");
         if(res == -1){
             logToMain("Can not wirte to device:-2.");
-            return -2;//can not write to deive
+            ret =  -2;//can not write to deive
         }
         else{
             uchar VER[128] = {0x00};
@@ -421,17 +422,19 @@ int CustomKeyboard::getVersion()
             if(read_count>0){
                 if(VER[0] == 0x00){
                     logToMain("device version = 0.");
-                    return 0;
                 }else if(VER[0] == 0x01){
                     logToMain("device version is new:1.");
-                    return 1;
+                    ret = 1;
+                }else{
+                    logToMain("device version = 0:old.");
                 }
             }else{
                 logToMain("Can not receive VERSION frameP:-3.");
                 logToMain("Firmware version is out of date.");
-                return 0;
             }
         }
+        hid_close(my_device);
+        return ret;
     }
     else{
         logToMain("Can not open device:-1.");

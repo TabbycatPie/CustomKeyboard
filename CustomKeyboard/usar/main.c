@@ -578,6 +578,11 @@ void hadleReceive(){
 				//ack test
 				HIDsendACK();
 				break;
+			case 0x0d:
+				User_Ep2Buf_send[0] = 0x01;
+				HIDsendMessage();
+				User_Ep2Buf_send[0] = 0x00;
+				break;
 		}
 	}
 }

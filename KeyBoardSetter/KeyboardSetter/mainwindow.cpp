@@ -97,6 +97,26 @@ MainWindow::MainWindow(QWidget *parent)
     ckb[1] = new CustomKeyboard("DualKey",2,0x2019,0x5131,virtual_dual_keys);//double-key keyboard
     ckb[2] = new CustomKeyboard("QuadraKey",4,0x2019,0x5131,virtual_qua_keys);//quadra-key keyboard
 
+    //version justify
+    while(true){
+        if(ckb[0]->getVersion()<0){
+            QMessageBox msg_info(this);
+            msg_info.setWindowTitle(tr("Notice"));
+            msg_info.setText(tr("Device not found,please connect then press ok."));
+            msg_info.setIcon(QMessageBox::Question);
+            msg_info.setStandardButtons(QMessageBox::Ok);
+            msg_info.exec();
+        }else
+            break;
+    }
+
+    if(ckb[0]->getVersion() == 0){
+        logUpdate("device firmware is old,reset limits.");
+        ckb[0]->setMacroConfig(40,4,10,10);
+    }else{
+        logUpdate("device firmware is new");
+    }
+
     int total = (int)(sizeof(keyboard_list)/sizeof(QToolButton*));
     qDebug() << "Total key number is :" + QString::number(total)<<endl;
     //CONNECT FUNCTIONS
