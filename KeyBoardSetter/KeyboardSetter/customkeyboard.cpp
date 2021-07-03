@@ -225,7 +225,7 @@ int CustomKeyboard::download(HIDCodeTable *table){
         for(;i<temp_macro_index_buffer.size();i++){
             frame_set_macro_index[i+2] = temp_macro_index_buffer[i];
         }
-        for(;i<5;i++){
+        for(;i<this->macro_key_count;i++){
             frame_set_macro_index[i+2] = temp_macro_buffer.size();
         }
         //set frame_set_macro_sp_key
