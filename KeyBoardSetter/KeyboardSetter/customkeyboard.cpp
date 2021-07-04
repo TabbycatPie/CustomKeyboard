@@ -225,7 +225,7 @@ int CustomKeyboard::download(HIDCodeTable *table){
         for(;i<temp_macro_index_buffer.size();i++){
             frame_set_macro_index[i+2] = temp_macro_index_buffer[i];
         }
-        for(;i<this->macro_key_count;i++){
+        for(;i<this->macro_key_count+1;i++){
             frame_set_macro_index[i+2] = temp_macro_buffer.size();
         }
         //set frame_set_macro_sp_key
@@ -255,6 +255,8 @@ int CustomKeyboard::download(HIDCodeTable *table){
 
 
         bool get_ack = false;
+        //set hid device to blocking mode
+        hid_set_nonblocking(my_device,0);
         //send setting frames to device
         int res1 = hid_write(my_device, frame_set_normal, 65);  // -1 for error
         get_ack = getACK(my_device);
@@ -314,7 +316,7 @@ bool CustomKeyboard::getACK(hid_device *opened_device)
 {
     uchar ACK[64]      = {0x00};
     //read ack
-    int read_count =  hid_read_timeout(opened_device,ACK,64,300);
+    int read_count =  hid_read_timeout(opened_device,ACK,64,500);
     if(read_count < 0){
         last_error = tr("Can not read ACK frame.");
         logToMain("Can not read ACK frame.");
