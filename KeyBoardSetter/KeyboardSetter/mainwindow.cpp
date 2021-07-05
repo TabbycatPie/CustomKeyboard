@@ -98,23 +98,30 @@ MainWindow::MainWindow(QWidget *parent)
     ckb[2] = new CustomKeyboard("QuadraKey",4,0x2019,0x5131,virtual_qua_keys);//quadra-key keyboard
 
     //version justify
+    int version = 0;
     while(true){
-        if(ckb[0]->getVersion()<0){
+        version = ckb[0]->getVersion();
+        if(version<0){
             QMessageBox msg_info(this);
             msg_info.setWindowTitle(tr("Notice"));
             msg_info.setText(tr("Device not found,please connect then press ok."));
             msg_info.setIcon(QMessageBox::Question);
-            msg_info.setStandardButtons(QMessageBox::Ok);
-            msg_info.exec();
+            msg_info.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
+            if(msg_info.exec()==QMessageBox::Cancel){
+                break;
+            }
         }else
             break;
     }
 
-    if(ckb[0]->getVersion() == 0){
+    if(version == 0){
         logUpdate("device firmware is old,reset limits.");
         ckb[0]->setMacroConfig(40,4,10,10);
-    }else{
+    }
+    else if(version == 1){
         logUpdate("device firmware is new");
+    }else{
+        logUpdate("device not found.");
     }
 
     int total = (int)(sizeof(keyboard_list)/sizeof(QToolButton*));
