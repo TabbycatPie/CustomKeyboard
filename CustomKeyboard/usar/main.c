@@ -76,7 +76,7 @@ void HIDsendMessage(){
 }
 
 void HIDmediasend(){
-	if(CUR_MEDIA_KEY!= 0xff && KEY_CHANGE == 0xff){
+	if(CUR_MEDIA_KEY!= 0xff){
 		//valid key triggered
 		if(CUR_MEDIA_KEY!=LAST_MEDIA_KEY){
 			FLAG = 0;
