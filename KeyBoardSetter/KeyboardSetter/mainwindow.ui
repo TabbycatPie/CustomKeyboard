@@ -64,7 +64,7 @@
     </property>
     <widget class="QWidget" name="tab_test">
      <attribute name="title">
-      <string>Test</string>
+      <string/>
      </attribute>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
@@ -220,45 +220,6 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="verticalLayoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>880</x>
-        <y>30</y>
-        <width>84</width>
-        <height>104</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QPushButton" name="btn_setcancel">
-         <property name="text">
-          <string>Cancel</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btn_save">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="text">
-          <string>Save</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btn_load">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="text">
-          <string>Load</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
      <widget class="QPushButton" name="btn_setadd">
       <property name="geometry">
        <rect>
@@ -318,349 +279,12 @@
        <string>Download</string>
       </property>
      </widget>
-     <widget class="QWidget" name="verticalLayoutWidget_2">
-      <property name="geometry">
-       <rect>
-        <x>510</x>
-        <y>30</y>
-        <width>111</width>
-        <height>136</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_10">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_23">
-         <item>
-          <widget class="QLabel" name="label_11">
-           <property name="minimumSize">
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 100, 100);</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_12">
-           <property name="text">
-            <string>Selected</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_18">
-         <item>
-          <widget class="QLabel" name="label_2">
-           <property name="minimumSize">
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(20, 150, 255);</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Normal</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_24">
-         <item>
-          <widget class="QLabel" name="label_13">
-           <property name="minimumSize">
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(100, 255, 100);</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_14">
-           <property name="text">
-            <string>Mouse</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_22">
-         <item>
-          <widget class="QLabel" name="label_9">
-           <property name="minimumSize">
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 200, 100);</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_10">
-           <property name="text">
-            <string>Media</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_19">
-         <item>
-          <widget class="QLabel" name="label_3">
-           <property name="minimumSize">
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 100, 255);</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_4">
-           <property name="text">
-            <string>Macro</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QTextEdit" name="tv_log">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>640</x>
-        <y>40</y>
-        <width>201</width>
-        <height>161</height>
-       </rect>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_5">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>640</x>
-        <y>13</y>
-        <width>68</width>
-        <height>19</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>LOG:</string>
-      </property>
-     </widget>
      <zorder>layoutWidget</zorder>
      <zorder>layoutWidget_7</zorder>
-     <zorder>verticalLayoutWidget</zorder>
      <zorder>btn_setdelete</zorder>
      <zorder>tv_keyvalue</zorder>
      <zorder>btn_download</zorder>
-     <zorder>verticalLayoutWidget_2</zorder>
      <zorder>btn_setadd</zorder>
-     <zorder>tv_log</zorder>
-     <zorder>label_5</zorder>
-    </widget>
-    <widget class="QWidget" name="tab_dualkeys">
-     <attribute name="title">
-      <string>DualKey</string>
-     </attribute>
-     <widget class="QWidget" name="layoutWidget_8">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>201</width>
-        <height>101</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_11">
-       <item>
-        <widget class="QPushButton" name="btn_dualkey1">
-         <property name="minimumSize">
-          <size>
-           <width>90</width>
-           <height>90</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>KEY1</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btn_dualkey2">
-         <property name="minimumSize">
-          <size>
-           <width>90</width>
-           <height>90</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>KEY2</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_quakeys">
-     <attribute name="title">
-      <string>QuaKey</string>
-     </attribute>
-     <widget class="QWidget" name="layoutWidget_10">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>110</y>
-        <width>201</width>
-        <height>101</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_13">
-       <item>
-        <widget class="QPushButton" name="btn_quakey3">
-         <property name="minimumSize">
-          <size>
-           <width>90</width>
-           <height>90</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>KEY3</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btn_quakey4">
-         <property name="minimumSize">
-          <size>
-           <width>90</width>
-           <height>90</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>KEY4</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="layoutWidget_11">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>201</width>
-        <height>101</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_14">
-       <item>
-        <widget class="QPushButton" name="btn_quakey1">
-         <property name="minimumSize">
-          <size>
-           <width>90</width>
-           <height>90</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>KEY1</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btn_quakey2">
-         <property name="minimumSize">
-          <size>
-           <width>90</width>
-           <height>90</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>KEY2</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
     </widget>
    </widget>
    <widget class="QTreeView" name="treeView">
@@ -683,7 +307,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>22</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -709,16 +333,8 @@
     </widget>
     <addaction name="menuLanguage"/>
    </widget>
-   <widget class="QMenu" name="menuAdvance">
-    <property name="title">
-     <string>Advance</string>
-    </property>
-    <addaction name="actionTest_Device"/>
-    <addaction name="actionGetVersion"/>
-   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuSetting"/>
-   <addaction name="menuAdvance"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QDockWidget" name="dockKeyboard">
@@ -1691,122 +1307,6 @@
         </item>
        </layout>
       </widget>
-      <widget class="QPushButton" name="pushButton">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>130</x>
-         <y>60</y>
-         <width>91</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>move Up</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>130</x>
-         <y>90</y>
-         <width>91</width>
-         <height>27</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_4">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>90</y>
-         <width>91</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>move Left</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_2">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>120</y>
-         <width>91</width>
-         <height>27</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_5">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>130</x>
-         <y>120</y>
-         <width>91</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>move Down</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_3">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>130</x>
-         <y>150</y>
-         <width>91</width>
-         <height>27</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_6">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>230</x>
-         <y>90</y>
-         <width>91</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>move Right</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_4">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>230</x>
-         <y>120</y>
-         <width>91</width>
-         <height>27</height>
-        </rect>
-       </property>
-      </widget>
      </widget>
      <widget class="QWidget" name="tab_5">
       <attribute name="title">
@@ -1824,59 +1324,70 @@
        <property name="title">
         <string>MultiMedia</string>
        </property>
-       <widget class="QWidget" name="verticalLayoutWidget_4">
+       <widget class="QToolButton" name="btn_mmvp">
         <property name="geometry">
          <rect>
-          <x>8</x>
-          <y>29</y>
-          <width>121</width>
-          <height>188</height>
+          <x>10</x>
+          <y>30</y>
+          <width>92</width>
+          <height>26</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_8">
-         <item>
-          <widget class="QToolButton" name="btn_mmvp">
-           <property name="text">
-            <string>VolumeUp</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="btn_mmvd">
-           <property name="text">
-            <string>VolumeDown</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="btn_mmmute">
-           <property name="text">
-            <string>Mute</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="btn_mmpp">
-           <property name="text">
-            <string>Play/Pause </string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="btn_mmls">
-           <property name="text">
-            <string>LastSong</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QToolButton" name="btn_mmns">
-           <property name="text">
-            <string>NextSong</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <property name="text">
+         <string>VolumeUp</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="btn_mmvd">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>60</y>
+          <width>113</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>VolumeDown</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="btn_mmns">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>150</y>
+          <width>86</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>NextSong</string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="btn_mmpp">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>120</y>
+          <width>99</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Play/Pause </string>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="btn_mmls">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>90</y>
+          <width>71</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>LastSong</string>
+        </property>
        </widget>
       </widget>
       <widget class="QGroupBox" name="groupBox_2">
@@ -2089,6 +1600,19 @@
          </item>
         </layout>
        </widget>
+      </widget>
+      <widget class="QToolButton" name="btn_mmmute">
+       <property name="geometry">
+        <rect>
+         <x>93</x>
+         <y>100</y>
+         <width>41</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Mute</string>
+       </property>
       </widget>
      </widget>
     </widget>

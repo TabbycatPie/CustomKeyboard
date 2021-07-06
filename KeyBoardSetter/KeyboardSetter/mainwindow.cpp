@@ -14,7 +14,7 @@
 #include <QFileDialog>
 #include <qtranslator.h>
 
-#define TYPENUM 3
+#define TYPENUM 1
 #define KEYNUM 10
 
 //global vars
@@ -99,19 +99,9 @@ MainWindow::MainWindow(QWidget *parent)
         ui->btn_testkey1,ui->btn_testkey2,ui->btn_testkey3,ui->btn_testkey4,ui->btn_testkey5,
         ui->btn_testkey6,ui->btn_testkey7,ui->btn_testkey8,ui->btn_testkey9,ui->btn_testkey10
     };
-    //Dual keyboard page
-    QPushButton *virtual_dual_keys[]{
-        ui->btn_dualkey1,ui->btn_dualkey2
-    };
-    //Qua keyboard page
-    QPushButton *virtual_qua_keys[]{
-        ui->btn_quakey1,ui->btn_quakey2,
-        ui->btn_quakey3,ui->btn_quakey4
-    };
+
 
     ckb[0] = new CustomKeyboard("Test",10,0x2019,0x5131,virtual_test_keys);//test keyboard
-    ckb[1] = new CustomKeyboard("DualKey",2,0x2019,0x5131,virtual_dual_keys);//double-key keyboard
-    ckb[2] = new CustomKeyboard("QuadraKey",4,0x2019,0x5131,virtual_qua_keys);//quadra-key keyboard
 
     //version justify
     int version = 0;
@@ -131,13 +121,13 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     if(version == 0){
-        logUpdate("device firmware is old,reset limits.");
+        //logUpdate("device firmware is old,reset limits.");
         ckb[0]->setMacroConfig(40,4,10,10);
     }
     else if(version == 1){
-        logUpdate("device firmware is new");
+        //logUpdate("device firmware is new");
     }else{
-        logUpdate("device not found.");
+        //logUpdate("device not found.");
     }
 
     int total = (int)(sizeof(keyboard_list)/sizeof(QToolButton*));
@@ -162,7 +152,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->dockKeyboard->hide();
     });
     //connect log event slot
-    connect(ckb[0],&CustomKeyboard::logToMain,this,&MainWindow::logUpdate);
+    //connect(ckb[0],&CustomKeyboard::logToMain,this,&MainWindow::logUpdate);
     //connect menu bar action
     connect(ui->actionExit,&QAction::triggered,this,&MainWindow::close);
     connect(ui->actionSave,&QAction::triggered,this,[=]{
@@ -190,33 +180,9 @@ MainWindow::MainWindow(QWidget *parent)
     //
 
 
-    //connect button
-    connect(ui->btn_setcancel,&QPushButton::clicked,ui->dockKeyboard,[=]{
-        //clear current stat
-        cur_key_sp.clear();
-        cur_key_normal.clear();
-        cur_mouse =0;
-        cur_media =0;
-        cur_delay =0;
-        ui->btn_lshift->setStyleSheet("");
-        ui->btn_lctrl->setStyleSheet("");
-        ui->btn_lalt->setStyleSheet("");
-        ui->btn_lwin->setStyleSheet("");
-        ui->btn_rshift->setStyleSheet("");
-        ui->btn_rctrl->setStyleSheet("");
-        ui->btn_ralt->setStyleSheet("");
-        ui->btn_rwin->setStyleSheet("");
-        updateUI();
-        //hide key board
-        ui->dockKeyboard->hide();
-        this->resize(1000,370);
-    });
 
-    //commit key setting
-    connect(ui->btn_load,&QPushButton::clicked,this,[=]{
-       //commitKeySetting();
-       loadConfigFromFile();
-    });
+
+
 
     //download button
     connect(ui->btn_download,&QPushButton::clicked,this,[=]{
@@ -239,10 +205,6 @@ MainWindow::MainWindow(QWidget *parent)
     //set set-delay button
     connect(ui->btn_setdelay,&QPushButton::clicked,this,[=]{
         setDelay();
-    });
-    //set save button
-    connect(ui->btn_save,&QPushButton::clicked,this,[=]{
-        saveConfigToFile();
     });
 
     //init UI
@@ -305,7 +267,7 @@ void MainWindow::changeLanguage(QString language)
         }
         else{
             qDebug() << "Can not load UI language.";
-            logUpdate("Can not load UI language.");
+            //logUpdate("Can not load UI language.");
         }
     }else if(language=="en"){
         translator->load("");
@@ -315,7 +277,7 @@ void MainWindow::changeLanguage(QString language)
         ui->actionEnglish->setChecked(true);
         flag = "english";
         qDebug() << "Using english as UI language.";
-        logUpdate("Using english as UI language.");
+        //logUpdate("Using english as UI language.");
     }
 
     //save user language information to file
@@ -327,10 +289,6 @@ void MainWindow::changeLanguage(QString language)
     delete userconfig;
 }
 
-void MainWindow::logUpdate(QString text)
-{
-    ui->tv_log->append(text);
-}
 
 void MainWindow::findDevice(CustomKeyboard *my_ckb)
 {
@@ -342,7 +300,7 @@ void MainWindow::findDevice(CustomKeyboard *my_ckb)
 
 void MainWindow::setKey(int key_no){
     cur_edit_key_no = key_no;
-    ui->dockKeyboard->setWindowTitle(tr("Current Keyboard")+":"+ckb[cur_keyboard_no]->getName()+"   "+tr("Current Seletion")+":KEY"+QString::number(key_no+1));
+    //ui->dockKeyboard->setWindowTitle(tr("Current Keyboard")+":"+ckb[cur_keyboard_no]->getName()+"   "+tr("Current Seletion")+":KEY"+QString::number(key_no+1));
     this->resize(1000,650);
     ui->dockKeyboard->show();
     updateUI();
@@ -635,16 +593,16 @@ void MainWindow::updateUI(){
             continue;
         QPushButton *pbtn = ckb[cur_keyboard_no]->getButtonByID(i);
         if(ckb[cur_keyboard_no]->getCustomKeyByID(i)->isMacro())
-            pbtn->setStyleSheet("background-color: rgb(255, 100, 255);"); //purple for macro
+            pbtn->setStyleSheet(""); //purple for macro
         else if(ckb[cur_keyboard_no]->getCustomKeyByID(i)->isMedia())
-            pbtn->setStyleSheet("background-color: rgb(255, 200, 100);"); //yellow for media
+            pbtn->setStyleSheet(""); //yellow for media
         else if(ckb[cur_keyboard_no]->getCustomKeyByID(i)->isMouse())
-            pbtn->setStyleSheet("background-color: rgb(100, 255, 100);"); //green for mouse
+            pbtn->setStyleSheet(""); //green for mouse
         else{
             if(ckb[cur_keyboard_no]->getCustomKeyByID(i)->getKeyValueCount()==1
                     && (ckb[cur_keyboard_no]->getCustomKeyByID(i)->getKeyValueList()[0]->getNormalKeyIndex()!=0
                         ||ckb[cur_keyboard_no]->getCustomKeyByID(i)->getKeyValueList()[0]->getSPKeyList()[0]!=0))
-                pbtn->setStyleSheet("background-color: rgb(20, 150, 255);"); //blue for normal
+                pbtn->setStyleSheet(""); //blue for normal
             else
                 pbtn->setStyleSheet(""); //none for unset
         }
@@ -659,7 +617,7 @@ bool MainWindow::downloadToDevice(int keyboard_no){
     int result = -1;
     QMessageBox msg_info(this);
     msg_info.setWindowTitle(tr("Notice"));
-    msg_info.setText(tr("Are you sure to download config to your device:") + ckb[keyboard_no]->getName()+"?");
+    msg_info.setText(tr("Are you sure to download config to your device?"));
     msg_info.setIcon(QMessageBox::Question);
     msg_info.setStandardButtons(QMessageBox::Ok | QMessageBox:: Cancel);
     if(msg_info.exec() == QMessageBox::Ok){
@@ -679,7 +637,7 @@ bool MainWindow::downloadToDevice(int keyboard_no){
         }
         else{
             msg_result.setWindowTitle(tr("Notice"));
-            msg_result.setText(tr("Download finished! But there may be some errors."));
+            msg_result.setText(tr("Sending finished!"));
             msg_result.setIcon(QMessageBox::Information);
             msg_result.setStandardButtons(QMessageBox::Ok);
         }
