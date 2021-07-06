@@ -29,7 +29,8 @@ UINT8 SP_KEY_CODE[10] = {0x00};  //temporily used for sepcial key
 //  pressed :key_pressed[n] == 0xff
 //if key(n) is a marco key 
 
-UINT8 KEY_PRESS  [10] = {0x00};  
+UINT8 KEY_PRESS  [10] = {0x00};
+UINT8 LST_PRESS  [10] = {0x00};
 UINT8 KEY_MARCO  [10] = {0x00};
 
 UINT8X LAST_MEDIA_KEY = 0xff;
@@ -43,6 +44,8 @@ UINT8X LAST_MARCO_KEY = 0xff;
 UINT8X CUR_MARCO_KEY = 0xff;
 UINT8X CUR_MARCO_LAG = 0x0a;
 
+UINT8X KEY_CHANGE = 0x00;
+
 
 //delay time*100ms
 void MarcoDelay(UINT8 time){
@@ -51,7 +54,7 @@ void MarcoDelay(UINT8 time){
 }
 
 void HIDMousesend(){
-	if(CUR_MOUSE_KEY == 0xff){
+	if(CUR_MOUSE_KEY == 0xff && KEY_CHANGE == 0xff){
 		FLAG = 0;
 		Mouse_Send();    //if mouse key is set,then send mouse event
 		while(FLAG == 0); 
@@ -59,7 +62,7 @@ void HIDMousesend(){
 }
 
 void HIDKeysend(){
-	if(CUR_KEYBOARD == 0xff){
+	if(CUR_KEYBOARD == 0xff && KEY_CHANGE == 0xff){
 		FLAG = 0;
 		Keyboard_Send();      //send keyboard event
 		while(FLAG == 0); /*等待上一包传输完成*/
@@ -73,7 +76,7 @@ void HIDsendMessage(){
 }
 
 void HIDmediasend(){
-	if(CUR_MEDIA_KEY!= 0xff){
+	if(CUR_MEDIA_KEY!= 0xff && KEY_CHANGE == 0xff){
 		//valid key triggered
 		if(CUR_MEDIA_KEY!=LAST_MEDIA_KEY){
 			FLAG = 0;
@@ -249,6 +252,7 @@ void scanKey(){
 	UINT8 temp_code=0x00;
 	UINT8 key_count = 0;
 	CUR_MARCO_KEY = 0xff;
+	KEY_CHANGE = 0x00;
 	if(!Key1){
 		KEY_PRESS[0]=0xff;
 	}
@@ -418,6 +422,10 @@ void scanKey(){
 		}
 		if(sp_key_code!=0x00){
 			CUR_KEYBOARD = 0xff;
+		}
+		if(KEY_PRESS[i] != LST_PRESS[i]){
+			KEY_CHANGE = 0xff;
+			LST_PRESS[i] = KEY_PRESS[i];
 		}
 		//generate normal key_code
 		if(key_count<6 && (KEY_PRESS[i]==0xff)){
