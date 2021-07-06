@@ -431,7 +431,7 @@ int CustomKeyboard::getVersion()
                     logToMain("device version = 0:old.");
                 }
             }else{
-                logToMain("Can not receive VERSION frameP:-3.");
+                logToMain("Can not receive VERSION frame:-3.");
                 logToMain("Firmware version is out of date.");
             }
         }

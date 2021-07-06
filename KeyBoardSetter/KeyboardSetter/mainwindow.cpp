@@ -48,6 +48,22 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    //inti translator
+    translator = new QTranslator();
+    //load from config
+    ConfigSaver cs;
+    QString filename =  QCoreApplication::applicationDirPath() + "//usercondif.ini";
+    QJsonObject *jsonobj = new QJsonObject();
+    if(!cs.readConfig(filename,jsonobj))
+        qDebug() << "Can not read userconfig.ini";
+    UserConfig *uc = UserConfig::fromJson(*jsonobj);
+    if(uc->getLanguage()=="english"){
+        changeLanguage("en");
+    }else{
+        changeLanguage("cn");
+    }
+
     //button init
     static QToolButton *keyboard_list[]={
         //normal keys
@@ -105,7 +121,7 @@ MainWindow::MainWindow(QWidget *parent)
             QMessageBox msg_info(this);
             msg_info.setWindowTitle(tr("Notice"));
             msg_info.setText(tr("Device not found,please connect then press ok."));
-            msg_info.setIcon(QMessageBox::Question);
+            msg_info.setIcon(QMessageBox::Information);
             msg_info.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
             if(msg_info.exec()==QMessageBox::Cancel){
                 break;
@@ -246,20 +262,6 @@ MainWindow::MainWindow(QWidget *parent)
     //set tips
     ui->btn_setadd->setToolTip(tr("Click this to add single Crtl,Alt,Shift to key value"));
 
-    //inti translator
-    translator = new QTranslator();
-    //load from config
-    ConfigSaver cs;
-    QString filename =  QCoreApplication::applicationDirPath() + "//usercondif.ini";
-    QJsonObject *jsonobj = new QJsonObject();
-    if(!cs.readConfig(filename,jsonobj))
-        qDebug() << "Can not read userconfig.ini";
-    UserConfig *uc = UserConfig::fromJson(*jsonobj);
-    if(uc->getLanguage()=="english"){
-        changeLanguage("en");
-    }else{
-        changeLanguage("cn");
-    }
     //release
     delete jsonobj;
 }
