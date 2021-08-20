@@ -338,81 +338,139 @@ void MainWindow::setDelay(){
 
 bool MainWindow::saveConfigToFile()
 {
-    QMessageBox msg_info(this);
-    msg_info.setWindowTitle(tr("Notice"));
-    msg_info.setText(tr("Save config to file?"));
-    msg_info.setIcon(QMessageBox::Question);
-    msg_info.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    if(msg_info.exec()==QMessageBox::Ok){
-        //press ok
-        QString filePath = QFileDialog::getSaveFileName(this, tr("Save File"),".//untitled.zdd",tr("zddConfig (*.zdd)"));
-        qDebug() << filePath << "is selected";
-        if(filePath != ""){
-            ConfigSaver* saver =new ConfigSaver();
-            if(!saver->saveConfig(filePath,ckb[cur_keyboard_no]->toJsonObj())){
-                //can not save
-                QMessageBox msg_info(this);
-                msg_info.setWindowTitle(tr("Error"));
-                msg_info.setText(tr("Can not save ")+filePath+" "+saver->getLastError());
-                msg_info.setIcon(QMessageBox::Critical);
-                msg_info.setStandardButtons(QMessageBox::Ok);
-                msg_info.exec();
-            }else{
-                QMessageBox msg_info(this);
-                msg_info.setWindowTitle(tr("Notice"));
-                msg_info.setText(tr("Saved Successfully!"));
-                msg_info.setIcon(QMessageBox::Information);
-                msg_info.setStandardButtons(QMessageBox::Ok);
-                msg_info.exec();
-            }
-            delete saver;
+//    QMessageBox msg_info(this);
+//    msg_info.setWindowTitle(tr("Notice"));
+//    msg_info.setText(tr("Save config to file?"));
+//    msg_info.setIcon(QMessageBox::Question);
+//    msg_info.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
+//    if(msg_info.exec()==QMessageBox::Ok){
+//        //press ok
+//        QString filePath = QFileDialog::getSaveFileName(this, tr("Save File"),".//untitled.zdd",tr("zddConfig (*.zdd)"));
+//        qDebug() << filePath << "is selected";
+//        if(filePath != ""){
+//            ConfigSaver* saver =new ConfigSaver();
+//            if(!saver->saveConfig(filePath,ckb[cur_keyboard_no]->toJsonObj())){
+//                //can not save
+//                QMessageBox msg_info(this);
+//                msg_info.setWindowTitle(tr("Error"));
+//                msg_info.setText(tr("Can not save ")+filePath+" "+saver->getLastError());
+//                msg_info.setIcon(QMessageBox::Critical);
+//                msg_info.setStandardButtons(QMessageBox::Ok);
+//                msg_info.exec();
+//            }else{
+//                QMessageBox msg_info(this);
+//                msg_info.setWindowTitle(tr("Notice"));
+//                msg_info.setText(tr("Saved Successfully!"));
+//                msg_info.setIcon(QMessageBox::Information);
+//                msg_info.setStandardButtons(QMessageBox::Ok);
+//                msg_info.exec();
+//            }
+//            delete saver;
 
+//        }
+//    }
+    //press ok
+    QString filePath = QFileDialog::getSaveFileName(this, tr("Save File"),".//untitled.zdd",tr("zddConfig (*.zdd)"));
+    qDebug() << filePath << "is selected";
+    if(filePath != ""){
+        ConfigSaver* saver =new ConfigSaver();
+        if(!saver->saveConfig(filePath,ckb[cur_keyboard_no]->toJsonObj())){
+            //can not save
+            QMessageBox msg_info(this);
+            msg_info.setWindowTitle(tr("Error"));
+            msg_info.setText(tr("Can not save ")+filePath+" "+saver->getLastError());
+            msg_info.setIcon(QMessageBox::Critical);
+            msg_info.setStandardButtons(QMessageBox::Ok);
+            msg_info.exec();
+        }else{
+            QMessageBox msg_info(this);
+            msg_info.setWindowTitle(tr("Notice"));
+            msg_info.setText(tr("Saved Successfully!"));
+            msg_info.setIcon(QMessageBox::Information);
+            msg_info.setStandardButtons(QMessageBox::Ok);
+            msg_info.exec();
         }
+        delete saver;
+
     }
 
 }
 
 CustomKeyboard *MainWindow::loadConfigFromFile()
 {
-    QMessageBox msg_info(this);
-    msg_info.setWindowTitle(tr("Notice"));
-    msg_info.setText(tr("Load config?"));
-    msg_info.setIcon(QMessageBox::Question);
-    msg_info.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    if(msg_info.exec()==QMessageBox::Ok){
-        //press ok
-        QString filePath = QFileDialog::getOpenFileName(this,tr("Open file"),"./",tr("zddConfig (*.zdd)"));
-        qDebug() << filePath << "is selected";
-        if(filePath != ""){
-            ConfigSaver* saver =new ConfigSaver();
-            QJsonObject ckbjsonobj;
-            if(!saver->readConfig(filePath,&ckbjsonobj)){
-                //can not save
-                QMessageBox msg_info(this);
-                msg_info.setWindowTitle(tr("Error"));
-                msg_info.setText(tr("Can not load file ")+filePath+" "+saver->getLastError());
-                msg_info.setIcon(QMessageBox::Critical);
-                msg_info.setStandardButtons(QMessageBox::Ok);
-                msg_info.exec();
-            }else{
-                //virtual key
-                //TEST keyboard page
-                QPushButton *virtual_test_keys[]{
-                    ui->btn_testkey1,ui->btn_testkey2,ui->btn_testkey3,ui->btn_testkey4,ui->btn_testkey5,
-                    ui->btn_testkey6,ui->btn_testkey7,ui->btn_testkey8,ui->btn_testkey9,ui->btn_testkey10
-                };
+//    QMessageBox msg_info(this);
+//    msg_info.setWindowTitle(tr("Notice"));
+//    msg_info.setText(tr("Load config?"));
+//    msg_info.setIcon(QMessageBox::Question);
+//    msg_info.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
+//    if(msg_info.exec()==QMessageBox::Ok){
+//        //press ok
+//        QString filePath = QFileDialog::getOpenFileName(this,tr("Open file"),"./",tr("zddConfig (*.zdd)"));
+//        qDebug() << filePath << "is selected";
+//        if(filePath != ""){
+//            ConfigSaver* saver =new ConfigSaver();
+//            QJsonObject ckbjsonobj;
+//            if(!saver->readConfig(filePath,&ckbjsonobj)){
+//                //can not save
+//                QMessageBox msg_info(this);
+//                msg_info.setWindowTitle(tr("Error"));
+//                msg_info.setText(tr("Can not load file ")+filePath+" "+saver->getLastError());
+//                msg_info.setIcon(QMessageBox::Critical);
+//                msg_info.setStandardButtons(QMessageBox::Ok);
+//                msg_info.exec();
+//            }else{
+//                //virtual key
+//                //TEST keyboard page
+//                QPushButton *virtual_test_keys[]{
+//                    ui->btn_testkey1,ui->btn_testkey2,ui->btn_testkey3,ui->btn_testkey4,ui->btn_testkey5,
+//                    ui->btn_testkey6,ui->btn_testkey7,ui->btn_testkey8,ui->btn_testkey9,ui->btn_testkey10
+//                };
 
-                ckb[0] = CustomKeyboard::fromJson(ckbjsonobj,virtual_test_keys);
-                updateUI();
-                QMessageBox msg_info(this);
-                msg_info.setWindowTitle(tr("Notice"));
-                msg_info.setText(tr("Loaded Successfully!"));
-                msg_info.setIcon(QMessageBox::Information);
-                msg_info.setStandardButtons(QMessageBox::Ok);
-                msg_info.exec();
-            }
-            delete saver;
+//                ckb[0] = CustomKeyboard::fromJson(ckbjsonobj,virtual_test_keys);
+//                updateUI();
+//                QMessageBox msg_info(this);
+//                msg_info.setWindowTitle(tr("Notice"));
+//                msg_info.setText(tr("Loaded Successfully!"));
+//                msg_info.setIcon(QMessageBox::Information);
+//                msg_info.setStandardButtons(QMessageBox::Ok);
+//                msg_info.exec();
+//            }
+//            delete saver;
+//        }
+//    }
+
+    //press ok
+    QString filePath = QFileDialog::getOpenFileName(this,tr("Open file"),"./",tr("zddConfig (*.zdd)"));
+    qDebug() << filePath << "is selected";
+    if(filePath != ""){
+        ConfigSaver* saver =new ConfigSaver();
+        QJsonObject ckbjsonobj;
+        if(!saver->readConfig(filePath,&ckbjsonobj)){
+            //can not save
+            QMessageBox msg_info(this);
+            msg_info.setWindowTitle(tr("Error"));
+            msg_info.setText(tr("Can not load file ")+filePath+" "+saver->getLastError());
+            msg_info.setIcon(QMessageBox::Critical);
+            msg_info.setStandardButtons(QMessageBox::Ok);
+            msg_info.exec();
+        }else{
+            //virtual key
+            //TEST keyboard page
+            QPushButton *virtual_test_keys[]{
+                ui->btn_testkey1,ui->btn_testkey2,ui->btn_testkey3,ui->btn_testkey4,ui->btn_testkey5,
+                ui->btn_testkey6,ui->btn_testkey7,ui->btn_testkey8,ui->btn_testkey9,ui->btn_testkey10
+            };
+
+            ckb[0] = CustomKeyboard::fromJson(ckbjsonobj,virtual_test_keys);
+            updateUI();
+            QMessageBox msg_info(this);
+            msg_info.setWindowTitle(tr("Notice"));
+            msg_info.setText(tr("Loaded Successfully!"));
+            msg_info.setIcon(QMessageBox::Information);
+            msg_info.setStandardButtons(QMessageBox::Ok);
+            msg_info.exec();
         }
+        delete saver;
     }
 }
 void MainWindow::delayindecrease(bool is_add){
@@ -615,34 +673,55 @@ void MainWindow::updateUI(){
 
 bool MainWindow::downloadToDevice(int keyboard_no){
     int result = -1;
-    QMessageBox msg_info(this);
-    msg_info.setWindowTitle(tr("Notice"));
-    msg_info.setText(tr("Are you sure to download config to your device?"));
-    msg_info.setIcon(QMessageBox::Question);
-    msg_info.setStandardButtons(QMessageBox::Ok | QMessageBox:: Cancel);
-    if(msg_info.exec() == QMessageBox::Ok){
-        QMessageBox msg_result(this);
-        result = ckb[keyboard_no]->download(&table);
-        if(result == 1){
-            msg_result.setWindowTitle(tr("Notice"));
-            msg_result.setText(tr("Download finished!"));
-            msg_result.setIcon(QMessageBox::Information);
-            msg_result.setStandardButtons(QMessageBox::Ok);
-        }
-        else if(result == -1){
-            msg_result.setWindowTitle(tr("Error"));
-            msg_result.setText(tr("Download Error :") + ckb[keyboard_no]->getLastError());
-            msg_result.setIcon(QMessageBox::Critical);
-            msg_result.setStandardButtons(QMessageBox::Ok);
-        }
-        else{
-            msg_result.setWindowTitle(tr("Notice"));
-            msg_result.setText(tr("Sending finished!"));
-            msg_result.setIcon(QMessageBox::Information);
-            msg_result.setStandardButtons(QMessageBox::Ok);
-        }
-        msg_result.exec();
+//    QMessageBox msg_info(this);
+//    msg_info.setWindowTitle(tr("Notice"));
+//    msg_info.setText(tr("Are you sure to download config to your device?"));
+//    msg_info.setIcon(QMessageBox::Question);
+//    msg_info.setStandardButtons(QMessageBox::Ok | QMessageBox:: Cancel);
+//    if(msg_info.exec() == QMessageBox::Ok){
+//        QMessageBox msg_result(this);
+//        result = ckb[keyboard_no]->download(&table);
+//        if(result == 1){
+//            msg_result.setWindowTitle(tr("Notice"));
+//            msg_result.setText(tr("Download finished!"));
+//            msg_result.setIcon(QMessageBox::Information);
+//            msg_result.setStandardButtons(QMessageBox::Ok);
+//        }
+//        else if(result == -1){
+//            msg_result.setWindowTitle(tr("Error"));
+//            msg_result.setText(tr("Download Error :") + ckb[keyboard_no]->getLastError());
+//            msg_result.setIcon(QMessageBox::Critical);
+//            msg_result.setStandardButtons(QMessageBox::Ok);
+//        }
+//        else{
+//            msg_result.setWindowTitle(tr("Notice"));
+//            msg_result.setText(tr("Sending finished!"));
+//            msg_result.setIcon(QMessageBox::Information);
+//            msg_result.setStandardButtons(QMessageBox::Ok);
+//        }
+//        msg_result.exec();
+//    }
+    QMessageBox msg_result(this);
+    result = ckb[keyboard_no]->download(&table);
+    if(result == 1){
+        msg_result.setWindowTitle(tr("Notice"));
+        msg_result.setText(tr("Download finished!"));
+        msg_result.setIcon(QMessageBox::Information);
+        msg_result.setStandardButtons(QMessageBox::Ok);
     }
+    else if(result == -1){
+        msg_result.setWindowTitle(tr("Error"));
+        msg_result.setText(tr("Download Error :") + ckb[keyboard_no]->getLastError());
+        msg_result.setIcon(QMessageBox::Critical);
+        msg_result.setStandardButtons(QMessageBox::Ok);
+    }
+    else{
+        msg_result.setWindowTitle(tr("Notice"));
+        msg_result.setText(tr("Sending finished!"));
+        msg_result.setIcon(QMessageBox::Information);
+        msg_result.setStandardButtons(QMessageBox::Ok);
+    }
+    msg_result.exec();
     return result;
 };
 
