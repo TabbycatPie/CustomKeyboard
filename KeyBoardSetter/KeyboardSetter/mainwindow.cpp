@@ -13,6 +13,7 @@
 #include <qjsondocument.h>
 #include <QFileDialog>
 #include <qtranslator.h>
+#include <qthread.h>
 
 #define TYPENUM 1
 #define KEYNUM 10
@@ -673,52 +674,43 @@ void MainWindow::updateUI(){
 
 bool MainWindow::downloadToDevice(int keyboard_no){
     int result = -1;
-//    QMessageBox msg_info(this);
-//    msg_info.setWindowTitle(tr("Notice"));
-//    msg_info.setText(tr("Are you sure to download config to your device?"));
-//    msg_info.setIcon(QMessageBox::Question);
-//    msg_info.setStandardButtons(QMessageBox::Ok | QMessageBox:: Cancel);
-//    if(msg_info.exec() == QMessageBox::Ok){
-//        QMessageBox msg_result(this);
-//        result = ckb[keyboard_no]->download(&table);
-//        if(result == 1){
-//            msg_result.setWindowTitle(tr("Notice"));
-//            msg_result.setText(tr("Download finished!"));
-//            msg_result.setIcon(QMessageBox::Information);
-//            msg_result.setStandardButtons(QMessageBox::Ok);
-//        }
-//        else if(result == -1){
-//            msg_result.setWindowTitle(tr("Error"));
-//            msg_result.setText(tr("Download Error :") + ckb[keyboard_no]->getLastError());
-//            msg_result.setIcon(QMessageBox::Critical);
-//            msg_result.setStandardButtons(QMessageBox::Ok);
-//        }
-//        else{
-//            msg_result.setWindowTitle(tr("Notice"));
-//            msg_result.setText(tr("Sending finished!"));
-//            msg_result.setIcon(QMessageBox::Information);
-//            msg_result.setStandardButtons(QMessageBox::Ok);
-//        }
-//        msg_result.exec();
-//    }
     QMessageBox msg_result(this);
-    result = ckb[keyboard_no]->download(&table);
-    if(result == 1){
-        msg_result.setWindowTitle(tr("Notice"));
-        msg_result.setText(tr("Download finished!"));
-        msg_result.setIcon(QMessageBox::Information);
-        msg_result.setStandardButtons(QMessageBox::Ok);
+    int wait_count = 10;
+    bool ready = false;
+    //wait device ready
+    while(wait_count >0){
+        if(ckb[keyboard_no]->getVersion()>=0){
+            ready = true;
+            break;
+        }
+        wait_count--;
+        //sleep 100ms
+        QThread::msleep(100);
     }
-    else if(result == -1){
+    if(ready){
+        result = ckb[keyboard_no]->download(&table);
+        if(result == 1){
+            msg_result.setWindowTitle(tr("Notice"));
+            msg_result.setText(tr("Download finished!"));
+            msg_result.setIcon(QMessageBox::Information);
+            msg_result.setStandardButtons(QMessageBox::Ok);
+        }
+        else if(result == -1){
+            msg_result.setWindowTitle(tr("Error"));
+            msg_result.setText(tr("Download Error :") + ckb[keyboard_no]->getLastError());
+            msg_result.setIcon(QMessageBox::Critical);
+            msg_result.setStandardButtons(QMessageBox::Ok);
+        }
+        else{
+            msg_result.setWindowTitle(tr("Notice"));
+            msg_result.setText(tr("Download finished! But there may be some errors."));
+            msg_result.setIcon(QMessageBox::Information);
+            msg_result.setStandardButtons(QMessageBox::Ok);
+        }
+    }else{
         msg_result.setWindowTitle(tr("Error"));
         msg_result.setText(tr("Download Error :") + ckb[keyboard_no]->getLastError());
         msg_result.setIcon(QMessageBox::Critical);
-        msg_result.setStandardButtons(QMessageBox::Ok);
-    }
-    else{
-        msg_result.setWindowTitle(tr("Notice"));
-        msg_result.setText(tr("Sending finished!"));
-        msg_result.setIcon(QMessageBox::Information);
         msg_result.setStandardButtons(QMessageBox::Ok);
     }
     msg_result.exec();

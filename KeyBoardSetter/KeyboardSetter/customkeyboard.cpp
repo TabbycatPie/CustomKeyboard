@@ -416,6 +416,7 @@ int CustomKeyboard::getVersion()
         logToMain("getting version...");
         if(res == -1){
             logToMain("Can not wirte to device:-2.");
+            last_error = tr("Can not wirte to device.");
             ret =  -2;//can not write to deive
         }
         else{
@@ -440,6 +441,7 @@ int CustomKeyboard::getVersion()
     }
     else{
         logToMain("Can not open device:-1.");
+        last_error = tr("Can not open device.");
         return -1; //can not open device
     }
 }
