@@ -19,6 +19,7 @@ SOURCES += \
     configsaver.cpp \
     customkey.cpp \
     customkeyboard.cpp \
+    devicefinder.cpp \
     hidcodetable.cpp \
     keyvalue.cpp \
     main.cpp \
@@ -29,6 +30,7 @@ HEADERS += \
     configsaver.h \
     customkey.h \
     customkeyboard.h \
+    devicefinder.h \
     hidapi.h \
     hidcodetable.h \
     keyvalue.h \
@@ -36,6 +38,7 @@ HEADERS += \
     userconfig.h
 
 FORMS += \
+    devicefinder.ui \
     mainwindow.ui
 
 LIBS += -L$$_PRO_FILE_PWD_/  -l hidapi

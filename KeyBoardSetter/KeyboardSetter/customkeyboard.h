@@ -39,7 +39,9 @@ public:
     int download(HIDCodeTable *table);
     //test
     bool testHardware();
+    bool tryOpen();
     int getVersion();
+
 
     QString getLastError();
     ~CustomKeyboard();

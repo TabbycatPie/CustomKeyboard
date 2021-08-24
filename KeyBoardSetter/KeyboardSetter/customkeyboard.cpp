@@ -65,7 +65,6 @@ bool CustomKeyboard::deleteTopKey(int key_id){
 }
 
 bool CustomKeyboard::checkMacroAddable(int cur_key_no){
-
     int macro_count = 0;
     int sum_normal = 0;
     int sum_sp_key = 0;
@@ -401,6 +400,25 @@ bool CustomKeyboard::testHardware()
     return is_ok;
 }
 
+bool CustomKeyboard::tryOpen()
+{
+    //open device
+    hid_device *my_device;
+    my_device = hid_open(vid,pid,nullptr);
+    bool success = true;
+    if(my_device==NULL)
+        success = false;
+    hid_close(my_device);
+    return success;
+}
+/****************************
+ *   Get Firmware Veriosn
+ *
+ * @return:  0 -> old firmware
+ *           1 -> new firmware
+ *          -1 -> error
+ *
+****************************/
 int CustomKeyboard::getVersion()
 {
     //open device

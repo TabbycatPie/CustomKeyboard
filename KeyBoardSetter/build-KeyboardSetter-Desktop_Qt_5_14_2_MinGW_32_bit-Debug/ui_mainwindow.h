@@ -297,7 +297,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->setWindowModality(Qt::NonModal);
-        MainWindow->resize(1000, 683);
+        MainWindow->resize(1000, 637);
         MainWindow->setMinimumSize(QSize(1000, 350));
         MainWindow->setMaximumSize(QSize(1000, 16777215));
         MainWindow->setAnimated(true);
@@ -1378,7 +1378,7 @@ public:
         groupBox->setGeometry(QRect(10, 10, 131, 191));
         verticalLayoutWidget_4 = new QWidget(groupBox);
         verticalLayoutWidget_4->setObjectName(QString::fromUtf8("verticalLayoutWidget_4"));
-        verticalLayoutWidget_4->setGeometry(QRect(8, 29, 121, 188));
+        verticalLayoutWidget_4->setGeometry(QRect(8, 29, 121, 151));
         verticalLayout_8 = new QVBoxLayout(verticalLayoutWidget_4);
         verticalLayout_8->setObjectName(QString::fromUtf8("verticalLayout_8"));
         verticalLayout_8->setContentsMargins(0, 0, 0, 0);

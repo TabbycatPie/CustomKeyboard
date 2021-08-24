@@ -40,8 +40,6 @@ int cur_edit_key_no = -1;
 QTimer *press_timer = new QTimer;
 //delay 500ms and jump to funtion setKey()
 
-//Translator
-QTranslator *translator;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -50,7 +48,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     //inti translator
-    translator = new QTranslator();
+    if(translator == NULL){
+        translator = new QTranslator();
+    }
     //load from config
     ConfigSaver cs;
     QString filename =  QCoreApplication::applicationDirPath() + "//usercondif.ini";
@@ -109,32 +109,19 @@ MainWindow::MainWindow(QWidget *parent)
         ui->btn_quakey3,ui->btn_quakey4
     };
 
-    ckb[0] = new CustomKeyboard("Test",10,0x2019,0x5131,virtual_test_keys);//test keyboard
-    ckb[1] = new CustomKeyboard("DualKey",2,0x2019,0x5131,virtual_dual_keys);//double-key keyboard
-    ckb[2] = new CustomKeyboard("QuadraKey",4,0x2019,0x5131,virtual_qua_keys);//quadra-key keyboard
+    ckb[0] = new CustomKeyboard("Test",10,0x2019,0x5131,virtual_test_keys);    //test keyboard
+    ckb[1] = new CustomKeyboard("DualKey",2,0x2019,0x5131,virtual_dual_keys);  //double-key keyboard
+    ckb[2] = new CustomKeyboard("QuadraKey",4,0x2019,0x5131,virtual_qua_keys); //quadra-key keyboard
 
     //version justify
-    int version = 0;
-    while(true){
-        version = ckb[0]->getVersion();
-        if(version<0){
-            QMessageBox msg_info(this);
-            msg_info.setWindowTitle(tr("Notice"));
-            msg_info.setText(tr("Device not found,please connect then press ok."));
-            msg_info.setIcon(QMessageBox::Information);
-            msg_info.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-            if(msg_info.exec()==QMessageBox::Cancel){
-                break;
-            }
-        }else
-            break;
-    }
+    int fwversion = 0;
 
-    if(version == 0){
+    fwversion = ckb[0]->getVersion();
+    if(fwversion == 0){
         logUpdate("device firmware is old,reset limits.");
         ckb[0]->setMacroConfig(40,4,10,10);
     }
-    else if(version == 1){
+    else if(fwversion == 1){
         logUpdate("device firmware is new");
     }else{
         logUpdate("device not found.");
@@ -653,8 +640,6 @@ void MainWindow::updateUI(){
 
 }
 
-
-
 bool MainWindow::downloadToDevice(int keyboard_no){
     int result = -1;
     QMessageBox msg_info(this);
@@ -820,6 +805,11 @@ MainWindow::~MainWindow()
 {
     delete translator;
     delete ui;
+}
+
+void MainWindow::initData(QTranslator *_translator)
+{
+    translator = _translator;
 }
 
 

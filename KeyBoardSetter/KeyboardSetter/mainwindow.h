@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <qtranslator.h>
 #include "customkeyboard.h"
 
 QT_BEGIN_NAMESPACE
@@ -26,10 +27,14 @@ public:
     void setDelay();
     bool saveConfigToFile();
     CustomKeyboard* loadConfigFromFile();
+    void initData(QTranslator *translator);
     ~MainWindow();
 
 private:
     Ui::MainWindow *ui;
+    //Translator
+    QTranslator *translator =NULL;
+
 
 private slots:
     void softKeyPressed(int i);   //button on keyboard pressed
@@ -40,5 +45,6 @@ private slots:
     void changeLanguage(QString language);
     void logUpdate(QString text);
     void findDevice(CustomKeyboard *my_ckb);
+
 };
 #endif // MAINWINDOW_H

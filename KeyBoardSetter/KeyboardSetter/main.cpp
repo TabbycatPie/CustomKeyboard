@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "devicefinder.h"
 
 #include <QApplication>
 #include <QTranslator>
@@ -9,7 +10,12 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     //load window
+
+    DeviceFinder dw;
     MainWindow w;
-    w.show();
+
+    dw.setMw(&w);
+    dw.show();
+
     return a.exec();
 }
