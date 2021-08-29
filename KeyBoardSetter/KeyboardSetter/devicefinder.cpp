@@ -87,8 +87,6 @@ void DeviceFinder::changeLanguage(QString language){
         translator->load(path);
         if(qApp->installTranslator(translator)){
             ui->retranslateUi(this);   //refresh ui
-            //ui->actionChinese->setChecked(true);
-            //ui->actionEnglish->setChecked(false);
             flag = "chinese";
         }
         else{
@@ -96,11 +94,10 @@ void DeviceFinder::changeLanguage(QString language){
             //logUpdate("Can not load UI language.");
         }
     }else if(language=="en"){
-        translator->load("");
+        QString path = QCoreApplication::applicationDirPath() + "//trans_en_US.qm";
+        translator->load(path);
         qApp->installTranslator(translator);
         ui->retranslateUi(this);    //refresh ui
-        //ui->actionChinese->setChecked(false);
-        //ui->actionEnglish->setChecked(true);
         flag = "english";
         qDebug() << "Using english as UI language.";
         //logUpdate("Using english as UI language.");

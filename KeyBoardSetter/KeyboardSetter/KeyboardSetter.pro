@@ -44,6 +44,7 @@ FORMS += \
 LIBS += -L$$_PRO_FILE_PWD_/  -l hidapi
 
 TRANSLATIONS += trans_zh_CN.ts
+TRANSLATIONS += trans_en_US.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

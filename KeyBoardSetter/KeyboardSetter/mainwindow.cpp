@@ -293,18 +293,24 @@ void MainWindow::changeLanguage(QString language)
             flag = "chinese";
         }
         else{
-            qDebug() << "Can not load UI language.";
-            logUpdate("Can not load UI language.");
+            qDebug() << "Can not load UI language:cn";
+            logUpdate("Can not load UI language:cn");
         }
     }else if(language=="en"){
-        translator->load("");
-        qApp->installTranslator(translator);
-        ui->retranslateUi(this);    //refresh ui
-        ui->actionChinese->setChecked(false);
-        ui->actionEnglish->setChecked(true);
-        flag = "english";
-        qDebug() << "Using english as UI language.";
-        logUpdate("Using english as UI language.");
+        QString path = QCoreApplication::applicationDirPath() + "//trans_en_US.qm";
+        bool is_load = translator->load(path);
+        if(qApp->installTranslator(translator)){
+            ui->retranslateUi(this);   //refresh ui
+            ui->actionChinese->setChecked(false);
+            ui->actionEnglish->setChecked(true);
+            qDebug() << "Using english as UI language.";
+            logUpdate("Using english as UI language.");
+            flag = "chinese";
+        }
+        else{
+            qDebug() << "Can not load UI language:en";
+            logUpdate("Can not load UI language:en");
+        }
     }
 
     //save user language information to file
