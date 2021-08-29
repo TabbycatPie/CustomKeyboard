@@ -81,13 +81,11 @@ void DeviceFinder::setMw(MainWindow* mainwindow){
 }
 
 void DeviceFinder::changeLanguage(QString language){
-    QString flag = "english";
     if(language=="cn"){
         QString path = QCoreApplication::applicationDirPath() + "//trans_zh_CN.qm";
         translator->load(path);
         if(qApp->installTranslator(translator)){
             ui->retranslateUi(this);   //refresh ui
-            flag = "chinese";
         }
         else{
             qDebug() << "Can not load UI language.";
@@ -98,18 +96,11 @@ void DeviceFinder::changeLanguage(QString language){
         translator->load(path);
         qApp->installTranslator(translator);
         ui->retranslateUi(this);    //refresh ui
-        flag = "english";
         qDebug() << "Using english as UI language.";
         //logUpdate("Using english as UI language.");
     }
 
-    //save user language information to file
-    UserConfig *userconfig = new UserConfig(flag);
-    ConfigSaver cs;
-    QString filename =  QCoreApplication::applicationDirPath() + "//usercondif.ini";
-    if(!cs.saveConfig(filename,userconfig->toJsonObj()))
-        qDebug()  << cs.getLastError();
-    delete userconfig;
+
 }
 
 void DeviceFinder::openMainWindow(){

@@ -305,7 +305,7 @@ void MainWindow::changeLanguage(QString language)
             ui->actionEnglish->setChecked(true);
             qDebug() << "Using english as UI language.";
             logUpdate("Using english as UI language.");
-            flag = "chinese";
+            flag = "english";
         }
         else{
             qDebug() << "Can not load UI language:en";
