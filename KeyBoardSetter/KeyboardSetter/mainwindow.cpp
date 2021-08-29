@@ -288,6 +288,8 @@ void MainWindow::changeLanguage(QString language)
             ui->retranslateUi(this);   //refresh ui
             ui->actionChinese->setChecked(true);
             ui->actionEnglish->setChecked(false);
+            qDebug() << "Using chinese as UI language.";
+            logUpdate("Using chinese as UI language.");
             flag = "chinese";
         }
         else{
@@ -317,6 +319,7 @@ void MainWindow::changeLanguage(QString language)
 void MainWindow::logUpdate(QString text)
 {
     ui->tv_log->append(text);
+    ui->tv_log->repaint();
 }
 
 void MainWindow::findDevice(CustomKeyboard *my_ckb)

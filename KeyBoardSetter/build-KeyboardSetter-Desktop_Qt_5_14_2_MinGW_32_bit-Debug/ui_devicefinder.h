@@ -66,7 +66,7 @@ public:
 
     void retranslateUi(QMainWindow *DeviceFinder)
     {
-        DeviceFinder->setWindowTitle(QCoreApplication::translate("DeviceFinder", "MainWindow", nullptr));
+        DeviceFinder->setWindowTitle(QCoreApplication::translate("DeviceFinder", "SearchDevice", nullptr));
         searchdevice_btn->setText(QCoreApplication::translate("DeviceFinder", "Search", nullptr));
         main_label->setText(QCoreApplication::translate("DeviceFinder", "Please plugin your device", nullptr));
         sub_label->setText(QCoreApplication::translate("DeviceFinder", "Then press Search", nullptr));

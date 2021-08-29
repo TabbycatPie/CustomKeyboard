@@ -51,5 +51,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    trans_en_US.ts \
     trans_zh_CN.ts
 RC_FILE = logo.rc

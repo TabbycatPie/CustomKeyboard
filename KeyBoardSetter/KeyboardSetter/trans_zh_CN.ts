@@ -18,17 +18,17 @@
 <context>
     <name>CustomKeyboard</name>
     <message>
-        <location filename="customkeyboard.cpp" line="302"/>
+        <location filename="customkeyboard.cpp" line="301"/>
         <source>Data sending is failed!</source>
         <translation>数据发送过程中错误!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="289"/>
+        <location filename="customkeyboard.cpp" line="288"/>
         <source>Can not get all ACKs!</source>
         <translation>未获取所有ACK帧!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="311"/>
+        <location filename="customkeyboard.cpp" line="310"/>
         <source>Can not open device!</source>
         <translation>设备未找到！</translation>
     </message>
@@ -37,14 +37,61 @@
         <translation type="vanished">无法获取校验帧.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="321"/>
+        <location filename="customkeyboard.cpp" line="320"/>
         <source>Can not read ACK frame.</source>
         <translation>无法读取ACK帧.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="331"/>
+        <location filename="customkeyboard.cpp" line="330"/>
         <source>ACK not correct.</source>
         <translation>ACK帧不正确.</translation>
+    </message>
+</context>
+<context>
+    <name>DeviceFinder</name>
+    <message>
+        <source>MainWindow</source>
+        <translation type="vanished">主窗体</translation>
+    </message>
+    <message>
+        <location filename="devicefinder.ui" line="26"/>
+        <source>SearchDevice</source>
+        <translation>搜索设备</translation>
+    </message>
+    <message>
+        <location filename="devicefinder.ui" line="47"/>
+        <source>Search</source>
+        <translation>搜索</translation>
+    </message>
+    <message>
+        <location filename="devicefinder.ui" line="63"/>
+        <source>Please plugin your device</source>
+        <translation>请插入设备</translation>
+    </message>
+    <message>
+        <location filename="devicefinder.ui" line="82"/>
+        <source>Then press Search</source>
+        <translation>然后点击收缩</translation>
+    </message>
+    <message>
+        <location filename="devicefinder.cpp" line="54"/>
+        <source> Searching ... </source>
+        <translation> 正在搜索 ... </translation>
+    </message>
+    <message>
+        <location filename="devicefinder.cpp" line="61"/>
+        <source> Device found! </source>
+        <translation> 发现设备! </translation>
+    </message>
+    <message>
+        <location filename="devicefinder.cpp" line="68"/>
+        <source> Device not found! </source>
+        <translation> 设备未找到! </translation>
+    </message>
+    <message>
+        <location filename="devicefinder.cpp" line="69"/>
+        <source>please pulgin your device</source>
+        <translation>请插入设备</translation>
     </message>
 </context>
 <context>
@@ -875,131 +922,129 @@
         <translation>打开设备</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="247"/>
+        <location filename="mainwindow.cpp" line="250"/>
         <source>Click this to add single Crtl,Alt,Shift to key value</source>
         <translation>点击此键可将Ctrl、Alt、Shift、Win单独设置</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="343"/>
+        <location filename="mainwindow.cpp" line="336"/>
         <source>Current Keyboard</source>
         <translation>当前键盘</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="343"/>
+        <location filename="mainwindow.cpp" line="336"/>
         <source>Current Seletion</source>
         <translation>当前选择</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="106"/>
-        <location filename="mainwindow.cpp" line="382"/>
-        <location filename="mainwindow.cpp" line="402"/>
-        <location filename="mainwindow.cpp" line="418"/>
-        <location filename="mainwindow.cpp" line="448"/>
-        <location filename="mainwindow.cpp" line="659"/>
-        <location filename="mainwindow.cpp" line="667"/>
-        <location filename="mainwindow.cpp" line="679"/>
-        <location filename="mainwindow.cpp" line="702"/>
-        <location filename="mainwindow.cpp" line="721"/>
-        <location filename="mainwindow.cpp" line="740"/>
-        <location filename="mainwindow.cpp" line="771"/>
+        <location filename="mainwindow.cpp" line="375"/>
+        <location filename="mainwindow.cpp" line="395"/>
+        <location filename="mainwindow.cpp" line="411"/>
+        <location filename="mainwindow.cpp" line="441"/>
+        <location filename="mainwindow.cpp" line="650"/>
+        <location filename="mainwindow.cpp" line="658"/>
+        <location filename="mainwindow.cpp" line="670"/>
+        <location filename="mainwindow.cpp" line="693"/>
+        <location filename="mainwindow.cpp" line="712"/>
+        <location filename="mainwindow.cpp" line="731"/>
+        <location filename="mainwindow.cpp" line="762"/>
         <source>Notice</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="107"/>
         <source>Device not found,please connect then press ok.</source>
-        <translation>设备未找到，请连接设备之后点击确定。</translation>
+        <translation type="vanished">设备未找到，请连接设备之后点击确定。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="383"/>
+        <location filename="mainwindow.cpp" line="376"/>
         <source>Save config to file?</source>
         <translation>你确定要保存配置文件吗？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="388"/>
+        <location filename="mainwindow.cpp" line="381"/>
         <source>Save File</source>
         <translation>文件保存</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="388"/>
-        <location filename="mainwindow.cpp" line="424"/>
+        <location filename="mainwindow.cpp" line="381"/>
+        <location filename="mainwindow.cpp" line="417"/>
         <source>zddConfig (*.zdd)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="396"/>
+        <location filename="mainwindow.cpp" line="389"/>
         <source>Can not save </source>
         <translation>无法保存 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="403"/>
+        <location filename="mainwindow.cpp" line="396"/>
         <source>Saved Successfully!</source>
         <translation>保存成功!</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="419"/>
+        <location filename="mainwindow.cpp" line="412"/>
         <source>Load config?</source>
         <translation>你确定要打开配置文件吗？</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="424"/>
+        <location filename="mainwindow.cpp" line="417"/>
         <source>Open file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="433"/>
+        <location filename="mainwindow.cpp" line="426"/>
         <source>Can not load file </source>
         <translation>无法打开文件 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="449"/>
+        <location filename="mainwindow.cpp" line="442"/>
         <source>Loaded Successfully!</source>
         <translation>已经成功加载配置！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="660"/>
+        <location filename="mainwindow.cpp" line="651"/>
         <source>Are you sure to download config to your device:</source>
         <translation>确定下载到设备：</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="668"/>
+        <location filename="mainwindow.cpp" line="659"/>
         <source>Download finished!</source>
         <translation>下载完成！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="395"/>
-        <location filename="mainwindow.cpp" line="432"/>
-        <location filename="mainwindow.cpp" line="673"/>
+        <location filename="mainwindow.cpp" line="388"/>
+        <location filename="mainwindow.cpp" line="425"/>
+        <location filename="mainwindow.cpp" line="664"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="674"/>
+        <location filename="mainwindow.cpp" line="665"/>
         <source>Download Error :</source>
         <translation>下载错误：</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="680"/>
+        <location filename="mainwindow.cpp" line="671"/>
         <source>Download finished! But there may be some errors.</source>
         <translation>下载完成,但是可能存在一些问题.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="703"/>
+        <location filename="mainwindow.cpp" line="694"/>
         <source>You can NOT add mouse event to Macro!</source>
         <translation>无法将鼠标键添加到宏！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="722"/>
+        <location filename="mainwindow.cpp" line="713"/>
         <source>You can NOT add meida key to Macro!</source>
         <translation>无法将多媒体键添加到宏！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="741"/>
+        <location filename="mainwindow.cpp" line="732"/>
         <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
         <translation>无法在宏键中添加鼠标或多媒体键值！</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="772"/>
+        <location filename="mainwindow.cpp" line="763"/>
         <source>Can NOT add key macro : hardware limitation!</source>
         <translation>无法添加更多的宏键值：已达到硬件限制！</translation>
     </message>
