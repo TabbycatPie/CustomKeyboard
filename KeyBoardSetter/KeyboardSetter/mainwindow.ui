@@ -715,6 +715,7 @@
     </property>
     <addaction name="actionTest_Device"/>
     <addaction name="actionGetVersion"/>
+    <addaction name="actionOpen_Test_Window"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuSetting"/>
@@ -2138,6 +2139,11 @@
   <action name="actionGetVersion">
    <property name="text">
     <string>Get Firmware Version</string>
+   </property>
+  </action>
+  <action name="actionOpen_Test_Window">
+   <property name="text">
+    <string>Open Test Window</string>
    </property>
   </action>
  </widget>

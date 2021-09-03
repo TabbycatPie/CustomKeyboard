@@ -6,6 +6,7 @@
 #include "hidapi.h"
 #include "configsaver.h"
 #include "userconfig.h"
+#include "configwindow.h"
 #include <QDebug>
 #include <QTimer>
 #include <QStandardItem>
@@ -154,6 +155,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionExit,&QAction::triggered,this,&MainWindow::close);
     connect(ui->actionSave,&QAction::triggered,this,[=]{
         saveConfigToFile();
+    });
+    connect(ui->actionOpen_Test_Window,&QAction::triggered,this,[=]{
+        ConfigWindow *cw = new ConfigWindow();
+        cw->show();
     });
     connect(ui->actionLoad,&QAction::triggered,this,[=]{
         loadConfigFromFile();
@@ -649,6 +654,7 @@ void MainWindow::updateUI(){
 
 }
 
+
 bool MainWindow::downloadToDevice(int keyboard_no){
     int result = -1;
     QMessageBox msg_info(this);
@@ -790,10 +796,8 @@ bool MainWindow::addKeyValue(){
     ui->btn_ralt->setStyleSheet("");
     ui->btn_rwin->setStyleSheet("");
     updateUI();
-
     return true;
 }
-
 bool MainWindow::deleteKeyValue(){
     //delet from current key
     if(ckb[cur_keyboard_no]->deleteTopKey(cur_edit_key_no)){
@@ -815,6 +819,8 @@ MainWindow::~MainWindow()
     delete translator;
     delete ui;
 }
+
+
 
 void MainWindow::initData(QTranslator *_translator)
 {

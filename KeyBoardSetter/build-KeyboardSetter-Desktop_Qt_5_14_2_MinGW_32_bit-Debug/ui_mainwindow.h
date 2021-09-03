@@ -44,6 +44,7 @@ public:
     QAction *actionChinese;
     QAction *actionTest_Device;
     QAction *actionGetVersion;
+    QAction *actionOpen_Test_Window;
     QWidget *centralwidget;
     QTabWidget *tabWidget;
     QWidget *tab_test;
@@ -320,6 +321,8 @@ public:
         actionTest_Device->setObjectName(QString::fromUtf8("actionTest_Device"));
         actionGetVersion = new QAction(MainWindow);
         actionGetVersion->setObjectName(QString::fromUtf8("actionGetVersion"));
+        actionOpen_Test_Window = new QAction(MainWindow);
+        actionOpen_Test_Window->setObjectName(QString::fromUtf8("actionOpen_Test_Window"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         tabWidget = new QTabWidget(centralwidget);
@@ -1526,6 +1529,7 @@ public:
         menuLanguage->addAction(actionChinese);
         menuAdvance->addAction(actionTest_Device);
         menuAdvance->addAction(actionGetVersion);
+        menuAdvance->addAction(actionOpen_Test_Window);
 
         retranslateUi(MainWindow);
 
@@ -1547,6 +1551,7 @@ public:
         actionChinese->setText(QCoreApplication::translate("MainWindow", "Chinese", nullptr));
         actionTest_Device->setText(QCoreApplication::translate("MainWindow", "Test Device", nullptr));
         actionGetVersion->setText(QCoreApplication::translate("MainWindow", "Get Firmware Version", nullptr));
+        actionOpen_Test_Window->setText(QCoreApplication::translate("MainWindow", "Open Test Window", nullptr));
         btn_testkey1->setText(QCoreApplication::translate("MainWindow", "KEY1", nullptr));
         btn_testkey2->setText(QCoreApplication::translate("MainWindow", "KEY2", nullptr));
         btn_testkey3->setText(QCoreApplication::translate("MainWindow", "KEY3", nullptr));
