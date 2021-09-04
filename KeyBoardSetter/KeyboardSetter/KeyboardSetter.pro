@@ -16,12 +16,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    configform.cpp \
     configsaver.cpp \
     configwindow.cpp \
     customkey.cpp \
     customkeyboard.cpp \
     devicefinder.cpp \
-    form.cpp \
     hidcodetable.cpp \
     keyvalue.cpp \
     main.cpp \
@@ -29,12 +29,12 @@ SOURCES += \
     userconfig.cpp
 
 HEADERS += \
+    configform.h \
     configsaver.h \
     configwindow.h \
     customkey.h \
     customkeyboard.h \
     devicefinder.h \
-    form.h \
     hidapi.h \
     hidcodetable.h \
     keyvalue.h \
@@ -42,9 +42,9 @@ HEADERS += \
     userconfig.h
 
 FORMS += \
+    configform.ui \
     configwindow.ui \
     devicefinder.ui \
-    form.ui \
     mainwindow.ui
 
 LIBS += -L$$_PRO_FILE_PWD_/  -l hidapi

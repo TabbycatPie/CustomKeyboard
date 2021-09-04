@@ -41,5 +41,4 @@ void drawCKB(int col,int row){
 void initUI(){
     drawCKBkey(10,10,"KEY1");
     drawCKBkey(105,10,"KEY2");
-
 }

@@ -7,6 +7,7 @@
 #include "configsaver.h"
 #include "userconfig.h"
 #include "configwindow.h"
+#include "configform.h"
 #include <QDebug>
 #include <QTimer>
 #include <QStandardItem>
@@ -157,7 +158,7 @@ MainWindow::MainWindow(QWidget *parent)
         saveConfigToFile();
     });
     connect(ui->actionOpen_Test_Window,&QAction::triggered,this,[=]{
-        ConfigWindow *cw = new ConfigWindow();
+        ConfigForm *cw = new ConfigForm();
         cw->show();
     });
     connect(ui->actionLoad,&QAction::triggered,this,[=]{

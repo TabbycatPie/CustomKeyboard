@@ -123,7 +123,7 @@
         <enum>Qt::LeftToRight</enum>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton{border:2px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt &quot;Microsoft YaHei UI&quot;;font-size:20px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(15, 172, 252,255), stop:1 rgba(22, 190, 235,255));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 160, 205,125), stop:1 rgba(0, 142, 222,125));color:rgb(202, 202,182);}</string>
+        <string notr="true">QPushButton{background-color:rgb(68, 76, 85);border:2px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt &quot;Microsoft YaHei UI&quot;;font-size:20px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(15, 172, 252,255), stop:1 rgba(22, 190, 235,255));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 160, 205,125), stop:1 rgba(0, 142, 222,125));color:rgb(202, 202,182);}</string>
        </property>
        <property name="text">
         <string>KEY1</string>
@@ -178,20 +178,9 @@ color:rgb(242, 242, 222);</string>
      <string/>
     </property>
    </widget>
-   <widget class="QWidget" name="ckb_canvas" native="true">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>20</y>
-      <width>401</width>
-      <height>261</height>
-     </rect>
-    </property>
-   </widget>
    <zorder>label</zorder>
    <zorder>groupBox</zorder>
    <zorder>gridLayoutWidget</zorder>
-   <zorder>ckb_canvas</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

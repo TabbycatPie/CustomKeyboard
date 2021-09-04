@@ -34,7 +34,6 @@ public:
     QPushButton *pushButton_2;
     QPushButton *pushButton;
     QLabel *label;
-    QWidget *ckb_canvas;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -81,7 +80,7 @@ public:
         pushButton_2->setMinimumSize(QSize(90, 90));
         pushButton_2->setMaximumSize(QSize(90, 90));
         pushButton_2->setLayoutDirection(Qt::LeftToRight);
-        pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton{border:2px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:20px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(15, 172, 252,255), stop:1 rgba(22, 190, 235,255));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 160, 205,125), stop:1 rgba(0, 142, 222,125));color:rgb(202, 202,182);}"));
+        pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton{background-color:rgb(68, 76, 85);border:2px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:20px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(15, 172, 252,255), stop:1 rgba(22, 190, 235,255));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 160, 205,125), stop:1 rgba(0, 142, 222,125));color:rgb(202, 202,182);}"));
 
         gridLayout->addWidget(pushButton_2, 0, 1, 1, 1);
 
@@ -103,14 +102,10 @@ public:
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "font-size:20px;\n"
 "color:rgb(242, 242, 222);"));
-        ckb_canvas = new QWidget(centralwidget);
-        ckb_canvas->setObjectName(QString::fromUtf8("ckb_canvas"));
-        ckb_canvas->setGeometry(QRect(30, 20, 401, 261));
         ConfigWindow->setCentralWidget(centralwidget);
         label->raise();
         groupBox->raise();
         gridLayoutWidget->raise();
-        ckb_canvas->raise();
         menubar = new QMenuBar(ConfigWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 1000, 22));
