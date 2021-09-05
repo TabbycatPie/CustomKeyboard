@@ -37,10 +37,11 @@ QPushButton* drawCKBkey(int x,int y,QString text,QWidget* qw){
 
 void drawCKB(int x,int y,int col,int row,int margin,QWidget* qw){
     drawCKBbase(x,y,col,row,margin,qw);
+    QPushButton *btn_temp;
     int num = 1;
     for(int i=0;i<row;i++){
         for(int j =0;j<col;j++){
-           drawCKBkey(x+j*94+margin+2,y+i*94+margin+2,QObject::tr("KEY")+QString::number(num),qw);
+           btn_temp = drawCKBkey(x+j*94+margin+2,y+i*94+margin+2,QObject::tr("KEY")+QString::number(num),qw);
            num++;
         }
     }

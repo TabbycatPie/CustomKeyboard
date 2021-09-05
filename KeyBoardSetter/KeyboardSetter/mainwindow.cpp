@@ -129,6 +129,8 @@ MainWindow::MainWindow(QWidget *parent)
         logUpdate("device not found.");
     }
 
+
+
     int total = (int)(sizeof(keyboard_list)/sizeof(QToolButton*));
     qDebug() << "Total key number is :" + QString::number(total)<<endl;
     //CONNECT FUNCTIONS

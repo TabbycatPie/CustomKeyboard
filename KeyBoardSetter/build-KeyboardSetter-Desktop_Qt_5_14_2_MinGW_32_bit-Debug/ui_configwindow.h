@@ -34,6 +34,8 @@ public:
     QPushButton *pushButton_2;
     QPushButton *pushButton;
     QLabel *label;
+    QPushButton *pushButton_5;
+    QPushButton *searchdevice_btn;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -70,6 +72,7 @@ public:
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
         pushButton_4->setMinimumSize(QSize(90, 90));
         pushButton_4->setMaximumSize(QSize(90, 90));
+        pushButton_4->setCursor(QCursor(Qt::PointingHandCursor));
         pushButton_4->setLayoutDirection(Qt::LeftToRight);
         pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton{border:2px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:20px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(15, 172, 252,255), stop:1 rgba(22, 190, 235,255));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 160, 205,125), stop:1 rgba(0, 142, 222,125));color:rgb(202, 202,182);}\\n\\n"));
 
@@ -102,10 +105,26 @@ public:
 "font: 9pt \"Microsoft YaHei UI\";\n"
 "font-size:20px;\n"
 "color:rgb(242, 242, 222);"));
+        pushButton_5 = new QPushButton(centralwidget);
+        pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
+        pushButton_5->setGeometry(QRect(20, 260, 40, 40));
+        pushButton_5->setMinimumSize(QSize(40, 40));
+        pushButton_5->setMaximumSize(QSize(40, 40));
+        pushButton_5->setLayoutDirection(Qt::LeftToRight);
+        pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:20px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(15, 172, 252,255), stop:1 rgba(22, 190, 235,255));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 160, 205,125), stop:1 rgba(0, 142, 222,125));color:rgb(202, 202,182);}"));
+        searchdevice_btn = new QPushButton(centralwidget);
+        searchdevice_btn->setObjectName(QString::fromUtf8("searchdevice_btn"));
+        searchdevice_btn->setGeometry(QRect(310, 30, 131, 41));
+        searchdevice_btn->setCursor(QCursor(Qt::PointingHandCursor));
+        searchdevice_btn->setStyleSheet(QString::fromUtf8("QPushButton{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(188, 181, 0), stop:1 rgb(205, 135, 0));border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:20px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(238, 231, 11), stop:1 rgb(255, 185, 7));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(138, 131, 0), stop:1 rgb(155, 85, 0));color:rgb(202, 202,182);}\n"
+"\n"
+""));
         ConfigWindow->setCentralWidget(centralwidget);
         label->raise();
         groupBox->raise();
         gridLayoutWidget->raise();
+        pushButton_5->raise();
+        searchdevice_btn->raise();
         menubar = new QMenuBar(ConfigWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 1000, 22));
@@ -128,6 +147,8 @@ public:
         pushButton_2->setText(QCoreApplication::translate("ConfigWindow", "KEY1", nullptr));
         pushButton->setText(QCoreApplication::translate("ConfigWindow", "KEY1", nullptr));
         label->setText(QString());
+        pushButton_5->setText(QCoreApplication::translate("ConfigWindow", "KEY1", nullptr));
+        searchdevice_btn->setText(QCoreApplication::translate("ConfigWindow", "Download", nullptr));
     } // retranslateUi
 
 };
