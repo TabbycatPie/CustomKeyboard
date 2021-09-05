@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>500</width>
     <height>200</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>400</width>
+    <width>500</width>
     <height>200</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>400</width>
+    <width>500</width>
     <height>200</height>
    </size>
   </property>
@@ -32,8 +32,8 @@
    <widget class="QPushButton" name="searchdevice_btn">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>120</y>
+      <x>109</x>
+      <y>128</y>
       <width>281</width>
       <height>41</height>
      </rect>
@@ -50,10 +50,10 @@
    <widget class="QLabel" name="main_label">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>30</y>
-      <width>281</width>
-      <height>31</height>
+      <x>40</x>
+      <y>17</y>
+      <width>421</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -69,8 +69,8 @@
    <widget class="QLabel" name="sub_label">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>66</y>
+      <x>110</x>
+      <y>80</y>
       <width>281</width>
       <height>31</height>
      </rect>

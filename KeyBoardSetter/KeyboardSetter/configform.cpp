@@ -52,7 +52,7 @@ void drawCKB(int x,int y,int col,int row,int margin,QWidget* qw){
 
 void initUI(QWidget* qw){
     int row = 2;
-    int col = 2;
+    int col = 5;
     int margin = 10;
-    drawCKB(500-(int)((94*col+2*margin)/2),10,col,row,margin,qw);
+    drawCKB(450-(int)((94*col+2*margin)/2),10,col,row,margin,qw);
 }
