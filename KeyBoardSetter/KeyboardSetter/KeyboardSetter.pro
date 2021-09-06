@@ -26,6 +26,7 @@ SOURCES += \
     keyvalue.cpp \
     main.cpp \
     mainwindow.cpp \
+    uipainter.cpp \
     userconfig.cpp
 
 HEADERS += \
@@ -39,6 +40,7 @@ HEADERS += \
     hidcodetable.h \
     keyvalue.h \
     mainwindow.h \
+    uipainter.h \
     userconfig.h
 
 FORMS += \

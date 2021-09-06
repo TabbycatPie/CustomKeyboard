@@ -31,6 +31,36 @@ static const QString _key_string[]={
     "F19","F20","F21","F22","F23","F24"
 
 };
+//public key board name
+static const QString _key_name[]={
+    "None",
+    //normal keys
+    "Esc","F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","F11","F12",
+    "`~","1!","2@","3#","4$","5%","6^","7&","8*","9(","0)","-_","=+","Backspace",
+    "Tab","Q","W","E","R","T","Y","U","I","O","P","[{","]}","\\|",
+    "Caps","A","S","D","F","G","H","J","K","L",";:","\'\"","Enter",
+    "Shift","Z","X","C","V","B","N","M","<,",">.","/?","Shift",
+    "Ctrl","Win","Alt","Space","Alt","Win","Ctrl",
+    //right area keys
+    "PtSr","ScLk","Pause",
+    "Ins","Hom","PUp",
+    "Del","End","PDown",
+    "↑","←","↓","→",
+    //keypad
+    "NumL","/","*","-",
+    "7","8","9","+",
+    "4","5","6",
+    "1","2","3","Enter",
+    "0",".",
+    //mouse keys
+    "LMouse","MMouse","RMouse",
+    //multi-media keys
+    "VolumeDown","VolumeUp","Play/Pause","LastSong","NextSong","Mute",
+    //f13~f24
+    "F13","F14","F15","F16","F17","F18",
+    "F19","F20","F21","F22","F23","F24"
+
+};
 //public key hex
 static const uchar _key_hex[]={
     0x00,
@@ -80,6 +110,7 @@ static const int _mediakey_index[]={
 HIDCodeTable::HIDCodeTable()
 {
     this->key_string = _key_string;
+    this->key_name = _key_name;
     this->key_hex = _key_hex;
     this->spkey_index = _spkey_index;
     this->media_index = _mediakey_index;
@@ -110,6 +141,11 @@ bool HIDCodeTable::isMediaKey(int key_no){
 
 QString HIDCodeTable::getKeyString(int key_no){
     return this->key_string[key_no];
+}
+
+QString HIDCodeTable::getButtonNmae(int key_no)
+{
+    return this->key_name[key_no];
 };
 
 uchar HIDCodeTable::getHex(int key_no){
