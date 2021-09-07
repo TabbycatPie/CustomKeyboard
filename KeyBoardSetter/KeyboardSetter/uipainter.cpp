@@ -65,12 +65,10 @@ void UIPainter::drawVKBmain(int x,int y){
     int cur_x = x;
     int cur_y = y;
     for(;i<=13;i++){
-        if(i==2)
-            cur_x+=this->Vkey_inter_margin;
         if((i-2)%4==0)
-            cur_x+=this->Vkey_inter_margin*2;
-        drawVKey(cur_x,cur_y,1.0,t->getButtonNmae(i));
-        cur_x+= this->VKey_len+this->Vkey_inter_margin;
+            cur_x+= (int)((this->VKey_len+this->Vkey_inter_margin)*0.25);
+        drawVKey(cur_x,cur_y,1.1,t->getButtonNmae(i));
+        cur_x+= 1.1*this->VKey_len+this->Vkey_inter_margin;
     }
     cur_y+= this->VKey_len + this->Vkey_inter_margin;
     cur_x = x;
@@ -78,6 +76,56 @@ void UIPainter::drawVKBmain(int x,int y){
         float block = 1.0;
         if(i==27)
             block = 2.0;
+        drawVKey(cur_x,cur_y,block,t->getButtonNmae(i));
+        cur_x+= this->VKey_len+this->Vkey_inter_margin;
+    }
+    cur_y+= this->VKey_len + this->Vkey_inter_margin;
+    cur_x = x;
+    for(;i<=41;i++){
+        float block = 1.0;
+        if(i==28 || i == 41)
+            block = 1.5;
+        if(i==29)
+            cur_x += 0.5 * this->VKey_len;
+        drawVKey(cur_x,cur_y,block,t->getButtonNmae(i));
+        cur_x+= this->VKey_len+this->Vkey_inter_margin;
+    }
+    cur_y+= this->VKey_len + this->Vkey_inter_margin;
+    cur_x = x;
+    for(;i<=54;i++){
+        float block = 1.0;
+        if(i==42)
+            block = 1.7;
+        if(i==43)
+            cur_x += 0.7 * this->VKey_len+this->CKBKey_inter_margin;
+        if(i==54)
+            block = 2.3;
+        drawVKey(cur_x,cur_y,block,t->getButtonNmae(i));
+        cur_x+= this->VKey_len+this->Vkey_inter_margin;
+    }
+    cur_y+= this->VKey_len + this->Vkey_inter_margin;
+    cur_x = x;
+    for(;i<=66;i++){
+        float block = 1.0;
+        if(i==55 || i == 66)
+            block = 2.5;
+        if(i==56)
+            cur_x += 1.5 * this->VKey_len+this->CKBKey_inter_margin;
+        drawVKey(cur_x,cur_y,block,t->getButtonNmae(i));
+        cur_x+= this->VKey_len+this->Vkey_inter_margin;
+    }
+    cur_y+= this->VKey_len + this->Vkey_inter_margin;
+    cur_x = x;
+    for(;i<=73;i++){
+        float block = 1.0;
+        if(i!=70)
+            block = 1.5;
+        else
+            block = 6.0;
+        if(i>67 && i!=71)
+            cur_x += 0.5 * this->VKey_len + this->CKBKey_inter_margin;
+        if(i==71)
+            cur_x += 5.2 * this->VKey_len + this->CKBKey_inter_margin;
         drawVKey(cur_x,cur_y,block,t->getButtonNmae(i));
         cur_x+= this->VKey_len+this->Vkey_inter_margin;
     }
