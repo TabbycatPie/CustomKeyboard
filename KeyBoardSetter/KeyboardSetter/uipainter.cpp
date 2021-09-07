@@ -121,11 +121,11 @@ void UIPainter::drawVKBmain(int x,int y){
         if(i!=70)
             block = 1.5;
         else
-            block = 6.0;
+            block = 5.8;
         if(i>67 && i!=71)
             cur_x += 0.5 * this->VKey_len + this->CKBKey_inter_margin;
         if(i==71)
-            cur_x += 5.2 * this->VKey_len + this->CKBKey_inter_margin;
+            cur_x += 5.0 * this->VKey_len + this->CKBKey_inter_margin;
         drawVKey(cur_x,cur_y,block,t->getButtonNmae(i));
         cur_x+= this->VKey_len+this->Vkey_inter_margin;
     }
