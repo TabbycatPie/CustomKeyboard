@@ -42,9 +42,9 @@ static const QString _key_name[]={
     "Shift","Z","X","C","V","B","N","M","<,",">.","/?","Shift",
     "Ctrl","Win","Alt","Space","Alt","Win","Ctrl",
     //right area keys
-    "PtSr","ScLk","Pause",
+    "PtSr","ScLk","Paus",
     "Ins","Hom","PUp",
-    "Del","End","PDown",
+    "Del","End","PDwn",
     "↑","←","↓","→",
     //keypad
     "NumL","/","*","-",

@@ -48,12 +48,17 @@ int UIPainter::getCKBHeight(int row)
     return (this->CKBKey_len+this->CKBKey_inter_margin*2)*row+this->CKBKey_ex_margin*2;
 }
 
+int UIPainter::getFullWindowHeight(int CKBrow)
+{
+    return getCKBHeight(CKBrow)+6*(this->VKey_len+this->Vkey_inter_margin)+4*this->UI_part_margin;
+}
+
 
 //-------------Paint Virtual KeyBoard Functions-------------------//
 
-QPushButton* UIPainter::drawVKey(int x,int y,float block,QString text){
+QPushButton* UIPainter::drawVKey(int x,int y,float block_x,float block_y,QString text){
     QPushButton *btn = new QPushButton(text,this->my_ui);
-    btn->setGeometry(x,y,(this->VKey_len*block)+this->Vkey_inter_margin*(block-1.0),this->VKey_len);
+    btn->setGeometry(x,y,(this->VKey_len*block_x)+this->Vkey_inter_margin*(block_x-1.0),(this->VKey_len*block_y)+this->Vkey_inter_margin*(block_y-1.0));
     btn->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
     return btn;
 }
@@ -67,7 +72,7 @@ void UIPainter::drawVKBmain(int x,int y){
     for(;i<=13;i++){
         if((i-2)%4==0)
             cur_x+= (int)((this->VKey_len+this->Vkey_inter_margin)*0.25);
-        drawVKey(cur_x,cur_y,1.1,t->getButtonNmae(i));
+        drawVKey(cur_x,cur_y,1.1,1.0,t->getButtonNmae(i));
         cur_x+= 1.1*this->VKey_len+this->Vkey_inter_margin;
     }
     cur_y+= this->VKey_len + this->Vkey_inter_margin;
@@ -76,7 +81,7 @@ void UIPainter::drawVKBmain(int x,int y){
         float block = 1.0;
         if(i==27)
             block = 2.0;
-        drawVKey(cur_x,cur_y,block,t->getButtonNmae(i));
+        drawVKey(cur_x,cur_y,block,1.0,t->getButtonNmae(i));
         cur_x+= this->VKey_len+this->Vkey_inter_margin;
     }
     cur_y+= this->VKey_len + this->Vkey_inter_margin;
@@ -87,7 +92,7 @@ void UIPainter::drawVKBmain(int x,int y){
             block = 1.5;
         if(i==29)
             cur_x += 0.5 * this->VKey_len;
-        drawVKey(cur_x,cur_y,block,t->getButtonNmae(i));
+        drawVKey(cur_x,cur_y,block,1.0,t->getButtonNmae(i));
         cur_x+= this->VKey_len+this->Vkey_inter_margin;
     }
     cur_y+= this->VKey_len + this->Vkey_inter_margin;
@@ -100,7 +105,7 @@ void UIPainter::drawVKBmain(int x,int y){
             cur_x += 0.7 * this->VKey_len+this->CKBKey_inter_margin;
         if(i==54)
             block = 2.3;
-        drawVKey(cur_x,cur_y,block,t->getButtonNmae(i));
+        drawVKey(cur_x,cur_y,block,1.0,t->getButtonNmae(i));
         cur_x+= this->VKey_len+this->Vkey_inter_margin;
     }
     cur_y+= this->VKey_len + this->Vkey_inter_margin;
@@ -111,7 +116,7 @@ void UIPainter::drawVKBmain(int x,int y){
             block = 2.5;
         if(i==56)
             cur_x += 1.5 * this->VKey_len+this->CKBKey_inter_margin;
-        drawVKey(cur_x,cur_y,block,t->getButtonNmae(i));
+        drawVKey(cur_x,cur_y,block,1.0,t->getButtonNmae(i));
         cur_x+= this->VKey_len+this->Vkey_inter_margin;
     }
     cur_y+= this->VKey_len + this->Vkey_inter_margin;
@@ -126,12 +131,70 @@ void UIPainter::drawVKBmain(int x,int y){
             cur_x += 0.5 * this->VKey_len + this->CKBKey_inter_margin;
         if(i==71)
             cur_x += 5.0 * this->VKey_len + this->CKBKey_inter_margin;
-        drawVKey(cur_x,cur_y,block,t->getButtonNmae(i));
+        drawVKey(cur_x,cur_y,block,1.0,t->getButtonNmae(i));
         cur_x+= this->VKey_len+this->Vkey_inter_margin;
     }
-
+    delete t;
 }
 
+void UIPainter::drawVKBfunc(int x,int y){
+    HIDCodeTable *t = new HIDCodeTable();
+    int i =74;
+    int cur_x = x;
+    int cur_y = y;
+    for(int h=0;h<5;h++){
+        cur_x = x;
+        for(int w=0;w<3;w++){
+            if(h==3){
+                cur_y+= this->VKey_len + this->Vkey_inter_margin;
+                cur_x += this->VKey_len+this->Vkey_inter_margin;
+                drawVKey(cur_x,cur_y,1.0,1.0,t->getButtonNmae(i));
+                i++;
+                break;
+            }
+            else{
+                drawVKey(cur_x,cur_y,1.0,1.0,t->getButtonNmae(i));
+                i++;
+                cur_x += this->VKey_len+this->Vkey_inter_margin;
+            }
+        }
+        cur_y+= this->VKey_len + this->Vkey_inter_margin;
+    }
+    delete t;
+}
+
+void UIPainter::drawVKBkeypad(int x,int y){
+    HIDCodeTable *t = new HIDCodeTable();
+    int i =87;
+    int cur_x = x;
+    int cur_y = y;
+    for(int h=0;h<5;h++){
+        cur_x = x;
+        for(int w=0;w<4 && i<=103;w++){
+            if(w== 3 && (h==2 || h ==4))
+                break;
+            else if((h==1 || h ==3) && w==3)
+                drawVKey(cur_x,cur_y,1.0,2.0,t->getButtonNmae(i));
+            else if(h==4 && w==0 ){
+                drawVKey(cur_x,cur_y,2.0,1.0,t->getButtonNmae(i));
+                cur_x += this->VKey_len+this->Vkey_inter_margin;
+            }
+            else
+                drawVKey(cur_x,cur_y,1.0,1.0,t->getButtonNmae(i));
+            i++;
+            cur_x += this->VKey_len+this->Vkey_inter_margin;
+        }
+        cur_y+= this->VKey_len + this->Vkey_inter_margin;
+    }
+    delete t;
+}
+
+void UIPainter::drawVKBfull(int x,int y){
+    int VKBpart_margin = 0.3*this->VKey_len;
+    drawVKBmain(x,y);
+    drawVKBfunc(x+15*(this->VKey_len+this->Vkey_inter_margin)+VKBpart_margin,y);
+    drawVKBkeypad(x+18*(this->VKey_len+this->Vkey_inter_margin)+2*VKBpart_margin,y+this->VKey_len+this->Vkey_inter_margin);
+}
 
 
 //--------------Paint Function button UI -----------------------//
@@ -160,4 +223,14 @@ void UIPainter::setVKey_len(int value)
 void UIPainter::setVkey_inter_margin(int value)
 {
     Vkey_inter_margin = value;
+}
+
+int UIPainter::getUI_part_margin() const
+{
+    return UI_part_margin;
+}
+
+void UIPainter::setUI_part_margin(int value)
+{
+    UI_part_margin = value;
 }

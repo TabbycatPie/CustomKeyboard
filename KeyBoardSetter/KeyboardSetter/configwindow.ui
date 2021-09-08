@@ -768,6 +768,32 @@ color:rgb(242, 242, 222);</string>
      <string>Settings</string>
     </property>
    </widget>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>261</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(48, 56, 65);</string>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+    </widget>
+   </widget>
    <zorder>label</zorder>
    <zorder>groupBox</zorder>
    <zorder>pushButton_5</zorder>
@@ -792,6 +818,7 @@ color:rgb(242, 242, 222);</string>
    <zorder>searchdevice_btn_3</zorder>
    <zorder>searchdevice_btn</zorder>
    <zorder>searchdevice_btn_4</zorder>
+   <zorder>tabWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -799,7 +826,7 @@ color:rgb(242, 242, 222);</string>
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>30</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

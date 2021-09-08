@@ -17,6 +17,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -49,6 +50,9 @@ public:
     QPushButton *searchdevice_btn_3;
     QPushButton *searchdevice_btn;
     QPushButton *searchdevice_btn_4;
+    QTabWidget *tabWidget;
+    QWidget *tab;
+    QWidget *tab_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -248,6 +252,16 @@ public:
         searchdevice_btn_4->setStyleSheet(QString::fromUtf8("QPushButton{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(188, 181, 0,0), stop:1 rgba(205, 135, 0,0));border:1px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:16px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(15, 172, 252,255), stop:1 rgba(22, 190, 235,255));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 160, 205,125), stop:1 rgba(0, 142, 222,125));color:rgb(202, 202,182);}\n"
 "\n"
 ""));
+        tabWidget = new QTabWidget(centralwidget);
+        tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
+        tabWidget->setGeometry(QRect(20, 10, 261, 171));
+        tabWidget->setStyleSheet(QString::fromUtf8("background-color:rgb(48, 56, 65);"));
+        tab = new QWidget();
+        tab->setObjectName(QString::fromUtf8("tab"));
+        tabWidget->addTab(tab, QString());
+        tab_2 = new QWidget();
+        tab_2->setObjectName(QString::fromUtf8("tab_2"));
+        tabWidget->addTab(tab_2, QString());
         ConfigWindow->setCentralWidget(centralwidget);
         label->raise();
         groupBox->raise();
@@ -273,15 +287,19 @@ public:
         searchdevice_btn_3->raise();
         searchdevice_btn->raise();
         searchdevice_btn_4->raise();
+        tabWidget->raise();
         menubar = new QMenuBar(ConfigWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1000, 30));
+        menubar->setGeometry(QRect(0, 0, 1000, 22));
         ConfigWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(ConfigWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         ConfigWindow->setStatusBar(statusbar);
 
         retranslateUi(ConfigWindow);
+
+        tabWidget->setCurrentIndex(0);
+
 
         QMetaObject::connectSlotsByName(ConfigWindow);
     } // setupUi
@@ -313,6 +331,8 @@ public:
         searchdevice_btn_3->setText(QCoreApplication::translate("ConfigWindow", "Load", nullptr));
         searchdevice_btn->setText(QCoreApplication::translate("ConfigWindow", "Download", nullptr));
         searchdevice_btn_4->setText(QCoreApplication::translate("ConfigWindow", "Settings", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("ConfigWindow", "Tab 1", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("ConfigWindow", "Tab 2", nullptr));
     } // retranslateUi
 
 };

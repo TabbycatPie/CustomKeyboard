@@ -17,7 +17,8 @@ ConfigForm::ConfigForm(QWidget *parent) :
     int col = 5;
     UIPainter *painter = new UIPainter(this,this);
     painter->drawCKB(450-(int)(painter->getCKBWigth(col)/2),10,col,row);
-    painter->drawVKBmain(0,0);
+    painter->drawVKBfull(20,painter->getCKBHeight(row)+50);
+    this->setFixedSize(1000,painter->getFullWindowHeight(row));
 }
 
 ConfigForm::~ConfigForm()
