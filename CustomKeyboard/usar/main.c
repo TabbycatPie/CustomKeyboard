@@ -47,6 +47,7 @@ UINT8X CUR_MARCO_LAG = 0x0a;
 UINT8X KEY_CHANGE = 0x00;
 
 
+
 //delay time*100ms
 void MarcoDelay(UINT8 time){
 	while(time--)
@@ -185,6 +186,9 @@ void HIDmarco(UINT8 key_num){
 		Keyboard_Send();    //send keyboard event
 		while(FLAG == 0); 
 		//delay
+		//wait 20ms to bounce up to simulate human clicking
+		mDelaymS(20);
+		
 		//bounce up
 		HIDKey[0] = 0x00;
 		HIDKey[2] = 0x00;
@@ -479,7 +483,7 @@ void setMarco(unsigned char hi,unsigned char lo){
 }
 
 
-void hadleReceive(){
+void handleReceive(){
 	if(HID_Rev != 0)
 	{
 		char i;
@@ -643,7 +647,7 @@ void main(){
 		{
 			scanKey();
 			HIDsend();
-			hadleReceive();
+			handleReceive();
 			FLAG = 0;
 		}
 	}
