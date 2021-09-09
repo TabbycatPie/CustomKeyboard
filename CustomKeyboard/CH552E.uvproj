@@ -385,9 +385,9 @@
               <FilePath>.\usar\USB\usb.h</FilePath>
             </File>
             <File>
-              <FileName>HID.LIB</FileName>
-              <FileType>4</FileType>
-              <FilePath>.\usar\USB\HID.LIB</FilePath>
+              <FileName>usb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\usar\USB\usb.c</FilePath>
             </File>
           </Files>
         </Group>
