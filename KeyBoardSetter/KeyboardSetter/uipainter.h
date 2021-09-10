@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <qpushbutton.h>
+#include <QVector>
 
 class UIPainter : public QObject
 {
@@ -28,6 +29,9 @@ public:
     void setUI_part_margin(int value);
     int getUI_part_margin() const;
 
+    QVector<QPushButton *> *getVkey_list() const;
+    QVector<QPushButton *> *getCKBkey_list() const;
+
 private:
     QWidget *my_ui;
     int CKBKey_len = 90;
@@ -41,6 +45,9 @@ private:
 
     QPushButton *drawCKBkey(int x, int y, QString text);
     QPushButton* drawVKey(int x,int y,float block_x,float block_y,QString text);
+
+    QVector<QPushButton*> *Vkey_list;
+    QVector<QPushButton*> *CKBkey_list;
 
 signals:
 
