@@ -78,6 +78,8 @@ KeyValue* KeyValue::fromJson(QJsonObject jsonobj)
         _sp_keys->append(jsonvalue.toInt());
     }
     KeyValue *tempkv = new KeyValue(_normalkey,_mousekey,_mediakey,*_sp_keys);
+    if(_delay!=0x00)
+        tempkv->setDelay(_delay);
     return tempkv;
 };
 KeyValue::~KeyValue(){
