@@ -53,6 +53,7 @@ MainWindow::MainWindow(QWidget *parent)
     if(translator == NULL){
         translator = new QTranslator();
     }
+
     //load from config
     ConfigSaver cs;
     QString filename =  QCoreApplication::applicationDirPath() + "//usercondif.ini";

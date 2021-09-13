@@ -18,9 +18,7 @@ ConfigWindow::~ConfigWindow()
 }
 
 
-void drawCKBbase(int x,int y,int col,int row){
 
-}
 
 QPushButton* drawCKBkey(int x,int y,QString text){
     QPushButton *btn = new QPushButton(text);
@@ -31,9 +29,7 @@ QPushButton* drawCKBkey(int x,int y,QString text){
     return btn;
 }
 
-void drawCKB(int col,int row){
-    drawCKBbase(0,1,1,1);
-}
+
 
 
 

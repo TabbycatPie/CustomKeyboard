@@ -17,7 +17,24 @@ ConfigForm::ConfigForm(QWidget *parent) :
     int col = 5;
     UIPainter *painter = new UIPainter(this,this);
     painter->drawCKB(450-(int)(painter->getCKBWigth(col)/2),painter->getUI_part_margin(),col,row);
-    painter->drawVKBfull(painter->getUI_part_margin(),painter->getCKBHeight(row)+50);
+    painter->drawSwitch(painter->getUI_part_margin(),painter->getCKBHeight(row)+50);
+    painter->drawVKBfull(painter->getUI_part_margin(),painter->getCKBHeight(row)+50+25);
+    painter->hideVKB();
+    painter->drawVMouse(painter->getUI_part_margin(),painter->getCKBHeight(row)+50+25);
+
+    QVector<QPushButton*> *temp = painter->getSW_list();
+
+    connect(temp->data()[0],&QPushButton::clicked,this,[=]{
+        painter->switchVinput(painter->VKEYBOARD);
+    });
+    connect(temp->data()[1],&QPushButton::clicked,this,[=]{
+        painter->switchVinput(painter->VMOUSE);
+    });
+    connect(temp->data()[2],&QPushButton::clicked,this,[=]{
+        painter->switchVinput(painter->VADVANCE);
+    });
+
+
     this->setFixedSize(1000,painter->getFullWindowHeight(row));
 }
 
