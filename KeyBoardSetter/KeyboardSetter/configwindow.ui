@@ -66,8 +66,8 @@ color:rgb(242, 242, 222);</string>
    <widget class="QPushButton" name="pushButton_5">
     <property name="geometry">
      <rect>
-      <x>6</x>
-      <y>280</y>
+      <x>16</x>
+      <y>260</y>
       <width>40</width>
       <height>40</height>
      </rect>
@@ -224,8 +224,8 @@ color:rgb(242, 242, 222);</string>
    <widget class="QPushButton" name="pushButton_6">
     <property name="geometry">
      <rect>
-      <x>132</x>
-      <y>280</y>
+      <x>142</x>
+      <y>260</y>
       <width>40</width>
       <height>40</height>
      </rect>
@@ -255,8 +255,8 @@ color:rgb(242, 242, 222);</string>
    <widget class="QPushButton" name="pushButton_7">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>280</y>
+      <x>100</x>
+      <y>260</y>
       <width>40</width>
       <height>40</height>
      </rect>
@@ -286,8 +286,8 @@ color:rgb(242, 242, 222);</string>
    <widget class="QPushButton" name="pushButton_8">
     <property name="geometry">
      <rect>
-      <x>48</x>
-      <y>280</y>
+      <x>58</x>
+      <y>260</y>
       <width>40</width>
       <height>40</height>
      </rect>
@@ -317,8 +317,8 @@ color:rgb(242, 242, 222);</string>
    <widget class="QPushButton" name="pushButton_9">
     <property name="geometry">
      <rect>
-      <x>174</x>
-      <y>280</y>
+      <x>184</x>
+      <y>260</y>
       <width>40</width>
       <height>40</height>
      </rect>
@@ -348,8 +348,8 @@ color:rgb(242, 242, 222);</string>
    <widget class="QPushButton" name="pushButton_10">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>280</y>
+      <x>310</x>
+      <y>260</y>
       <width>40</width>
       <height>40</height>
      </rect>
@@ -379,8 +379,8 @@ color:rgb(242, 242, 222);</string>
    <widget class="QPushButton" name="pushButton_11">
     <property name="geometry">
      <rect>
-      <x>258</x>
-      <y>280</y>
+      <x>268</x>
+      <y>260</y>
       <width>40</width>
       <height>40</height>
      </rect>
@@ -410,8 +410,8 @@ color:rgb(242, 242, 222);</string>
    <widget class="QPushButton" name="pushButton_12">
     <property name="geometry">
      <rect>
-      <x>216</x>
-      <y>280</y>
+      <x>226</x>
+      <y>260</y>
       <width>40</width>
       <height>40</height>
      </rect>
@@ -441,8 +441,8 @@ color:rgb(242, 242, 222);</string>
    <widget class="QPushButton" name="pushButton_13">
     <property name="geometry">
      <rect>
-      <x>342</x>
-      <y>280</y>
+      <x>352</x>
+      <y>260</y>
       <width>40</width>
       <height>40</height>
      </rect>
@@ -472,8 +472,8 @@ color:rgb(242, 242, 222);</string>
    <widget class="QPushButton" name="pushButton_14">
     <property name="geometry">
      <rect>
-      <x>384</x>
-      <y>280</y>
+      <x>394</x>
+      <y>260</y>
       <width>40</width>
       <height>40</height>
      </rect>
@@ -503,8 +503,8 @@ color:rgb(242, 242, 222);</string>
    <widget class="QPushButton" name="pushButton_15">
     <property name="geometry">
      <rect>
-      <x>426</x>
-      <y>280</y>
+      <x>436</x>
+      <y>260</y>
       <width>40</width>
       <height>40</height>
      </rect>
@@ -534,8 +534,8 @@ color:rgb(242, 242, 222);</string>
    <widget class="QPushButton" name="pushButton_17">
     <property name="geometry">
      <rect>
-      <x>553</x>
-      <y>280</y>
+      <x>563</x>
+      <y>260</y>
       <width>80</width>
       <height>40</height>
      </rect>
@@ -565,8 +565,8 @@ color:rgb(242, 242, 222);</string>
    <widget class="QPushButton" name="pushButton_18">
     <property name="geometry">
      <rect>
-      <x>468</x>
-      <y>280</y>
+      <x>478</x>
+      <y>260</y>
       <width>40</width>
       <height>40</height>
      </rect>
@@ -596,8 +596,8 @@ color:rgb(242, 242, 222);</string>
    <widget class="QPushButton" name="pushButton_16">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>280</y>
+      <x>520</x>
+      <y>260</y>
       <width>40</width>
       <height>40</height>
      </rect>

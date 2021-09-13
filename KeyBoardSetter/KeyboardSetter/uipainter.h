@@ -32,11 +32,14 @@ public:
     void switchVinput(VinputEnable);
     void drawSwitch(int x, int y) const;
     void triggerSwitch(int btn_no);
-
+    //draw advance key ui
+    void drawADVpanel(int x, int y);
+    void showAdvPanel();
+    void hideAdvPanel();
+    //draw full window
     int getFullWindowHeight(int CKBrow);
     int getFullWindowWidth();
-
-    //------getter and setter
+    //Getter and setter
     void setCKBKey_len(int value);
     void setCKBKey_inter_margin(int value);
     void setCKBKey_ex_margin(int value);
@@ -49,6 +52,8 @@ public:
     QVector<QPushButton *> *getCKBkey_list() const;
     QVector<QPushButton *> *getSW_list() const;
 
+    QPushButton *drawADVKey(int x, int y, QString text);
+
 private:
     QWidget *my_ui;
     int CKBKey_len = 90;
@@ -59,7 +64,6 @@ private:
     int UI_part_margin = 20;
 
     void drawCKBbase(int x, int y, int col, int row);
-
     QPushButton*drawCKBkey(int x, int y, QString text);
     QPushButton* drawVKey(int x,int y,float block_x,float block_y,QString text);
 

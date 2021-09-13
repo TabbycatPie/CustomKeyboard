@@ -85,7 +85,6 @@ void UIPainter::drawVMouse(int x,int y){
     this->Vkey_list->append(lbtn);
     this->Vkey_list->append(mbtn);
     this->Vkey_list->append(rbtn);
-
 }
 
 void UIPainter::showVMouse()
@@ -104,8 +103,27 @@ void UIPainter::hideVMouse()
     this->mouse_body->hide();
 }
 
+//---------------Paint Advance Pannel---------------------------//
+void UIPainter::drawADVpanel(int x,int y){
+    int cur_x = x;
+    int cur_y = y;
 
+}
 
+QPushButton* UIPainter::drawADVKey(int x,int y,QString text){
+
+}
+
+void UIPainter::showAdvPanel(){
+    for(int i = 106;i<123;i++){
+        this->Vkey_list->data()[i]->show();
+    }
+};
+void UIPainter::hideAdvPanel(){
+    for(int i = 106;i<123;i++){
+        this->Vkey_list->data()[i]->hide();
+    }
+};
 //--------------Paint Custom TabButton--------------------------//
 QVector<QPushButton*> *UIPainter::getSW_list() const
 {
