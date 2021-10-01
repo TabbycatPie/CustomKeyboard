@@ -5,6 +5,7 @@
 #include <qpushbutton.h>
 #include <QVector>
 #include <qlabel.h>
+#include <QTextBrowser>
 
 class UIPainter : public QObject
 {
@@ -28,6 +29,10 @@ public:
     void drawVMouse(int x,int y);
     void showVMouse();
     void hideVMouse();
+    //draw output port
+    void drawOutputPort(int x,int y);
+    int getPortHeight();
+
     //draw switch
     void switchVinput(VinputEnable);
     void drawSwitch(int x, int y) const;
@@ -51,6 +56,7 @@ public:
     QVector<QPushButton *> *getVkey_list() const;
     QVector<QPushButton *> *getCKBkey_list() const;
     QVector<QPushButton *> *getSW_list() const;
+    QTextBrowser *main_output_tv;
 
     QPushButton *drawADVKey(int x, int y, QString text);
 

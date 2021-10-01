@@ -2,7 +2,9 @@
 #include "uipainter.h"
 
 #include <QLabel>
-#include <qpushbutton.h>
+#include <QPushButton>
+#include <QTextBrowser>
+
 
 
 UIPainter::UIPainter(QWidget *ui, QObject *parent)
@@ -54,7 +56,7 @@ int UIPainter::getCKBHeight(int row)
 
 int UIPainter::getFullWindowHeight(int CKBrow)
 {
-    return getCKBHeight(CKBrow)+6*(this->VKey_len+this->Vkey_inter_margin)+4*this->UI_part_margin;
+    return getCKBHeight(CKBrow)+6*(this->VKey_len+this->Vkey_inter_margin)+4*this->UI_part_margin+80;
 }
 
 //--------------Paint Custom Mouse------------------------------//
@@ -101,6 +103,18 @@ void UIPainter::hideVMouse()
         Vkey_list->data()[i]->hide();
     }
     this->mouse_body->hide();
+}
+//---------------Paint Output TextBrowser---------------------------//
+void UIPainter::drawOutputPort(int x, int y)
+{
+    this->main_output_tv = new QTextBrowser(this->my_ui);
+    main_output_tv->setStyleSheet("background-color:rgba(168, 176, 185,0);border:2px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:20px;color:rgb(242, 242, 222);");
+    main_output_tv->setGeometry(x,y,950,this->getPortHeight());
+}
+
+int UIPainter::getPortHeight()
+{
+    return 70;
 }
 
 //---------------Paint Advance Pannel---------------------------//

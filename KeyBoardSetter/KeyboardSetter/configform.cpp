@@ -17,10 +17,17 @@ ConfigForm::ConfigForm(QWidget *parent) :
     int col = 5;
     UIPainter *painter = new UIPainter(this,this);
     painter->drawCKB(450-(int)(painter->getCKBWigth(col)/2),painter->getUI_part_margin(),col,row);
-    painter->drawSwitch(painter->getUI_part_margin(),painter->getCKBHeight(row)+50);
-    painter->drawVKBfull(painter->getUI_part_margin(),painter->getCKBHeight(row)+50+25);
-    painter->hideVKB();
-    painter->drawVMouse(painter->getUI_part_margin(),painter->getCKBHeight(row)+50+25);
+
+    painter->drawOutputPort(painter->getUI_part_margin(),painter->getCKBHeight(row)+50);
+
+    painter->drawSwitch(painter->getUI_part_margin(),painter->getCKBHeight(row)+painter->getPortHeight()+55);
+
+    painter->drawVKBfull(painter->getUI_part_margin(),painter->getCKBHeight(row)+painter->getPortHeight()+80);
+
+    //test show_only_mouse
+    //painter->hideVKB();
+    painter->drawVMouse(painter->getUI_part_margin(),painter->getCKBHeight(row)+painter->getPortHeight()+80);
+    painter->hideVMouse();
 
     QVector<QPushButton*> *temp = painter->getSW_list();
 
@@ -33,7 +40,7 @@ ConfigForm::ConfigForm(QWidget *parent) :
     connect(temp->data()[2],&QPushButton::clicked,this,[=]{
         painter->switchVinput(painter->VADVANCE);
     });
-
+    painter->triggerSwitch(0);
 
     this->setFixedSize(1000,painter->getFullWindowHeight(row));
 }
