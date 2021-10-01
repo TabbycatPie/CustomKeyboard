@@ -59,6 +59,8 @@ public:
     QVector<QPushButton *> *getSW_list() const;
     //get main text output
     QTextBrowser *getMainTextView() const;
+    QPushButton *getBtn_delete() const;
+    QPushButton *getBtn_addkey() const;
     //advance pannel delay part
     QPushButton *getBtn_delay_plus() const;
     QPushButton *getBtn_delay_minus() const;
@@ -88,6 +90,7 @@ private:
     QVector<QPushButton*> *SW_list;
     //main oput text
     QTextBrowser *main_output_tv;
+    QPushButton *btn_delete,*btn_addkey;
     //advance pannel delay
     QLineEdit* et_delay;
     QPushButton* btn_delay_plus,*btn_delay_minus,*btn_set_delay;

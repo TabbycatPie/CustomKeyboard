@@ -1022,7 +1022,7 @@ color:rgb(242, 242, 222);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:rgba(168, 176, 185,0);border:2px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt &quot;Microsoft YaHei UI&quot;;font-size:20px;color:rgb(242, 242, 222);</string>
+     <string notr="true">background-color:rgba(168, 176, 185,0);border:1px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt &quot;Microsoft YaHei UI&quot;;font-size:20px;color:rgb(242, 242, 222);</string>
     </property>
     <property name="verticalScrollBarPolicy">
      <enum>Qt::ScrollBarAlwaysOff</enum>
