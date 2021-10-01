@@ -28,6 +28,8 @@ ConfigForm::ConfigForm(QWidget *parent) :
     //painter->hideVKB();
     painter->drawVMouse(painter->getUI_part_margin(),painter->getCKBHeight(row)+painter->getPortHeight()+80);
     painter->hideVMouse();
+    painter->drawADVpanel(painter->getUI_part_margin(),painter->getCKBHeight(row)+painter->getPortHeight()+80);
+    painter->hideAdvPanel();
 
     QVector<QPushButton*> *temp = painter->getSW_list();
 

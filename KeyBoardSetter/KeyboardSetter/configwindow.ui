@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>350</height>
+    <height>600</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>1000</width>
-    <height>350</height>
+    <height>600</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>1000</width>
-    <height>350</height>
+    <height>600</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -34,8 +34,8 @@
      <rect>
       <x>440</x>
       <y>0</y>
-      <width>191</width>
-      <height>111</height>
+      <width>291</width>
+      <height>161</height>
      </rect>
     </property>
     <property name="title">
@@ -628,7 +628,7 @@ color:rgb(242, 242, 222);</string>
     <property name="geometry">
      <rect>
       <x>359</x>
-      <y>70</y>
+      <y>60</y>
       <width>60</width>
       <height>50</height>
      </rect>
@@ -667,7 +667,7 @@ color:rgb(242, 242, 222);</string>
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>70</y>
+      <y>60</y>
       <width>60</width>
       <height>50</height>
      </rect>
@@ -708,7 +708,7 @@ color:rgb(242, 242, 222);</string>
       <x>300</x>
       <y>10</y>
       <width>120</width>
-      <height>50</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -739,7 +739,7 @@ color:rgb(242, 242, 222);</string>
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>130</y>
+      <y>120</y>
       <width>120</width>
       <height>50</height>
      </rect>
@@ -1003,29 +1003,13 @@ color:rgb(242, 242, 222);</string>
      <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>120</y>
-      <width>321</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color:rgba(168, 176, 185,0);border:2px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt &quot;Microsoft YaHei UI&quot;;font-size:20px;color:rgb(242, 242, 222);</string>
-    </property>
-    <property name="text">
-     <string>helloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworldhelloworld</string>
-    </property>
-   </widget>
    <widget class="QTextBrowser" name="tv_keyvalue">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>150</x>
       <y>180</y>
-      <width>631</width>
-      <height>71</height>
+      <width>611</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -1051,7 +1035,116 @@ color:rgb(242, 242, 222);</string>
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:20px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;shiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshiftshift&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20px;&quot;&gt;helloworld&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="et_delay">
+    <property name="geometry">
+     <rect>
+      <x>651</x>
+      <y>261</y>
+      <width>60</width>
+      <height>39</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>60</width>
+      <height>39</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>60</width>
+      <height>39</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(68, 76, 85);
+border:1px solid rgb(242, 242, 222);
+border-top-left-radius:7px;
+border-bottom-left-radius:7px;
+padding:2px 4px;
+font: 9pt &quot;Microsoft YaHei UI&quot;;
+font-size:15px;
+color:rgb(242, 242, 222);</string>
+    </property>
+    <property name="text">
+     <string>0.0</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_save">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>261</y>
+      <width>30</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>30</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>30</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-top-right-radius:7px;padding:2px 4px;font: 9pt &quot;Microsoft YaHei UI&quot;;font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}</string>
+    </property>
+    <property name="text">
+     <string>+</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_save_2">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>280</y>
+      <width>30</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>30</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>30</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-bottom-right-radius:7px;padding:2px 4px;font: 9pt &quot;Microsoft YaHei UI&quot;;font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}</string>
+    </property>
+    <property name="text">
+     <string>-</string>
     </property>
    </widget>
    <zorder>label_2</zorder>
@@ -1085,8 +1178,10 @@ p, li { white-space: pre-wrap; }
    <zorder>pushButton_19</zorder>
    <zorder>pushButton_20</zorder>
    <zorder>pushButton_21</zorder>
-   <zorder>label_3</zorder>
    <zorder>tv_keyvalue</zorder>
+   <zorder>et_delay</zorder>
+   <zorder>btn_save</zorder>
+   <zorder>btn_save_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

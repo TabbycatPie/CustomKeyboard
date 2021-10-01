@@ -6,6 +6,7 @@
 #include <QVector>
 #include <qlabel.h>
 #include <QTextBrowser>
+#include <qlineedit.h>
 
 class UIPainter : public QObject
 {
@@ -56,9 +57,13 @@ public:
     QVector<QPushButton *> *getVkey_list() const;
     QVector<QPushButton *> *getCKBkey_list() const;
     QVector<QPushButton *> *getSW_list() const;
-    QTextBrowser *main_output_tv;
-
-    QPushButton *drawADVKey(int x, int y, QString text);
+    //get main text output
+    QTextBrowser *getMainTextView() const;
+    //advance pannel delay part
+    QPushButton *getBtn_delay_plus() const;
+    QPushButton *getBtn_delay_minus() const;
+    QLineEdit *getEt_delay() const;
+    QPushButton *getBtn_set_delay() const;
 
 private:
     QWidget *my_ui;
@@ -72,12 +77,20 @@ private:
     void drawCKBbase(int x, int y, int col, int row);
     QPushButton*drawCKBkey(int x, int y, QString text);
     QPushButton* drawVKey(int x,int y,float block_x,float block_y,QString text);
+    //adv pannel private function
+    void drawDelayPart(int x,int y);
+    void showDelayPart();
+    void hideDelayPart();
 
     //----Qpushbutton list
     QVector<QPushButton*> *Vkey_list;
     QVector<QPushButton*> *CKBkey_list;
     QVector<QPushButton*> *SW_list;
-
+    //main oput text
+    QTextBrowser *main_output_tv;
+    //advance pannel delay
+    QLineEdit* et_delay;
+    QPushButton* btn_delay_plus,*btn_delay_minus,*btn_set_delay;
     //----other component
     QLabel *mouse_body;
 

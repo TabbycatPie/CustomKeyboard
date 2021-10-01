@@ -3,6 +3,7 @@
 
 #include <QLabel>
 #include <QPushButton>
+#include <QRegExpValidator>
 #include <QTextBrowser>
 
 
@@ -43,22 +44,18 @@ void UIPainter::drawCKB(int x,int y,int col,int row){
         }
     }
 }
-
 int UIPainter::getCKBWigth(int col)
 {
     return (this->CKBKey_len+this->CKBKey_inter_margin*2)*col+this->CKBKey_ex_margin*2;
 }
-
 int UIPainter::getCKBHeight(int row)
 {
     return (this->CKBKey_len+this->CKBKey_inter_margin*2)*row+this->CKBKey_ex_margin*2;
 }
-
 int UIPainter::getFullWindowHeight(int CKBrow)
 {
     return getCKBHeight(CKBrow)+6*(this->VKey_len+this->Vkey_inter_margin)+4*this->UI_part_margin+80;
 }
-
 //--------------Paint Custom Mouse------------------------------//
 void UIPainter::drawVMouse(int x,int y){
     int cur_x = x;
@@ -118,30 +115,103 @@ int UIPainter::getPortHeight()
 }
 
 //---------------Paint Advance Pannel---------------------------//
+
 void UIPainter::drawADVpanel(int x,int y){
     int cur_x = x;
     int cur_y = y;
-
+    HIDCodeTable *t = new HIDCodeTable();
+    //draw multi-media keys
+    for(int i = 107;i<=112;i++){
+        this->Vkey_list->append(drawVKey(cur_x,cur_y,2.0,1.0,t->getButtonNmae(i)));
+        cur_x+= 2.0*(this->VKey_len+this->Vkey_inter_margin);
+    }
+    //begin a new line
+    cur_y+= this->VKey_len + this->Vkey_inter_margin;
+    cur_x = x;
+    //draw f13~f24 keys
+    for(int i = 113;i<=124;i++){
+        this->Vkey_list->append(drawVKey(cur_x,cur_y,1.0,1.0,t->getButtonNmae(i)));
+        cur_x+= 1.0*this->VKey_len+this->Vkey_inter_margin;
+    }
+    //begin a new line
+    cur_y+= this->VKey_len + this->Vkey_inter_margin;
+    cur_x = x;
+    drawDelayPart(cur_x,cur_y);
+    delete t;
+}
+void UIPainter::drawDelayPart(int x, int y)
+{
+    int cur_x = x;
+    int cur_y = y;
+    this->et_delay        = new QLineEdit("0.0",this->my_ui);
+    //set rule
+    //init et_delay
+    QRegExp rx("[12]?\\d\\.[0-9]");
+    QRegExpValidator *pRevalidotor = new QRegExpValidator(rx,this);
+    et_delay->setValidator(pRevalidotor);
+    this->btn_delay_plus  = new QPushButton(tr("+"),this->my_ui);
+    this->btn_delay_minus = new QPushButton(tr("-"),this->my_ui);
+    et_delay->setGeometry(cur_x,cur_y,this->VKey_len*2.1+this->Vkey_inter_margin,this->VKey_len);
+    cur_x+=this->VKey_len*2.1+this->Vkey_inter_margin-1;
+    btn_delay_plus->setGeometry(cur_x,cur_y,this->VKey_len,this->VKey_len/2+1);
+    cur_y+=this->VKey_len/2;
+    btn_delay_minus->setGeometry(cur_x,cur_y,this->VKey_len,this->VKey_len/2);
+    cur_x+=this->VKey_len+Vkey_inter_margin;
+    cur_y=y;
+    this->btn_set_delay = this->drawVKey(cur_x,cur_y,2.1,1.0,tr("SetDelay"));
+    //set style
+    et_delay->setStyleSheet("background-color:rgb(68, 76, 85);\nborder:1px solid rgb(242, 242, 222);\nborder-top-left-radius:7px;\nborder-bottom-left-radius:7px;\npadding:2px 4px;\nfont: 9pt \"Microsoft YaHei UI\";\nfont-size:15px;\ncolor:rgb(242, 242, 222);");
+    btn_delay_plus->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-top-right-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
+    btn_delay_minus->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-bottom-right-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
 }
 
-QPushButton* UIPainter::drawADVKey(int x,int y,QString text){
-
+void UIPainter::showDelayPart()
+{
+    this->btn_set_delay->show();
+    this->btn_delay_plus->show();
+    this->btn_delay_minus->show();
+    this->et_delay->show();
+}
+void UIPainter::hideDelayPart()
+{
+    this->btn_set_delay->hide();
+    this->btn_delay_plus->hide();
+    this->btn_delay_minus->hide();
+    this->et_delay->hide();
 }
 
 void UIPainter::showAdvPanel(){
-    for(int i = 106;i<123;i++){
+    for(int i = 106;i<124;i++){
         this->Vkey_list->data()[i]->show();
     }
+    showDelayPart();
 };
 void UIPainter::hideAdvPanel(){
-    for(int i = 106;i<123;i++){
+    for(int i = 106;i<124;i++){
         this->Vkey_list->data()[i]->hide();
     }
+    hideDelayPart();
 };
 //--------------Paint Custom TabButton--------------------------//
 QVector<QPushButton*> *UIPainter::getSW_list() const
 {
     return SW_list;
+}
+
+QTextBrowser *UIPainter::getMainTextView() const
+{
+    return main_output_tv;
+}
+
+QPushButton *UIPainter::getBtn_delay_minus() const
+{
+    return btn_delay_minus;
+}
+
+
+QPushButton *UIPainter::getBtn_delay_plus() const
+{
+    return btn_delay_plus;
 }
 
 void UIPainter::drawSwitch(int x, int y) const
@@ -193,22 +263,37 @@ QPushButton* UIPainter::drawVKey(int x,int y,float block_x,float block_y,QString
     return btn;
 }
 
+
+QPushButton *UIPainter::getBtn_set_delay() const
+{
+    return btn_set_delay;
+}
+
+
+QLineEdit *UIPainter::getEt_delay() const
+{
+    return et_delay;
+}
+
 void UIPainter::switchVinput(UIPainter::VinputEnable input)
 {
     switch (input) {
         case VKEYBOARD:
             hideVMouse();
+            hideAdvPanel();
             showVKB();
             triggerSwitch(0);
             break;
         case VMOUSE:
             hideVKB();
+            hideAdvPanel();
             showVMouse();
             triggerSwitch(1);
             break;
         case VADVANCE:
             hideVKB();
             hideVMouse();
+            showAdvPanel();
             triggerSwitch(2);
             break;
         default:
@@ -357,7 +442,6 @@ void UIPainter::drawVKBfull(int x,int y){
     drawVKBfunc(x+15*(this->VKey_len+this->Vkey_inter_margin)+VKBpart_margin,y);
     drawVKBkeypad(x+18*(this->VKey_len+this->Vkey_inter_margin)+2*VKBpart_margin,y+this->VKey_len+this->Vkey_inter_margin);
 }
-
 void UIPainter::hideVKB()
 {
     for(int i = 0;i<103;i++)
@@ -399,12 +483,10 @@ void UIPainter::setVkey_inter_margin(int value)
 {
     Vkey_inter_margin = value;
 }
-
 int UIPainter::getUI_part_margin() const
 {
-    return UI_part_margin;
+    return UI_part_margin;\
 }
-
 void UIPainter::setUI_part_margin(int value)
 {
     UI_part_margin = value;
