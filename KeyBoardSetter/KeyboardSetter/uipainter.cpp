@@ -211,6 +211,10 @@ QVector<QPushButton*> *UIPainter::getSW_list() const
 {
     return SW_list;
 }
+QTextBrowser *UIPainter::getMainTextView() const
+{
+    return main_output_tv;
+}
 QPushButton *UIPainter::getBtn_delay_minus() const
 {
     return btn_delay_minus;

@@ -15,21 +15,20 @@ void updateUI();
 
 QVector<QPushButton *> *vkey_list;
 CustomKeyboard *my_ckb;
-HIDCodeTable table;
+HIDCodeTable cf_table;
 UIPainter *painter;
 int row = 2;
 int col = 5;
 
 //current pressed key
-QVector<int> cur_key_sp;
-QVector<int> cur_key_normal;
-int cur_mouse =0;
-int cur_media =0;
-int cur_delay =0;
+QVector<int> cf_cur_key_sp;
+QVector<int> cf_cur_key_normal;
+int cf_cur_mouse =0;
+int cf_cur_media =0;
+int cf_cur_delay =0;
 
 //current select keyboard
-int cur_edit_key_no = -1;
-
+int cf_cur_edit_key_no = -1;
 
 ConfigForm::ConfigForm(QWidget *parent)
     : QWidget(parent),
@@ -63,7 +62,7 @@ ConfigForm::ConfigForm(QWidget *parent)
     for(int i =0;i<row*col;i++){
         for(int j =0;j<my_ckb->getKeynum();j++){
             connect(my_ckb->getButtonByID(j),&QPushButton::clicked,this,[=]{
-                cur_edit_key_no = j;
+                cf_cur_edit_key_no = j;
             });
         }
     }
@@ -72,65 +71,65 @@ ConfigForm::ConfigForm(QWidget *parent)
 //soft key press function
 void ConfigForm::softKeyPressed(int i){
     painter->getBtn_addkey()->show();
-    if(table.isSPkey(i)){
+    if(cf_table.isSPkey(i)){
         //clear single key except normal key
-        cur_media = 0;
-        cur_mouse = 0;
+        cf_cur_media = 0;
+        cf_cur_mouse = 0;
         //special key pressed
-        if(cur_key_sp.indexOf(i)>=0){
+        if(cf_cur_key_sp.indexOf(i)>=0){
             //the key is pressed
-            cur_key_sp.remove(cur_key_sp.indexOf(i));
+            cf_cur_key_sp.remove(cf_cur_key_sp.indexOf(i));
             //keyboard_list_g[i-1]->setStyleSheet("");
             painter->setVkeyUntriggered(i-1);
         }
         else{
             //key is not pressed
-            cur_key_sp.append(i);
+            cf_cur_key_sp.append(i);
             //set keys color
             //keyboard_list_g[i-1]->setStyleSheet("background-color: rgb(255, 100, 100);");
             painter->setVkeyTriggered(i-1);
         }
     }
-    else if(table.isMouseKey(i)){
+    else if(cf_table.isMouseKey(i)){
         //clear other single key
-        cur_media = 0;
+        cf_cur_media = 0;
         //clear noraml
-        if(cur_key_normal.size()>0){
-            cur_key_normal[0]=0;
-            cur_key_sp.clear();
+        if(cf_cur_key_normal.size()>0){
+            cf_cur_key_normal[0]=0;
+            cf_cur_key_sp.clear();
         }
-        if(cur_mouse==i)
-            cur_mouse = 0;
+        if(cf_cur_mouse==i)
+            cf_cur_mouse = 0;
         else{
-            cur_mouse = i;
+            cf_cur_mouse = i;
             addKeyValue();
         }
     }
-    else if(table.isMediaKey(i)){
+    else if(cf_table.isMediaKey(i)){
         //clear other single key
-       cur_mouse = 0;
-       if(cur_key_normal.size()>0){
-           cur_key_normal[0]=0;
-           cur_key_sp.clear();
+       cf_cur_mouse = 0;
+       if(cf_cur_key_normal.size()>0){
+           cf_cur_key_normal[0]=0;
+           cf_cur_key_sp.clear();
        }
-       if(cur_media==i)
-           cur_media = 0;
+       if(cf_cur_media==i)
+           cf_cur_media = 0;
        else{
-           cur_media = i;
+           cf_cur_media = i;
            addKeyValue();
        }
     }
     else
     {
         //clear other single key
-        cur_media = 0;
-        cur_mouse = 0;
+        cf_cur_media = 0;
+        cf_cur_mouse = 0;
         //normal key pressed
-        if(cur_key_normal.indexOf(i)>=0)
-            cur_key_normal.clear();
+        if(cf_cur_key_normal.indexOf(i)>=0)
+            cf_cur_key_normal.clear();
         else{
-            cur_key_normal.clear();
-            cur_key_normal.append(i);
+            cf_cur_key_normal.clear();
+            cf_cur_key_normal.append(i);
             addKeyValue();
         }
     }
@@ -147,13 +146,13 @@ void ConfigForm::showWarningDialog(QString title,QString content){
 bool ConfigForm::addKeyValue()
 {
     //set append key value
-    QVector<KeyValue*> temp_list = my_ckb->getCustomKeyByID(cur_edit_key_no)->getKeyValueList();
+    QVector<KeyValue*> temp_list = my_ckb->getCustomKeyByID(cf_cur_edit_key_no)->getKeyValueList();
     int temp_normal = 0;
-    if(cur_key_normal.size() > 0)
-        temp_normal = cur_key_normal[0];
-    KeyValue *temp_kv = table.convertVector2KeyValue(temp_normal,cur_mouse,cur_media,cur_key_sp);
-    temp_kv->setDelay(cur_delay);
-    if(cur_mouse != 0 ){
+    if(cf_cur_key_normal.size() > 0)
+        temp_normal = cf_cur_key_normal[0];
+    KeyValue *temp_kv = cf_table.convertVector2KeyValue(temp_normal,cf_cur_mouse,cf_cur_media,cf_cur_key_sp);
+    temp_kv->setDelay(cf_cur_delay);
+    if(cf_cur_mouse != 0 ){
         //add mouse key
         if(temp_list.size()>0 && (temp_list[0]->getNormalKeyIndex() !=0 ||  temp_list[0]->getMediaKeyIndex()!=0 || temp_list[0]->getMouseKeyIndex()!=0)){
             //mouse key is single can not be added
@@ -161,10 +160,10 @@ bool ConfigForm::addKeyValue()
         }
         else{
             //add to instant ckb and update ui
-            my_ckb->setKey(cur_edit_key_no,temp_kv);
+            my_ckb->setKey(cf_cur_edit_key_no,temp_kv);
         }
     }
-    else if(cur_media!=0){
+    else if(cf_cur_media!=0){
         //add meida key
         if(temp_list.size()>0 && (temp_list[0]->getNormalKeyIndex() !=0 ||  temp_list[0]->getMediaKeyIndex()!=0 || temp_list[0]->getMouseKeyIndex()!=0)){
             //media key is single can not be added
@@ -172,27 +171,27 @@ bool ConfigForm::addKeyValue()
         }
         else{
             //add to instant ckb and update ui
-            my_ckb->setKey(cur_edit_key_no,temp_kv);
+            my_ckb->setKey(cf_cur_edit_key_no,temp_kv);
         }
     }
     else{
         //add normal key
         //justify whether there is any single key
-        if(my_ckb->getCustomKeyByID(cur_edit_key_no)->isMedia()||my_ckb->getCustomKeyByID(cur_edit_key_no)->isMouse()){
+        if(my_ckb->getCustomKeyByID(cf_cur_edit_key_no)->isMedia()||my_ckb->getCustomKeyByID(cf_cur_edit_key_no)->isMouse()){
             showWarningDialog(tr("Notice"),tr("You can NOT set MEDIA or MOUSE key to Macro!"));
         }
         else{
             //special key justify
-            if(my_ckb->getCustomKeyByID(cur_edit_key_no)->getKeyValueList()[0]->getNormalKeyIndex() == 0 \
-                    && my_ckb->getCustomKeyByID(cur_edit_key_no)->getKeyValueList()[0]->getSPKeyList().size() > 0 \
-                    && my_ckb->getCustomKeyByID(cur_edit_key_no)->getKeyValueList()[0]->getSPKeyList()[0] == 0)
+            if(my_ckb->getCustomKeyByID(cf_cur_edit_key_no)->getKeyValueList()[0]->getNormalKeyIndex() == 0 \
+                    && my_ckb->getCustomKeyByID(cf_cur_edit_key_no)->getKeyValueList()[0]->getSPKeyList().size() > 0 \
+                    && my_ckb->getCustomKeyByID(cf_cur_edit_key_no)->getKeyValueList()[0]->getSPKeyList()[0] == 0)
             {
-                my_ckb->setKey(cur_edit_key_no,temp_kv);
+                my_ckb->setKey(cf_cur_edit_key_no,temp_kv);
             }
             else{
-                if(my_ckb->checkMacroAddable(cur_edit_key_no)){
+                if(my_ckb->checkMacroAddable(cf_cur_edit_key_no)){
                     //update to class
-                    my_ckb->appendKey(cur_edit_key_no,temp_kv);
+                    my_ckb->appendKey(cf_cur_edit_key_no,temp_kv);
                 }
                 else{
                     //can not add to macro because of hardware limit
@@ -204,14 +203,14 @@ bool ConfigForm::addKeyValue()
 
     //clear current stat
     painter->getBtn_addkey()->hide();
-    cur_key_sp.clear();
-    cur_key_normal.clear();
-    cur_mouse =0;
-    cur_media =0;
-    cur_delay =0;
+    cf_cur_key_sp.clear();
+    cf_cur_key_normal.clear();
+    cf_cur_mouse =0;
+    cf_cur_media =0;
+    cf_cur_delay =0;
     //untirgger all sp keys
     for(int i = 0;i<8;i++){
-        painter->setVkeyUntriggered(table.getSPkeybByindex(i));
+        painter->setVkeyUntriggered(cf_table.getSPkeybByindex(i));
     }
     updateUI();
     return true;
@@ -255,43 +254,43 @@ void ConfigForm::changeLanguage(QString language){
 void updateUI(){
     //update soft keyboard label
     QString temp = "";
-    if(!cur_key_sp.isEmpty()){
-        temp = table.getKeyString(cur_key_sp[0]);
-        for(int i = 1;i<cur_key_sp.size();i++){
-            temp += " + " +  table.getKeyString(cur_key_sp[i]);
+    if(!cf_cur_key_sp.isEmpty()){
+        temp = cf_table.getKeyString(cf_cur_key_sp[0]);
+        for(int i = 1;i<cf_cur_key_sp.size();i++){
+            temp += " + " +  cf_table.getKeyString(cf_cur_key_sp[i]);
         }
     }
-    if(!cur_key_normal.isEmpty()){
+    if(!cf_cur_key_normal.isEmpty()){
         int i = 0;
         if(temp == ""){
-            temp = table.getKeyString(cur_key_normal[0]);
+            temp = cf_table.getKeyString(cf_cur_key_normal[0]);
             i++;
         }
-        for(;i<cur_key_normal.size();i++){
-            temp += " + " +  table.getKeyString(cur_key_normal[i]);
+        for(;i<cf_cur_key_normal.size();i++){
+            temp += " + " +  cf_table.getKeyString(cf_cur_key_normal[i]);
         }
     }
-    if(cur_delay!=0){
+    if(cf_cur_delay!=0){
         //temp = "Delay"+ ui->et_delay->text() +"s"+temp;
         temp = "Delay"+painter->getEt_delay()->text() +"s"+temp;
     }
     // these keys is single
-    if(cur_media!=0){
-        temp = table.getKeyString(cur_media);
+    if(cf_cur_media!=0){
+        temp = cf_table.getKeyString(cf_cur_media);
     }
-    if(cur_mouse!=0){
-        temp = table.getKeyString(cur_mouse);
+    if(cf_cur_mouse!=0){
+        temp = cf_table.getKeyString(cf_cur_mouse);
     }
 
     //set selector color
-    if(cur_edit_key_no != -1){
+    if(cf_cur_edit_key_no != -1){
         //show cur key
         QString str_temp ="";
-        QVector<KeyValue*> kvs = my_ckb->getCustomKeyByID(cur_edit_key_no)->getKeyValueList();
+        QVector<KeyValue*> kvs = my_ckb->getCustomKeyByID(cf_cur_edit_key_no)->getKeyValueList();
         if(!kvs.isEmpty()){
-            str_temp = "(" + table.convertKeyValue2QString(kvs[0])+")";
+            str_temp = "(" + cf_table.convertKeyValue2QString(kvs[0])+")";
             for(int i =1;i<kvs.size();i++){
-                str_temp += " + ("+table.convertKeyValue2QString(kvs[i])+")";
+                str_temp += " + ("+cf_table.convertKeyValue2QString(kvs[i])+")";
             }
         }
         //set text
@@ -304,12 +303,12 @@ void updateUI(){
         }
         else
             painter->getMainTextView()->setText(str_temp);
-        my_ckb->getButtonByID(cur_edit_key_no)->setStyleSheet("background-color: rgb(255, 100, 100);"); //red for selected
+        my_ckb->getButtonByID(cf_cur_edit_key_no)->setStyleSheet("background-color: rgb(255, 100, 100);"); //red for selected
     }
 
     //set CKB tirrger condition
     for(int i=0;i<my_ckb->getKeynum();i++){
-        if(i == cur_edit_key_no)
+        if(i == cf_cur_edit_key_no)
             continue;
         if(my_ckb->getCustomKeyByID(i)->isMacro())
             ;//style for macro
