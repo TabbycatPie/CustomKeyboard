@@ -57,7 +57,8 @@ DeviceFinder::DeviceFinder(QWidget *parent) :
         ui->sub_label->repaint();
         QThread::msleep(300);
         //justify wether the device is pluged in
-        if(CustomKeyboard("tryopen",0,0x2019,0x5131,nullptr).tryOpen()){
+        QPushButton *(*empty);
+        if(CustomKeyboard("tryopen",0,0x2019,0x5131,empty).tryOpen()){
             ui->main_label->setText(tr(" Device found! "));
             ui->sub_label->setText(tr(""));
             ui->main_label->repaint();
@@ -68,7 +69,7 @@ DeviceFinder::DeviceFinder(QWidget *parent) :
             ui->main_label->setText(tr(" Device not found! "));
             ui->sub_label->setText(tr("please pulgin your device"));
         }
-
+        delete empty;
     });
 }
 

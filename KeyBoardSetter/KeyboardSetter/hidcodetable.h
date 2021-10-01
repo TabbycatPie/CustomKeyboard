@@ -20,7 +20,9 @@ public:
     void convertNormaltKeyValue2Hex(uchar * normal,uchar * sp_key,KeyValue *kv);
     KeyValue* convertVector2KeyValue(int normal,int mouse,int media,const QVector<int> sp_keys);
     QString convertKeyValue2QString(KeyValue *kv);
+    int getSPkeybByindex(int x);
     ~HIDCodeTable();
+
 private:
     const QString *key_string;
     const QString *key_name;

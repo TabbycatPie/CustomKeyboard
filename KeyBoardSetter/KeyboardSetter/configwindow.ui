@@ -35,7 +35,7 @@
       <x>440</x>
       <y>0</y>
       <width>291</width>
-      <height>161</height>
+      <height>231</height>
      </rect>
     </property>
     <property name="title">
@@ -215,7 +215,7 @@ color:rgb(242, 242, 222);</string>
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">QPushButton{border:2px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt &quot;Microsoft YaHei UI&quot;;font-size:20px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(15, 172, 252,255), stop:1 rgba(22, 190, 235,255));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 160, 205,125), stop:1 rgba(0, 142, 222,125));color:rgb(202, 202,182);}\n\n</string>
+     <string notr="true">QPushButton{border:2px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt &quot;Microsoft YaHei UI&quot;;font-size:20px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(15, 172, 252,255), stop:1 rgba(22, 190, 235,255));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 160, 205,125), stop:1 rgba(0, 142, 222,125));color:rgb(202, 202,182);}</string>
     </property>
     <property name="text">
      <string>KEY1</string>
@@ -1006,11 +1006,23 @@ color:rgb(242, 242, 222);</string>
    <widget class="QTextBrowser" name="tv_keyvalue">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>180</y>
-      <width>611</width>
-      <height>61</height>
+      <x>11</x>
+      <y>310</y>
+      <width>850</width>
+      <height>60</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>850</width>
+      <height>60</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>850</width>
+      <height>60</height>
+     </size>
     </property>
     <property name="font">
      <font>
@@ -1022,7 +1034,7 @@ color:rgb(242, 242, 222);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:rgba(168, 176, 185,0);border:1px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt &quot;Microsoft YaHei UI&quot;;font-size:20px;color:rgb(242, 242, 222);</string>
+     <string notr="true">background-color:rgba(168, 176, 185,0);border:1px solid rgb(242, 242, 222);padding:2px 4px;font: 9pt &quot;Microsoft YaHei UI&quot;;font-size:20px;color:rgb(242, 242, 222);border-top-left-radius:7px;border-bottom-left-radius:7px;</string>
     </property>
     <property name="verticalScrollBarPolicy">
      <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -1147,6 +1159,84 @@ color:rgb(242, 242, 222);</string>
      <string>-</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="searchdevice_btn_8">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>380</y>
+      <width>100</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>60</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>100</width>
+      <height>60</height>
+     </size>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0,0), stop:1 rgba(0, 0, 0,0));border:1px solid rgb(242, 242, 222);border-top-right-radius:7px;border-bottom-right-radius:7px;padding:2px 4px;font: 5pt &quot;Microsoft YaHei UI&quot;;font-size:18px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(0, 255, 157), stop:1 rgb(4, 204, 144));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(0, 155, 57), stop:1 rgb(0, 104, 44));color:rgb(202, 202,182);}
+
+</string>
+    </property>
+    <property name="text">
+     <string>ADD</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="searchdevice_btn_9">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>310</y>
+      <width>100</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>100</width>
+      <height>60</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>100</width>
+      <height>60</height>
+     </size>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0,0), stop:1 rgba(0, 0, 0,0));border:1px solid rgb(242, 242, 222);border-top-right-radius:7px;border-bottom-right-radius:7px;padding:2px 4px;font: 5pt &quot;Microsoft YaHei UI&quot;;font-size:18px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(255, 0, 157), stop:1 rgb(204, 4, 144));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(0, 155, 57), stop:1 rgb(0, 104, 44));color:rgb(202, 202,182);}
+
+</string>
+    </property>
+    <property name="text">
+     <string>DELETE</string>
+    </property>
+   </widget>
    <zorder>label_2</zorder>
    <zorder>label</zorder>
    <zorder>groupBox</zorder>
@@ -1182,6 +1272,8 @@ color:rgb(242, 242, 222);</string>
    <zorder>et_delay</zorder>
    <zorder>btn_save</zorder>
    <zorder>btn_save_2</zorder>
+   <zorder>searchdevice_btn_8</zorder>
+   <zorder>searchdevice_btn_9</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -1189,7 +1281,7 @@ color:rgb(242, 242, 222);</string>
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>22</height>
+     <height>30</height>
     </rect>
    </property>
   </widget>

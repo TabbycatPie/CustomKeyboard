@@ -191,6 +191,10 @@ QString HIDCodeTable::convertKeyValue2QString(KeyValue *kv){
         out += getKeyString(temp);
     }
     return out;
+}
+int HIDCodeTable::getSPkeybByindex(int x)
+{
+    return  this->spkey_index[x];
 };
 HIDCodeTable::~HIDCodeTable(){
 

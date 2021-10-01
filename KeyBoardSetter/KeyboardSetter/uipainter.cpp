@@ -14,8 +14,8 @@ UIPainter::UIPainter(QWidget *ui, QObject *parent)
     this->Vkey_list = new QVector<QPushButton*>();
     this->CKBkey_list = new QVector<QPushButton*>();
     this->SW_list = new QVector<QPushButton*>();
+    this->setParent(parent);
 }
-
 //---------Paint Custom KeyBorad Functions---------------//
 void UIPainter::drawCKBbase(int x,int y,int col,int row){
     QLabel *ql = new QLabel(this->my_ui);
@@ -30,7 +30,6 @@ QPushButton* UIPainter::drawCKBkey(int x,int y,QString text){
     btn->setStyleSheet("QPushButton{background-color:rgb(48, 56, 65);border:2px solid rgb(88, 96, 105);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:20px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(15, 172, 252,255), stop:1 rgba(22, 190, 235,255));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 160, 205,125), stop:1 rgba(0, 142, 222,125));color:rgb(88, 96, 105);}");
     return btn;
 }
-
 void UIPainter::drawCKB(int x,int y,int col,int row){
     drawCKBbase(x,y,col,row);
     QPushButton *btn_temp;
@@ -50,6 +49,14 @@ int UIPainter::getCKBWigth(int col)
 int UIPainter::getCKBHeight(int row)
 {
     return (this->CKBKey_len+this->CKBKey_inter_margin*2)*row+this->CKBKey_ex_margin*2;
+}
+void UIPainter::setCKBKeyTriggered(int key_index)
+{
+    CKBkey_list->data()[key_index]->setStyleSheet("QPushButton{background-color:rgb(168, 176, 185);border:2px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:20px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(15, 172, 252,255), stop:1 rgba(22, 190, 235,255));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 160, 205,125), stop:1 rgba(0, 142, 222,125));color:rgb(202, 202,182);}");
+}
+void UIPainter::setCKBKeyUntriggered(int key_index)
+{
+    CKBkey_list->data()[key_index]->setStyleSheet("QPushButton{border:2px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:20px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(15, 172, 252,255), stop:1 rgba(22, 190, 235,255));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 160, 205,125), stop:1 rgba(0, 142, 222,125));color:rgb(202, 202,182);}");
 }
 int UIPainter::getFullWindowHeight(int CKBrow)
 {
@@ -102,10 +109,15 @@ void UIPainter::hideVMouse()
 void UIPainter::drawOutputPort(int x, int y)
 {
     this->main_output_tv = new QTextBrowser(this->my_ui);
-    main_output_tv->setStyleSheet("background-color:rgba(168, 176, 185,0);border:2px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:20px;color:rgb(242, 242, 222);");
-    main_output_tv->setGeometry(x,y,950,this->getPortHeight());
+    main_output_tv->setStyleSheet("background-color:rgba(168, 176, 185,0);border:1px solid rgb(242, 242, 222);padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:20px;color:rgb(242, 242, 222);border-top-left-radius:7px;border-bottom-left-radius:7px;");
+    main_output_tv->setGeometry(x,y,850,this->getPortHeight());
     this->btn_addkey = new QPushButton(tr("ADD"),this->my_ui);
+    btn_addkey->setStyleSheet("");
+    btn_addkey->setGeometry(x+850,y,100,this->getPortHeight());
+    btn_addkey->hide();
     this->btn_delete = new QPushButton(tr("DELETE"),this->my_ui);
+    btn_delete->setStyleSheet("");
+    btn_delete->setGeometry(x+850,y,100,this->getPortHeight());
 }
 int UIPainter::getPortHeight()
 {
@@ -198,10 +210,6 @@ void UIPainter::hideAdvPanel(){
 QVector<QPushButton*> *UIPainter::getSW_list() const
 {
     return SW_list;
-}
-QTextBrowser *UIPainter::getMainTextView() const
-{
-    return main_output_tv;
 }
 QPushButton *UIPainter::getBtn_delay_minus() const
 {
@@ -433,11 +441,14 @@ void UIPainter::showVKB(){
     for(int i = 0;i<103;i++)
         this->Vkey_list->data()[i]->show();
 }
-//--------------Paint Full UI-----------------------------------//
-
-
-
-
+void UIPainter::setVkeyTriggered(int vkey_no)
+{
+    Vkey_list->data()[vkey_no]->setStyleSheet("QPushButton{background-color:rgb(138, 146, 155);border:1px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
+}
+void UIPainter::setVkeyUntriggered(int vkey_no)
+{
+    Vkey_list->data()[vkey_no]->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
+}
 //------------Getter and Setter -----------------------------------//
 void UIPainter::setCKBKey_len(int value)
 {

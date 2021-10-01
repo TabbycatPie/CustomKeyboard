@@ -7,13 +7,16 @@
 #include <QDebug>
 #include <QLabel>
 #include <qjsonobject.h>
+#include <qmessagebox.h>
 #include <qpushbutton.h>
 
 void initUI(QWidget* qw);
+void updateUI();
 
 QVector<QPushButton *> *vkey_list;
 CustomKeyboard *my_ckb;
 HIDCodeTable table;
+UIPainter *painter;
 int row = 2;
 int col = 5;
 
@@ -25,7 +28,6 @@ int cur_media =0;
 int cur_delay =0;
 
 //current select keyboard
-int cur_keyboard_no = 0;//-1 repersent none
 int cur_edit_key_no = -1;
 
 
@@ -33,6 +35,7 @@ ConfigForm::ConfigForm(QWidget *parent)
     : QWidget(parent),
     ui(new Ui::ConfigForm)
 {
+
     ui->setupUi(this);
     if(translator == NULL){
         translator = new QTranslator();
@@ -60,7 +63,7 @@ ConfigForm::ConfigForm(QWidget *parent)
     for(int i =0;i<row*col;i++){
         for(int j =0;j<my_ckb->getKeynum();j++){
             connect(my_ckb->getButtonByID(j),&QPushButton::clicked,this,[=]{
-                setKey(j);
+                cur_edit_key_no = j;
             });
         }
     }
@@ -68,7 +71,7 @@ ConfigForm::ConfigForm(QWidget *parent)
 }
 //soft key press function
 void ConfigForm::softKeyPressed(int i){
-    ui->btn_setadd->show();
+    painter->getBtn_addkey()->show();
     if(table.isSPkey(i)){
         //clear single key except normal key
         cur_media = 0;
@@ -77,13 +80,15 @@ void ConfigForm::softKeyPressed(int i){
         if(cur_key_sp.indexOf(i)>=0){
             //the key is pressed
             cur_key_sp.remove(cur_key_sp.indexOf(i));
-            keyboard_list_g[i-1]->setStyleSheet("");
+            //keyboard_list_g[i-1]->setStyleSheet("");
+            painter->setVkeyUntriggered(i-1);
         }
         else{
             //key is not pressed
             cur_key_sp.append(i);
             //set keys color
-            keyboard_list_g[i-1]->setStyleSheet("background-color: rgb(255, 100, 100);");
+            //keyboard_list_g[i-1]->setStyleSheet("background-color: rgb(255, 100, 100);");
+            painter->setVkeyTriggered(i-1);
         }
     }
     else if(table.isMouseKey(i)){
@@ -131,15 +136,90 @@ void ConfigForm::softKeyPressed(int i){
     }
     updateUI();
 }
+void ConfigForm::showWarningDialog(QString title,QString content){
+    QMessageBox msg_info(this);
+    msg_info.setWindowTitle(title);
+    msg_info.setText(content);
+    msg_info.setIcon(QMessageBox::Critical);
+    msg_info.setStandardButtons(QMessageBox::Ok);
+    msg_info.exec();
+}
+bool ConfigForm::addKeyValue()
+{
+    //set append key value
+    QVector<KeyValue*> temp_list = my_ckb->getCustomKeyByID(cur_edit_key_no)->getKeyValueList();
+    int temp_normal = 0;
+    if(cur_key_normal.size() > 0)
+        temp_normal = cur_key_normal[0];
+    KeyValue *temp_kv = table.convertVector2KeyValue(temp_normal,cur_mouse,cur_media,cur_key_sp);
+    temp_kv->setDelay(cur_delay);
+    if(cur_mouse != 0 ){
+        //add mouse key
+        if(temp_list.size()>0 && (temp_list[0]->getNormalKeyIndex() !=0 ||  temp_list[0]->getMediaKeyIndex()!=0 || temp_list[0]->getMouseKeyIndex()!=0)){
+            //mouse key is single can not be added
+            showWarningDialog(tr("Notice"),tr("You can NOT add mouse event to Macro!"));
+        }
+        else{
+            //add to instant ckb and update ui
+            my_ckb->setKey(cur_edit_key_no,temp_kv);
+        }
+    }
+    else if(cur_media!=0){
+        //add meida key
+        if(temp_list.size()>0 && (temp_list[0]->getNormalKeyIndex() !=0 ||  temp_list[0]->getMediaKeyIndex()!=0 || temp_list[0]->getMouseKeyIndex()!=0)){
+            //media key is single can not be added
+            showWarningDialog(tr("Notice"),tr("You can NOT add meida key to Macro!"));
+        }
+        else{
+            //add to instant ckb and update ui
+            my_ckb->setKey(cur_edit_key_no,temp_kv);
+        }
+    }
+    else{
+        //add normal key
+        //justify whether there is any single key
+        if(my_ckb->getCustomKeyByID(cur_edit_key_no)->isMedia()||my_ckb->getCustomKeyByID(cur_edit_key_no)->isMouse()){
+            showWarningDialog(tr("Notice"),tr("You can NOT set MEDIA or MOUSE key to Macro!"));
+        }
+        else{
+            //special key justify
+            if(my_ckb->getCustomKeyByID(cur_edit_key_no)->getKeyValueList()[0]->getNormalKeyIndex() == 0 \
+                    && my_ckb->getCustomKeyByID(cur_edit_key_no)->getKeyValueList()[0]->getSPKeyList().size() > 0 \
+                    && my_ckb->getCustomKeyByID(cur_edit_key_no)->getKeyValueList()[0]->getSPKeyList()[0] == 0)
+            {
+                my_ckb->setKey(cur_edit_key_no,temp_kv);
+            }
+            else{
+                if(my_ckb->checkMacroAddable(cur_edit_key_no)){
+                    //update to class
+                    my_ckb->appendKey(cur_edit_key_no,temp_kv);
+                }
+                else{
+                    //can not add to macro because of hardware limit
+                    showWarningDialog(tr("Notice"),tr("Can NOT add key macro : hardware limitation!"));
+                }
+            }
+        }
+    }
 
-
+    //clear current stat
+    painter->getBtn_addkey()->hide();
+    cur_key_sp.clear();
+    cur_key_normal.clear();
+    cur_mouse =0;
+    cur_media =0;
+    cur_delay =0;
+    //untirgger all sp keys
+    for(int i = 0;i<8;i++){
+        painter->setVkeyUntriggered(table.getSPkeybByindex(i));
+    }
+    updateUI();
+    return true;
+}
 ConfigForm::~ConfigForm()
 {
     delete ui;
 }
-
-
-
 void ConfigForm::changeLanguage(QString language){
     QString flag = "english";
     if(language=="cn"){
@@ -172,9 +252,84 @@ void ConfigForm::changeLanguage(QString language){
         qDebug()  << cs.getLastError();
     delete userconfig;
 }
+void updateUI(){
+    //update soft keyboard label
+    QString temp = "";
+    if(!cur_key_sp.isEmpty()){
+        temp = table.getKeyString(cur_key_sp[0]);
+        for(int i = 1;i<cur_key_sp.size();i++){
+            temp += " + " +  table.getKeyString(cur_key_sp[i]);
+        }
+    }
+    if(!cur_key_normal.isEmpty()){
+        int i = 0;
+        if(temp == ""){
+            temp = table.getKeyString(cur_key_normal[0]);
+            i++;
+        }
+        for(;i<cur_key_normal.size();i++){
+            temp += " + " +  table.getKeyString(cur_key_normal[i]);
+        }
+    }
+    if(cur_delay!=0){
+        //temp = "Delay"+ ui->et_delay->text() +"s"+temp;
+        temp = "Delay"+painter->getEt_delay()->text() +"s"+temp;
+    }
+    // these keys is single
+    if(cur_media!=0){
+        temp = table.getKeyString(cur_media);
+    }
+    if(cur_mouse!=0){
+        temp = table.getKeyString(cur_mouse);
+    }
 
+    //set selector color
+    if(cur_edit_key_no != -1){
+        //show cur key
+        QString str_temp ="";
+        QVector<KeyValue*> kvs = my_ckb->getCustomKeyByID(cur_edit_key_no)->getKeyValueList();
+        if(!kvs.isEmpty()){
+            str_temp = "(" + table.convertKeyValue2QString(kvs[0])+")";
+            for(int i =1;i<kvs.size();i++){
+                str_temp += " + ("+table.convertKeyValue2QString(kvs[i])+")";
+            }
+        }
+        //set text
+        if(temp != ""){
+            if(str_temp == "(None)")
+                //ui->tv_keyvalue->setText("("+ temp + " + )");
+                painter->getMainTextView()->setText("("+ temp + " + )");
+            else
+                painter->getMainTextView()->setText(str_temp + " + ("+ temp + " + )");
+        }
+        else
+            painter->getMainTextView()->setText(str_temp);
+        my_ckb->getButtonByID(cur_edit_key_no)->setStyleSheet("background-color: rgb(255, 100, 100);"); //red for selected
+    }
+
+    //set CKB tirrger condition
+    for(int i=0;i<my_ckb->getKeynum();i++){
+        if(i == cur_edit_key_no)
+            continue;
+        if(my_ckb->getCustomKeyByID(i)->isMacro())
+            ;//style for macro
+        else if(my_ckb->getCustomKeyByID(i)->isMedia())
+            ;//yellow for media
+        else if(my_ckb->getCustomKeyByID(i)->isMouse())
+            ; //green for mouse
+        else{
+            if(my_ckb->getCustomKeyByID(i)->getKeyValueCount()==1
+                    && (my_ckb->getCustomKeyByID(i)->getKeyValueList()[0]->getNormalKeyIndex()!=0
+                        ||my_ckb->getCustomKeyByID(i)->getKeyValueList()[0]->getSPKeyList()[0]!=0))
+                painter->setCKBKeyTriggered(i); //blue for normal
+            else
+                painter->setCKBKeyUntriggered(i); //none for unset
+        }
+
+    }
+}
 void initUI(QWidget* qw){
-    UIPainter *painter = new UIPainter(qw,qw);
+    painter = new UIPainter(qw,qw);
     painter->drawCKB(450-(int)(painter->getCKBWigth(col)/2),painter->getUI_part_margin(),col,row);
 
     painter->drawOutputPort(painter->getUI_part_margin(),painter->getCKBHeight(row)+50);

@@ -19,6 +19,8 @@ public:
     void drawCKB(int x, int y, int col, int row);
     int getCKBWigth(int col);
     int getCKBHeight(int row);
+    void setCKBKeyTriggered(int key_index);
+    void setCKBKeyUntriggered(int key_index);
     //draw Virtual keyboard
     void drawVKBmain(int x, int y);
     void drawVKBfunc(int x, int y);
@@ -26,6 +28,8 @@ public:
     void drawVKBfull(int x, int y);
     void hideVKB();
     void showVKB();
+    void setVkeyTriggered(int vkey_no);
+    void setVkeyUntriggered(int vkey_no);
     //draw virtaul mouse
     void drawVMouse(int x,int y);
     void showVMouse();
