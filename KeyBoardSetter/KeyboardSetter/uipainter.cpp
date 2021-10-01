@@ -262,19 +262,14 @@ QPushButton* UIPainter::drawVKey(int x,int y,float block_x,float block_y,QString
     btn->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
     return btn;
 }
-
-
 QPushButton *UIPainter::getBtn_set_delay() const
 {
     return btn_set_delay;
 }
-
-
 QLineEdit *UIPainter::getEt_delay() const
 {
     return et_delay;
 }
-
 void UIPainter::switchVinput(UIPainter::VinputEnable input)
 {
     switch (input) {
@@ -300,7 +295,6 @@ void UIPainter::switchVinput(UIPainter::VinputEnable input)
             break;
     }
 }
-
 QVector<QPushButton *> *UIPainter::getCKBkey_list() const
 {
     return CKBkey_list;

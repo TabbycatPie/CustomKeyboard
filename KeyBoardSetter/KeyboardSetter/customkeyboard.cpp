@@ -37,6 +37,33 @@ CustomKeyboard::CustomKeyboard(QString _name,int keynum,unsigned short pid,unsig
 
 }
 
+CustomKeyboard::CustomKeyboard(QString _name, int keynum, unsigned short pid, unsigned short vid, QVector<QPushButton *> *btn_list)
+{
+    this->name = _name;
+    this->keynum = keynum;
+    this->pid = pid;
+    this->vid = vid;
+    //set macro setting to default
+    this->macro_mem = 34;
+    this->macro_spkey = 10;
+    this->macro_delay = 10;
+    this->macro_key_count = 10;
+
+    this->last_error = "";
+
+    this->normal_keycode = new uchar[keynum];
+    this->spkey_mixcode = new uchar[keynum];
+
+    for(int i =0;i<keynum;i++){
+        this->key_list.append(new CustomKey("KEY"+QString::number(i+1),btn_list->data()[i],false));
+    }
+    //init memory
+    for(int x = 0;x<keynum;x++){
+        normal_keycode[x]=0x00;
+        spkey_mixcode[x]=0x00;
+    }
+}
+
 void CustomKeyboard::setMacroConfig(int mlen, int mcount, int mspkey, int mdelay)
 {
     this->macro_mem = mlen;

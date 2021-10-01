@@ -2,6 +2,7 @@
 #define CONFIGFORM_H
 
 #include <QWidget>
+#include <qtranslator.h>
 
 namespace Ui {
 class ConfigForm;
@@ -17,6 +18,10 @@ public:
 
 private:
     Ui::ConfigForm *ui;
+    //Translator
+    QTranslator *translator =NULL;
+    void changeLanguage(QString language);
+    void softKeyPressed(int i);
 };
 
 #endif // CONFIGFORM_H
