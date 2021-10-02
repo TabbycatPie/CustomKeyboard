@@ -59,18 +59,17 @@ ConfigForm::ConfigForm(QWidget *parent)
             softKeyPressed(i);
         });
     }
-    for(int i =0;i<row*col;i++){
-        for(int j =0;j<my_ckb->getKeynum();j++){
-            connect(my_ckb->getButtonByID(j),&QPushButton::clicked,this,[=]{
-                cf_cur_edit_key_no = j;
-            });
-        }
+    for(int j =0;j<my_ckb->getKeynum();j++){
+        connect(my_ckb->getButtonByID(j),&QPushButton::clicked,this,[=]{
+            cf_cur_edit_key_no = j;
+            updateUI();
+        });
     }
-
 }
 //soft key press function
 void ConfigForm::softKeyPressed(int i){
     painter->getBtn_addkey()->show();
+    painter->getBtn_delete()->hide();
     if(cf_table.isSPkey(i)){
         //clear single key except normal key
         cf_cur_media = 0;
@@ -303,7 +302,7 @@ void updateUI(){
         }
         else
             painter->getMainTextView()->setText(str_temp);
-        my_ckb->getButtonByID(cf_cur_edit_key_no)->setStyleSheet("background-color: rgb(255, 100, 100);"); //red for selected
+        painter->setCKBKeyTriggered(cf_cur_edit_key_no);
     }
 
     //set CKB tirrger condition

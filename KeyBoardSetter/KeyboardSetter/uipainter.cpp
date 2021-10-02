@@ -112,12 +112,12 @@ void UIPainter::drawOutputPort(int x, int y)
     main_output_tv->setStyleSheet("background-color:rgba(168, 176, 185,0);border:1px solid rgb(242, 242, 222);padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:20px;color:rgb(242, 242, 222);border-top-left-radius:7px;border-bottom-left-radius:7px;");
     main_output_tv->setGeometry(x,y,850,this->getPortHeight());
     this->btn_addkey = new QPushButton(tr("ADD"),this->my_ui);
-    btn_addkey->setStyleSheet("");
-    btn_addkey->setGeometry(x+850,y,100,this->getPortHeight());
+    btn_addkey->setStyleSheet("QPushButton{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0,0), stop:1 rgba(0, 0, 0,0));border:1px solid rgb(242, 242, 222);border-top-right-radius:7px;border-bottom-right-radius:7px;padding:2px 4px;font: 5pt \"Microsoft YaHei UI\";font-size:18px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(0, 255, 157), stop:1 rgb(4, 204, 144));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(0, 155, 57), stop:1 rgb(0, 104, 44));color:rgb(202, 202,182);}");
+    btn_addkey->setGeometry(x+849,y,100,this->getPortHeight());
     btn_addkey->hide();
     this->btn_delete = new QPushButton(tr("DELETE"),this->my_ui);
-    btn_delete->setStyleSheet("");
-    btn_delete->setGeometry(x+850,y,100,this->getPortHeight());
+    btn_delete->setStyleSheet("QPushButton{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0,0), stop:1 rgba(0, 0, 0,0));border:1px solid rgb(242, 242, 222);border-top-right-radius:7px;border-bottom-right-radius:7px;padding:2px 4px;font: 5pt \"Microsoft YaHei UI\";font-size:18px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(255, 0, 157), stop:1 rgb(204, 4, 144));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(0, 155, 57), stop:1 rgb(0, 104, 44));color:rgb(202, 202,182);}");
+    btn_delete->setGeometry(x+849,y,100,this->getPortHeight());
 }
 int UIPainter::getPortHeight()
 {
