@@ -4,7 +4,7 @@
 #include "ch552.h"
 #include "Debug.H"
 #include "string.h"
-#include "flash.h"
+//#include "flash.h"
 
 
 #define VID 0x5131
