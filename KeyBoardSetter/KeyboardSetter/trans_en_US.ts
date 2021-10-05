@@ -6,39 +6,67 @@
     <message>
         <location filename="configform.ui" line="26"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="configform.ui" line="67"/>
         <source>Download</source>
-        <translation type="unfinished">Download</translation>
+        <translation>Download</translation>
     </message>
     <message>
         <location filename="configform.ui" line="105"/>
         <source>Save</source>
-        <translation type="unfinished">Save</translation>
+        <translation>Save</translation>
     </message>
     <message>
         <location filename="configform.ui" line="143"/>
         <source>Load</source>
-        <translation type="unfinished">Load</translation>
+        <translation>Load</translation>
     </message>
     <message>
         <location filename="configform.ui" line="177"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Settings</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="158"/>
+        <location filename="configform.cpp" line="169"/>
+        <location filename="configform.cpp" line="180"/>
+        <location filename="configform.cpp" line="197"/>
+        <source>Notice</source>
+        <translation type="unfinished">Notice</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="158"/>
+        <source>You can NOT add mouse event to Macro!</source>
+        <translation type="unfinished">You can NOT add mouse event to Macro!</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="169"/>
+        <source>You can NOT add meida key to Macro!</source>
+        <translation type="unfinished">You can NOT add meida key to Macro!</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="180"/>
+        <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
+        <translation type="unfinished">You can NOT set MEDIA or MOUSE key to Macro!</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="197"/>
+        <source>Can NOT add key macro : hardware limitation!</source>
+        <translation type="unfinished">Can NOT add key macro : hardware limitation!</translation>
     </message>
 </context>
 <context>
     <name>ConfigSaver</name>
     <message>
-        <location filename="configsaver.cpp" line="21"/>
-        <location filename="configsaver.cpp" line="38"/>
+        <location filename="configsaver.cpp" line="28"/>
+        <location filename="configsaver.cpp" line="44"/>
         <source>Can not open file.</source>
         <translation>Can not open file.</translation>
     </message>
     <message>
-        <location filename="configsaver.cpp" line="50"/>
+        <location filename="configsaver.cpp" line="56"/>
         <source>Json parse error,File is broken!</source>
         <translation>Json parse error,File is broken!</translation>
     </message>
@@ -48,17 +76,17 @@
     <message>
         <location filename="configwindow.ui" line="26"/>
         <source>MainWindow</source>
-        <translation type="unfinished"></translation>
+        <translation>MainWindow</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="42"/>
         <source>Device information:</source>
-        <translation type="unfinished"></translation>
+        <translation>Device information:</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="94"/>
         <source>`~</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="125"/>
@@ -66,153 +94,163 @@
         <location filename="configwindow.ui" line="190"/>
         <location filename="configwindow.ui" line="221"/>
         <source>KEY1</source>
-        <translation type="unfinished">KEY1</translation>
+        <translation>KEY1</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="252"/>
         <source>3#</source>
-        <translation type="unfinished">3#</translation>
+        <translation>3#</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="283"/>
         <source>2@</source>
-        <translation type="unfinished">2@</translation>
+        <translation>2@</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="314"/>
         <source>1!</source>
-        <translation type="unfinished">1!</translation>
+        <translation>1!</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="345"/>
         <source>4$</source>
-        <translation type="unfinished">4$</translation>
+        <translation>4$</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="376"/>
         <source>7&amp;&amp;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="407"/>
         <source>6^</source>
-        <translation type="unfinished">6^</translation>
+        <translation>6^</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="438"/>
         <source>5%</source>
-        <translation type="unfinished">5%</translation>
+        <translation>5%</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="469"/>
         <source>8*</source>
-        <translation type="unfinished">8*</translation>
+        <translation>8*</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="500"/>
         <source>9(</source>
-        <translation type="unfinished">9(</translation>
+        <translation>9(</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="531"/>
         <source>0)</source>
-        <translation type="unfinished">0)</translation>
+        <translation>0)</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="562"/>
         <source>Backspace</source>
-        <translation type="unfinished">Backspace</translation>
+        <translation>Backspace</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="593"/>
-        <location filename="configwindow.ui" line="1147"/>
+        <location filename="configwindow.ui" line="1159"/>
         <source>-</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="624"/>
         <source>=+</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="663"/>
         <source>Save</source>
-        <translation type="unfinished">Save</translation>
+        <translation>Save</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="702"/>
         <source>Load</source>
-        <translation type="unfinished">Load</translation>
+        <translation>Load</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="735"/>
         <source>Download</source>
-        <translation type="unfinished">Download</translation>
+        <translation>Download</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="768"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="806"/>
         <source>KEYBOARD</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="844"/>
         <source>ADVANCE</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="882"/>
         <source>MOUSE</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="configwindow.ui" line="1034"/>
+        <location filename="configwindow.ui" line="1046"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Microsoft YaHei UI&apos;; font-size:20px; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20px;&quot;&gt;helloworld&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="configwindow.ui" line="1085"/>
+        <source>0.0</source>
+        <translation>0.0</translation>
+    </message>
+    <message>
+        <location filename="configwindow.ui" line="1122"/>
+        <source>+</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="configwindow.ui" line="1198"/>
+        <source>ADD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="configwindow.ui" line="1073"/>
-        <source>0.0</source>
-        <translation type="unfinished">0.0</translation>
-    </message>
-    <message>
-        <location filename="configwindow.ui" line="1110"/>
-        <source>+</source>
+        <location filename="configwindow.ui" line="1237"/>
+        <source>DELETE</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CustomKeyboard</name>
     <message>
-        <location filename="customkeyboard.cpp" line="288"/>
+        <location filename="customkeyboard.cpp" line="315"/>
         <source>Can not get all ACKs!</source>
         <translation>Can not get all ACKs!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="301"/>
+        <location filename="customkeyboard.cpp" line="328"/>
         <source>Data sending is failed!</source>
         <translation>Data sending is failed!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="310"/>
+        <location filename="customkeyboard.cpp" line="337"/>
         <source>Can not open device!</source>
         <translation>Can not open device!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="320"/>
+        <location filename="customkeyboard.cpp" line="347"/>
         <source>Can not read ACK frame.</source>
         <translation>Can not read ACK frame.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="330"/>
+        <location filename="customkeyboard.cpp" line="357"/>
         <source>ACK not correct.</source>
         <translation>ACK not correct.</translation>
     </message>
@@ -240,22 +278,27 @@ p, li { white-space: pre-wrap; }
         <translation>Then press Search</translation>
     </message>
     <message>
-        <location filename="devicefinder.cpp" line="54"/>
+        <location filename="devicefinder.ui" line="98"/>
+        <source>Skip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="devicefinder.cpp" line="61"/>
         <source> Searching ... </source>
         <translation> Searching ... </translation>
     </message>
     <message>
-        <location filename="devicefinder.cpp" line="61"/>
+        <location filename="devicefinder.cpp" line="69"/>
         <source> Device found! </source>
         <translation> Device found! </translation>
     </message>
     <message>
-        <location filename="devicefinder.cpp" line="68"/>
+        <location filename="devicefinder.cpp" line="76"/>
         <source> Device not found! </source>
         <translation> Device not found! </translation>
     </message>
     <message>
-        <location filename="devicefinder.cpp" line="69"/>
+        <location filename="devicefinder.cpp" line="77"/>
         <source>please pulgin your device</source>
         <translation>please pulgin your device</translation>
     </message>
@@ -1076,7 +1119,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="mainwindow.ui" line="2146"/>
         <source>Open Test Window</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="259"/>
@@ -1205,42 +1248,52 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QObject</name>
     <message>
-        <location filename="uipainter.cpp" line="41"/>
+        <location filename="uipainter.cpp" line="39"/>
         <source>KEY</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>UIPainter</name>
     <message>
-        <location filename="uipainter.cpp" line="152"/>
-        <source>+</source>
+        <location filename="uipainter.cpp" line="114"/>
+        <source>ADD</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="153"/>
-        <source>-</source>
+        <location filename="uipainter.cpp" line="118"/>
+        <source>DELETE</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="uipainter.cpp" line="160"/>
+        <source>+</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="uipainter.cpp" line="161"/>
+        <source>-</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="uipainter.cpp" line="169"/>
         <source>SetDelay</source>
-        <translation type="unfinished">SetDelay</translation>
+        <translation>SetDelay</translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="219"/>
+        <location filename="uipainter.cpp" line="228"/>
         <source>KEYBOARD</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="220"/>
+        <location filename="uipainter.cpp" line="229"/>
         <source>MOUSE</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="221"/>
+        <location filename="uipainter.cpp" line="230"/>
         <source>ADVANCE</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 </TS>

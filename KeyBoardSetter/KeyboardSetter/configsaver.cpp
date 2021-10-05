@@ -2,6 +2,7 @@
 #include "QFile"
 
 #include <QDataStream>
+#include <QFileInfo>
 #include <QJsonDocument>
 #include <QJsonObject>
 
@@ -14,14 +15,19 @@ ConfigSaver::ConfigSaver(QObject *parent)
 
 bool ConfigSaver::saveConfig(QString filename, QJsonObject obj)
 {
+
     //open file
     QFile file(filename);
-    //open file failed
+    //if file exist,delete it
+    if(file.exists()){
+        file.remove();
+    }
+
     if (!(file.open(QIODevice::ReadWrite))){
+        //open file failed
         last_error = tr("Can not open file.");
         return false;
     }
-
     //write object to file
     QJsonDocument jsonDoc;
     jsonDoc.setObject(obj);

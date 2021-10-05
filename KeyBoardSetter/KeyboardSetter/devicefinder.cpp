@@ -49,6 +49,13 @@ DeviceFinder::DeviceFinder(QWidget *parent) :
     //        break;
     //}
 
+
+    //developer skip button
+    connect(ui->btn_skip,&QPushButton::clicked,this,[=]{
+        openMainWindow();
+    });
+
+
     connect(ui->searchdevice_btn,&QPushButton::clicked,this,[=]{
         //ui change
         ui->main_label->setText(tr(" Searching ... "));

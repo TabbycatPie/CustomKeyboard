@@ -26,6 +26,7 @@ public:
     QPushButton *searchdevice_btn;
     QLabel *main_label;
     QLabel *sub_label;
+    QPushButton *btn_skip;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *DeviceFinder)
@@ -54,6 +55,9 @@ public:
         sub_label->setGeometry(QRect(110, 80, 281, 31));
         sub_label->setStyleSheet(QString::fromUtf8("font:75 12pt \"Microsoft YaHei UI\";color:rgb(202, 202,182);"));
         sub_label->setAlignment(Qt::AlignCenter);
+        btn_skip = new QPushButton(centralwidget);
+        btn_skip->setObjectName(QString::fromUtf8("btn_skip"));
+        btn_skip->setGeometry(QRect(420, 140, 61, 30));
         DeviceFinder->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(DeviceFinder);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -70,6 +74,7 @@ public:
         searchdevice_btn->setText(QCoreApplication::translate("DeviceFinder", "Search", nullptr));
         main_label->setText(QCoreApplication::translate("DeviceFinder", "Please plugin your device", nullptr));
         sub_label->setText(QCoreApplication::translate("DeviceFinder", "Then press Search", nullptr));
+        btn_skip->setText(QCoreApplication::translate("DeviceFinder", "Skip", nullptr));
     } // retranslateUi
 
 };

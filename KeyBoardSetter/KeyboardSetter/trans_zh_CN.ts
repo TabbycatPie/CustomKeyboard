@@ -28,17 +28,45 @@
         <source>Settings</source>
         <translation>设置</translation>
     </message>
+    <message>
+        <location filename="configform.cpp" line="158"/>
+        <location filename="configform.cpp" line="169"/>
+        <location filename="configform.cpp" line="180"/>
+        <location filename="configform.cpp" line="197"/>
+        <source>Notice</source>
+        <translation type="unfinished">提示</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="158"/>
+        <source>You can NOT add mouse event to Macro!</source>
+        <translation type="unfinished">无法将鼠标键添加到宏！</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="169"/>
+        <source>You can NOT add meida key to Macro!</source>
+        <translation type="unfinished">无法将多媒体键添加到宏！</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="180"/>
+        <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
+        <translation type="unfinished">无法在宏键中添加鼠标或多媒体键值！</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="197"/>
+        <source>Can NOT add key macro : hardware limitation!</source>
+        <translation type="unfinished">无法添加更多的宏键值：已达到硬件限制！</translation>
+    </message>
 </context>
 <context>
     <name>ConfigSaver</name>
     <message>
-        <location filename="configsaver.cpp" line="21"/>
-        <location filename="configsaver.cpp" line="38"/>
+        <location filename="configsaver.cpp" line="28"/>
+        <location filename="configsaver.cpp" line="44"/>
         <source>Can not open file.</source>
         <translation>无法打开文件.</translation>
     </message>
     <message>
-        <location filename="configsaver.cpp" line="50"/>
+        <location filename="configsaver.cpp" line="56"/>
         <source>Json parse error,File is broken!</source>
         <translation>Json转换错误,文件损坏！</translation>
     </message>
@@ -125,7 +153,7 @@
     </message>
     <message>
         <location filename="configwindow.ui" line="593"/>
-        <location filename="configwindow.ui" line="1147"/>
+        <location filename="configwindow.ui" line="1159"/>
         <source>-</source>
         <translation></translation>
     </message>
@@ -170,7 +198,7 @@
         <translation>鼠标</translation>
     </message>
     <message>
-        <location filename="configwindow.ui" line="1034"/>
+        <location filename="configwindow.ui" line="1046"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -179,30 +207,40 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="configwindow.ui" line="1073"/>
+        <location filename="configwindow.ui" line="1085"/>
         <source>0.0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configwindow.ui" line="1110"/>
+        <location filename="configwindow.ui" line="1122"/>
         <source>+</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="configwindow.ui" line="1198"/>
+        <source>ADD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="configwindow.ui" line="1237"/>
+        <source>DELETE</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CustomKeyboard</name>
     <message>
-        <location filename="customkeyboard.cpp" line="301"/>
+        <location filename="customkeyboard.cpp" line="328"/>
         <source>Data sending is failed!</source>
         <translation>数据发送过程中错误!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="288"/>
+        <location filename="customkeyboard.cpp" line="315"/>
         <source>Can not get all ACKs!</source>
         <translation>未获取所有ACK帧!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="310"/>
+        <location filename="customkeyboard.cpp" line="337"/>
         <source>Can not open device!</source>
         <translation>设备未找到！</translation>
     </message>
@@ -211,12 +249,12 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">无法获取校验帧.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="320"/>
+        <location filename="customkeyboard.cpp" line="347"/>
         <source>Can not read ACK frame.</source>
         <translation>无法读取ACK帧.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="330"/>
+        <location filename="customkeyboard.cpp" line="357"/>
         <source>ACK not correct.</source>
         <translation>ACK帧不正确.</translation>
     </message>
@@ -248,22 +286,27 @@ p, li { white-space: pre-wrap; }
         <translation>然后点击收缩</translation>
     </message>
     <message>
-        <location filename="devicefinder.cpp" line="54"/>
+        <location filename="devicefinder.ui" line="98"/>
+        <source>Skip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="devicefinder.cpp" line="61"/>
         <source> Searching ... </source>
         <translation> 正在搜索 ... </translation>
     </message>
     <message>
-        <location filename="devicefinder.cpp" line="61"/>
+        <location filename="devicefinder.cpp" line="69"/>
         <source> Device found! </source>
         <translation> 发现设备! </translation>
     </message>
     <message>
-        <location filename="devicefinder.cpp" line="68"/>
+        <location filename="devicefinder.cpp" line="76"/>
         <source> Device not found! </source>
         <translation> 设备未找到! </translation>
     </message>
     <message>
-        <location filename="devicefinder.cpp" line="69"/>
+        <location filename="devicefinder.cpp" line="77"/>
         <source>please pulgin your device</source>
         <translation>请插入设备</translation>
     </message>
@@ -1231,7 +1274,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QObject</name>
     <message>
-        <location filename="uipainter.cpp" line="41"/>
+        <location filename="uipainter.cpp" line="39"/>
         <source>KEY</source>
         <translation></translation>
     </message>
@@ -1239,32 +1282,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>UIPainter</name>
     <message>
-        <location filename="uipainter.cpp" line="152"/>
+        <location filename="uipainter.cpp" line="114"/>
+        <source>ADD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="uipainter.cpp" line="118"/>
+        <source>DELETE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="uipainter.cpp" line="160"/>
         <source>+</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="153"/>
+        <location filename="uipainter.cpp" line="161"/>
         <source>-</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="161"/>
+        <location filename="uipainter.cpp" line="169"/>
         <source>SetDelay</source>
         <translation>设置延时</translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="219"/>
+        <location filename="uipainter.cpp" line="228"/>
         <source>KEYBOARD</source>
         <translation>键盘</translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="220"/>
+        <location filename="uipainter.cpp" line="229"/>
         <source>MOUSE</source>
         <translation>鼠标</translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="221"/>
+        <location filename="uipainter.cpp" line="230"/>
         <source>ADVANCE</source>
         <translation>高级</translation>
     </message>
