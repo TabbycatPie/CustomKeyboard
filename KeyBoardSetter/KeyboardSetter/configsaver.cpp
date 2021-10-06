@@ -16,6 +16,10 @@ bool ConfigSaver::saveConfig(QString filename, QJsonObject obj)
 {
     //open file
     QFile file(filename);
+    //if file exist,delete it
+    if(file.exists()){
+        file.remove();
+    }
     //open file failed
     if (!(file.open(QIODevice::ReadWrite))){
         last_error = tr("Can not open file.");
