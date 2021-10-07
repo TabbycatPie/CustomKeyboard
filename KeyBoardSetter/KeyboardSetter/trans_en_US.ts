@@ -29,32 +29,100 @@
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="158"/>
-        <location filename="configform.cpp" line="169"/>
-        <location filename="configform.cpp" line="180"/>
-        <location filename="configform.cpp" line="197"/>
+        <location filename="configform.cpp" line="132"/>
+        <location filename="configform.cpp" line="141"/>
+        <location filename="configform.cpp" line="153"/>
+        <location filename="configform.cpp" line="184"/>
+        <location filename="configform.cpp" line="212"/>
+        <location filename="configform.cpp" line="319"/>
+        <location filename="configform.cpp" line="330"/>
+        <location filename="configform.cpp" line="341"/>
+        <location filename="configform.cpp" line="358"/>
         <source>Notice</source>
-        <translation type="unfinished">Notice</translation>
+        <translation>Notice</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="158"/>
-        <source>You can NOT add mouse event to Macro!</source>
-        <translation type="unfinished">You can NOT add mouse event to Macro!</translation>
+        <location filename="configform.cpp" line="133"/>
+        <source>Are you sure to download config to your device:</source>
+        <translation>Are you sure to download config to your device:</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="169"/>
-        <source>You can NOT add meida key to Macro!</source>
-        <translation type="unfinished">You can NOT add meida key to Macro!</translation>
+        <location filename="configform.cpp" line="142"/>
+        <source>Download finished!</source>
+        <translation>Download finished!</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="180"/>
-        <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
-        <translation type="unfinished">You can NOT set MEDIA or MOUSE key to Macro!</translation>
+        <location filename="configform.cpp" line="147"/>
+        <location filename="configform.cpp" line="173"/>
+        <location filename="configform.cpp" line="204"/>
+        <source>Error</source>
+        <translation>Error</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="148"/>
+        <source>Download Error :</source>
+        <translation>Download Error :</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="154"/>
+        <source>Download finished! But there may be some errors.</source>
+        <translation>Download finished! But there may be some errors.</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="164"/>
+        <source>Open file</source>
+        <translation>Open file</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="164"/>
+        <location filename="configform.cpp" line="197"/>
+        <source>zddConfig (*.zdd)</source>
+        <translation>zddConfig (*.zdd)</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="174"/>
+        <source>Can not load file </source>
+        <translation>Can not load file </translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="185"/>
+        <source>Loaded Successfully!</source>
+        <translation>Loaded Successfully!</translation>
     </message>
     <message>
         <location filename="configform.cpp" line="197"/>
+        <source>Save File</source>
+        <translation>Save File</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="205"/>
+        <source>Can not save </source>
+        <translation>Can not save </translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="213"/>
+        <source>Saved Successfully!</source>
+        <translation>Saved Successfully!</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="319"/>
+        <source>You can NOT add mouse event to Macro!</source>
+        <translation>You can NOT add mouse event to Macro!</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="330"/>
+        <source>You can NOT add meida key to Macro!</source>
+        <translation>You can NOT add meida key to Macro!</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="341"/>
+        <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
+        <translation>You can NOT set MEDIA or MOUSE key to Macro!</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="358"/>
         <source>Can NOT add key macro : hardware limitation!</source>
-        <translation type="unfinished">Can NOT add key macro : hardware limitation!</translation>
+        <translation>Can NOT add key macro : hardware limitation!</translation>
     </message>
 </context>
 <context>
@@ -219,12 +287,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configwindow.ui" line="1198"/>
         <source>ADD</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="1237"/>
         <source>DELETE</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -280,7 +348,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="devicefinder.ui" line="98"/>
         <source>Skip</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="devicefinder.cpp" line="61"/>
@@ -1248,7 +1316,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QObject</name>
     <message>
-        <location filename="uipainter.cpp" line="39"/>
+        <location filename="uipainter.cpp" line="36"/>
         <source>KEY</source>
         <translation></translation>
     </message>
@@ -1256,42 +1324,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>UIPainter</name>
     <message>
-        <location filename="uipainter.cpp" line="114"/>
+        <location filename="uipainter.cpp" line="111"/>
         <source>ADD</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="118"/>
+        <location filename="uipainter.cpp" line="115"/>
         <source>DELETE</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="160"/>
+        <location filename="uipainter.cpp" line="157"/>
         <source>+</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="161"/>
+        <location filename="uipainter.cpp" line="158"/>
         <source>-</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="169"/>
+        <location filename="uipainter.cpp" line="166"/>
         <source>SetDelay</source>
         <translation>SetDelay</translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="228"/>
+        <location filename="uipainter.cpp" line="225"/>
         <source>KEYBOARD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="229"/>
+        <location filename="uipainter.cpp" line="226"/>
         <source>MOUSE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="230"/>
+        <location filename="uipainter.cpp" line="227"/>
         <source>ADVANCE</source>
         <translation></translation>
     </message>

@@ -29,32 +29,100 @@
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="158"/>
-        <location filename="configform.cpp" line="169"/>
-        <location filename="configform.cpp" line="180"/>
-        <location filename="configform.cpp" line="197"/>
+        <location filename="configform.cpp" line="132"/>
+        <location filename="configform.cpp" line="141"/>
+        <location filename="configform.cpp" line="153"/>
+        <location filename="configform.cpp" line="184"/>
+        <location filename="configform.cpp" line="212"/>
+        <location filename="configform.cpp" line="319"/>
+        <location filename="configform.cpp" line="330"/>
+        <location filename="configform.cpp" line="341"/>
+        <location filename="configform.cpp" line="358"/>
         <source>Notice</source>
-        <translation type="unfinished">提示</translation>
+        <translation>提示</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="158"/>
-        <source>You can NOT add mouse event to Macro!</source>
-        <translation type="unfinished">无法将鼠标键添加到宏！</translation>
+        <location filename="configform.cpp" line="133"/>
+        <source>Are you sure to download config to your device:</source>
+        <translation>确定下载到设备：</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="169"/>
-        <source>You can NOT add meida key to Macro!</source>
-        <translation type="unfinished">无法将多媒体键添加到宏！</translation>
+        <location filename="configform.cpp" line="142"/>
+        <source>Download finished!</source>
+        <translation>下载完成！</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="180"/>
-        <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
-        <translation type="unfinished">无法在宏键中添加鼠标或多媒体键值！</translation>
+        <location filename="configform.cpp" line="147"/>
+        <location filename="configform.cpp" line="173"/>
+        <location filename="configform.cpp" line="204"/>
+        <source>Error</source>
+        <translation>错误</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="148"/>
+        <source>Download Error :</source>
+        <translation>下载错误：</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="154"/>
+        <source>Download finished! But there may be some errors.</source>
+        <translation>下载完成,但是可能存在一些问题.</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="164"/>
+        <source>Open file</source>
+        <translation>打开文件</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="164"/>
+        <location filename="configform.cpp" line="197"/>
+        <source>zddConfig (*.zdd)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="174"/>
+        <source>Can not load file </source>
+        <translation>无法打开文件 </translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="185"/>
+        <source>Loaded Successfully!</source>
+        <translation>已经成功加载配置！</translation>
     </message>
     <message>
         <location filename="configform.cpp" line="197"/>
+        <source>Save File</source>
+        <translation>文件保存</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="205"/>
+        <source>Can not save </source>
+        <translation>无法保存 </translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="213"/>
+        <source>Saved Successfully!</source>
+        <translation>保存成功!</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="319"/>
+        <source>You can NOT add mouse event to Macro!</source>
+        <translation>无法将鼠标键添加到宏！</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="330"/>
+        <source>You can NOT add meida key to Macro!</source>
+        <translation>无法将多媒体键添加到宏！</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="341"/>
+        <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
+        <translation>无法在宏键中添加鼠标或多媒体键值！</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="358"/>
         <source>Can NOT add key macro : hardware limitation!</source>
-        <translation type="unfinished">无法添加更多的宏键值：已达到硬件限制！</translation>
+        <translation>无法添加更多的宏键值：已达到硬件限制！</translation>
     </message>
 </context>
 <context>
@@ -219,12 +287,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="configwindow.ui" line="1198"/>
         <source>ADD</source>
-        <translation type="unfinished"></translation>
+        <translation>添加</translation>
     </message>
     <message>
         <location filename="configwindow.ui" line="1237"/>
         <source>DELETE</source>
-        <translation type="unfinished"></translation>
+        <translation>删除</translation>
     </message>
 </context>
 <context>
@@ -288,7 +356,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="devicefinder.ui" line="98"/>
         <source>Skip</source>
-        <translation type="unfinished"></translation>
+        <translation>跳过</translation>
     </message>
     <message>
         <location filename="devicefinder.cpp" line="61"/>
@@ -1274,7 +1342,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QObject</name>
     <message>
-        <location filename="uipainter.cpp" line="39"/>
+        <location filename="uipainter.cpp" line="36"/>
         <source>KEY</source>
         <translation></translation>
     </message>
@@ -1282,42 +1350,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>UIPainter</name>
     <message>
-        <location filename="uipainter.cpp" line="114"/>
+        <location filename="uipainter.cpp" line="111"/>
         <source>ADD</source>
-        <translation type="unfinished"></translation>
+        <translation>添加</translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="118"/>
+        <location filename="uipainter.cpp" line="115"/>
         <source>DELETE</source>
-        <translation type="unfinished"></translation>
+        <translation>删除</translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="160"/>
+        <location filename="uipainter.cpp" line="157"/>
         <source>+</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="161"/>
+        <location filename="uipainter.cpp" line="158"/>
         <source>-</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="169"/>
+        <location filename="uipainter.cpp" line="166"/>
         <source>SetDelay</source>
         <translation>设置延时</translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="228"/>
+        <location filename="uipainter.cpp" line="225"/>
         <source>KEYBOARD</source>
         <translation>键盘</translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="229"/>
+        <location filename="uipainter.cpp" line="226"/>
         <source>MOUSE</source>
         <translation>鼠标</translation>
     </message>
     <message>
-        <location filename="uipainter.cpp" line="230"/>
+        <location filename="uipainter.cpp" line="227"/>
         <source>ADVANCE</source>
         <translation>高级</translation>
     </message>
