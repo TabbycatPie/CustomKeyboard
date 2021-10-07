@@ -169,6 +169,7 @@ bool ConfigForm::loadConfigFromFile(){
         if(!saver->readConfig(filePath,&ckbjsonobj)){
             //can not save
             QMessageBox msg_info(this);
+            msg_info.setStyleSheet("color:rgb(242, 242, 222);");
             msg_info.setWindowTitle(tr("Error"));
             msg_info.setText(tr("Can not load file ")+filePath+" "+saver->getLastError());
             msg_info.setIcon(QMessageBox::Critical);
@@ -179,6 +180,7 @@ bool ConfigForm::loadConfigFromFile(){
             my_ckb = CustomKeyboard::fromJson(ckbjsonobj,nullptr);
             updateUI();
             QMessageBox msg_info(this);
+            msg_info.setStyleSheet("color:rgb(242, 242, 222);");
             msg_info.setWindowTitle(tr("Notice"));
             msg_info.setText(tr("Loaded Successfully!"));
             msg_info.setIcon(QMessageBox::Information);
@@ -233,6 +235,10 @@ void ConfigForm::softKeyPressed(int i){
                 cf_cur_key_sp.remove(cf_cur_key_sp.indexOf(i));
                 //keyboard_list_g[i-1]->setStyleSheet("");
                 painter->setVkeyUntriggered(i-1);
+                if(cf_cur_key_sp.size()==0){
+                    painter->getBtn_addkey()->hide();
+                    painter->getBtn_delete()->show();
+                }
             }
             else{
                 //key is not pressed
@@ -365,7 +371,7 @@ bool ConfigForm::addKeyValue()
     cf_cur_delay =0;
     //untirgger all sp keys
     for(int i = 0;i<8;i++){
-        painter->setVkeyUntriggered(cf_table.getSPkeybByindex(i));
+        painter->setVkeyUntriggered(cf_table.getSPkeybByindex(i)-1);
     }
     updateUI();
     return true;
