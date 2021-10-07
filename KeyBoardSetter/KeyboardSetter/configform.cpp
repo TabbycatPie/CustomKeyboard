@@ -6,6 +6,7 @@
 #include "userconfig.h"
 #include <QDebug>
 #include <QLabel>
+#include <qfiledialog.h>
 #include <qjsonobject.h>
 #include <qmessagebox.h>
 #include <qpushbutton.h>
@@ -34,12 +35,10 @@ ConfigForm::ConfigForm(QWidget *parent)
     : QWidget(parent),
     ui(new Ui::ConfigForm)
 {
-
     ui->setupUi(this);
     if(translator == NULL){
         translator = new QTranslator();
     }
-
     //load from config
     ConfigSaver cs;
     QString filename =  QCoreApplication::applicationDirPath() + "//usercondif.ini";
@@ -65,77 +64,233 @@ ConfigForm::ConfigForm(QWidget *parent)
             updateUI();
         });
     }
+    connect(ui->btn_save,&QPushButton::clicked,this,[=]{
+        saveConfigToFile();
+    });
+    connect(ui->btn_load,&QPushButton::clicked,this,[=]{
+        loadConfigFromFile();
+    });
+    connect(ui->btn_download,&QPushButton::clicked,this,[=]{
+        downloadToDevice();
+    });
+    connect(painter->getBtn_delay_plus(),&QPushButton::clicked,this,[=]{
+        delayindecrease(true);
+    });
+    connect(painter->getBtn_delay_minus(),&QPushButton::clicked,this,[=]{
+        delayindecrease(false);
+    });
+    connect(painter->getBtn_set_delay(),&QPushButton::clicked,this,[=]{
+        setDelay();
+    });
+    connect(painter->getBtn_addkey(),&QPushButton::clicked,this,[=]{
+        addKeyValue();
+    });
+    connect(painter->getBtn_delete(),&QPushButton::clicked,this,[=]{
+        deleteKeyValue();
+    });
+}
+bool ConfigForm::deleteKeyValue(){
+    //delet from current key
+    if(my_ckb->deleteTopKey(cf_cur_edit_key_no))
+        qDebug() << "Remove key successfully!";
+    else
+        qDebug() << "List is empty!";
+    updateUI();
+    return true;
+}
+void ConfigForm::setDelay(){
+    QString temp = painter->getEt_delay()->text();
+    float delay = temp.toFloat();
+    int delay_int = (int)(delay * 10);
+    cf_cur_delay = (uchar) delay_int;
+    updateUI();
+}
+void ConfigForm::delayindecrease(bool is_add){
+    QString temp = painter->getEt_delay()->text();
+    float delay = temp.toFloat();
+    if(is_add){
+        //increase delay
+        if(delay < 25.5f)
+            delay += 0.1f;
+        else{
+            delay = 25.5f;
+        }
+    }
+    else{
+        //decrease delay
+        if(delay > 0.1f)
+            delay -= 0.1f;
+        else
+            delay = 0.0f;
+    }
+    painter->getEt_delay()->setText(QString::number(delay));
+}
+bool ConfigForm::downloadToDevice(){
+    int result = -1;
+    QMessageBox msg_info(this);
+    msg_info.setStyleSheet("color:rgb(242, 242, 222);");
+    msg_info.setWindowTitle(tr("Notice"));
+    msg_info.setText(tr("Are you sure to download config to your device:") + my_ckb->getName()+"?");
+    msg_info.setIcon(QMessageBox::Question);
+    msg_info.setStandardButtons(QMessageBox::Ok | QMessageBox:: Cancel);
+    if(msg_info.exec() == QMessageBox::Ok){
+        QMessageBox msg_result(this);
+        msg_result.setStyleSheet("color:rgb(242, 242, 222);");
+        result = my_ckb->download(&cf_table);
+        if(result == 1){
+            msg_result.setWindowTitle(tr("Notice"));
+            msg_result.setText(tr("Download finished!"));
+            msg_result.setIcon(QMessageBox::Information);
+            msg_result.setStandardButtons(QMessageBox::Ok);
+        }
+        else if(result == -1){
+            msg_result.setWindowTitle(tr("Error"));
+            msg_result.setText(tr("Download Error :") + my_ckb->getLastError());
+            msg_result.setIcon(QMessageBox::Critical);
+            msg_result.setStandardButtons(QMessageBox::Ok);
+        }
+        else{
+            msg_result.setWindowTitle(tr("Notice"));
+            msg_result.setText(tr("Download finished! But there may be some errors."));
+            msg_result.setIcon(QMessageBox::Information);
+            msg_result.setStandardButtons(QMessageBox::Ok);
+        }
+        msg_result.exec();
+    }
+    return result;
+}
+bool ConfigForm::loadConfigFromFile(){
+    //press ok
+    QString filePath = QFileDialog::getOpenFileName(this,tr("Open file"),"./",tr("zddConfig (*.zdd)"));
+    qDebug() << filePath << "is selected";
+    if(filePath != ""){
+        ConfigSaver* saver =new ConfigSaver();
+        QJsonObject ckbjsonobj;
+        if(!saver->readConfig(filePath,&ckbjsonobj)){
+            //can not save
+            QMessageBox msg_info(this);
+            msg_info.setWindowTitle(tr("Error"));
+            msg_info.setText(tr("Can not load file ")+filePath+" "+saver->getLastError());
+            msg_info.setIcon(QMessageBox::Critical);
+            msg_info.setStandardButtons(QMessageBox::Ok);
+            msg_info.exec();
+            return false;
+        }else{
+            my_ckb = CustomKeyboard::fromJson(ckbjsonobj,nullptr);
+            updateUI();
+            QMessageBox msg_info(this);
+            msg_info.setWindowTitle(tr("Notice"));
+            msg_info.setText(tr("Loaded Successfully!"));
+            msg_info.setIcon(QMessageBox::Information);
+            msg_info.setStandardButtons(QMessageBox::Ok);
+            msg_info.exec();
+            return true;
+        }
+        delete saver;
+    }
+    return false;
+}
+bool ConfigForm::saveConfigToFile()
+{
+    QString filePath = QFileDialog::getSaveFileName(this, tr("Save File"),".//untitled.zdd",tr("zddConfig (*.zdd)"));
+    qDebug() << filePath << "is selected";
+    if(filePath != ""){
+        ConfigSaver* saver =new ConfigSaver();
+        if(!saver->saveConfig(filePath,my_ckb->toJsonObj())){
+            //can not save
+            QMessageBox msg_info(this);
+            msg_info.setWindowTitle(tr("Error"));
+            msg_info.setText(tr("Can not save ")+filePath+" "+saver->getLastError());
+            msg_info.setIcon(QMessageBox::Critical);
+            msg_info.setStandardButtons(QMessageBox::Ok);
+            msg_info.exec();
+            return false;
+        }else{
+            QMessageBox msg_info(this);
+            msg_info.setWindowTitle(tr("Notice"));
+            msg_info.setText(tr("Saved Successfully!"));
+            msg_info.setIcon(QMessageBox::Information);
+            msg_info.setStandardButtons(QMessageBox::Ok);
+            msg_info.exec();
+            return true;
+        }
+        delete saver;
+    }
 }
 //soft key press function
 void ConfigForm::softKeyPressed(int i){
-    painter->getBtn_addkey()->show();
-    painter->getBtn_delete()->hide();
-    if(cf_table.isSPkey(i)){
-        //clear single key except normal key
-        cf_cur_media = 0;
-        cf_cur_mouse = 0;
-        //special key pressed
-        if(cf_cur_key_sp.indexOf(i)>=0){
-            //the key is pressed
-            cf_cur_key_sp.remove(cf_cur_key_sp.indexOf(i));
-            //keyboard_list_g[i-1]->setStyleSheet("");
-            painter->setVkeyUntriggered(i-1);
-        }
-        else{
-            //key is not pressed
-            cf_cur_key_sp.append(i);
-            //set keys color
-            //keyboard_list_g[i-1]->setStyleSheet("background-color: rgb(255, 100, 100);");
-            painter->setVkeyTriggered(i-1);
-        }
-    }
-    else if(cf_table.isMouseKey(i)){
-        //clear other single key
-        cf_cur_media = 0;
-        //clear noraml
-        if(cf_cur_key_normal.size()>0){
-            cf_cur_key_normal[0]=0;
-            cf_cur_key_sp.clear();
-        }
-        if(cf_cur_mouse==i)
+    if(cf_cur_edit_key_no != -1){
+        painter->getBtn_addkey()->show();
+        painter->getBtn_delete()->hide();
+        //painter->getBtn_delete()->hide();
+        if(cf_table.isSPkey(i)){
+            //clear single key except normal key
+            cf_cur_media = 0;
             cf_cur_mouse = 0;
-        else{
-            cf_cur_mouse = i;
-            addKeyValue();
+            //special key pressed
+            if(cf_cur_key_sp.indexOf(i)>=0){
+                //the key is pressed
+                cf_cur_key_sp.remove(cf_cur_key_sp.indexOf(i));
+                //keyboard_list_g[i-1]->setStyleSheet("");
+                painter->setVkeyUntriggered(i-1);
+            }
+            else{
+                //key is not pressed
+                cf_cur_key_sp.append(i);
+                //set keys color
+                //keyboard_list_g[i-1]->setStyleSheet("background-color: rgb(255, 100, 100);");
+                painter->setVkeyTriggered(i-1);
+            }
         }
-    }
-    else if(cf_table.isMediaKey(i)){
-        //clear other single key
-       cf_cur_mouse = 0;
-       if(cf_cur_key_normal.size()>0){
-           cf_cur_key_normal[0]=0;
-           cf_cur_key_sp.clear();
-       }
-       if(cf_cur_media==i)
-           cf_cur_media = 0;
-       else{
-           cf_cur_media = i;
-           addKeyValue();
-       }
-    }
-    else
-    {
-        //clear other single key
-        cf_cur_media = 0;
-        cf_cur_mouse = 0;
-        //normal key pressed
-        if(cf_cur_key_normal.indexOf(i)>=0)
-            cf_cur_key_normal.clear();
-        else{
-            cf_cur_key_normal.clear();
-            cf_cur_key_normal.append(i);
-            addKeyValue();
+        else if(cf_table.isMouseKey(i)){
+            //clear other single key
+            cf_cur_media = 0;
+            //clear noraml
+            if(cf_cur_key_normal.size()>0){
+                cf_cur_key_normal[0]=0;
+                cf_cur_key_sp.clear();
+            }
+            if(cf_cur_mouse==i)
+                cf_cur_mouse = 0;
+            else{
+                cf_cur_mouse = i;
+                addKeyValue();
+            }
         }
+        else if(cf_table.isMediaKey(i)){
+            //clear other single key
+           cf_cur_mouse = 0;
+           if(cf_cur_key_normal.size()>0){
+               cf_cur_key_normal[0]=0;
+               cf_cur_key_sp.clear();
+           }
+           if(cf_cur_media==i)
+               cf_cur_media = 0;
+           else{
+               cf_cur_media = i;
+               addKeyValue();
+           }
+        }
+        else
+        {
+            //clear other single key
+            cf_cur_media = 0;
+            cf_cur_mouse = 0;
+            //normal key pressed
+            if(cf_cur_key_normal.indexOf(i)>=0)
+                cf_cur_key_normal.clear();
+            else{
+                cf_cur_key_normal.clear();
+                cf_cur_key_normal.append(i);
+                addKeyValue();
+            }
+        }
+        updateUI();
     }
-    updateUI();
 }
 void ConfigForm::showWarningDialog(QString title,QString content){
     QMessageBox msg_info(this);
+    msg_info.setStyleSheet("color:rgb(242, 242, 222);");
     msg_info.setWindowTitle(title);
     msg_info.setText(content);
     msg_info.setIcon(QMessageBox::Critical);
@@ -202,6 +357,7 @@ bool ConfigForm::addKeyValue()
 
     //clear current stat
     painter->getBtn_addkey()->hide();
+    painter->getBtn_delete()->show();
     cf_cur_key_sp.clear();
     cf_cur_key_normal.clear();
     cf_cur_mouse =0;
@@ -310,16 +466,16 @@ void updateUI(){
         if(i == cf_cur_edit_key_no)
             continue;
         if(my_ckb->getCustomKeyByID(i)->isMacro())
-            ;//style for macro
+            painter->setCKBKeyUntriggered(i);//style for macro
         else if(my_ckb->getCustomKeyByID(i)->isMedia())
-            ;//yellow for media
+            painter->setCKBKeyUntriggered(i);//yellow for media
         else if(my_ckb->getCustomKeyByID(i)->isMouse())
-            ; //green for mouse
+            painter->setCKBKeyUntriggered(i); //green for mouse
         else{
             if(my_ckb->getCustomKeyByID(i)->getKeyValueCount()==1
                     && (my_ckb->getCustomKeyByID(i)->getKeyValueList()[0]->getNormalKeyIndex()!=0
                         ||my_ckb->getCustomKeyByID(i)->getKeyValueList()[0]->getSPKeyList()[0]!=0))
-                painter->setCKBKeyTriggered(i); //blue for normal
+                painter->setCKBKeyUntriggered(i); //blue for normal
             else
                 painter->setCKBKeyUntriggered(i); //none for unset
         }
@@ -360,7 +516,7 @@ void initUI(QWidget* qw){
     //button init
     vkey_list = painter->getVkey_list();
     QVector<QPushButton *> *ckbkey_list = painter->getCKBkey_list();
-    my_ckb = new CustomKeyboard("Test",10,0x2019,0x5131,ckbkey_list);
+    my_ckb = new CustomKeyboard("Test",row*col,0x2019,0x5131,ckbkey_list);
 
     //version justify
     int fwversion = 0;

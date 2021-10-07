@@ -29,6 +29,12 @@ private:
     void softKeyPressed(int i);
     void showWarningDialog(QString title, QString content);
     bool addKeyValue();
+    bool saveConfigToFile();
+    bool loadConfigFromFile();
+    bool downloadToDevice();
+    void delayindecrease(bool is_add);
+    void setDelay();
+    bool deleteKeyValue();
 };
 
 #endif // CONFIGFORM_H

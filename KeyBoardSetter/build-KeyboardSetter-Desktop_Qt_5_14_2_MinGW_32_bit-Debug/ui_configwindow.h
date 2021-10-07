@@ -271,7 +271,7 @@ public:
         searchdevice_btn_6->setMinimumSize(QSize(80, 20));
         searchdevice_btn_6->setMaximumSize(QSize(80, 20));
         searchdevice_btn_6->setCursor(QCursor(Qt::PointingHandCursor));
-        searchdevice_btn_6->setStyleSheet(QString::fromUtf8("QPushButton{background-color:rgb(138, 146, 155);border:1px solid rgb(242, 242, 222);border-top-left-radius:7px;border-bottom-left-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(15, 172, 252,255), stop:1 rgba(22, 190, 235,255));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 160, 205,125), stop:1 rgba(0, 142, 222,125));color:rgb(202, 202,182);}\n"
+        searchdevice_btn_6->setStyleSheet(QString::fromUtf8("QPushButton{background-color:rgb(138, 146, 155);border:1px solid rgb(242, 242, 222);border-top-left-radius:7px;border-bottom-left-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";color:rgb(242, 242, 222);font-size:12px;}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(15, 172, 252,255), stop:1 rgba(22, 190, 235,255));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 160, 205,125), stop:1 rgba(0, 142, 222,125));color:rgb(202, 202,182);}\n"
 ""));
         searchdevice_btn_5 = new QPushButton(centralwidget);
         searchdevice_btn_5->setObjectName(QString::fromUtf8("searchdevice_btn_5"));
@@ -384,7 +384,7 @@ public:
         searchdevice_btn_9->setMinimumSize(QSize(100, 60));
         searchdevice_btn_9->setMaximumSize(QSize(100, 60));
         searchdevice_btn_9->setCursor(QCursor(Qt::PointingHandCursor));
-        searchdevice_btn_9->setStyleSheet(QString::fromUtf8("QPushButton{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0,0), stop:1 rgba(0, 0, 0,0));border:1px solid rgb(242, 242, 222);border-top-right-radius:7px;border-bottom-right-radius:7px;padding:2px 4px;font: 5pt \"Microsoft YaHei UI\";font-size:18px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(255, 0, 157), stop:1 rgb(204, 4, 144));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(0, 155, 57), stop:1 rgb(0, 104, 44));color:rgb(202, 202,182);}\n"
+        searchdevice_btn_9->setStyleSheet(QString::fromUtf8("QPushButton{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0,0), stop:1 rgba(0, 0, 0,0));border:1px solid rgb(242, 242, 222);border-top-right-radius:7px;border-bottom-right-radius:7px;padding:2px 4px;font: 5pt \"Microsoft YaHei UI\";font-size:18px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(255, 0, 157), stop:1 rgb(204, 4, 144));}QPushButton:pressed{background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(205, 0, 107), stop:1 rgb(154, 4, 94));color:rgb(202, 202,182);}\n"
 "\n"
 ""));
         ConfigWindow->setCentralWidget(centralwidget);

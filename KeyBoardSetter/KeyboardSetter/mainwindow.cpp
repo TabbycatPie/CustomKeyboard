@@ -419,7 +419,7 @@ bool MainWindow::saveConfigToFile()
 
 }
 
-CustomKeyboard *MainWindow::loadConfigFromFile()
+CustomKeyboard* MainWindow::loadConfigFromFile()
 {
     QMessageBox msg_info(this);
     msg_info.setWindowTitle(tr("Notice"));

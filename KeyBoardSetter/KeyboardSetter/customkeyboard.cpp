@@ -63,7 +63,6 @@ CustomKeyboard::CustomKeyboard(QString _name, int keynum, unsigned short pid, un
         spkey_mixcode[x]=0x00;
     }
 }
-
 void CustomKeyboard::setMacroConfig(int mlen, int mcount, int mspkey, int mdelay)
 {
     this->macro_mem = mlen;
@@ -81,16 +80,17 @@ void CustomKeyboard::setKey(int key_id, QVector<KeyValue *> kvs){
 void CustomKeyboard::appendKey(int key_id,KeyValue *kv){
     this->key_list[key_id]->appendKey(kv);
 }
-
 void CustomKeyboard::setKeyList(QVector<CustomKey *> list)
 {
     this->key_list.clear();
     this->key_list = list;
 }
 bool CustomKeyboard::deleteTopKey(int key_id){
-    return this->key_list[key_id]->deleteTopKey();
+    if(key_id >= 0 )
+        return this->key_list[key_id]->deleteTopKey();
+    else
+        return false;
 }
-
 bool CustomKeyboard::checkMacroAddable(int cur_key_no){
     int macro_count = 0;
     int sum_normal = 0;
