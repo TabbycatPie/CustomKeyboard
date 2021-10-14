@@ -57,7 +57,7 @@ public:
         sub_label->setAlignment(Qt::AlignCenter);
         btn_skip = new QPushButton(centralwidget);
         btn_skip->setObjectName(QString::fromUtf8("btn_skip"));
-        btn_skip->setGeometry(QRect(420, 140, 61, 30));
+        btn_skip->setGeometry(QRect(410, 130, 61, 30));
         DeviceFinder->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(DeviceFinder);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));

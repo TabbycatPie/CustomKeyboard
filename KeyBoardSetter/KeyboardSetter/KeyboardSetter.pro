@@ -26,6 +26,7 @@ SOURCES += \
     keyvalue.cpp \
     main.cpp \
     mainwindow.cpp \
+    settingform.cpp \
     uipainter.cpp \
     userconfig.cpp
 
@@ -40,6 +41,7 @@ HEADERS += \
     hidcodetable.h \
     keyvalue.h \
     mainwindow.h \
+    settingform.h \
     uipainter.h \
     userconfig.h
 
@@ -47,7 +49,8 @@ FORMS += \
     configform.ui \
     configwindow.ui \
     devicefinder.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    settingform.ui
 
 LIBS += -L$$_PRO_FILE_PWD_/  -l hidapi
 

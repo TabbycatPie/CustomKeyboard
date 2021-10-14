@@ -1,6 +1,7 @@
 #include "configform.h"
 #include "configsaver.h"
 #include "customkeyboard.h"
+#include "settingform.h"
 #include "ui_configform.h"
 #include "uipainter.h"
 #include "userconfig.h"
@@ -87,6 +88,11 @@ ConfigForm::ConfigForm(QWidget *parent)
     });
     connect(painter->getBtn_delete(),&QPushButton::clicked,this,[=]{
         deleteKeyValue();
+    });
+    connect(ui->btn_settings,&QPushButton::clicked,this,[=]{
+        settingForm *sf = new settingForm();
+        sf->setWindowFlag(Qt::FramelessWindowHint);
+        sf->show();
     });
 }
 bool ConfigForm::deleteKeyValue(){
