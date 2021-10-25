@@ -33,7 +33,7 @@ void UIPainter::drawCKB(int x,int y,int col,int row){
     int num = 1;
     for(int i=0;i<row;i++){
         for(int j =0;j<col;j++){
-           btn_temp = drawCKBkey(x+j*(this->CKBKey_len+2*this->CKBKey_inter_margin)+this->CKBKey_ex_margin+this->CKBKey_inter_margin,y+i*(this->CKBKey_len+2*this->CKBKey_inter_margin)+this->CKBKey_ex_margin+this->CKBKey_inter_margin,QObject::tr("KEY")+QString::number(num));
+           btn_temp = drawCKBkey(x+j*(this->CKBKey_len+2*this->CKBKey_inter_margin)+this->CKBKey_ex_margin+this->CKBKey_inter_margin,y+i*(this->CKBKey_len+2*this->CKBKey_inter_margin)+this->CKBKey_ex_margin+this->CKBKey_inter_margin,tr("KEY")+QString::number(num));
            CKBkey_list->append(btn_temp);
            num++;
         }

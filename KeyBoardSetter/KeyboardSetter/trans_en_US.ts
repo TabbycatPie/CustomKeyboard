@@ -1314,14 +1314,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>QObject</name>
-    <message>
-        <location filename="uipainter.cpp" line="36"/>
-        <source>KEY</source>
-        <translation></translation>
-    </message>
-</context>
-<context>
     <name>SettingForm</name>
     <message>
         <location filename="settingform.cpp" line="34"/>
@@ -1332,6 +1324,11 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>UIPainter</name>
+    <message>
+        <location filename="uipainter.cpp" line="36"/>
+        <source>KEY</source>
+        <translation>KEY</translation>
+    </message>
     <message>
         <location filename="uipainter.cpp" line="111"/>
         <source>ADD</source>
