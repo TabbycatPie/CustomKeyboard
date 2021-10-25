@@ -91,7 +91,7 @@ ConfigForm::ConfigForm(QWidget *parent)
     });
     connect(ui->btn_settings,&QPushButton::clicked,this,[=]{
         settingForm *sf = new settingForm();
-        sf->setWindowFlag(Qt::FramelessWindowHint);
+        sf->setLanguageBtnTriggered(1);
         sf->show();
     });
 }

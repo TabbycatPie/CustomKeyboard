@@ -13,7 +13,8 @@ class settingForm : public QWidget
 
 public:
     explicit settingForm(QWidget *parent = nullptr);
-    ~settingForm();
+    void setLanguageBtnTriggered(int btn_no);
+    ~settingForm();   
 
 private:
     Ui::settingForm *ui;
