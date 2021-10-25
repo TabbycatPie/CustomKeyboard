@@ -90,8 +90,7 @@ ConfigForm::ConfigForm(QWidget *parent)
         deleteKeyValue();
     });
     connect(ui->btn_settings,&QPushButton::clicked,this,[=]{
-        settingForm *sf = new settingForm();
-        sf->setLanguageBtnTriggered(1);
+        SettingForm *sf = new SettingForm(this);
         sf->show();
     });
 }

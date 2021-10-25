@@ -29,98 +29,98 @@
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="132"/>
-        <location filename="configform.cpp" line="141"/>
-        <location filename="configform.cpp" line="153"/>
-        <location filename="configform.cpp" line="184"/>
-        <location filename="configform.cpp" line="212"/>
-        <location filename="configform.cpp" line="319"/>
-        <location filename="configform.cpp" line="330"/>
-        <location filename="configform.cpp" line="341"/>
-        <location filename="configform.cpp" line="358"/>
+        <location filename="configform.cpp" line="137"/>
+        <location filename="configform.cpp" line="146"/>
+        <location filename="configform.cpp" line="158"/>
+        <location filename="configform.cpp" line="189"/>
+        <location filename="configform.cpp" line="217"/>
+        <location filename="configform.cpp" line="324"/>
+        <location filename="configform.cpp" line="335"/>
+        <location filename="configform.cpp" line="346"/>
+        <location filename="configform.cpp" line="363"/>
         <source>Notice</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="133"/>
+        <location filename="configform.cpp" line="138"/>
         <source>Are you sure to download config to your device:</source>
         <translation>确定下载到设备：</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="142"/>
+        <location filename="configform.cpp" line="147"/>
         <source>Download finished!</source>
         <translation>下载完成！</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="147"/>
-        <location filename="configform.cpp" line="173"/>
-        <location filename="configform.cpp" line="204"/>
+        <location filename="configform.cpp" line="152"/>
+        <location filename="configform.cpp" line="178"/>
+        <location filename="configform.cpp" line="209"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="148"/>
+        <location filename="configform.cpp" line="153"/>
         <source>Download Error :</source>
         <translation>下载错误：</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="154"/>
+        <location filename="configform.cpp" line="159"/>
         <source>Download finished! But there may be some errors.</source>
         <translation>下载完成,但是可能存在一些问题.</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="164"/>
+        <location filename="configform.cpp" line="169"/>
         <source>Open file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="164"/>
-        <location filename="configform.cpp" line="197"/>
+        <location filename="configform.cpp" line="169"/>
+        <location filename="configform.cpp" line="202"/>
         <source>zddConfig (*.zdd)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="174"/>
+        <location filename="configform.cpp" line="179"/>
         <source>Can not load file </source>
         <translation>无法打开文件 </translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="185"/>
+        <location filename="configform.cpp" line="190"/>
         <source>Loaded Successfully!</source>
         <translation>已经成功加载配置！</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="197"/>
+        <location filename="configform.cpp" line="202"/>
         <source>Save File</source>
         <translation>文件保存</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="205"/>
+        <location filename="configform.cpp" line="210"/>
         <source>Can not save </source>
         <translation>无法保存 </translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="213"/>
+        <location filename="configform.cpp" line="218"/>
         <source>Saved Successfully!</source>
         <translation>保存成功!</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="319"/>
+        <location filename="configform.cpp" line="324"/>
         <source>You can NOT add mouse event to Macro!</source>
         <translation>无法将鼠标键添加到宏！</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="330"/>
+        <location filename="configform.cpp" line="335"/>
         <source>You can NOT add meida key to Macro!</source>
         <translation>无法将多媒体键添加到宏！</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="341"/>
+        <location filename="configform.cpp" line="346"/>
         <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
         <translation>无法在宏键中添加鼠标或多媒体键值！</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="358"/>
+        <location filename="configform.cpp" line="363"/>
         <source>Can NOT add key macro : hardware limitation!</source>
         <translation>无法添加更多的宏键值：已达到硬件限制！</translation>
     </message>
@@ -1348,6 +1348,14 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>SettingForm</name>
+    <message>
+        <location filename="settingform.cpp" line="34"/>
+        <source>Settings</source>
+        <translation>设置</translation>
+    </message>
+</context>
+<context>
     <name>UIPainter</name>
     <message>
         <location filename="uipainter.cpp" line="111"/>
@@ -1388,6 +1396,34 @@ p, li { white-space: pre-wrap; }
         <location filename="uipainter.cpp" line="227"/>
         <source>ADVANCE</source>
         <translation>高级</translation>
+    </message>
+</context>
+<context>
+    <name>settingForm</name>
+    <message>
+        <location filename="settingform.ui" line="26"/>
+        <source>Form</source>
+        <translation>窗体</translation>
+    </message>
+    <message>
+        <location filename="settingform.ui" line="57"/>
+        <source>LANGUAGE：</source>
+        <translation>语言：</translation>
+    </message>
+    <message>
+        <location filename="settingform.ui" line="91"/>
+        <source>ENGLISH</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="settingform.ui" line="125"/>
+        <source>中文</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="settingform.ui" line="159"/>
+        <source>OK</source>
+        <translation>确定</translation>
     </message>
 </context>
 </TS>

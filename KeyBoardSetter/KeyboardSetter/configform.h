@@ -25,7 +25,6 @@ private:
     Ui::ConfigForm *ui;
     //Translator
     QTranslator *translator =NULL;
-    void changeLanguage(QString language);
     void softKeyPressed(int i);
     void showWarningDialog(QString title, QString content);
     bool addKeyValue();
@@ -35,6 +34,9 @@ private:
     void delayindecrease(bool is_add);
     void setDelay();
     bool deleteKeyValue();
+ public slots:
+    void changeLanguage(QString language);
+
 };
 
 #endif // CONFIGFORM_H

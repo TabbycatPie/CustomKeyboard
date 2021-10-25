@@ -1,23 +1,32 @@
 #ifndef SETTINGFORM_H
 #define SETTINGFORM_H
 
+#include "configform.h"
+
 #include <QWidget>
+#include <qtranslator.h>
 
 namespace Ui {
 class settingForm;
 }
 
-class settingForm : public QWidget
+class SettingForm : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit settingForm(QWidget *parent = nullptr);
+    explicit SettingForm(ConfigForm *mainwindow,QWidget *parent = nullptr);
     void setLanguageBtnTriggered(int btn_no);
-    ~settingForm();   
+    ~SettingForm();
 
 private:
     Ui::settingForm *ui;
+    void changeLanguage(char language);
+    //Translator
+    QTranslator *translator =NULL;
+
+signals:
+    void changeConfigFormLanguage(QString language);
 };
 
 #endif // SETTINGFORM_H
