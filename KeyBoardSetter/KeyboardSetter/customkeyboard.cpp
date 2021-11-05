@@ -290,11 +290,13 @@ int CustomKeyboard::download(HIDCodeTable *table){
                 qDebug() << "Can not get all ACKs.";
                 logToMain("Can not get all ACKs.");
                 hid_close(my_device);
+                hid_exit();
                 return 0;
             }else{
                 qDebug() << "Sending Successfully!";
                 logToMain("Sending Successfully!");
                 hid_close(my_device);
+                hid_exit();
                 return 1;
             }
         }else{
@@ -304,6 +306,7 @@ int CustomKeyboard::download(HIDCodeTable *table){
             qDebug() << "Sending Failed! Error:"<< text;
             logToMain("Data sending is failed!");
             hid_close(my_device);
+            hid_exit();
             return -1;
         }
     }
@@ -398,6 +401,7 @@ bool CustomKeyboard::testHardware()
         return false;
     }
     hid_close(my_device);
+    hid_exit();
     return is_ok;
 }
 
@@ -437,6 +441,7 @@ int CustomKeyboard::getVersion()
             }
         }
         hid_close(my_device);
+        hid_exit();
         return ret;
     }
     else{
