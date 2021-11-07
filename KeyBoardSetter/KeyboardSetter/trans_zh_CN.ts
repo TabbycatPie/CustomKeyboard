@@ -4,13 +4,13 @@
 <context>
     <name>ConfigSaver</name>
     <message>
-        <location filename="configsaver.cpp" line="21"/>
-        <location filename="configsaver.cpp" line="38"/>
+        <location filename="configsaver.cpp" line="25"/>
+        <location filename="configsaver.cpp" line="42"/>
         <source>Can not open file.</source>
         <translation>无法打开文件.</translation>
     </message>
     <message>
-        <location filename="configsaver.cpp" line="50"/>
+        <location filename="configsaver.cpp" line="54"/>
         <source>Json parse error,File is broken!</source>
         <translation>Json转换错误,文件损坏！</translation>
     </message>
@@ -18,7 +18,7 @@
 <context>
     <name>CustomKeyboard</name>
     <message>
-        <location filename="customkeyboard.cpp" line="302"/>
+        <location filename="customkeyboard.cpp" line="304"/>
         <source>Data sending is failed!</source>
         <translation>数据发送过程中错误!</translation>
     </message>
@@ -28,17 +28,17 @@
         <translation>未获取所有ACK帧!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="311"/>
+        <location filename="customkeyboard.cpp" line="314"/>
         <source>Can not open device!</source>
         <translation>设备未找到！</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="419"/>
+        <location filename="customkeyboard.cpp" line="423"/>
         <source>Can not wirte to device.</source>
         <translation>无法写入设备.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="444"/>
+        <location filename="customkeyboard.cpp" line="449"/>
         <source>Can not open device.</source>
         <translation>无法打开设备.</translation>
     </message>
@@ -47,12 +47,12 @@
         <translation type="vanished">无法获取校验帧.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="321"/>
+        <location filename="customkeyboard.cpp" line="324"/>
         <source>Can not read ACK frame.</source>
         <translation>无法读取ACK帧.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="331"/>
+        <location filename="customkeyboard.cpp" line="334"/>
         <source>ACK not correct.</source>
         <translation>ACK帧不正确.</translation>
     </message>
