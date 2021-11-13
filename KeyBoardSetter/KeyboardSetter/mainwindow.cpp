@@ -337,13 +337,6 @@ void MainWindow::logUpdate(QString text)
     ui->tv_log->repaint();
 }
 
-void MainWindow::findDevice(CustomKeyboard *my_ckb)
-{
-    hid_device *my_device = hid_open(my_ckb->getVid(),my_ckb->getPid(),nullptr);
-    if(my_device!=nullptr){
-
-    }
-}
 
 void MainWindow::setKey(int key_no){
     cur_edit_key_no = key_no;
@@ -820,6 +813,7 @@ bool MainWindow::deleteKeyValue(){
 }
 MainWindow::~MainWindow()
 {
+    hid_exit();
     delete translator;
     delete ui;
 }

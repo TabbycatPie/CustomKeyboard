@@ -383,6 +383,8 @@ bool ConfigForm::addKeyValue()
 }
 ConfigForm::~ConfigForm()
 {
+    hid_exit();
+    delete translator;
     delete ui;
 }
 void ConfigForm::changeLanguage(QString language){
