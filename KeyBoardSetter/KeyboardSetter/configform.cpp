@@ -172,7 +172,7 @@ bool ConfigForm::loadConfigFromFile(){
         ConfigSaver* saver =new ConfigSaver();
         QJsonObject ckbjsonobj;
         if(!saver->readConfig(filePath,&ckbjsonobj)){
-            //can not save
+            //can not load
             QMessageBox msg_info(this);
             msg_info.setStyleSheet("color:rgb(242, 242, 222);");
             msg_info.setWindowTitle(tr("Error"));
@@ -182,7 +182,7 @@ bool ConfigForm::loadConfigFromFile(){
             msg_info.exec();
             return false;
         }else{
-            my_ckb = CustomKeyboard::fromJson(ckbjsonobj,nullptr);
+            my_ckb = CustomKeyboard::fromJson(ckbjsonobj,painter->getCKBkey_list()->data());
             updateUI();
             QMessageBox msg_info(this);
             msg_info.setStyleSheet("color:rgb(242, 242, 222);");
