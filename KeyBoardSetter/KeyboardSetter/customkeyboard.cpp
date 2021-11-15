@@ -338,6 +338,7 @@ int CustomKeyboard::download(HIDCodeTable *table){
     }
     else{
         last_error = tr("Can not open device!");
+        hid_exit();//release all resources
         return -1;
     }
 }
@@ -424,6 +425,7 @@ bool CustomKeyboard::testHardware()
     else{
         qDebug() << "can not open device.";
         logToMain("Can Not open device.");
+        hid_exit();
         return false;
     }
     hid_close(my_device);
@@ -491,6 +493,7 @@ int CustomKeyboard::getVersion()
     }
     else{
         logToMain("Can not open device:-1.");
+        hid_exit();
         return -1; //can not open device
     }
 }
