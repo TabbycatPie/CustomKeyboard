@@ -330,7 +330,7 @@ int CustomKeyboard::download(HIDCodeTable *table){
             last_error = tr("Data sending is failed!");
             QString text = QString::fromWCharArray(hid_error(my_device));
             qDebug() << "Sending Failed! Error:"<< text;
-            logToMain("Data sending is failed!");
+            logToMain("Data sending is failed:"+ text);
             hid_close(my_device);
             hid_exit();
             return -1;
