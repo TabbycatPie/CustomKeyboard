@@ -384,8 +384,8 @@ bool CustomKeyboard::testHardware()
         test_frame[1] = 0x0c;
         int res = hid_write(my_device, test_frame, 65);
         if(res == -1){
-            qDebug() << "can not send test framed.";
-            logToMain("Can NOT send test framed.");
+            qDebug() << "hid_write() Error:" << QString::fromWCharArray(hid_error(my_device));
+            logToMain("hid_write() Error:"+QString::fromWCharArray(hid_error(my_device)));
         }
         else{
             uchar test_receive[128] = {0x00};
@@ -423,9 +423,12 @@ bool CustomKeyboard::testHardware()
 
     }
     else{
-        qDebug() << "can not open device.";
-        logToMain("Can Not open device.");
-        hid_exit();
+        qDebug() << "hid_open() Error:" << QString::fromWCharArray(hid_error(my_device));
+        logToMain("hid_open() Error:"+QString::fromWCharArray(hid_error(my_device)));
+        if(hid_exit()!=0){
+            qDebug() << "hid_exit Error:" << QString::fromWCharArray(hid_error(my_device));
+            logToMain("hid_exit Error:"+QString::fromWCharArray(hid_error(my_device)));
+        }
         return false;
     }
     hid_close(my_device);
@@ -439,10 +442,18 @@ bool CustomKeyboard::tryOpen()
     hid_device *my_device;
     my_device = hid_open(vid,pid,nullptr);
     bool success = true;
-    if(my_device==NULL)
+    if(my_device==NULL){
         success = false;
+        qDebug() << "hid_open() Error";
+        qDebug() << QString::fromWCharArray(hid_error(my_device));
+    }
     hid_close(my_device);
-    hid_exit();
+
+    int error = hid_exit();
+    if(error != 0){
+        qDebug() << "hid_exit() Error";
+        qDebug() << QString::fromWCharArray(hid_error(my_device));
+    }
     return success;
 }
 /****************************
