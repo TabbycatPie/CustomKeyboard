@@ -7,7 +7,7 @@ There are 2 floders and 13 branches
 * **CustomKeyboard:** a keil project based on CH552
 * **KeyBoardSetter/KeyboardSetter:** a Qt project using hid_api as library to communicate with CH552 chip hardware.
 
-### braches
+### branches
 
 * **main:** newest developping version with HID log and new UI (testing...).
 * **Version 3.0:** new UI.
@@ -15,9 +15,9 @@ There are 2 floders and 13 branches
 
 ## Download
 
-Click the given link below will automatically redirect to a URL and download a zip file for you，it's **NECESSARY** to  download this software for keyboard configuration. the downloaded zip file is built from brach FinalVerison2.1
+Click the given link below will automatically redirect to a URL and download a zip file for you，it's **NECESSARY** to  download this software for keyboard configuration. the downloaded zip file is built from branch FinalVerison2.1
 
- **[Click Here To Download Software](http://8.210.3.182:9999/man/Readme.html)**
+ **[Click Here To Download Software](http://8.210.3.182:9999/man/ZDDKeyboardSetter.zip)**
 
 ## After Downloading
 
