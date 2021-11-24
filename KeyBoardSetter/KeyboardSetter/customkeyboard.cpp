@@ -444,8 +444,7 @@ bool CustomKeyboard::tryOpen()
     bool success = true;
     if(my_device==NULL){
         success = false;
-        qDebug() << "hid_open() Error";
-        qDebug() << QString::fromWCharArray(hid_error(my_device));
+        qDebug() << "Error: hid_open()==NULL";
     }
     hid_close(my_device);
 
