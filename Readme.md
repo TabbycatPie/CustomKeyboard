@@ -149,7 +149,7 @@ What if my keyboard doesn't working?
 
 3. The device worked correctly, but ZDDKeyboardSetter.exe keep failing to find your device:
 
-   * Change your a port will temporarily solve this problem.
+   * Change to another USB port will temporarily solve this problem.
 
    * Go to Windows device manager and reinstall the USB driver. (details below)
 
