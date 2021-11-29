@@ -2,7 +2,7 @@
 
 #define THIS_ENDP0_SIZE		0x08
 
-static UINT8X Ep0Buffer[THIS_ENDP0_SIZE] _at_ 0x0000;
+static UINT8X Ep0Buffer[THIS_ENDP0_SIZE+2] _at_ 0x0000;
 static UINT8X Ep1Buffer[MAX_PACKET_SIZE] _at_ 0x0080;
 static UINT8X Ep2Buffer[2 * MAX_PACKET_SIZE] _at_ 0x00c0;
 static UINT8X Ep3Buffer[MAX_PACKET_SIZE] _at_ 0x0140;
@@ -21,47 +21,33 @@ UINT8	EnumOK,sleepOK = 0;
 /*设备描述符*/
 UINT8C DevDesc[] = 
 {
-	0x12,0x01,
-    0x10,0x01,
-    0x00,
-    0x00,
-    0x00,
+	0x12,0x01,0x10,0x01,0x00,0x00,0x00,
     THIS_ENDP0_SIZE,
     (VID & 0xff), (VID >> 8),
     (PID & 0xff), (PID >> 8),
-    0x01, 0x01,
-    0x00, 0x00,
-	0x00, 0x01
+    0x01, 0x01,0x00, 0x00,0x00, 0x01
 };
 
 UINT8C CfgDesc[] =
 {
-/***************** 配置描述符 *******************/
-	0x09,0x02,0x74,0x00,0x04,0x01,0x00,0xA0,0x64,
-/************** 键盘接口的描述符 ****************/
-	0x09,0x04,0x00,0x00,0x01,0x03,0x01,0x01,0x00,
-/************** 键盘HID的描述符 *****************/
-	0x09,0x21,0x10,0x01,0x00,0x01,0x22,0x3f,0x00,
-/********** 键盘输入端口描述符(端点描述符) ******/
-	0x07,0x05,0x81,0x03,0x08,0x00,0x01,
-/*********** 自定义HID设备  接口描述符 **********/
-	0x09,0x04,0x01,0x00,0x02,0x03,0x00,0x00,0x00,
-/*********** 自定义HID设备 HID描述符 ************/
-	0x09,0x21,0x00,0x01,0x00,0x01,0x22,0x22,0x00,
-/************* 自定义HID设备 描述符 *************/
-	0x07,0x05,0x82,0x03,0x40,0x00,0x01,
-/************* 自定义HID设备 描述符 *************/
-	0x07,0x05,0x02,0x03,0x40,0x00,0x01,
-/*********** HID 鼠标设备  接口描述符 ***********/
-	0x09,0x04,0x02,0x00,0x01,0x03,0x01,0x02,0x00,
-/*********** HID 鼠标设备 HID描述符 *************/
-	0x09,0x21,0x10,0x01,0x00,0x01,0x22,0x34,0x00,
-/************* HID 鼠标设备 描述符 **************/
-	0x07,0x05,0x83,0x03,0x04,0x00,0x0a,
-/************* HID 多媒体设备 描述符 ************/
-	0x09,0x04,0x03,0x00,0x01,0x03,0x00,0x00,0x00,	//接口描述符
-	0x09,0x21,0x10,0x01,0x00,0x01,0x22,0x29,0x00,	//HID描述符
-	0x07,0x05,0x84,0x03,0x02,0x00,0x0a 				//端点描述符
+	0x09,0x02,0x74,0x00,0x04,0x01,0x00,0xA0,0x64,	//配置描述符
+	
+	0x09,0x04,0x00,0x00,0x01,0x03,0x01,0x01,0x00,	//键盘 接口的描述符 
+	0x09,0x21,0x10,0x01,0x00,0x01,0x22,0x3f,0x00,	//键盘 HID的描述符
+	0x07,0x05,0x81,0x03,0x08,0x00,0x01,				//键盘 输入端口描述符
+	
+	0x09,0x04,0x01,0x00,0x02,0x03,0x00,0x00,0x00,	//自定义HID设备 接口描述符
+	0x09,0x21,0x10,0x01,0x21,0x01,0x22,0x22,0x00,	//自定义HID设备 HID描述符
+	0x07,0x05,0x82,0x03,0x40,0x00,0x32,				//自定义HID设备 端点描述符
+	0x07,0x05,0x02,0x03,0x40,0x00,0x0a,				//自定义HID设备 端点描述符
+	
+	0x09,0x04,0x02,0x00,0x01,0x03,0x01,0x02,0x00,	//鼠标 接口描述符 
+	0x09,0x21,0x10,0x01,0x00,0x01,0x22,0x34,0x00,	//鼠标 HID描述符
+	0x07,0x05,0x83,0x03,0x04,0x00,0x0a,				//鼠标 端点描述符
+	
+	0x09,0x04,0x03,0x00,0x01,0x03,0x01,0x02,0x00,	//多媒体 接口描述符
+	0x09,0x21,0x10,0x01,0x00,0x01,0x22,0x29,0x00,	//多媒体 HID描述符
+	0x07,0x05,0x84,0x03,0x02,0x00,0x0a 				//多媒体 端点描述符
 };
 
 
@@ -195,11 +181,7 @@ UINT8 HIDMultimedia[1] = {0x0};
 
 
 /*******************************************************************************
-* Function Name  : USBDeviceInit()
 * Description    : USB设备模式配置,设备模式启动，收发端点配置，中断开启
-* Input          : None
-* Output         : None
-* Return         : None
 *******************************************************************************/
 void USBDeviceInit(void)
 {
@@ -323,6 +305,7 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB using 1
 				}
 				HID_Rev = 1;
 			}
+			UEP2_CTRL = UEP2_CTRL & ~ MASK_UEP_R_RES | UEP_T_RES_NAK;//
             break; 
 			
 		case UIS_TOKEN_IN | 2:
@@ -356,10 +339,14 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB using 1
             if(len == (sizeof(USB_SETUP_REQ)))
             {
                 SetupLen = UsbSetupBuf->wLengthL;
+				if(UsbSetupBuf->wLengthH || SetupLen > 0x7F )
+                    SetupLen = 0x7F;   // 限制总长度
                 len = 0;    // 默认为成功并且上传0长度
                 SetupReq = UsbSetupBuf->bRequest;
+				
                 if ( ( UsbSetupBuf->bRequestType & USB_REQ_TYP_MASK ) != USB_REQ_TYP_STANDARD )/* HID类命令 */
                 {
+					len  = 0;///
 					switch( SetupReq ) //HID请求
 					{
 						case 0x01:
@@ -371,20 +358,13 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB using 1
 							break;
 						case 0x02:	break;
 						case 0x03:	break;
-						case 0x09:	break;
+						case 0x09:	if(UsbSetupBuf->bRequestType == 0x21) EnumOK = 1;	break;
 						case 0x0A:	UEP0_T_LEN = 0;		break;
 						case 0x0B:	break;
 						default:	len = 0xFF; /*命令不支持*/					
 							break;
 					}
-					if (SetupLen > len)
-                    {
-                        SetupLen = len; //限制总长度
-                    }
-                    len = SetupLen >= THIS_ENDP0_SIZE ? THIS_ENDP0_SIZE : SetupLen; //本次传输长度
-                    memcpy(Ep0Buffer, pDescr, len);                                 //加载上传数据
-                    SetupLen -= len;
-                    pDescr += len;
+					
                 }
                 else	  //标准请求
                 {
@@ -432,10 +412,10 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB using 1
                             len = 0xff;                //不支持的命令或者出错
                             break;
                         }
+						if ( len == 0xff )
+							break;	
                         if ( SetupLen > len )
-                        {
                             SetupLen = len;    //限制总长度
-                        }
                         len = SetupLen >= THIS_ENDP0_SIZE ? THIS_ENDP0_SIZE : SetupLen; //本次传输长度
                         memcpy(Ep0Buffer,pDescr,len);                        //加载上传数据
                         SetupLen -= len;
@@ -457,6 +437,8 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB using 1
 						{
 							Ready = 1;
 						}
+						else
+							Ready = 0;
 						break;
                     case 0x0A:
                         break;
@@ -485,6 +467,7 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB using 1
 									break;
 								case 0x03:
 									UEP3_CTRL = UEP3_CTRL & ~ ( bUEP_R_TOG | MASK_UEP_R_RES ) | UEP_R_RES_ACK;
+									break;
 								case 0x04:
 									UEP4_CTRL = UEP4_CTRL & ~ ( bUEP_R_TOG | MASK_UEP_R_RES ) | UEP_R_RES_ACK;
 									break;
@@ -626,6 +609,7 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB using 1
             break;
         case UIS_TOKEN_OUT | 0:  // endpoint0 OUT
             len = USB_RX_LEN;
+			UEP0_T_LEN = 0;
             if(SetupReq == 0x09)
             {
                 if(Ep0Buffer[0])
@@ -647,10 +631,10 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB using 1
     if(UIF_BUS_RST)                                                       //设备模式USB总线复位中断
     {
         UEP0_CTRL = UEP_R_RES_ACK | UEP_T_RES_NAK;
-        UEP1_CTRL = bUEP_AUTO_TOG | UEP_R_RES_ACK;
+        UEP1_CTRL = bUEP_AUTO_TOG | UEP_R_RES_ACK | UEP_T_RES_NAK;
         UEP2_CTRL = bUEP_AUTO_TOG | UEP_R_RES_ACK | UEP_T_RES_NAK;
-		UEP3_CTRL = bUEP_AUTO_TOG | UEP_R_RES_ACK;
-		UEP4_CTRL = UEP_R_RES_ACK;
+		UEP3_CTRL = bUEP_AUTO_TOG | UEP_R_RES_ACK | UEP_T_RES_NAK;
+		UEP4_CTRL = UEP_R_RES_ACK | UEP_T_RES_NAK;
         USB_DEV_AD = 0x00;
         UIF_SUSPEND = 0;
         UIF_TRANSFER = 0;
@@ -682,7 +666,7 @@ void mTimer0Interrupt( void ) interrupt INT_NO_TMR0
 	TL0 = 0x3CB0 & 0xff;
 	TH0 = (0x3CB0>>8) & 0xff; 
 	
-	if(con++ >= 20)
+	if(con++ >= 30)
 	{
 		if(Ready == 0)
 		{

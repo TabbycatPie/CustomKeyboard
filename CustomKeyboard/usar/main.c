@@ -620,35 +620,25 @@ void initKeyValue(){
 }
 
 void main(){
-  CfgFsys();                    //CH552时钟选择配置
-  mDelaymS(20);                 //修改主频等待内部晶振稳定,必加
-
-	/* 设置P1口为准双向IO口 */
-	P1_MOD_OC = 0xff;
-	P1_DIR_PU = 0xff;
-	
-	P3_MOD_OC = 0xFF;
-	P3_DIR_PU = 0xFF;
-	
-	UEP1_T_LEN = 0;      //预使用发送长度一定要清空
-	UEP2_T_LEN = 0;      //预使用发送长度一定要清空
-	FLAG = 0;
-	Ready = 0;
-	
+	CfgFsys();                    //CH552时钟选择配置
+	mDelaymS(50);                 //修改主频等待内部晶振稳定,必加
 	USBDeviceInit();              //USB设备模式初始化
 	initKeyValue();              	//intialize key 
-	
 	EA = 1;                       //允许单片机中断
-	//等待USB枚举成功
-	while(Ready == 0);
+
 	while(1)
 	{
 		if(Ready)
 		{
+			//USB枚举成功处理
 			scanKey();
 			HIDsend();
 			handleReceive();
 			FLAG = 0;
+		}
+		else
+		{
+			//这里是USB未枚举成功处理
 		}
 	}
 }
