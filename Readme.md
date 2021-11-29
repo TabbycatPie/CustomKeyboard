@@ -1,6 +1,6 @@
 ## File Structure
 
-There are 2 floders and 13 branches
+There are 2 floders and many branches
 
 ### Folders
 
@@ -12,6 +12,8 @@ There are 2 floders and 13 branches
 * **main:** newest developping version with HID log and new UI (testing...).
 * **Version 3.0:** new UI.
 * **FinalVersion 2.1:** most "stable" version. (ゝω・´★)
+
+
 
 ## Download
 
@@ -147,7 +149,7 @@ What if my keyboard doesn't working?
 
 2. Press a button but nothing happened (open ZDDKeyboardSetter.exe searching for device,but result in "can not found device"): Maybe your device is not connected to your PC, unplug your device and plug it into another port.
 
-3. The device worked correctly, but ZDDKeyboardSetter.exe keep failing to find your device:
+3. The device worked correctly, but ZDDKeyboardSetter.exe keep failing to find your device or download:
 
    * Change to another USB port will temporarily solve this problem.
 
@@ -162,5 +164,4 @@ What if my keyboard doesn't working?
      4. Double click on one of them, a setting page will pop up,then click "Event" Tab.
 
      5. Find the device with VID_5131 PID_2019 and uninstall the driver.(Right click on corresponding "USB Composite Device").
-     6. Re-plug in your device.
-
+     6. Plug in your device again to make your PC reinstall the driver
