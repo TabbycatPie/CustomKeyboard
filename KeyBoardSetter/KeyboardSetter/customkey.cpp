@@ -95,6 +95,8 @@ bool CustomKey::deleteTopKey(){
 void CustomKey::setKey(KeyValue *_key){
     //this is not a macro key,because there is only one keyvalue in the vector
     is_macro = false;
+    if(_key->getDelay()!=0)
+        is_macro = true;
     if(_key->getMediaKeyIndex()!=0){
         //this is a media key
         is_media = true;
