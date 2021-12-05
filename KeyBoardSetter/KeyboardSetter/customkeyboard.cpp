@@ -132,7 +132,7 @@ bool CustomKeyboard::checkMacroAddable(int cur_key_no){
 int CustomKeyboard::download(HIDCodeTable *table){
     //open device
     hid_device *my_device;
-    my_device = hid_open(vid,pid,nullptr);
+    my_device = hid_open(vid,pid,1,nullptr);
     if(my_device!=NULL){
         //open success,prepare data
         qDebug() << "device opened" <<endl;
@@ -369,7 +369,7 @@ bool CustomKeyboard::testHardware()
 {
     //open device
     hid_device *my_device;
-    my_device = hid_open(vid,pid,nullptr);
+    my_device = hid_open(vid,pid,1,nullptr);
     bool is_ok = false;
     if(my_device!=NULL){
         qDebug() << "device opened.";
@@ -440,7 +440,7 @@ bool CustomKeyboard::tryOpen()
 {
     //open device
     hid_device *my_device;
-    my_device = hid_open(vid,pid,nullptr);
+    my_device = hid_open(vid,pid,1,nullptr);
     bool success = true;
     if(my_device==NULL){
         success = false;
@@ -468,7 +468,7 @@ int CustomKeyboard::getVersion()
     //open device
     hid_device *my_device;
     int ret = 0;
-    my_device = hid_open(vid,pid,nullptr);
+    my_device = hid_open(vid,pid,1,nullptr);
     if(my_device!=nullptr){
         uchar test_frame[65]={0x00};
         test_frame[0] = 0x00;
