@@ -22,6 +22,7 @@ SOURCES += \
     customkey.cpp \
     customkeyboard.cpp \
     devicefinder.cpp \
+    hidapi.c \
     hidcodetable.cpp \
     keyvalue.cpp \
     main.cpp \
@@ -52,7 +53,9 @@ FORMS += \
     mainwindow.ui \
     settingform.ui
 
-LIBS += -L$$_PRO_FILE_PWD_/  -l hidapi
+LIBS += -L$$_PRO_FILE_PWD_/  libusb-1.0
+LIBS +=  -lsetupapi
+
 
 TRANSLATIONS += trans_zh_CN.ts
 TRANSLATIONS += trans_en_US.ts
