@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "configform.h"
 #include "devicefinder.h"
 
 #include <QApplication>
@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     //load window
 
     DeviceFinder dw;
-    MainWindow w;
+    ConfigForm w;
 
     dw.setMw(&w);
     dw.show();

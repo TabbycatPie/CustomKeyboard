@@ -2,8 +2,8 @@
 #define DEVICEFINDER_H
 
 
-#include "mainwindow.h"
 #include <QMainWindow>
+#include <configform.h>
 
 namespace Ui {
 class DeviceFinder;
@@ -17,11 +17,11 @@ public:
     explicit DeviceFinder(QWidget *parent = nullptr);
 
     ~DeviceFinder();
-    void setMw(MainWindow* mainwindow);
+    void setMw(ConfigForm* mainwindow);
 
 private:
     Ui::DeviceFinder *ui;
-    MainWindow*  mw;
+    ConfigForm*  mw;
     void changeLanguage(QString language);
     void openMainWindow();
 };

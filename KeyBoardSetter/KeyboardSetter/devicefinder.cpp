@@ -84,7 +84,7 @@ DeviceFinder::~DeviceFinder(){
     delete ui;
 }
 
-void DeviceFinder::setMw(MainWindow* mainwindow){
+void DeviceFinder::setMw(ConfigForm* mainwindow){
     this->mw = mainwindow;
 }
 
@@ -113,7 +113,6 @@ void DeviceFinder::changeLanguage(QString language){
 
 void DeviceFinder::openMainWindow(){
     this->mw->show();
-    this->mw->initData(translator);
     this->close();
 }
 

@@ -93,6 +93,7 @@ ConfigForm::ConfigForm(QWidget *parent)
         SettingForm *sf = new SettingForm(this);
         sf->show();
     });
+    this->setWindowTitle(tr("ZDDKeyboardSetter"));
 }
 bool ConfigForm::deleteKeyValue(){
     //delet from current key
@@ -132,36 +133,28 @@ void ConfigForm::delayindecrease(bool is_add){
 }
 bool ConfigForm::downloadToDevice(){
     int result = -1;
-    QMessageBox msg_info(this);
-    msg_info.setStyleSheet("color:rgb(242, 242, 222);");
-    msg_info.setWindowTitle(tr("Notice"));
-    msg_info.setText(tr("Are you sure to download config to your device:") + my_ckb->getName()+"?");
-    msg_info.setIcon(QMessageBox::Question);
-    msg_info.setStandardButtons(QMessageBox::Ok | QMessageBox:: Cancel);
-    if(msg_info.exec() == QMessageBox::Ok){
-        QMessageBox msg_result(this);
-        msg_result.setStyleSheet("color:rgb(242, 242, 222);");
-        result = my_ckb->download(&cf_table);
-        if(result == 1){
-            msg_result.setWindowTitle(tr("Notice"));
-            msg_result.setText(tr("Download finished!"));
-            msg_result.setIcon(QMessageBox::Information);
-            msg_result.setStandardButtons(QMessageBox::Ok);
-        }
-        else if(result == -1){
-            msg_result.setWindowTitle(tr("Error"));
-            msg_result.setText(tr("Download Error :") + my_ckb->getLastError());
-            msg_result.setIcon(QMessageBox::Critical);
-            msg_result.setStandardButtons(QMessageBox::Ok);
-        }
-        else{
-            msg_result.setWindowTitle(tr("Notice"));
-            msg_result.setText(tr("Download finished! But there may be some errors."));
-            msg_result.setIcon(QMessageBox::Information);
-            msg_result.setStandardButtons(QMessageBox::Ok);
-        }
-        msg_result.exec();
+    QMessageBox msg_result(this);
+    msg_result.setStyleSheet("color:rgb(242, 242, 222);");
+    result = my_ckb->download(&cf_table);
+    if(result == 1){
+        msg_result.setWindowTitle(tr("Notice"));
+        msg_result.setText(tr("Download finished!"));
+        msg_result.setIcon(QMessageBox::Information);
+        msg_result.setStandardButtons(QMessageBox::Ok);
     }
+    else if(result == -1){
+        msg_result.setWindowTitle(tr("Error"));
+        msg_result.setText(tr("Download Error :") + my_ckb->getLastError());
+        msg_result.setIcon(QMessageBox::Critical);
+        msg_result.setStandardButtons(QMessageBox::Ok);
+    }
+    else{
+        msg_result.setWindowTitle(tr("Notice"));
+        msg_result.setText(tr("Download finished! But there may be some errors."));
+        msg_result.setIcon(QMessageBox::Information);
+        msg_result.setStandardButtons(QMessageBox::Ok);
+    }
+    msg_result.exec();
     return result;
 }
 bool ConfigForm::loadConfigFromFile(){

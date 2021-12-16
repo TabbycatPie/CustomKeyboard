@@ -18,7 +18,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     configform.cpp \
     configsaver.cpp \
-    configwindow.cpp \
     customkey.cpp \
     customkeyboard.cpp \
     devicefinder.cpp \
@@ -26,7 +25,6 @@ SOURCES += \
     hidcodetable.cpp \
     keyvalue.cpp \
     main.cpp \
-    mainwindow.cpp \
     settingform.cpp \
     uipainter.cpp \
     userconfig.cpp
@@ -34,23 +32,19 @@ SOURCES += \
 HEADERS += \
     configform.h \
     configsaver.h \
-    configwindow.h \
     customkey.h \
     customkeyboard.h \
     devicefinder.h \
     hidapi.h \
     hidcodetable.h \
     keyvalue.h \
-    mainwindow.h \
     settingform.h \
     uipainter.h \
     userconfig.h
 
 FORMS += \
     configform.ui \
-    configwindow.ui \
     devicefinder.ui \
-    mainwindow.ui \
     settingform.ui
 
 LIBS += -L$$_PRO_FILE_PWD_/  libusb-1.0
