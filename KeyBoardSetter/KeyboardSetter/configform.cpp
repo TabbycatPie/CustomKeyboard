@@ -216,6 +216,7 @@ bool ConfigForm::saveConfigToFile()
         }
         delete saver;
     }
+    return false;
 }
 //soft key press function
 void ConfigForm::softKeyPressed(int i){
@@ -491,13 +492,9 @@ void updateUI(){
 void initUI(QWidget* qw){
     painter = new UIPainter(qw,qw);
     painter->drawCKB(450-(int)(painter->getCKBWigth(col)/2),painter->getUI_part_margin(),col,row);
-
     painter->drawOutputPort(painter->getUI_part_margin(),painter->getCKBHeight(row)+50);
-
     painter->drawSwitch(painter->getUI_part_margin(),painter->getCKBHeight(row)+painter->getPortHeight()+55);
-
     painter->drawVKBfull(painter->getUI_part_margin(),painter->getCKBHeight(row)+painter->getPortHeight()+80);
-
     //test show_only_mouse
     //painter->hideVKB();
     painter->drawVMouse(painter->getUI_part_margin(),painter->getCKBHeight(row)+painter->getPortHeight()+80);
@@ -506,7 +503,6 @@ void initUI(QWidget* qw){
     painter->hideAdvPanel();
 
     QVector<QPushButton*> *temp = painter->getSW_list();
-
     qw->connect(temp->data()[0],&QPushButton::clicked,qw,[=]{
         painter->switchVinput(painter->VKEYBOARD);
     });
