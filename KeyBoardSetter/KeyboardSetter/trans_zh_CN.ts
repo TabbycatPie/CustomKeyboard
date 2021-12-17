@@ -47,7 +47,7 @@
     <message>
         <location filename="configform.cpp" line="96"/>
         <source>ZDDKeyboardSetter</source>
-        <translation type="unfinished">ZDD键盘设置器</translation>
+        <translation>ZDD键盘设置器</translation>
     </message>
     <message>
         <location filename="configform.cpp" line="141"/>
