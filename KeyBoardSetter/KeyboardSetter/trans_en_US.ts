@@ -33,10 +33,10 @@
         <location filename="configform.cpp" line="152"/>
         <location filename="configform.cpp" line="182"/>
         <location filename="configform.cpp" line="210"/>
-        <location filename="configform.cpp" line="317"/>
-        <location filename="configform.cpp" line="328"/>
-        <location filename="configform.cpp" line="339"/>
-        <location filename="configform.cpp" line="356"/>
+        <location filename="configform.cpp" line="318"/>
+        <location filename="configform.cpp" line="329"/>
+        <location filename="configform.cpp" line="340"/>
+        <location filename="configform.cpp" line="357"/>
         <source>Notice</source>
         <translation>Notice</translation>
     </message>
@@ -109,22 +109,22 @@
         <translation>Saved Successfully!</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="317"/>
+        <location filename="configform.cpp" line="318"/>
         <source>You can NOT add mouse event to Macro!</source>
         <translation>You can NOT add mouse event to Macro!</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="328"/>
+        <location filename="configform.cpp" line="329"/>
         <source>You can NOT add meida key to Macro!</source>
         <translation>You can NOT add meida key to Macro!</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="339"/>
+        <location filename="configform.cpp" line="340"/>
         <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
         <translation>You can NOT set MEDIA or MOUSE key to Macro!</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="356"/>
+        <location filename="configform.cpp" line="357"/>
         <source>Can NOT add key macro : hardware limitation!</source>
         <translation>Can NOT add key macro : hardware limitation!</translation>
     </message>
@@ -676,10 +676,21 @@
 <context>
     <name>SettingForm</name>
     <message>
-        <location filename="settingform.cpp" line="34"/>
+        <location filename="settingform.cpp" line="37"/>
         <source>Settings</source>
         <translatorcomment>Settings</translatorcomment>
         <translation>Settings</translation>
+    </message>
+    <message>
+        <location filename="settingform.cpp" line="46"/>
+        <source>Notice</source>
+        <translatorcomment>Notice</translatorcomment>
+        <translation>Notice</translation>
+    </message>
+    <message>
+        <location filename="settingform.cpp" line="47"/>
+        <source>A Restart is needed to apply language changing.</source>
+        <translation></translation>
     </message>
 </context>
 <context>

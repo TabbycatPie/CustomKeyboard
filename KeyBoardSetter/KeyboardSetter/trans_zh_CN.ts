@@ -33,10 +33,10 @@
         <location filename="configform.cpp" line="152"/>
         <location filename="configform.cpp" line="182"/>
         <location filename="configform.cpp" line="210"/>
-        <location filename="configform.cpp" line="317"/>
-        <location filename="configform.cpp" line="328"/>
-        <location filename="configform.cpp" line="339"/>
-        <location filename="configform.cpp" line="356"/>
+        <location filename="configform.cpp" line="318"/>
+        <location filename="configform.cpp" line="329"/>
+        <location filename="configform.cpp" line="340"/>
+        <location filename="configform.cpp" line="357"/>
         <source>Notice</source>
         <translation>提示</translation>
     </message>
@@ -108,22 +108,22 @@
         <translation>保存成功!</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="317"/>
+        <location filename="configform.cpp" line="318"/>
         <source>You can NOT add mouse event to Macro!</source>
         <translation>无法将鼠标键添加到宏！</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="328"/>
+        <location filename="configform.cpp" line="329"/>
         <source>You can NOT add meida key to Macro!</source>
         <translation>无法将多媒体键添加到宏！</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="339"/>
+        <location filename="configform.cpp" line="340"/>
         <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
         <translation>无法在宏键中添加鼠标或多媒体键值！</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="356"/>
+        <location filename="configform.cpp" line="357"/>
         <source>Can NOT add key macro : hardware limitation!</source>
         <translation>无法添加更多的宏键值：已达到硬件限制！</translation>
     </message>
@@ -249,7 +249,7 @@
     <message>
         <location filename="devicefinder.ui" line="82"/>
         <source>Then press Search</source>
-        <translation>然后点击收缩</translation>
+        <translation>然后点击搜索</translation>
     </message>
     <message>
         <location filename="devicefinder.ui" line="98"/>
@@ -597,9 +597,19 @@
 <context>
     <name>SettingForm</name>
     <message>
-        <location filename="settingform.cpp" line="34"/>
+        <location filename="settingform.cpp" line="37"/>
         <source>Settings</source>
         <translation>设置</translation>
+    </message>
+    <message>
+        <location filename="settingform.cpp" line="46"/>
+        <source>Notice</source>
+        <translation>提示</translation>
+    </message>
+    <message>
+        <location filename="settingform.cpp" line="47"/>
+        <source>A Restart is needed to apply language changing.</source>
+        <translation>切换语言后需要重启软件应用设置。</translation>
     </message>
 </context>
 <context>

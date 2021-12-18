@@ -5,6 +5,7 @@
 #include "configform.h"
 #include <qjsonobject.h>
 #include <QDebug>
+#include <QMessageBox>
 
 SettingForm::SettingForm(ConfigForm *mainwindow,QWidget *parent) :
     QWidget(parent),
@@ -25,8 +26,10 @@ SettingForm::SettingForm(ConfigForm *mainwindow,QWidget *parent) :
     UserConfig *uc = UserConfig::fromJson(*jsonobj);
     if(uc->getLanguage()=="english"){
         changeLanguage('e');
+        this->cur_lang = 'e';
     }else{
         changeLanguage('c');
+        this->cur_lang = 'c';
     }
     //type setting
     setWindowFlags(Qt::WindowStaysOnTopHint|Qt::CustomizeWindowHint|Qt::WindowCloseButtonHint);
@@ -35,14 +38,27 @@ SettingForm::SettingForm(ConfigForm *mainwindow,QWidget *parent) :
 
     //connect functions
     connect(ui->btn_sf_ok,&QPushButton::clicked,this,[=]{
+        //notice user to restart
+        if(cur_lang!=sel_lang){
+            //if there is a language changing
+            QMessageBox msg_info(this);
+            msg_info.setStyleSheet("color:rgb(242, 242, 222);");
+            msg_info.setWindowTitle(tr("Notice"));
+            msg_info.setText(tr("A Restart is needed to apply language changing."));
+            msg_info.setIcon(QMessageBox::Information);
+            msg_info.setStandardButtons(QMessageBox::Ok);
+            msg_info.exec();
+        }
         this->close();
     });
     connect(ui->btn_sf_chinese,&QPushButton::clicked,this,[=]{
         changeLanguage('c');
+        this->sel_lang = 'c';
         mainwindow->changeLanguage("cn");
     });
     connect(ui->btn_sf_english,&QPushButton::clicked,this,[=]{
         changeLanguage('e');
+        this->sel_lang = 'e';
         mainwindow->changeLanguage("en");
     });
 }
