@@ -690,7 +690,8 @@
     <message>
         <location filename="settingform.cpp" line="47"/>
         <source>A Restart is needed to apply language changing.</source>
-        <translation></translation>
+        <translatorcomment>A Restart is needed to apply language changing.</translatorcomment>
+        <translation>A Restart is needed to apply language changing.</translation>
     </message>
 </context>
 <context>
