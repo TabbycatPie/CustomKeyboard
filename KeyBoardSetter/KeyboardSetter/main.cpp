@@ -15,7 +15,14 @@ int main(int argc, char *argv[])
     ConfigForm w;
 
     dw.setMw(&w);
-    dw.show();
+    //load main window when device is pluged in
+    //justify wether the device is pluged in
+    QPushButton *(*empty);
+    if(CustomKeyboard("tryopen",0,0x2019,0x5131,empty).tryOpen())
+        w.show();
+    else
+        dw.show();
+    delete empty;
 
     return a.exec();
 }

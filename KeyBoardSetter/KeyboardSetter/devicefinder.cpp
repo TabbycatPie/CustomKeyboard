@@ -17,7 +17,6 @@ DeviceFinder::DeviceFinder(QWidget *parent) :
     ui(new Ui::DeviceFinder)
 {
     ui->setupUi(this);
-
     //translator
     //inti translator
     translator = new QTranslator();
@@ -33,6 +32,7 @@ DeviceFinder::DeviceFinder(QWidget *parent) :
     }else{
         changeLanguage("cn");
     }
+
 
     //while(true){
     //    version = ckb[0]->getVersion();
