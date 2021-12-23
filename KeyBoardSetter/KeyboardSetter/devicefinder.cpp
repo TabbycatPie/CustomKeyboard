@@ -21,14 +21,6 @@ DeviceFinder::DeviceFinder(QWidget *parent) :
     //inti translator
     translator = new QTranslator();
 
-    //if the device is plugged in open main window
-    QPushButton *(*empty);
-    if(CustomKeyboard("tryopen",0,0x2019,0x5131,empty).tryOpen()){
-        this->showable = false;
-        openMainWindow();
-    }
-    delete empty;
-
     //load from config
     ConfigSaver cs;
     QString filename =  QCoreApplication::applicationDirPath() + "//usercondif.ini";
@@ -40,6 +32,12 @@ DeviceFinder::DeviceFinder(QWidget *parent) :
         changeLanguage("en");
     }else{
         changeLanguage("cn");
+    }
+
+    //if the device is plugged in open main window
+    if(CustomKeyboard(0x2019,0x5131).tryOpen()){
+        this->showable = false;
+        openMainWindow();
     }
 
     //developer skip button
@@ -56,8 +54,7 @@ DeviceFinder::DeviceFinder(QWidget *parent) :
         ui->sub_label->repaint();
         QThread::msleep(300);
         //justify wether the device is pluged in
-        QPushButton *(*empty);
-        if(CustomKeyboard("tryopen",0,0x2019,0x5131,empty).tryOpen()){
+        if(CustomKeyboard(0x2019,0x5131).tryOpen()){
             ui->main_label->setText(tr(" Device found! "));
             ui->sub_label->setText(tr(""));
             ui->main_label->repaint();
@@ -68,7 +65,6 @@ DeviceFinder::DeviceFinder(QWidget *parent) :
             ui->main_label->setText(tr(" Device not found! "));
             ui->sub_label->setText(tr("please pulgin your device"));
         }
-        delete empty;
     });
 }
 

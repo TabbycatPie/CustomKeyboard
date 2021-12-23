@@ -14,6 +14,7 @@ public:
     //contructor
     CustomKeyboard(QString _name,int keynum,unsigned short pid,unsigned short vid,QPushButton *(*_btn_list));
     CustomKeyboard(QString _name,int keynum,unsigned short pid,unsigned short vid,QVector<QPushButton*> *btn_list);
+    CustomKeyboard(unsigned short pid, unsigned short vid);
     //getter and setter
     void setMacroConfig(int mlen,int mcount,int mspkey,int mdelay);
     unsigned short getPid();

@@ -63,6 +63,15 @@ CustomKeyboard::CustomKeyboard(QString _name, int keynum, unsigned short pid, un
         spkey_mixcode[x]=0x00;
     }
 }
+
+CustomKeyboard::CustomKeyboard(unsigned short pid, unsigned short vid)
+{
+    this->pid = pid;
+    this->vid = vid;
+    this->normal_keycode = new uchar[1];
+    this->spkey_mixcode = new uchar[1];
+}
+
 void CustomKeyboard::setMacroConfig(int mlen, int mcount, int mspkey, int mdelay)
 {
     this->macro_mem = mlen;
