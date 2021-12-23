@@ -20,6 +20,15 @@ DeviceFinder::DeviceFinder(QWidget *parent) :
     //translator
     //inti translator
     translator = new QTranslator();
+
+    //if the device is plugged in open main window
+    QPushButton *(*empty);
+    if(CustomKeyboard("tryopen",0,0x2019,0x5131,empty).tryOpen()){
+        this->showable = false;
+        openMainWindow();
+    }
+    delete empty;
+
     //load from config
     ConfigSaver cs;
     QString filename =  QCoreApplication::applicationDirPath() + "//usercondif.ini";
@@ -32,23 +41,6 @@ DeviceFinder::DeviceFinder(QWidget *parent) :
     }else{
         changeLanguage("cn");
     }
-
-
-    //while(true){
-    //    version = ckb[0]->getVersion();
-    //    if(version<0){
-    //        QMessageBox msg_info(this);
-    //        msg_info.setWindowTitle(tr("Notice"));
-    //        msg_info.setText(tr("Device not found,please connect then press ok."));
-    //        msg_info.setIcon(QMessageBox::Information);
-    //        msg_info.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
-    //        if(msg_info.exec()==QMessageBox::Cancel){
-    //            break;
-    //        }
-    //    }else
-    //        break;
-    //}
-
 
     //developer skip button
     connect(ui->btn_skip,&QPushButton::clicked,this,[=]{
@@ -88,6 +80,12 @@ void DeviceFinder::setMw(ConfigForm* mainwindow){
     this->mw = mainwindow;
 }
 
+void DeviceFinder::smartShow()
+{
+    if(this->showable)
+        this->show();
+}
+
 void DeviceFinder::changeLanguage(QString language){
     if(language=="cn"){
         QString path = QCoreApplication::applicationDirPath() + "//trans_zh_CN.qm";
@@ -112,6 +110,7 @@ void DeviceFinder::changeLanguage(QString language){
 }
 
 void DeviceFinder::openMainWindow(){
+    setMw(new ConfigForm());
     this->mw->show();
     this->close();
 }

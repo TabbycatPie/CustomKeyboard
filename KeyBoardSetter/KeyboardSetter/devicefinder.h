@@ -18,6 +18,8 @@ public:
 
     ~DeviceFinder();
     void setMw(ConfigForm* mainwindow);
+    void smartShow();
+    bool showable = true;
 
 private:
     Ui::DeviceFinder *ui;
