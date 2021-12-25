@@ -282,7 +282,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="30"/>
         <source>None</source>
-        <translation>无</translation>
+        <translation>未设置</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="31"/>
@@ -499,7 +499,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="57"/>
         <source>Backspace</source>
-        <translation>退格</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="58"/>
@@ -589,12 +589,12 @@
     <message>
         <location filename="hidcodetable.cpp" line="72"/>
         <source>Caps</source>
-        <translation>大写</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="72"/>
         <source>Caps Lock</source>
-        <translation>大写锁定</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="73"/>
@@ -665,7 +665,7 @@
         <location filename="hidcodetable.cpp" line="84"/>
         <location filename="hidcodetable.cpp" line="131"/>
         <source>Enter</source>
-        <translation>回车</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="85"/>
@@ -769,7 +769,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="98"/>
         <source>LWin</source>
-        <translation>左徽标</translation>
+        <translation>左Win</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="99"/>
@@ -785,7 +785,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="100"/>
         <source>Space</source>
-        <translation>空格</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="101"/>
@@ -795,7 +795,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="102"/>
         <source>RWin</source>
-        <translation>右徽标</translation>
+        <translation>右Win</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="103"/>
@@ -810,7 +810,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="104"/>
         <source>Print Screen</source>
-        <translation>打印屏幕</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="105"/>
@@ -820,7 +820,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="105"/>
         <source>Scroll Lock</source>
-        <translation>滑动锁定</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="106"/>
@@ -830,7 +830,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="106"/>
         <source>Pause</source>
-        <translation>暂停</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="107"/>
@@ -840,7 +840,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="107"/>
         <source>Insert</source>
-        <translation>插入</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="108"/>
@@ -860,7 +860,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="109"/>
         <source>PageUp</source>
-        <translation>上一页</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="110"/>
@@ -870,7 +870,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="110"/>
         <source>Delete</source>
-        <translation>删除</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="111"/>
@@ -885,7 +885,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="112"/>
         <source>PageDown</source>
-        <translation>下一页</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="113"/>
@@ -895,7 +895,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="113"/>
         <source>Arrow UP</source>
-        <translation>上箭头</translation>
+        <translation>上</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="114"/>
@@ -905,7 +905,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="114"/>
         <source>Arrow Left</source>
-        <translation>左箭头</translation>
+        <translation>左</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="115"/>
@@ -915,7 +915,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="115"/>
         <source>Arrow Down</source>
-        <translation>下箭头</translation>
+        <translation>下</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="116"/>
@@ -925,7 +925,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="116"/>
         <source>Arrow Right</source>
-        <translation>右箭头</translation>
+        <translation>右</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="117"/>
@@ -940,7 +940,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="118"/>
         <source>/(p)</source>
-        <translation></translation>
+        <translation>/[小键盘]</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="119"/>
@@ -950,72 +950,72 @@
     <message>
         <location filename="hidcodetable.cpp" line="119"/>
         <source>*(p)</source>
-        <translation>*（小键盘）</translation>
+        <translation>*[小键盘]</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="120"/>
         <source>-(p)</source>
-        <translation>-（小键盘）</translation>
+        <translation>-[小键盘]</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="121"/>
         <source>7(p)</source>
-        <translation>7（小键盘）</translation>
+        <translation>7[小键盘]</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="122"/>
         <source>8(p)</source>
-        <translation>8（小键盘）</translation>
+        <translation>8[小键盘]</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="123"/>
         <source>9(p)</source>
-        <translation>9（小键盘）</translation>
+        <translation>9[小键盘]</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="124"/>
         <source>+(p)</source>
-        <translation>+（小键盘）</translation>
+        <translation>+[小键盘]</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="125"/>
         <source>4(p)</source>
-        <translation>4（（小键盘））</translation>
+        <translation>4[小键盘]</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="126"/>
         <source>5(p)</source>
-        <translation>5（小键盘）</translation>
+        <translation>5[小键盘]</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="127"/>
         <source>6(p)</source>
-        <translation>6（小键盘）</translation>
+        <translation>6[小键盘]</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="128"/>
         <source>1(p)</source>
-        <translation>1（小键盘）</translation>
+        <translation>1[小键盘]</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="129"/>
         <source>2(p)</source>
-        <translation>2（小键盘）</translation>
+        <translation>2[小键盘]</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="130"/>
         <source>3(p)</source>
-        <translation>3（小键盘）</translation>
+        <translation>3[小键盘]</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="131"/>
         <source>Enter(p)</source>
-        <translation>回车（小键盘）</translation>
+        <translation>Enter[小键盘]</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="132"/>
         <source>0(p)</source>
-        <translation>0（小键盘）</translation>
+        <translation>0[小键盘]</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="133"/>
@@ -1025,7 +1025,7 @@
     <message>
         <location filename="hidcodetable.cpp" line="133"/>
         <source>.(p)</source>
-        <translation>.（小键盘）</translation>
+        <translation>.[小键盘]</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="134"/>
@@ -1045,12 +1045,12 @@
     <message>
         <location filename="hidcodetable.cpp" line="137"/>
         <source>VolumeDown</source>
-        <translation>音量-</translation>
+        <translation>音量减</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="138"/>
         <source>VolumeUp</source>
-        <translation>音量+</translation>
+        <translation>音量加</translation>
     </message>
     <message>
         <location filename="hidcodetable.cpp" line="139"/>
@@ -1475,7 +1475,7 @@
     <message>
         <location filename="configform.cpp" line="460"/>
         <source>None</source>
-        <translation>无</translation>
+        <translation>未设置</translation>
     </message>
 </context>
 <context>
