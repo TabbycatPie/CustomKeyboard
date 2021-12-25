@@ -217,27 +217,27 @@
 <context>
     <name>CustomKeyboard</name>
     <message>
-        <location filename="customkeyboard.cpp" line="315"/>
+        <location filename="customkeyboard.cpp" line="324"/>
         <source>Can not get all ACKs!</source>
         <translation>Can not get all ACKs!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="330"/>
+        <location filename="customkeyboard.cpp" line="339"/>
         <source>Data sending is failed!</source>
         <translation>Data sending is failed!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="340"/>
+        <location filename="customkeyboard.cpp" line="349"/>
         <source>Can not open device!</source>
         <translation>Can not open device!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="351"/>
+        <location filename="customkeyboard.cpp" line="360"/>
         <source>Can not read ACK frame.</source>
         <translation>Can not read ACK frame.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="361"/>
+        <location filename="customkeyboard.cpp" line="370"/>
         <source>ACK not correct.</source>
         <translation>ACK not correct.</translation>
     </message>
@@ -270,22 +270,22 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="devicefinder.cpp" line="61"/>
+        <location filename="devicefinder.cpp" line="51"/>
         <source> Searching ... </source>
         <translation> Searching ... </translation>
     </message>
     <message>
-        <location filename="devicefinder.cpp" line="69"/>
+        <location filename="devicefinder.cpp" line="58"/>
         <source> Device found! </source>
         <translation> Device found! </translation>
     </message>
     <message>
-        <location filename="devicefinder.cpp" line="76"/>
+        <location filename="devicefinder.cpp" line="65"/>
         <source> Device not found! </source>
         <translation> Device not found! </translation>
     </message>
     <message>
-        <location filename="devicefinder.cpp" line="77"/>
+        <location filename="devicefinder.cpp" line="66"/>
         <source>please pulgin your device</source>
         <translation>please pulgin your device</translation>
     </message>
@@ -671,6 +671,14 @@
     <message>
         <source>Can NOT add key macro : hardware limitation!</source>
         <translation type="vanished">Can NOT add key macro : hardware limitation!</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="hidcodetable.cpp" line="39"/>
+        <source>Backspace</source>
+        <translation>Backspace</translation>
     </message>
 </context>
 <context>

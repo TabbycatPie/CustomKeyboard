@@ -196,17 +196,17 @@
 <context>
     <name>CustomKeyboard</name>
     <message>
-        <location filename="customkeyboard.cpp" line="330"/>
+        <location filename="customkeyboard.cpp" line="339"/>
         <source>Data sending is failed!</source>
         <translation>数据发送过程中错误!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="315"/>
+        <location filename="customkeyboard.cpp" line="324"/>
         <source>Can not get all ACKs!</source>
         <translation>未获取所有ACK帧!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="340"/>
+        <location filename="customkeyboard.cpp" line="349"/>
         <source>Can not open device!</source>
         <translation>设备未找到！</translation>
     </message>
@@ -215,12 +215,12 @@
         <translation type="vanished">无法获取校验帧.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="351"/>
+        <location filename="customkeyboard.cpp" line="360"/>
         <source>Can not read ACK frame.</source>
         <translation>无法读取ACK帧.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="361"/>
+        <location filename="customkeyboard.cpp" line="370"/>
         <source>ACK not correct.</source>
         <translation>ACK帧不正确.</translation>
     </message>
@@ -257,22 +257,22 @@
         <translation>跳过</translation>
     </message>
     <message>
-        <location filename="devicefinder.cpp" line="61"/>
+        <location filename="devicefinder.cpp" line="51"/>
         <source> Searching ... </source>
         <translation> 正在搜索 ... </translation>
     </message>
     <message>
-        <location filename="devicefinder.cpp" line="69"/>
+        <location filename="devicefinder.cpp" line="58"/>
         <source> Device found! </source>
         <translation> 发现设备! </translation>
     </message>
     <message>
-        <location filename="devicefinder.cpp" line="76"/>
+        <location filename="devicefinder.cpp" line="65"/>
         <source> Device not found! </source>
         <translation> 设备未找到! </translation>
     </message>
     <message>
-        <location filename="devicefinder.cpp" line="77"/>
+        <location filename="devicefinder.cpp" line="66"/>
         <source>please pulgin your device</source>
         <translation>请插入设备</translation>
     </message>
@@ -592,6 +592,14 @@
     <message>
         <source>Can NOT add key macro : hardware limitation!</source>
         <translation type="vanished">无法添加更多的宏键值：已达到硬件限制！</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="hidcodetable.cpp" line="39"/>
+        <source>Backspace</source>
+        <translation>退格</translation>
     </message>
 </context>
 <context>

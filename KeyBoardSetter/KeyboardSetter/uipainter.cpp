@@ -126,7 +126,7 @@ void UIPainter::drawADVpanel(int x,int y){
     int cur_y = y;
     HIDCodeTable *t = new HIDCodeTable();
     //draw multi-media keys
-    for(int i = 107;i<=112;i++){
+    for(int i = 107;i<=113;i++){
         this->Vkey_list->append(drawVKey(cur_x,cur_y,2.0,1.0,t->getButtonNmae(i)));
         cur_x+= 2.0*(this->VKey_len+this->Vkey_inter_margin);
     }
@@ -134,7 +134,7 @@ void UIPainter::drawADVpanel(int x,int y){
     cur_y+= this->VKey_len + this->Vkey_inter_margin;
     cur_x = x;
     //draw f13~f24 keys
-    for(int i = 113;i<=124;i++){
+    for(int i = 114;i<=125;i++){
         this->Vkey_list->append(drawVKey(cur_x,cur_y,1.0,1.0,t->getButtonNmae(i)));
         cur_x+= 1.0*this->VKey_len+this->Vkey_inter_margin;
     }
@@ -192,13 +192,13 @@ QPushButton *UIPainter::getBtn_delete() const
     return btn_delete;
 }
 void UIPainter::showAdvPanel(){
-    for(int i = 106;i<124;i++){
+    for(int i = 106;i<125;i++){
         this->Vkey_list->data()[i]->show();
     }
     showDelayPart();
 };
 void UIPainter::hideAdvPanel(){
-    for(int i = 106;i<124;i++){
+    for(int i = 106;i<125;i++){
         this->Vkey_list->data()[i]->hide();
     }
     hideDelayPart();
