@@ -291,6 +291,867 @@
     </message>
 </context>
 <context>
+    <name>HIDCodeTable</name>
+    <message>
+        <location filename="hidcodetable.cpp" line="30"/>
+        <source>None</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="31"/>
+        <source>Esc</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="31"/>
+        <source>Escape</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="32"/>
+        <source>F1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="33"/>
+        <source>F2</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="34"/>
+        <source>F3</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="35"/>
+        <source>F4</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="36"/>
+        <source>F5</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="37"/>
+        <source>F6</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="38"/>
+        <source>F7</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="39"/>
+        <source>F8</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="40"/>
+        <source>F9</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="41"/>
+        <source>F10</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="42"/>
+        <source>F11</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="43"/>
+        <source>F12</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="44"/>
+        <source>`~</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="44"/>
+        <source>`</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="45"/>
+        <source>1!</source>
+        <translation>1!</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="45"/>
+        <location filename="hidcodetable.cpp" line="128"/>
+        <source>1</source>
+        <translation>1</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="46"/>
+        <source>2@</source>
+        <translation>2@</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="46"/>
+        <location filename="hidcodetable.cpp" line="129"/>
+        <source>2</source>
+        <translation>2</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="47"/>
+        <source>3#</source>
+        <translation>3#</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="47"/>
+        <location filename="hidcodetable.cpp" line="130"/>
+        <source>3</source>
+        <translation>3</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="48"/>
+        <source>4$</source>
+        <translation>4$</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="48"/>
+        <location filename="hidcodetable.cpp" line="125"/>
+        <source>4</source>
+        <translation>4</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="49"/>
+        <source>5%</source>
+        <translation>5%</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="49"/>
+        <location filename="hidcodetable.cpp" line="126"/>
+        <source>5</source>
+        <translation>5</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="50"/>
+        <source>6^</source>
+        <translation>6^</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="50"/>
+        <location filename="hidcodetable.cpp" line="127"/>
+        <source>6</source>
+        <translation>6</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="51"/>
+        <source>7&amp;&amp;</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="51"/>
+        <location filename="hidcodetable.cpp" line="121"/>
+        <source>7</source>
+        <translation>7</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="52"/>
+        <source>8*</source>
+        <translation>8*</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="52"/>
+        <location filename="hidcodetable.cpp" line="122"/>
+        <source>8</source>
+        <translation>8</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="53"/>
+        <source>9(</source>
+        <translation>9(</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="53"/>
+        <location filename="hidcodetable.cpp" line="123"/>
+        <source>9</source>
+        <translation>9</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="54"/>
+        <source>0)</source>
+        <translation>0)</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="54"/>
+        <location filename="hidcodetable.cpp" line="132"/>
+        <source>0</source>
+        <translation>0</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="55"/>
+        <source>-_</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="55"/>
+        <location filename="hidcodetable.cpp" line="120"/>
+        <source>-</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="56"/>
+        <source>=+</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="56"/>
+        <location filename="hidcodetable.cpp" line="124"/>
+        <source>+</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="57"/>
+        <source>Backspace</source>
+        <translation>Backspace</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="58"/>
+        <source>Tab</source>
+        <translation>Tab</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="59"/>
+        <source>Q</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="60"/>
+        <source>W</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="61"/>
+        <source>E</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="62"/>
+        <source>R</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="63"/>
+        <source>T</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="64"/>
+        <source>Y</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="65"/>
+        <source>U</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="66"/>
+        <source>I</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="67"/>
+        <source>O</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="68"/>
+        <source>P</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="69"/>
+        <source>[{</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="69"/>
+        <source>[</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="70"/>
+        <source>]}</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="70"/>
+        <source>]</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="71"/>
+        <source>\|</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="71"/>
+        <source>\</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="72"/>
+        <source>Caps</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="72"/>
+        <source>Caps Lock</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="73"/>
+        <source>A</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="74"/>
+        <source>S</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="75"/>
+        <source>D</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="76"/>
+        <source>F</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="77"/>
+        <source>G</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="78"/>
+        <source>H</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="79"/>
+        <source>J</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="80"/>
+        <source>K</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="81"/>
+        <source>L</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="82"/>
+        <source>;:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="82"/>
+        <source>;</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="83"/>
+        <source>&apos;&quot;</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="83"/>
+        <source>&apos;</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="84"/>
+        <location filename="hidcodetable.cpp" line="131"/>
+        <source>Enter</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="85"/>
+        <location filename="hidcodetable.cpp" line="96"/>
+        <source>Shift</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="85"/>
+        <source>LShift</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="86"/>
+        <source>Z</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="87"/>
+        <source>X</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="88"/>
+        <source>C</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="89"/>
+        <source>V</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="90"/>
+        <source>B</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="91"/>
+        <source>N</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="92"/>
+        <source>M</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="93"/>
+        <source>&lt;,</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="93"/>
+        <source>&lt;</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="94"/>
+        <source>&gt;.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="94"/>
+        <source>&gt;</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="95"/>
+        <source>/?</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="95"/>
+        <location filename="hidcodetable.cpp" line="118"/>
+        <source>/</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="96"/>
+        <source>RShift</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="97"/>
+        <location filename="hidcodetable.cpp" line="103"/>
+        <source>Ctrl</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="97"/>
+        <source>LCtrl</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="98"/>
+        <location filename="hidcodetable.cpp" line="102"/>
+        <source>Win</source>
+        <translation>Win</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="98"/>
+        <source>LWin</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="99"/>
+        <location filename="hidcodetable.cpp" line="101"/>
+        <source>Alt</source>
+        <translation>Alt</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="99"/>
+        <source>LAlt</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="100"/>
+        <source>Space</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="101"/>
+        <source>RAlt</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="102"/>
+        <source>RWin</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="103"/>
+        <source>RCtrl</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="104"/>
+        <source>PtSr</source>
+        <translation>PtSr</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="104"/>
+        <source>Print Screen</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="105"/>
+        <source>ScLk</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="105"/>
+        <source>Scroll Lock</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="106"/>
+        <source>Paus</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="106"/>
+        <source>Pause</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="107"/>
+        <source>Ins</source>
+        <translation>Ins</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="107"/>
+        <source>Insert</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="108"/>
+        <source>Hom</source>
+        <translation>Hom</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="108"/>
+        <source>Home</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="109"/>
+        <source>PUp</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="109"/>
+        <source>PageUp</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="110"/>
+        <source>Del</source>
+        <translation>Del</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="110"/>
+        <source>Delete</source>
+        <translation>Delete</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="111"/>
+        <source>End</source>
+        <translation>End</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="112"/>
+        <source>PDwn</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="112"/>
+        <source>PageDown</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="113"/>
+        <source>↑</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="113"/>
+        <source>Arrow UP</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="114"/>
+        <source>←</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="114"/>
+        <source>Arrow Left</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="115"/>
+        <source>↓</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="115"/>
+        <source>Arrow Down</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="116"/>
+        <source>→</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="116"/>
+        <source>Arrow Right</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="117"/>
+        <source>NumL</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="117"/>
+        <source>Num Lock</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="118"/>
+        <source>/(p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="119"/>
+        <source>*</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="119"/>
+        <source>*(p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="120"/>
+        <source>-(p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="121"/>
+        <source>7(p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="122"/>
+        <source>8(p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="123"/>
+        <source>9(p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="124"/>
+        <source>+(p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="125"/>
+        <source>4(p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="126"/>
+        <source>5(p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="127"/>
+        <source>6(p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="128"/>
+        <source>1(p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="129"/>
+        <source>2(p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="130"/>
+        <source>3(p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="131"/>
+        <source>Enter(p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="132"/>
+        <source>0(p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="133"/>
+        <source>.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="133"/>
+        <source>.(p)</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="134"/>
+        <source>LMouse</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="135"/>
+        <source>MMouse</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="136"/>
+        <source>RMouse</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="137"/>
+        <source>VolumeDown</source>
+        <translation>VolumeDown</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="138"/>
+        <source>VolumeUp</source>
+        <translation>VolumeUp</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="139"/>
+        <source>Play/Pause</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="140"/>
+        <source>LastSong</source>
+        <translation>LastSong</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="141"/>
+        <source>NextSong</source>
+        <translation>NextSong</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="142"/>
+        <source>Mute</source>
+        <translation>Mute</translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="143"/>
+        <source>Calculator</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="144"/>
+        <source>F13</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="145"/>
+        <source>F14</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="146"/>
+        <source>F15</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="147"/>
+        <source>F16</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="148"/>
+        <source>F17</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="149"/>
+        <source>F18</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="150"/>
+        <source>F19</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="151"/>
+        <source>F20</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="152"/>
+        <source>F21</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="153"/>
+        <source>F22</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="154"/>
+        <source>F23</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="155"/>
+        <source>F24</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>ZDDKeyboardSetter</source>
@@ -676,9 +1537,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="hidcodetable.cpp" line="39"/>
         <source>Backspace</source>
-        <translation>Backspace</translation>
+        <translation type="vanished">Backspace</translation>
     </message>
 </context>
 <context>
