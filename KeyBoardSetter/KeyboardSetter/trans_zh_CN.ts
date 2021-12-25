@@ -1137,6 +1137,11 @@
         <source>F24</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="217"/>
+        <source>Delay </source>
+        <translation>延时 </translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -1460,6 +1465,17 @@
     <message>
         <source>Backspace</source>
         <translation type="vanished">退格</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="437"/>
+        <source>Delay </source>
+        <oldsource>Delay</oldsource>
+        <translation>延时 </translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="460"/>
+        <source>None</source>
+        <translation>无</translation>
     </message>
 </context>
 <context>

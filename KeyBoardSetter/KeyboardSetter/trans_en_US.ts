@@ -1150,6 +1150,11 @@
         <source>F24</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="hidcodetable.cpp" line="217"/>
+        <source>Delay </source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -1539,6 +1544,17 @@
     <message>
         <source>Backspace</source>
         <translation type="vanished">Backspace</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="437"/>
+        <source>Delay </source>
+        <oldsource>Delay</oldsource>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="460"/>
+        <source>None</source>
+        <translation></translation>
     </message>
 </context>
 <context>

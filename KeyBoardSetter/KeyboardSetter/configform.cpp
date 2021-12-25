@@ -434,7 +434,7 @@ void updateUI(){
     }
     if(cf_cur_delay!=0){
         //temp = "Delay"+ ui->et_delay->text() +"s"+temp;
-        temp = "Delay"+painter->getEt_delay()->text() +"s"+temp;
+        temp = QObject::tr("Delay ")+painter->getEt_delay()->text() +"s"+temp;
     }
     // these keys is single
     if(cf_cur_media!=0){
@@ -457,7 +457,7 @@ void updateUI(){
         }
         //set text
         if(temp != ""){
-            if(str_temp == "(None)")
+            if(str_temp == QString("("+QObject::tr("None")+")"))
                 //ui->tv_keyvalue->setText("("+ temp + " + )");
                 painter->getMainTextView()->setText("("+ temp + " + )");
             else
