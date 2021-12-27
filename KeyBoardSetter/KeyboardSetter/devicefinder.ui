@@ -85,19 +85,6 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_skip">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>130</y>
-      <width>61</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Skip</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
