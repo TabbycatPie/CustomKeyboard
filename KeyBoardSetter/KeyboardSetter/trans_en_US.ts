@@ -29,14 +29,40 @@
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="140"/>
-        <location filename="configform.cpp" line="152"/>
-        <location filename="configform.cpp" line="182"/>
-        <location filename="configform.cpp" line="210"/>
-        <location filename="configform.cpp" line="318"/>
-        <location filename="configform.cpp" line="329"/>
-        <location filename="configform.cpp" line="340"/>
-        <location filename="configform.cpp" line="357"/>
+        <location filename="configform.ui" line="209"/>
+        <source>ON</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="configform.ui" line="241"/>
+        <source>OFF</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="configform.ui" line="257"/>
+        <source>RGB:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="configform.ui" line="273"/>
+        <source>Only effect on RGB Version</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="configform.ui" line="289"/>
+        <source>*Not Accessable for 
+  Normal Blue LED Version</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="146"/>
+        <location filename="configform.cpp" line="158"/>
+        <location filename="configform.cpp" line="188"/>
+        <location filename="configform.cpp" line="216"/>
+        <location filename="configform.cpp" line="324"/>
+        <location filename="configform.cpp" line="335"/>
+        <location filename="configform.cpp" line="346"/>
+        <location filename="configform.cpp" line="363"/>
         <source>Notice</source>
         <translation>Notice</translation>
     </message>
@@ -45,86 +71,86 @@
         <translation type="vanished">Are you sure to download config to your device:</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="96"/>
+        <location filename="configform.cpp" line="102"/>
         <source>ZDDKeyboardSetter</source>
         <translatorcomment>ZDDKeyboardSetter</translatorcomment>
         <translation>ZDDKeyboardSetter</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="141"/>
+        <location filename="configform.cpp" line="147"/>
         <source>Download finished!</source>
         <translation>Download finished!</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="146"/>
-        <location filename="configform.cpp" line="171"/>
-        <location filename="configform.cpp" line="202"/>
+        <location filename="configform.cpp" line="152"/>
+        <location filename="configform.cpp" line="177"/>
+        <location filename="configform.cpp" line="208"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="147"/>
+        <location filename="configform.cpp" line="153"/>
         <source>Download Error :</source>
         <translation>Download Error :</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="153"/>
+        <location filename="configform.cpp" line="159"/>
         <source>Download finished! But there may be some errors.</source>
         <translation>Download finished! But there may be some errors.</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="162"/>
+        <location filename="configform.cpp" line="168"/>
         <source>Open file</source>
         <translation>Open file</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="162"/>
-        <location filename="configform.cpp" line="195"/>
+        <location filename="configform.cpp" line="168"/>
+        <location filename="configform.cpp" line="201"/>
         <source>zddConfig (*.zdd)</source>
         <translation>zddConfig (*.zdd)</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="172"/>
+        <location filename="configform.cpp" line="178"/>
         <source>Can not load file </source>
         <translation>Can not load file </translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="183"/>
+        <location filename="configform.cpp" line="189"/>
         <source>Loaded Successfully!</source>
         <translation>Loaded Successfully!</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="195"/>
+        <location filename="configform.cpp" line="201"/>
         <source>Save File</source>
         <translation>Save File</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="203"/>
+        <location filename="configform.cpp" line="209"/>
         <source>Can not save </source>
         <translation>Can not save </translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="211"/>
+        <location filename="configform.cpp" line="217"/>
         <source>Saved Successfully!</source>
         <translation>Saved Successfully!</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="318"/>
+        <location filename="configform.cpp" line="324"/>
         <source>You can NOT add mouse event to Macro!</source>
         <translation>You can NOT add mouse event to Macro!</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="329"/>
+        <location filename="configform.cpp" line="335"/>
         <source>You can NOT add meida key to Macro!</source>
         <translation>You can NOT add meida key to Macro!</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="340"/>
+        <location filename="configform.cpp" line="346"/>
         <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
         <translation>You can NOT set MEDIA or MOUSE key to Macro!</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="357"/>
+        <location filename="configform.cpp" line="363"/>
         <source>Can NOT add key macro : hardware limitation!</source>
         <translation>Can NOT add key macro : hardware limitation!</translation>
     </message>
@@ -232,12 +258,12 @@
         <translation>Can not open device!</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="360"/>
+        <location filename="customkeyboard.cpp" line="404"/>
         <source>Can not read ACK frame.</source>
         <translation>Can not read ACK frame.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="370"/>
+        <location filename="customkeyboard.cpp" line="414"/>
         <source>ACK not correct.</source>
         <translation>ACK not correct.</translation>
     </message>
@@ -1546,13 +1572,13 @@
         <translation type="vanished">Backspace</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="437"/>
+        <location filename="configform.cpp" line="443"/>
         <source>Delay </source>
         <oldsource>Delay</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="460"/>
+        <location filename="configform.cpp" line="466"/>
         <source>None</source>
         <translation></translation>
     </message>

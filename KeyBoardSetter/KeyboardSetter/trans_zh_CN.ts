@@ -29,14 +29,40 @@
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="140"/>
-        <location filename="configform.cpp" line="152"/>
-        <location filename="configform.cpp" line="182"/>
-        <location filename="configform.cpp" line="210"/>
-        <location filename="configform.cpp" line="318"/>
-        <location filename="configform.cpp" line="329"/>
-        <location filename="configform.cpp" line="340"/>
-        <location filename="configform.cpp" line="357"/>
+        <location filename="configform.ui" line="209"/>
+        <source>ON</source>
+        <translation>开启</translation>
+    </message>
+    <message>
+        <location filename="configform.ui" line="241"/>
+        <source>OFF</source>
+        <translation>关闭</translation>
+    </message>
+    <message>
+        <location filename="configform.ui" line="257"/>
+        <source>RGB:</source>
+        <translation>RGB：</translation>
+    </message>
+    <message>
+        <location filename="configform.ui" line="273"/>
+        <source>Only effect on RGB Version</source>
+        <translation>此功能仅用于RGB版本</translation>
+    </message>
+    <message>
+        <location filename="configform.ui" line="289"/>
+        <source>*Not Accessable for 
+  Normal Blue LED Version</source>
+        <translation type="unfinished">*普通蓝色版本无法使用</translation>
+    </message>
+    <message>
+        <location filename="configform.cpp" line="146"/>
+        <location filename="configform.cpp" line="158"/>
+        <location filename="configform.cpp" line="188"/>
+        <location filename="configform.cpp" line="216"/>
+        <location filename="configform.cpp" line="324"/>
+        <location filename="configform.cpp" line="335"/>
+        <location filename="configform.cpp" line="346"/>
+        <location filename="configform.cpp" line="363"/>
         <source>Notice</source>
         <translation>提示</translation>
     </message>
@@ -45,85 +71,85 @@
         <translation type="vanished">确定下载到设备：</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="96"/>
+        <location filename="configform.cpp" line="102"/>
         <source>ZDDKeyboardSetter</source>
         <translation>ZDD键盘设置器</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="141"/>
+        <location filename="configform.cpp" line="147"/>
         <source>Download finished!</source>
         <translation>下载完成！</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="146"/>
-        <location filename="configform.cpp" line="171"/>
-        <location filename="configform.cpp" line="202"/>
+        <location filename="configform.cpp" line="152"/>
+        <location filename="configform.cpp" line="177"/>
+        <location filename="configform.cpp" line="208"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="147"/>
+        <location filename="configform.cpp" line="153"/>
         <source>Download Error :</source>
         <translation>下载错误：</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="153"/>
+        <location filename="configform.cpp" line="159"/>
         <source>Download finished! But there may be some errors.</source>
         <translation>下载完成,但是可能存在一些问题.</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="162"/>
+        <location filename="configform.cpp" line="168"/>
         <source>Open file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="162"/>
-        <location filename="configform.cpp" line="195"/>
+        <location filename="configform.cpp" line="168"/>
+        <location filename="configform.cpp" line="201"/>
         <source>zddConfig (*.zdd)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="172"/>
+        <location filename="configform.cpp" line="178"/>
         <source>Can not load file </source>
         <translation>无法打开文件 </translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="183"/>
+        <location filename="configform.cpp" line="189"/>
         <source>Loaded Successfully!</source>
         <translation>已经成功加载配置！</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="195"/>
+        <location filename="configform.cpp" line="201"/>
         <source>Save File</source>
         <translation>文件保存</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="203"/>
+        <location filename="configform.cpp" line="209"/>
         <source>Can not save </source>
         <translation>无法保存 </translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="211"/>
+        <location filename="configform.cpp" line="217"/>
         <source>Saved Successfully!</source>
         <translation>保存成功!</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="318"/>
+        <location filename="configform.cpp" line="324"/>
         <source>You can NOT add mouse event to Macro!</source>
         <translation>无法将鼠标键添加到宏！</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="329"/>
+        <location filename="configform.cpp" line="335"/>
         <source>You can NOT add meida key to Macro!</source>
         <translation>无法将多媒体键添加到宏！</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="340"/>
+        <location filename="configform.cpp" line="346"/>
         <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
         <translation>无法在宏键中添加鼠标或多媒体键值！</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="357"/>
+        <location filename="configform.cpp" line="363"/>
         <source>Can NOT add key macro : hardware limitation!</source>
         <translation>无法添加更多的宏键值：已达到硬件限制！</translation>
     </message>
@@ -215,12 +241,12 @@
         <translation type="vanished">无法获取校验帧.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="360"/>
+        <location filename="customkeyboard.cpp" line="404"/>
         <source>Can not read ACK frame.</source>
         <translation>无法读取ACK帧.</translation>
     </message>
     <message>
-        <location filename="customkeyboard.cpp" line="370"/>
+        <location filename="customkeyboard.cpp" line="414"/>
         <source>ACK not correct.</source>
         <translation>ACK帧不正确.</translation>
     </message>
@@ -1467,13 +1493,13 @@
         <translation type="vanished">退格</translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="437"/>
+        <location filename="configform.cpp" line="443"/>
         <source>Delay </source>
         <oldsource>Delay</oldsource>
         <translation>延时 </translation>
     </message>
     <message>
-        <location filename="configform.cpp" line="460"/>
+        <location filename="configform.cpp" line="466"/>
         <source>None</source>
         <translation>未设置</translation>
     </message>
