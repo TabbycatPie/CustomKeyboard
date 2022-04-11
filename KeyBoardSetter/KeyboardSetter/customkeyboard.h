@@ -39,6 +39,8 @@ public:
     bool checkMacroAddable(int cur_key_no);
     //download to device
     int download(HIDCodeTable *table);
+    //LED on-off
+    bool TurnLED(bool on); // true:led on ,false: led off
     //test
     bool testHardware();
     bool tryOpen();

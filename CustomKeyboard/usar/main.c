@@ -2,7 +2,10 @@
 #include "Debug.H"
 #include "DataFlash.h"
 #include "usb.h"
+#include "stdlib.h"
 
+#define LED1_INTERVAL 0x03
+#define LED2_INTERVAL 0x04
 //UINT8X MARCO_KEYCODE [50]= { 0x15,0x06,0x10,0x07,0x58,0x15,0x10,0x16,0x17,0x16,  //Win+r,c,m,d,Enter,Win+r,m,s,t,s,
 //														 0x06,0x58,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,	 //c,Enter,,,,,,,,,
 //														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
@@ -26,7 +29,7 @@ UINT8 KEY_CODE   [10] = {0x00};  //temporily used for key
 UINT8 SP_KEY_CODE[10] = {0x00};  //temporily used for sepcial key
 
 //unpressed : 0x00
-//  pressed :key_pressed[n] == 0xff
+//pressed :key_pressed[n] == 0xff
 //if key(n) is a marco key 
 
 UINT8 KEY_PRESS  [10] = {0x00};
@@ -47,6 +50,18 @@ UINT8X CUR_MARCO_LAG = 0x0a;
 UINT8X KEY_CHANGE = 0x00;
 
 
+UINT8X LED_ENABLE = 0xff;
+
+unsigned char LED1_COLOR = 0x01; //led color 0 is dark
+unsigned char LED1_CHANGE_COLOR = LED1_INTERVAL; //led change time interval
+unsigned char LED1_OFF = 0xff;// time interval to turn off led
+unsigned char LED2_COLOR = 0x03;//led color 0 is dark
+unsigned char LED2_CHANGE_COLOR = LED2_INTERVAL; //led change time interval
+unsigned char LED2_OFF = 0xff;// time interval to turn off led
+
+//function declear
+void TurnOnLED1();
+void TurnOnLED2();
 
 //delay time*100ms
 void MarcoDelay(UINT8 time){
@@ -64,9 +79,16 @@ void HIDMousesend(){
 
 void HIDKeysend(){
 	if(CUR_KEYBOARD == 0xff && KEY_CHANGE == 0xff){
-		FLAG = 0;
-		Keyboard_Send();      //send keyboard event
+		FLAG = 0;	
+		//send keyboard event
+		Keyboard_Send();     
 		while(FLAG == 0); /*等待上一包传输完成*/
+	}
+	if(CUR_KEYBOARD == 0xff && KEY_PRESS[1] == 0xff){
+		TurnOnLED1();
+	}
+	if(CUR_KEYBOARD == 0xff && KEY_PRESS[0] == 0xff){
+		TurnOnLED2();
 	}
 }
 //send message to computer
@@ -242,12 +264,88 @@ sbit Key1  = P3^2;
 sbit Key2  = P1^4;
 sbit Key3  = P1^5;
 sbit Key4  = P1^6;
-sbit Key5  = P1^7;
-sbit Key6  = P3^1;
-sbit Key7  = P3^0;
-sbit Key8  = P1^1;
-sbit Key9  = P3^3;
-sbit Key10 = P3^4;
+sbit RLED2  = P1^7;
+sbit GLED2  = P3^1;
+sbit BLED2  = P3^0;
+sbit RLED1  = P1^1;
+sbit GLED1  = P3^3;
+sbit BLED1  = P3^4;
+void TurnOnLED1(){
+	LED1_OFF = 0xff;
+}
+void TurnOnLED2(){
+	LED2_OFF = 0xff;
+}
+void TurnOffLED1(){
+	if(LED1_OFF != 0){
+		LED1_OFF--;
+	}
+}
+void TurnOffLED2(){
+	if(LED2_OFF != 0){
+		LED2_OFF--;
+	}
+}
+void ChangeColor1(){
+	if(LED1_CHANGE_COLOR == 0x00){
+		LED1_COLOR ++;
+		LED1_CHANGE_COLOR = LED1_INTERVAL;
+	}else{
+		LED1_CHANGE_COLOR --;
+	}
+}
+void ChangeColor2(){
+	if(LED2_CHANGE_COLOR == 0x00){
+		LED2_COLOR ++;
+		LED2_CHANGE_COLOR = LED2_INTERVAL;
+	}else{
+		LED2_CHANGE_COLOR --;
+	}
+}
+
+void LED1_Show(unsigned char led){
+	RLED1 = 1;
+	GLED1 = 1;
+	BLED1 = 1;
+	if(LED1_OFF != 0x00 && LED_ENABLE == 0xff){
+		if((0x01&led)==0x01){
+			//Blue
+			BLED1 = 0;
+		}
+		if((0x02&led)==0x02){
+			//Green
+			GLED1 = 0;
+		}
+		if((0x04&led)==0x04){
+			//Red
+			RLED1 = 0;
+		}
+	}
+}
+void LED2_Show(unsigned char led){
+	RLED2 = 1;
+	GLED2 = 1;
+	BLED2 = 1;
+	if(LED2_OFF != 0x00 && LED_ENABLE == 0xff){
+		if((0x01&led)==0x01){
+			//Blue
+			BLED2 = 0;
+		}
+		if((0x02&led)==0x02){
+			//Green
+			GLED2 = 0;
+		}
+		if((0x04&led)==0x04){
+			//Red
+			RLED2 = 0;
+		}
+	}
+}
+
+
+
+
+
 void scanKey(){
 	UINT8 i = 0;
 	UINT8 mouse_code = 0x00;
@@ -257,6 +355,14 @@ void scanKey(){
 	UINT8 key_count = 0;
 	CUR_MARCO_KEY = 0xff;
 	KEY_CHANGE = 0x00;
+	//LED contrl
+	ChangeColor1();
+	TurnOffLED1();
+	LED1_Show(LED1_COLOR);
+	ChangeColor2();
+	TurnOffLED2();
+	LED2_Show(LED2_COLOR);
+	//key scan
 	if(!Key1){
 		KEY_PRESS[0]=0xff;
 	}
@@ -280,42 +386,6 @@ void scanKey(){
 	}
 	else{
 		KEY_PRESS[3]=0x00;
-	}
-	if(!Key5){
-		KEY_PRESS[4]=0xff;
-	}
-	else{
-		KEY_PRESS[4]=0x00;
-	}
-	if(!Key6){
-		KEY_PRESS[5]=0xff;
-	}
-	else{
-		KEY_PRESS[5]=0x00;
-	}
-	if(!Key7){
-		KEY_PRESS[6]=0xff;
-	}
-	else{
-		KEY_PRESS[6]=0x00;
-	}
-	if(!Key8){
-		KEY_PRESS[7]=0xff;
-	}
-	else{
-		KEY_PRESS[7]=0x00;
-	}
-	if(!Key9){
-		KEY_PRESS[8]=0xff;
-	}
-	else{
-		KEY_PRESS[8]=0x00;
-	}
-	if(!Key10){
-		KEY_PRESS[9]=0xff;
-	}
-	else{
-		KEY_PRESS[9]=0x00;
 	}
 	mDelaymS(6); //avoid jitter
 	if(!Key1){
@@ -352,60 +422,6 @@ void scanKey(){
 		else{
 			if(KEY_MARCO[3]==0xff)
 				CUR_MARCO_KEY = 4;
-		}
-	}
-	if(!Key5){
-		if(KEY_PRESS[4]!=0xff){
-			KEY_PRESS[4] =0x00;
-		}
-		else{
-			if(KEY_MARCO[4]==0xff)
-				CUR_MARCO_KEY = 5;
-		}
-	}
-	if(!Key6){
-		if(KEY_PRESS[5]!=0xff){
-			KEY_PRESS[5] =0x00;
-		}
-		else{
-			if(KEY_MARCO[5]==0xff)
-				CUR_MARCO_KEY = 6;
-		}
-	}
-	if(!Key7){
-		if(KEY_PRESS[6]!=0xff){
-			KEY_PRESS[6] =0x00;
-		}
-		else{
-			if(KEY_MARCO[6]==0xff)
-				CUR_MARCO_KEY = 7;
-		}
-	}
-	if(!Key8){
-		if(KEY_PRESS[7]!=0xff){
-			KEY_PRESS[7] =0x00;
-		}
-		else{
-			if(KEY_MARCO[7]==0xff)
-				CUR_MARCO_KEY = 8;
-		}
-	}
-	if(!Key9){
-		if(KEY_PRESS[8]!=0xff){
-			KEY_PRESS[8] =0x00;
-		}
-		else{
-			if(KEY_MARCO[8]==0xff)
-				CUR_MARCO_KEY = 9;
-		}
-	}
-	if(!Key10){
-		if(KEY_PRESS[9]!=0xff){
-			KEY_PRESS[9] =0x00;
-		}
-		else{
-			if(KEY_MARCO[9]==0xff)
-				CUR_MARCO_KEY = 10;
 		}
 	}
 	
@@ -480,6 +496,11 @@ void setMarco(unsigned char hi,unsigned char lo){
 				}
         i++;
     }
+		//LED_CONTRL
+		if(hi&0x04==0x04)
+			LED_ENABLE = 0xff;
+		else
+			LED_ENABLE = 0x00;
 }
 
 
@@ -596,6 +617,19 @@ void handleReceive(){
 				User_Ep2Buf_send[0] = 0x01;
 				HIDsendMessage();
 				User_Ep2Buf_send[0] = 0x00;
+				break;
+			case 0x0f:
+				//rgb LED on-off contrl
+				ReadDataFlash(20,2,temp);
+				if(User_Ep2Buf_rev[1]==0x01){
+					LED_ENABLE = 0xff;
+					temp[0]|=0x04;
+				}else{
+					LED_ENABLE = 0xff;
+					temp[0]&=0x03;
+				}
+				WriteDataFlash(20,temp,2);
+				HIDsendACK(0x0f);
 				break;
 		}
 	}

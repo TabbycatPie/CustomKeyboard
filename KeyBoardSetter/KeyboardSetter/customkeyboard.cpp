@@ -351,6 +351,50 @@ int CustomKeyboard::download(HIDCodeTable *table){
         return -1;
     }
 }
+
+bool CustomKeyboard::TurnLED(bool on)
+{
+    //open device
+    hid_device *my_device;
+    my_device = hid_open(vid,pid,1,nullptr);
+    if(my_device!=NULL){
+        qDebug() << "device opened.";
+        logToMain("Device is opened.");
+        //opened
+        uchar test_frame[3]={0x00,0x00,0x00};
+        test_frame[0] = 0x00;
+        test_frame[1] = 0x0f;
+        if(on)
+            test_frame[2] = 0x01;
+        else
+            test_frame[2] = 0x00;
+        int res = hid_write(my_device, test_frame, 2);
+        if(res == -1){
+            qDebug() << "hid_write() Error:" << QString::fromWCharArray(hid_error(my_device));
+            logToMain("hid_write() Error:"+QString::fromWCharArray(hid_error(my_device)));
+            return false;
+        }
+        else{
+            if(getACK(my_device))
+                return true;
+            else
+                return false;
+        }
+
+    }
+    else{
+        qDebug() << "hid_open() Error:" << QString::fromWCharArray(hid_error(my_device));
+        logToMain("hid_open() Error:"+QString::fromWCharArray(hid_error(my_device)));
+        if(hid_exit()!=0){
+            qDebug() << "hid_exit Error:" << QString::fromWCharArray(hid_error(my_device));
+            logToMain("hid_exit Error:"+QString::fromWCharArray(hid_error(my_device)));
+        }
+        return false;
+    }
+    hid_close(my_device);
+    hid_exit();
+    return true;
+}
 bool CustomKeyboard::getACK(hid_device *opened_device)
 {
     uchar ACK[64]      = {0x00};

@@ -93,6 +93,12 @@ ConfigForm::ConfigForm(QWidget *parent)
         SettingForm *sf = new SettingForm(this);
         sf->show();
     });
+    connect(ui->btn_ledon,&QPushButton::clicked,this,[=]{
+        my_ckb->TurnLED(true);
+    });
+    connect(ui->btn_ledoff,&QPushButton::clicked,this,[=]{
+        my_ckb->TurnLED(false);
+    });
     this->setWindowTitle(tr("ZDDKeyboardSetter"));
 }
 bool ConfigForm::deleteKeyValue(){
