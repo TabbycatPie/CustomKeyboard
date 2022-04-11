@@ -625,7 +625,7 @@ void handleReceive(){
 					LED_ENABLE = 0xff;
 					temp[0]|=0x04;
 				}else{
-					LED_ENABLE = 0xff;
+					LED_ENABLE = 0x00;
 					temp[0]&=0x03;
 				}
 				WriteDataFlash(20,temp,2);

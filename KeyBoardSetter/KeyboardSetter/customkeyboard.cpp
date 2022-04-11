@@ -368,7 +368,7 @@ bool CustomKeyboard::TurnLED(bool on)
             test_frame[2] = 0x01;
         else
             test_frame[2] = 0x00;
-        int res = hid_write(my_device, test_frame, 2);
+        int res = hid_write(my_device, test_frame, 3);
         if(res == -1){
             qDebug() << "hid_write() Error:" << QString::fromWCharArray(hid_error(my_device));
             logToMain("hid_write() Error:"+QString::fromWCharArray(hid_error(my_device)));
