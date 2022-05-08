@@ -497,7 +497,7 @@ void setMarco(unsigned char hi,unsigned char lo){
         i++;
     }
 		//LED_CONTRL
-		if(hi&0x04==0x04)
+		if((hi&0x04)==0x04)
 			LED_ENABLE = 0xff;
 		else
 			LED_ENABLE = 0x00;
