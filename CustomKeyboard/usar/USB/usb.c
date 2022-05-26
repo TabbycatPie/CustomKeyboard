@@ -192,8 +192,9 @@ void USBDeviceInit(void)
     P1_DIR_PU = 0xff;
 	P1 = 0xff;
 	P3 = 0xff;
-    P3_MOD_OC = 0xEF;
+    P3_MOD_OC = 0xFF;
     P3_DIR_PU = 0xFF;
+
 	
 	UEP1_T_LEN = 0;      //预使用发送长度一定要清空
 	UEP2_T_LEN = 0;      //预使用发送长度一定要清空
@@ -240,7 +241,8 @@ void USBDeviceInit(void)
 //	TMOD &= 0xf1;
 //	TL0 = 0x3CB0 & 0xff;
 //	TH0 = (0x3CB0>>8) & 0xff;
-    TR0 = 0;ET0 = 1;EA = 1;
+//    TR0 = 0;ET0 = 1;
+	EA = 1;
 }
 
 void USBDevWakeup(void)
@@ -662,28 +664,28 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB using 1
         USB_INT_FG = 0xFF;
 }
 
-void mTimer0Interrupt( void ) interrupt INT_NO_TMR0
-{
-	static char con = 0;
-	
-	TL0 = 0x3CB0 & 0xff;
-	TH0 = (0x3CB0>>8) & 0xff; 
-	
-	if(con++ >= 30)
-	{
-		if(Ready == 0)
-		{
-			TR0 = 0;
-			FLAG = 0;Ready = 0;
-			IE_USB = 0;USB_CTRL = 0x00;UDEV_CTRL = bUD_PD_DIS;
-			USB_DEV_AD = 0x00;
-			USB_CTRL |= bUC_DEV_PU_EN | bUC_INT_BUSY | bUC_DMA_EN;
-			UDEV_CTRL |= bUD_PORT_EN;USB_INT_FG = 0xFF;
-			USB_INT_EN = bUIE_SUSPEND | bUIE_TRANSFER | bUIE_BUS_RST;
-			IE_USB = 1;
-			TR0 = 1;
-		}
-		con = 0;
-	}      
-}
+//void mTimer0Interrupt( void ) interrupt INT_NO_TMR0
+//{
+//	static char con = 0;
+//	
+//	TL0 = 0x3CB0 & 0xff;
+//	TH0 = (0x3CB0>>8) & 0xff; 
+//	
+//	if(con++ >= 30)
+//	{
+//		if(Ready == 0)
+//		{
+//			TR0 = 0;
+//			FLAG = 0;Ready = 0;
+//			IE_USB = 0;USB_CTRL = 0x00;UDEV_CTRL = bUD_PD_DIS;
+//			USB_DEV_AD = 0x00;
+//			USB_CTRL |= bUC_DEV_PU_EN | bUC_INT_BUSY | bUC_DMA_EN;
+//			UDEV_CTRL |= bUD_PORT_EN;USB_INT_FG = 0xFF;
+//			USB_INT_EN = bUIE_SUSPEND | bUIE_TRANSFER | bUIE_BUS_RST;
+//			IE_USB = 1;
+//			TR0 = 1;
+//		}
+//		con = 0;
+//	}      
+//}
 
