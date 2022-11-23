@@ -3,29 +3,29 @@
 #include "DataFlash.h"
 #include "usb.h"
 
-#define uchar = unsiged char
 
 #define L_KEY_MASK 0x01  // left key press mask
 #define R_KEY_MASK 0x02  // right key press mask
 #define M_KEY_MASK 0x04  // middle key press mask
 #define X_N_MASK 0x10    // 1 for X axis negative
 #define Y_N_MASK 0x20    // 1 for Y axis negative
-#define X_O_MASK 0x40    // 1 for X axis overflow
-#define Y_O_MASK 0x80    // 1 for Y axis overflow
+//#define X_O_MASK 0x40    // 1 for X axis overflow
+//#define Y_O_MASK 0x80    // 1 for Y axis overflow
 //direction
 #define GO_LEFT  0x01
 #define GO_RIGHT 0x02 
 #define GO_UP    0x04 
 #define GO_DOWN  0x08
+#define WIN_MODE 0xff
 
-void MoveMouse(char direction,char val){
-	memset(HIDMouse,0,sizeof(HIDMouse));
-	HIDMouse[0] |= 0x08;
-	if(direction & GO_LEFT == GO_LEFT){
-		HIDMouse[0] |= X_N_MASK;
-	}
-	if(direction & GO_UP == GO_UP){
-		HIDMouse[0] |= Y_N_MASK;
+unsigned char step = 100;
+
+void mDelayS(unsigned char sec){
+	char a = 0;
+	while(sec--){
+		for(a=0;a<4;a++){
+			mDelaymS(250);
+		}
 	}
 }
 
@@ -34,6 +34,29 @@ void HIDMousesend(){
 	Mouse_Send();    //if mouse key is set,then send mouse event
 	while(FLAG == 0); 
 }
+
+void MoveMouse(char direction,unsigned char x,unsigned char y,unsigned char loop_time){
+	memset(HIDMouse,0,sizeof(HIDMouse));
+	HIDMouse[0] |= 0x08;
+	if(direction != WIN_MODE){
+		if(direction & GO_LEFT == GO_LEFT){
+			HIDMouse[0] |= X_N_MASK;
+			x = ~x;// x is complemental
+			x++;
+		}
+		if(direction & GO_UP == GO_UP){
+			HIDMouse[0] |= Y_N_MASK;
+			y = ~y;
+			y++;
+		}
+	}
+	HIDMouse[1] = x;
+	HIDMouse[2] = y;
+	while(loop_time--){
+		HIDMousesend();
+	}
+}
+
 
 
 
@@ -49,6 +72,11 @@ void main(){
 		{
 			//USB枚举成功处理
 			FLAG = 0;
+			MoveMouse(WIN_MODE,step,0,1); //mouse goes left
+			MoveMouse(WIN_MODE,0,step,1); //mouse goes down 
+			MoveMouse(WIN_MODE,-step,0,1); //mouse goes right
+			MoveMouse(WIN_MODE,0,-step,1);  //mouse goes up
+			mDelayS(2); // delay 2 seconds
 		}
 		else
 		{
