@@ -18,6 +18,9 @@
 #define GO_DOWN  0x08
 #define WIN_MODE 0xff
 
+sbit RED_LED = P1^7;
+sbit BLU_LED = P1^6;
+
 unsigned char step = 1;
 
 void mDelayS(unsigned char sec){
@@ -65,6 +68,9 @@ void main(){
 	mDelaymS(50);                 //修改主频等待内部晶振稳定,必加
 	USBDeviceInit();              //USB设备模式初始化
 	EA = 1;                       //允许单片机中断
+	
+	RED_LED = 0;
+	BLU_LED = 0;
 
 	while(1)
 	{
