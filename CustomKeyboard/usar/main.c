@@ -18,8 +18,7 @@
 #define GO_DOWN  0x08
 #define WIN_MODE 0xff
 
-sbit RED_LED = P1^7;
-sbit BLU_LED = P1^6;
+
 
 unsigned char step = 1;
 
@@ -62,6 +61,13 @@ void MoveMouse(char direction,unsigned char x,unsigned char y,unsigned char loop
 
 
 
+/* 50ms triggers once */
+void run_timer_50ms(void)
+{
+
+	
+
+}
 
 void main(){
 	CfgFsys();                    //CH552时钟选择配置
@@ -78,13 +84,6 @@ void main(){
 		{
 			//USB枚举成功处理
 			FLAG = 0;
-			MoveMouse(WIN_MODE,step,0,1); //mouse goes left
-			mDelayS(2);
-			MoveMouse(WIN_MODE,0,step,1); //mouse goes down 
-			mDelayS(2);
-			MoveMouse(WIN_MODE,-step,0,1); //mouse goes right
-			mDelayS(2);
-			MoveMouse(WIN_MODE,0,-step,1);  //mouse goes up
 			mDelayS(2); // delay 2 seconds
 		}
 		else

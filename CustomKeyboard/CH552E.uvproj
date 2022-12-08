@@ -400,6 +400,21 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>drivers</GroupName>
+          <Files>
+            <File>
+              <FileName>LED.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\LED.c</FilePath>
+            </File>
+            <File>
+              <FileName>LED.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\LED.h</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
   </Targets>
