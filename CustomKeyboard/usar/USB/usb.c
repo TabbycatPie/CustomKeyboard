@@ -152,7 +152,7 @@ void Mouse_Send(void)
 
 void DeviceInterrupt( void ) interrupt INT_NO_USB using 1
 {
-    UINT8 len,i;
+    UINT8 len;
     if(UIF_TRANSFER)     //USB传输完成标志
     {
         switch (USB_INT_ST & (MASK_UIS_TOKEN | MASK_UIS_ENDP))

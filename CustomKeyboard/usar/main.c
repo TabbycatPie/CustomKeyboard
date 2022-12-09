@@ -2,25 +2,44 @@
 #include "Debug.H"
 #include "DataFlash.h"
 #include "usb.h"
+#include "LED.h"
+#include "MouseContrl.h"
 
 
-#define L_KEY_MASK 0x01  // left key press mask
-#define R_KEY_MASK 0x02  // right key press mask
-#define M_KEY_MASK 0x04  // middle key press mask
-#define X_N_MASK 0x10    // 1 for X axis negative
-#define Y_N_MASK 0x20    // 1 for Y axis negative
-//#define X_O_MASK 0x40    // 1 for X axis overflow
-//#define Y_O_MASK 0x80    // 1 for Y axis overflow
-//direction
-#define GO_LEFT  0x01
-#define GO_RIGHT 0x02 
-#define GO_UP    0x04 
-#define GO_DOWN  0x08
-#define WIN_MODE 0xff
+//MODES
+#define DEF_MODE 0x00  //default mode: mouse move a rectangle with 100 as step
+#define SRM_MODE 0x01  //small range mode:mouse move tiny steps with rectangle
+#define RMM_MODE 0x02  //random move mode:mouse move randomly with 100 as step
+#define MODE_COUNT 3;  //there are 3 modes
+unsigned char mode = DEF_MODE;
+
+//Movement time gap
+#define DEF_GAP_VAL 30  //default 30sec
+#define LON_GAP_VAL 120 //long    120sec
+#define SML_GAP_VAL 5   //small   5sec
+#define TINY_GAP_VAL 1  //tiny    1sec
+#define DEF_GAP_PT 0    //pointor to DEF_GAP_VAL
+#define LON_GAP_PT 1    //pointor to LON_GAP_VAL
+#define SML_GAP_PT 2    //pointor to SML_GAP_VAL
+#define TINY_GAP_PT 3   //pointor to TINY_GAP_VAL
+const unsigned char gaps[4] = {DEF_GAP_VAL,LON_GAP_VAL,SML_GAP_PT,TINY_GAP_VAL}; // read only e.g: access val using gap_val = gaps[DEF_GAP_PT]
+unsigned char time_sec = 0;
+unsigned char time_unit = 0; // ++ every 50ms
+
+
+//Config (stored in NVS)
+#define NVS_GAP_CONFIG_LEN_PT 3;
+unsigned char gap_config[4] = {TINY_GAP_PT,TINY_GAP_PT,TINY_GAP_PT,TINY_GAP_PT};
+
+
+#define ENABLED 0xff
+#define DISABLED 0x00
+unsigned char enable_movement = DISABLED; //0x00 for false 0xff for true
 
 
 
-unsigned char step = 1;
+
+
 
 void mDelayS(unsigned char sec){
 	char a = 0;
@@ -31,52 +50,50 @@ void mDelayS(unsigned char sec){
 	}
 }
 
-void HIDMousesend(){
-	FLAG = 0;
-	Mouse_Send();    //if mouse key is set,then send mouse event
-	while(FLAG == 0); 
+
+void switchMode(){
+	mode++;
+	mode %= MODE_COUNT;//there are 3 modes in total
+	//save mode to NVS
+	WriteDataFlash(4,&mode,1); // LAST_MODE is stored in NVS address 3, len 1 byte
 }
 
-void MoveMouse(char direction,unsigned char x,unsigned char y,unsigned char loop_time){
-	memset(HIDMouse,0,sizeof(HIDMouse));
-	HIDMouse[0] |= 0x08;
-	if(direction != WIN_MODE){
-		if(direction & GO_LEFT == GO_LEFT){
-			HIDMouse[0] |= X_N_MASK;
-			x = ~x;// x is complemental
-			x++;
-		}
-		if(direction & GO_UP == GO_UP){
-			HIDMouse[0] |= Y_N_MASK;
-			y = ~y;
-			y++;
-		}
-	}
-	HIDMouse[1] = x;
-	HIDMouse[2] = y;
-	while(loop_time--){
-		HIDMousesend();
-	}
+void switchGap(){
+	gap_config[mode] ++;
+	gap_config[mode] %= 4;
+	//save config to NVS
+	WriteDataFlash(mode,&mode,1); // "mode" config store in NVS address "$mode",len 1 byte
 }
-
 
 
 /* 50ms triggers once */
-void run_timer_50ms(void)
-{
-
+void run_timer_50ms(void){
+	unsigned char trigger_time;
+	time_unit ++;
+	seed ++;
+	if(time_unit >= 20){
+		// 1 sec time hit,reset timer
+		time_unit = 0;
+		time_sec ++;
+		trigger_time = gaps[gap_config[mode]];
+		if(time_sec >= trigger_time){
+			//enable movement
+			enable_movement = ENABLED;
+			//reset timer
+			time_sec %= trigger_time;
+		}
+	}
 	
-
 }
+
+
+
 
 void main(){
 	CfgFsys();                    //CH552时钟选择配置
 	mDelaymS(50);                 //修改主频等待内部晶振稳定,必加
 	USBDeviceInit();              //USB设备模式初始化
 	EA = 1;                       //允许单片机中断
-	
-	RED_LED = 0;
-	BLU_LED = 0;
 
 	while(1)
 	{
@@ -84,7 +101,22 @@ void main(){
 		{
 			//USB枚举成功处理
 			FLAG = 0;
-			mDelayS(2); // delay 2 seconds
+			LedTurnOn(RED);
+			if(enable_movement == ENABLED){
+				if(mode == DEF_MODE){
+					//default mode
+					MoveMouseRect(100);
+				}
+				else if(mode == SRM_MODE){
+					//small range mode
+					MoveMouseRect(10);
+				}
+				else{
+					//random mode
+					MoveMouseRandomly();
+				}
+				enable_movement = DISABLED;
+			}
 		}
 		else
 		{
