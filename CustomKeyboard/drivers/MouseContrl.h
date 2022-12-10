@@ -3,13 +3,7 @@
 #include "usb.h"
 
 
-#define L_KEY_MASK 0x01  // left key press mask
-#define R_KEY_MASK 0x02  // right key press mask
-#define M_KEY_MASK 0x04  // middle key press mask
-#define X_N_MASK 0x10    // 1 for X axis negative
-#define Y_N_MASK 0x20    // 1 for Y axis negative
-//#define X_O_MASK 0x40    // 1 for X axis overflow
-//#define Y_O_MASK 0x80    // 1 for Y axis overflow
+
 //direction
 #define GO_LEFT  0x01
 #define GO_RIGHT 0x02 

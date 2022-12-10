@@ -1,6 +1,14 @@
 #include "MouseContrl.h"
 #include "stdlib.h"
 
+#define L_KEY_MASK 0x01  // left key press mask
+#define R_KEY_MASK 0x02  // right key press mask
+#define M_KEY_MASK 0x04  // middle key press mask
+#define X_N_MASK 0x10    // 1 for X axis negative
+#define Y_N_MASK 0x20    // 1 for Y axis negative
+//#define X_O_MASK 0x40    // 1 for X axis overflow
+//#define Y_O_MASK 0x80    // 1 for Y axis overflow
+
 
 void HIDMousesend(){
 	FLAG = 0;
@@ -65,5 +73,4 @@ void MoveMouseRandomly(){
 	y = ((unsigned char)(rand()%(RMAX+1-RMIN)+RMIN))-130;
 	
 	MoveMouse(WIN_MODE,x,y,1);
-	
 }

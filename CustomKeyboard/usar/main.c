@@ -4,6 +4,7 @@
 #include "usb.h"
 #include "LED.h"
 #include "MouseContrl.h"
+#include "KeyHandler.h"
 
 
 //MODES
@@ -40,7 +41,6 @@ unsigned char enable_movement = DISABLED; //0x00 for false 0xff for true
 
 
 
-
 void mDelayS(unsigned char sec){
 	char a = 0;
 	while(sec--){
@@ -71,6 +71,8 @@ void run_timer_50ms(void){
 	unsigned char trigger_time;
 	time_unit ++;
 	seed ++;
+	cur_time_50ms ++;
+	LedTimerLoop();
 	if(time_unit >= 20){
 		// 1 sec time hit,reset timer
 		time_unit = 0;
@@ -90,30 +92,47 @@ void run_timer_50ms(void){
 
 
 void main(){
+
+	
 	CfgFsys();                    //CH552时钟选择配置
 	mDelaymS(50);                 //修改主频等待内部晶振稳定,必加
+	
+		
+  //init
+	//initKey();
+	initLED();
+	
+	
 	USBDeviceInit();              //USB设备模式初始化
 	EA = 1;                       //允许单片机中断
-
+	
+  LedTurnOn(mode + 1);
+	
+	
+	
 	while(1)
 	{
+		//KeyLoop();
 		if(Ready)
 		{
 			//USB枚举成功处理
 			FLAG = 0;
-			LedTurnOn(RED);
+
 			if(enable_movement == ENABLED){
 				if(mode == DEF_MODE){
 					//default mode
 					MoveMouseRect(100);
+					LedBlinkStart(3,1);
 				}
 				else if(mode == SRM_MODE){
 					//small range mode
 					MoveMouseRect(10);
+					LedBlinkStart(10,2);
 				}
 				else{
 					//random mode
 					MoveMouseRandomly();
+					LedBlinkStart(10,2);
 				}
 				enable_movement = DISABLED;
 			}
