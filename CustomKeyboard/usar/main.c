@@ -18,7 +18,8 @@ unsigned char SYSTEM_STAT;
 #define SRM_MODE 0x01  //small range mode:mouse move tiny steps with rectangle
 #define RMM_MODE 0x02  //random move mode:mouse move randomly with 100 as step
 #define MODE_COUNT 3;  //there are 3 modes
-unsigned char mode = DEF_MODE;
+#define MODE_NVS_ADDR 5;
+UINT8 mode = DEF_MODE;
 
 //Movement time gap
 #define DEF_GAP_VAL 30  //default 30sec
@@ -36,7 +37,7 @@ unsigned char time_unit = 0; // ++ every 50ms
 
 //Config (stored in NVS)
 #define NVS_GAP_CONFIG_LEN_PT 3;
-unsigned char gap_config[4] = {TINY_GAP_PT,TINY_GAP_PT,TINY_GAP_PT,TINY_GAP_PT};
+unsigned char gap_config[4] = {DEF_GAP_VAL,DEF_GAP_VAL,DEF_GAP_VAL,DEF_GAP_VAL};
 
 
 #define ENABLED 0xff
@@ -59,7 +60,7 @@ void switchMode(){
 	mode++;
 	mode %= MODE_COUNT;//there are 3 modes in total
 	//save mode to NVS
-	WriteDataFlash(4,&mode,1); // LAST_MODE is stored in NVS address 4, len 1 byte
+	WriteDataFlash(5,&mode,1); // LAST_MODE is stored in NVS address 4, len 1 byte
 }
 
 void switchGap(){
@@ -127,10 +128,10 @@ void click(){
 	LedTurnOn(mode + 1);
 	gapBlink();
 }
-
+//load last config from NVS
 void loadConfig(){
 	ReadDataFlash(0,3,gap_config);
-	ReadDataFlash(4,1,&mode);
+	ReadDataFlash(5,1,&mode);
 }
 
 void main(){
