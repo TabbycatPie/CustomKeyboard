@@ -11,8 +11,8 @@
 #define GO_DOWN  0x08
 #define WIN_MODE 0xff
 
-//used for generate a random number
-extern unsigned int seed;
+void initSeed();
+void seedChange(unsigned int delta);
 
 //move mouse to (x,y) direction when @direction is WIN_MODE;x,y can be negative
 //  @direction :reserved you can input WIN_MODE
@@ -20,7 +20,7 @@ extern unsigned int seed;
 //  @y         :the movement on y axis
 //  @loop_time :how many times do you want the mouse to move repeatly with (x,y) you input before
 
-void MoveMouse(char direction,unsigned char x,unsigned char y,unsigned char loop_time);
+void MoveMouse(char direction,char x,char y,unsigned char loop_time);
 
 
 //move mouse to draw a rectangle at (100,100)

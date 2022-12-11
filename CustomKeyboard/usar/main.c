@@ -7,6 +7,12 @@
 #include "KeyHandler.h"
 
 
+//SYSTEM
+#define SYS_SHUT_DOWN 0x00
+#define SYS_START     0x0f
+unsigned char SYSTEM_STAT;
+
+
 //MODES
 #define DEF_MODE 0x00  //default mode: mouse move a rectangle with 100 as step
 #define SRM_MODE 0x01  //small range mode:mouse move tiny steps with rectangle
@@ -37,32 +43,30 @@ unsigned char gap_config[4] = {TINY_GAP_PT,TINY_GAP_PT,TINY_GAP_PT,TINY_GAP_PT};
 #define DISABLED 0x00
 unsigned char enable_movement = DISABLED; //0x00 for false 0xff for true
 
+void gapBlink();
 
-
-
-
-void mDelayS(unsigned char sec){
-	char a = 0;
-	while(sec--){
-		for(a=0;a<4;a++){
-			mDelaymS(250);
-		}
-	}
-}
+//void mDelayS(unsigned char sec){
+//	char a = 0;
+//	while(sec--){
+//		for(a=0;a<4;a++){
+//			mDelaymS(250);
+//		}
+//	}
+//}
 
 
 void switchMode(){
 	mode++;
 	mode %= MODE_COUNT;//there are 3 modes in total
 	//save mode to NVS
-	WriteDataFlash(4,&mode,1); // LAST_MODE is stored in NVS address 3, len 1 byte
+	WriteDataFlash(4,&mode,1); // LAST_MODE is stored in NVS address 4, len 1 byte
 }
 
 void switchGap(){
 	gap_config[mode] ++;
 	gap_config[mode] %= 4;
 	//save config to NVS
-	WriteDataFlash(mode,&mode,1); // "mode" config store in NVS address "$mode",len 1 byte
+	WriteDataFlash(mode,gap_config + mode ,1); // "mode" config store in NVS address "$mode",len 1 byte
 }
 
 
@@ -70,8 +74,8 @@ void switchGap(){
 void run_timer_50ms(void){
 	unsigned char trigger_time;
 	time_unit ++;
-	seed ++;
-	cur_time_50ms ++;
+	KeyTimerTick();
+	seedChange(1); //seed ++
 	LedTimerLoop();
 	if(time_unit >= 20){
 		// 1 sec time hit,reset timer
@@ -89,50 +93,108 @@ void run_timer_50ms(void){
 }
 
 
+void long_press(){
+	if(SYSTEM_STAT == SYS_SHUT_DOWN)
+		SYSTEM_STAT = SYS_START;
+	else
+		SYSTEM_STAT = SYS_SHUT_DOWN;
+}
+void double_click(){
+	switchGap();
+	//blink led
+	gapBlink();
+}
+void gapBlink(){
+	switch(gap_config[mode]){
+		case TINY_GAP_PT: // tiny 1s
+			LedBlinkStart(1,11,FORCE_BLINK); //blink very fast for 3s
+			break;
+		case SML_GAP_PT: //small 5s	
+			LedBlinkStart(3,7,FORCE_BLINK); //blink fast for 3s
+			break;
+		case DEF_GAP_PT: //defualt 30s	
+			LedBlinkStart(7,5,FORCE_BLINK); //blink slow for 3s
+			break;
+		case LON_GAP_PT: //long 120s	
+			LedBlinkStart(11,3,FORCE_BLINK); //blink very slow for 3s
+			break;
+	}
+}
 
+void click(){
+	switchMode();
+	//refresh led 
+	LedTurnOn(mode + 1);
+	gapBlink();
+}
+
+void loadConfig(){
+	ReadDataFlash(0,3,gap_config);
+	ReadDataFlash(4,1,&mode);
+}
 
 void main(){
-
+	
+	unsigned int start_up = 500;
 	
 	CfgFsys();                    //CH552时钟选择配置
 	mDelaymS(50);                 //修改主频等待内部晶振稳定,必加
 	
-		
+	
+	
   //init
-	//initKey();
+	initKey();
 	initLED();
+	initSeed();
 	
+  EA = 1; //enable interrupt
 	
+	SYSTEM_STAT = SYS_SHUT_DOWN;
+	
+	//wait for long-press start signal
+	while(SYSTEM_STAT == SYS_SHUT_DOWN){
+		if(readKey() == KEY_PRESSED){
+			start_up --;
+		}
+		else{
+			start_up = 500;
+		}
+		if(start_up == 0){
+			SYSTEM_STAT = SYS_START;
+			break;
+		}
+	}
+	
+
 	USBDeviceInit();              //USB设备模式初始化
-	EA = 1;                       //允许单片机中断
+                     
+	//load config for nvs
+	loadConfig();
+	LedTurnOn(mode + 1);
+	gapBlink();
 	
-  LedTurnOn(mode + 1);
-	
-	
-	
-	while(1)
+	while(SYSTEM_STAT != SYS_SHUT_DOWN)
 	{
-		//KeyLoop();
 		if(Ready)
 		{
 			//USB枚举成功处理
 			FLAG = 0;
-
+			KeyLoop();
 			if(enable_movement == ENABLED){
 				if(mode == DEF_MODE){
 					//default mode
 					MoveMouseRect(100);
-					LedBlinkStart(3,1);
+					LedBlinkStart(1,1,NORMAL_BLINK);
 				}
 				else if(mode == SRM_MODE){
 					//small range mode
 					MoveMouseRect(10);
-					LedBlinkStart(10,2);
+					LedBlinkStart(1,1,NORMAL_BLINK);
 				}
 				else{
 					//random mode
 					MoveMouseRandomly();
-					LedBlinkStart(10,2);
+					LedBlinkStart(1,1,NORMAL_BLINK);
 				}
 				enable_movement = DISABLED;
 			}

@@ -80,12 +80,16 @@ void LedTurnOn(unsigned char color){
 //blink led: the led will go off $interval_100ms/10 sec and turn on it last stat for interval_100ms
 //@para interval_100ms: blink interval,1 for 50ms
 //@para blink_times: how many times the led blink
-void LedBlinkStart(unsigned char _interval_50ms,char _blink_times){
+//@para force: FORCE_BLINK to reset other blink task and force blink itself
+void LedBlinkStart(unsigned char _interval_50ms,char _blink_times,unsigned char force){
+	//start timer if its stoped
+	if(force != FORCE_BLINK){
+		//wait for other blink task stop;
+		while(led_timer_signal == TIMER_START);
+	}
 	blink_times = _blink_times;
 	interval_50ms = _interval_50ms;
-	//start timer if its stoped
-	if(led_timer_signal == TIMER_STOP)
-		led_timer_signal = TIMER_START;
+	led_timer_signal = TIMER_START;
 }
 
 

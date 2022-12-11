@@ -15,11 +15,15 @@ extern unsigned char led_timer;
 void initLED();
 void LedTimerLoop();
 
+
+#define FORCE_BLINK 0xff
+#define NORMAL_BLINK 0x00
 //blink led: the led will go off $interval_100ms/10 sec and turn on it last stat for interval_100ms
 //@para interval_100ms: blink interval,1 for 50ms
 //@para blink_times: how many times the led blink
-void LedBlinkStart(unsigned char interval_50ms,char blink_times);
-
+//@para force: FORCE_BLINK to reset other blink task and force blink itself
+void LedBlinkStart(unsigned char _interval_50ms,char _blink_times,unsigned char force);
+	
 //led utils
 void LedTurnOn(unsigned char color);
 void LedTurnOffAll();

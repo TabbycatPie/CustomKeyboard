@@ -10,6 +10,9 @@
 //#define Y_O_MASK 0x80    // 1 for Y axis overflow
 
 
+//used for generate a random number
+unsigned int seed;
+
 void HIDMousesend(){
 	FLAG = 0;
 	Mouse_Send();    //if mouse key is set,then send mouse event
@@ -18,7 +21,7 @@ void HIDMousesend(){
 
 
 
-void MoveMouse(char direction,unsigned char x,unsigned char y,unsigned char loop_time){
+void MoveMouse(char direction,char x,char y,unsigned char loop_time){
 	memset(HIDMouse,0,sizeof(HIDMouse));
 	HIDMouse[0] |= 0x08;
 	if(direction != WIN_MODE){
@@ -64,13 +67,39 @@ void MoveMouseRect(unsigned char step_len){
 
 #define RMAX 250
 #define RMIN 10
-
 void MoveMouseRandomly(){
-	char x,y;
-	srand(seed);
-	x = ((unsigned char)(rand()%(RMAX+1-RMIN)+RMIN))-130;
-	srand(seed+x);
-	y = ((unsigned char)(rand()%(RMAX+1-RMIN)+RMIN))-130;
-	
-	MoveMouse(WIN_MODE,x,y,1);
+  char x,y,fx,fy;
+  //random num seed 
+	seed ++;
+  srand(seed);
+  x = ((char)(rand()%(RMAX+1-RMIN)+RMIN))-130;
+	seed ++;
+  srand(seed);
+  fx = (char)rand();
+	if(fx%2==1){
+		fx = -1;
+	}
+	else{
+		fx = 1;
+	}
+	seed ++;
+  srand(seed);
+  fy = (char)rand();
+	if(fy%2==1){
+		fy = -1;
+	}
+	else{
+		fy = 1;
+	}
+	seed ++;
+  srand(seed);
+  y = ((char)(rand()%(RMAX+1-RMIN)+RMIN))-130;
+	MoveMouse(WIN_MODE,fx*x,fy*y,1);
+}
+
+void initSeed(){
+	seed = 0;
+}
+void seedChange(unsigned int delta){
+	seed += delta;
 }
