@@ -203,6 +203,7 @@ void main(){
 		else
 		{
 			//这里是USB未枚举成功处理
+			LedBlinkStart(10,1,NORMAL_BLINK);
 		}
 	}
 }
