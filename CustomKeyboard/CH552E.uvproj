@@ -176,7 +176,7 @@
           </Flash1>
           <bUseTDR>0</bUseTDR>
           <Flash2></Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -311,7 +311,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\usar;.\usar\DataFlash;.\usar\USB</IncludePath>
+              <IncludePath>.\usar;.\usar\DataFlash;.\usar\USB;.\drivers</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>
@@ -412,6 +412,26 @@
               <FileName>LED.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\drivers\LED.h</FilePath>
+            </File>
+            <File>
+              <FileName>MouseContrl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\MouseContrl.c</FilePath>
+            </File>
+            <File>
+              <FileName>MouseContrl.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\MouseContrl.h</FilePath>
+            </File>
+            <File>
+              <FileName>KeyHandler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\drivers\KeyHandler.c</FilePath>
+            </File>
+            <File>
+              <FileName>KeyHandler.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\drivers\KeyHandler.h</FilePath>
             </File>
           </Files>
         </Group>
