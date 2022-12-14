@@ -89,7 +89,6 @@ void run_timer_50ms(void){
 	KeyTimerTick();
 	seedChange(1); //seed ++
 	LedTimerLoop();
-	//SmoothMouseMoveLoop();
 	if(time_unit >= 20){
 		// 1 sec time hit,reset timer
 		time_unit = 0;
@@ -160,6 +159,7 @@ void main(){
 	initMouse();
 	
   EA = 1; //enable interrupt
+	mDelaymS(100);  //wait interrupts to statble 
 	
 	SYSTEM_STAT = SYS_SHUT_DOWN;
 	
@@ -192,16 +192,16 @@ void main(){
 			//USB枚举成功处理
 			FLAG = 0;
 			KeyLoop();
+			SmoothMouseMoveLoop();
 			if(enable_movement == ENABLED){
 				if(mode == DEF_MODE){
 					//default mode
-					MoveMouseRect(50);
+					MoveMouseRect(200);
 					LedBlinkStart(1,1,NORMAL_BLINK);
 				}
 				else if(mode == SRM_MODE){
 					//small range mode
-					MoveMouse(WIN_MODE,5,0,1);
-					MoveMouse(WIN_MODE,-5,0,1);
+					MoveMouseRect(50);
 					LedBlinkStart(1,1,NORMAL_BLINK);
 				}
 				else{
