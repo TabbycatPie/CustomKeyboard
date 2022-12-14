@@ -11,7 +11,13 @@
 #define GO_DOWN  0x08
 #define WIN_MODE 0xff
 
-void initSeed();
+
+//main timer lock
+#define PASS 0xff
+#define DO_NOT_PASS 0x00
+extern unsigned char TIMER_PASS;
+
+void initMouse();
 void seedChange(unsigned int delta);
 
 //move mouse to (x,y) direction when @direction is WIN_MODE;x,y can be negative
@@ -22,12 +28,16 @@ void seedChange(unsigned int delta);
 
 void MoveMouse(char direction,char x,char y,unsigned char loop_time);
 
+void SmoothMouseMoveLoop();
+
 
 //move mouse to draw a rectangle at (100,100)
-void MoveMouseRect(unsigned char step_len);
+void MoveMouseRect(int step_len);
 
 //as it's name :)
 void MoveMouseRandomly();
 
 //send HID package
 void HIDMousesend();
+
+#endif

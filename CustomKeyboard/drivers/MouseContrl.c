@@ -6,6 +6,7 @@
 #define M_KEY_MASK 0x04  // middle key press mask
 #define X_N_MASK 0x10    // 1 for X axis negative
 #define Y_N_MASK 0x20    // 1 for Y axis negative
+
 //#define X_O_MASK 0x40    // 1 for X axis overflow
 //#define Y_O_MASK 0x80    // 1 for Y axis overflow
 
@@ -42,22 +43,103 @@ void MoveMouse(char direction,char x,char y,unsigned char loop_time){
 		HIDMousesend();
 	}
 }
+//#define MOVE_INTERVAL 20
+//void MoveMouseSmoothly(int x,int y,unsigned int time_ms){
+//	double a_max_x,a_max_y,time,sumx,sumy;
+//	char dx,dy;
+//	a_max_x = ((double)x)/(time_ms/MOVE_INTERVAL);
+//	a_max_y = ((double)y)/(time_ms/MOVE_INTERVAL);
+//	//lock main timer
+//	TIMER_PASS = PASS;
+//	time = 0.0;
+//	sumx = 0.0;
+//	sumy = 0.0;
+//	while(time <= time_ms){
+//		time += MOVE_INTERVAL;
+//		sumx += a_max_x;
+//		sumy += a_max_y;
+//		if(sumy > 1.0 || sumy < -1.0 || sumx > 1.0 || sumx < -1.0){
+//			dx = (char)(sumx);
+//			dy = (char)(sumy);
+//			sumx = 0.0;
+//			sumy = 0.0;
+//			MoveMouse(WIN_MODE,dx,dy,1);
+//		}
+//		mDelaymS(MOVE_INTERVAL); //delay 5ms
+//	}
+//	TIMER_PASS = DO_NOT_PASS;
+//}
 
+
+
+
+double a_max_x,a_max_y,sumx,sumy;
+unsigned int time,timeunit;
+char dx,dy;
+
+#define MOUSE_LOOP_ENABLE 0x00
+#define MOUSE_LOOP_DISABLE 0xff
+unsigned char mouse_loop_en;
+
+
+#define MOVE_INTERVAL 50
+void MoveMouseSmoothly(int x,int y,unsigned int time_ms){
+	//config timer and vars
+	timeunit = time_ms/MOVE_INTERVAL;
+	a_max_x = 1.5f * ((double)x)/(timeunit*timeunit*timeunit);
+	a_max_y = 1.5f * ((double)y)/(timeunit*timeunit*timeunit);
+	time = 0;
+	sumx = 0.0;
+	sumy = 0.0;
+	mouse_loop_en = MOUSE_LOOP_ENABLE;
+}
+
+
+
+void SmoothMouseMoveLoop(){
+	if(mouse_loop_en == MOUSE_LOOP_ENABLE && time <= timeunit){
+		if(time<= (double)(timeunit/4.0)){
+			sumx += 0.5f * a_max_x * time * time;
+			sumy += 0.5f * a_max_y * time * time;
+		}
+		else if( time > (double)(timeunit/4.0) && time <= (double)(timeunit*3.0/4.0)){
+			sumx += ((-0.5f)*a_max_x*time*time + a_max_x*(timeunit/2)*time) - (a_max_x*timeunit*timeunit/16);
+			sumy += ((-0.5f)*a_max_y*time*time + a_max_y*(timeunit/2)*time) - (a_max_y*timeunit*timeunit/16);
+		}
+		else{
+			sumx += 0.5f * a_max_x * (timeunit-time) * (timeunit-time);
+			sumy += 0.5f * a_max_y * (timeunit-time) * (timeunit-time);
+		}
+		if(sumy > 1.0 || sumy < -1.0 || sumx > 1.0 || sumx < -1.0){
+			dx = (char)(sumx+(sumx>0?0.5:(-0.5)));
+			dy = (char)(sumy+(sumy>0?0.5:(-0.5)));
+			sumx = 0.0;
+			sumy = 0.0;
+			MoveMouse(WIN_MODE,dx,dy,1);
+		}
+		//mDelaymS(MOVE_INTERVAL); //delay 50ms
+		time ++;
+	}
+	else{
+		mouse_loop_en = MOUSE_LOOP_DISABLE;
+	}
+	
+}
 
 unsigned char rect_step = 0x00;
-void MoveMouseRect(unsigned char step_len){
+void MoveMouseRect(int step_len){
 	switch(rect_step){
-		case 0:
-			MoveMouse(WIN_MODE,step_len,0,1); //move right
+		case 0x00:
+			MoveMouseSmoothly(step_len,0,1000); //move right
 			break;
-		case 1:
-			MoveMouse(WIN_MODE,0,step_len,1); //move down
+		case 0x01:
+			MoveMouseSmoothly(0,step_len,1000);//move down
 			break;
-		case 2:
-			MoveMouse(WIN_MODE,-step_len,0,1); //move left
+		case 0x02:
+			MoveMouseSmoothly(-step_len,0,1000); //move left
 			break;
-		case 3:
-			MoveMouse(WIN_MODE,0,-step_len,1); //move up
+		case 0x03:
+			MoveMouseSmoothly(0,-step_len,1000); //move up
 			break;
 	}
 	rect_step ++;
@@ -65,10 +147,10 @@ void MoveMouseRect(unsigned char step_len){
 }
 
 
-#define RMAX 250
-#define RMIN 10
+#define RMAX 100
+#define RMIN 50
 void MoveMouseRandomly(){
-  char x,y,fx,fy;
+  int x,y,fx,fy;
   //random num seed 
 	seed ++;
   srand(seed);
@@ -94,11 +176,13 @@ void MoveMouseRandomly(){
 	seed ++;
   srand(seed);
   y = ((char)(rand()%(RMAX+1-RMIN)+RMIN))-130;
-	MoveMouse(WIN_MODE,fx*x,fy*y,1);
+	MoveMouseSmoothly(fx*x,fy*y,1000);
 }
 
-void initSeed(){
+void initMouse(){
 	seed = 0;
+	TIMER_PASS = DO_NOT_PASS;
+	mouse_loop_en = MOUSE_LOOP_DISABLE;
 }
 void seedChange(unsigned int delta){
 	seed += delta;

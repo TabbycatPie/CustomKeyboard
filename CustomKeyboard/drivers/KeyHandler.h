@@ -16,3 +16,6 @@ void KeyTimerTick();
 #define KEY_PRESSED         0x00
 #define KEY_RELEASED        0xff
 unsigned char readKey();
+
+
+#endif

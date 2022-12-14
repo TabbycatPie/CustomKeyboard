@@ -28,3 +28,4 @@ void LedBlinkStart(unsigned char _interval_50ms,char _blink_times,unsigned char 
 void LedTurnOn(unsigned char color);
 void LedTurnOffAll();
 
+#endif

@@ -2,6 +2,7 @@
 #include "KeyHandler.h"
 #include "usb.h"
 
+
 sbit KEY_PIN = P1^4;
 
 
@@ -61,7 +62,7 @@ unsigned char readKey(){
 			return KEY_RELEASED;
 		}
 	}
-	
+	return KEY_RELEASED;
 }
 
 

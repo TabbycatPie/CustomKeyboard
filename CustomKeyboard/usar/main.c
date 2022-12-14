@@ -31,13 +31,16 @@ UINT8 mode = DEF_MODE;
 #define SML_GAP_PT 2    //pointor to SML_GAP_VAL
 #define TINY_GAP_PT 3   //pointor to TINY_GAP_VAL
 const unsigned char gaps[4] = {DEF_GAP_VAL,LON_GAP_VAL,SML_GAP_PT,TINY_GAP_VAL}; // read only e.g: access val using gap_val = gaps[DEF_GAP_PT]
+
 unsigned char time_sec = 0;
 unsigned char time_unit = 0; // ++ every 50ms
 
 
-//Config (stored in NVS)
-#define NVS_GAP_CONFIG_LEN_PT 3;
-unsigned char gap_config[4] = {DEF_GAP_VAL,DEF_GAP_VAL,DEF_GAP_VAL,DEF_GAP_VAL};
+////Config (stored in NVS)
+UINT8 gap_config = DEF_GAP_VAL;
+//--deleted
+//#define NVS_GAP_CONFIG_LEN_PT 3;
+//unsigned char gap_config[4] = {DEF_GAP_VAL,DEF_GAP_VAL,DEF_GAP_VAL,DEF_GAP_VAL};
 
 
 #define ENABLED 0xff
@@ -63,12 +66,20 @@ void switchMode(){
 	WriteDataFlash(5,&mode,1); // LAST_MODE is stored in NVS address 4, len 1 byte
 }
 
-void switchGap(){
-	gap_config[mode] ++;
-	gap_config[mode] %= 4;
+//@deleted
+//void _switchGap(){
+//	gap_config[mode] ++;
+//	gap_config[mode] %= 4;
+//	//save config to NVS
+//	WriteDataFlash(mode,gap_config + mode ,1); // "mode" config store in NVS address "$mode",len 1 byte
+//}
+void _switchGap(){
+	gap_config ++;
+	gap_config %= 4;
 	//save config to NVS
-	WriteDataFlash(mode,gap_config + mode ,1); // "mode" config store in NVS address "$mode",len 1 byte
+	WriteDataFlash(0,&gap_config,1); // "mode" config store in NVS address "$mode",len 1 byte
 }
+
 
 
 /* 50ms triggers once */
@@ -78,11 +89,12 @@ void run_timer_50ms(void){
 	KeyTimerTick();
 	seedChange(1); //seed ++
 	LedTimerLoop();
+	//SmoothMouseMoveLoop();
 	if(time_unit >= 20){
 		// 1 sec time hit,reset timer
 		time_unit = 0;
 		time_sec ++;
-		trigger_time = gaps[gap_config[mode]];
+		trigger_time = gaps[gap_config];
 		if(time_sec >= trigger_time){
 			//enable movement
 			enable_movement = ENABLED;
@@ -90,7 +102,6 @@ void run_timer_50ms(void){
 			time_sec %= trigger_time;
 		}
 	}
-	
 }
 
 
@@ -106,7 +117,7 @@ void double_click(){
 	gapBlink();
 }
 void gapBlink(){
-	switch(gap_config[mode]){
+	switch(gap_config){
 		case TINY_GAP_PT: // tiny 1s
 			LedBlinkStart(1,11,FORCE_BLINK); //blink very fast for 3s
 			break;
@@ -130,7 +141,7 @@ void click(){
 }
 //load last config from NVS
 void loadConfig(){
-	ReadDataFlash(0,3,gap_config);
+	ReadDataFlash(0,1,&gap_config);
 	ReadDataFlash(5,1,&mode);
 }
 
@@ -146,7 +157,7 @@ void main(){
   //init
 	initKey();
 	initLED();
-	initSeed();
+	initMouse();
 	
   EA = 1; //enable interrupt
 	
@@ -184,12 +195,13 @@ void main(){
 			if(enable_movement == ENABLED){
 				if(mode == DEF_MODE){
 					//default mode
-					MoveMouseRect(100);
+					MoveMouseRect(50);
 					LedBlinkStart(1,1,NORMAL_BLINK);
 				}
 				else if(mode == SRM_MODE){
 					//small range mode
-					MoveMouseRect(10);
+					MoveMouse(WIN_MODE,5,0,1);
+					MoveMouse(WIN_MODE,-5,0,1);
 					LedBlinkStart(1,1,NORMAL_BLINK);
 				}
 				else{
