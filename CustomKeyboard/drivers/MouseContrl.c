@@ -153,10 +153,10 @@ void MoveMouseRandomly(){
   int x,y,fx,fy;
   //random num seed 
 	seed ++;
-  srand(1);
+  srand(seed);
   x = (int)(rand()%(RMAX+1-RMIN))+RMIN;
 	seed ++;
-  srand(1);
+  srand(seed);
   fx = (int)rand();
 	if(fx%2==1){
 		fx = -1;
@@ -165,7 +165,7 @@ void MoveMouseRandomly(){
 		fx = 1;
 	}
 	seed ++;
-  srand(1);
+  srand(seed);
   fy = (int)rand();
 	if(fy%2==1){
 		fy = -1;
@@ -174,7 +174,7 @@ void MoveMouseRandomly(){
 		fy = 1;
 	}
 	seed ++;
-  srand(1);
+  srand(seed);
   y = (int)(rand()%(RMAX+1-RMIN))+RMIN;
 	MoveMouseSmoothly(fx*x,fy*y,1000);
 }
