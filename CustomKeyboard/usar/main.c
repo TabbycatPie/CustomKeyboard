@@ -12,7 +12,6 @@
 #define SYS_START     0x0f
 unsigned char SYSTEM_STAT;
 
-
 //MODES
 #define DEF_MODE 0x00  //default mode: mouse move a rectangle with 100 as step
 #define SRM_MODE 0x01  //small range mode:mouse move tiny steps with rectangle
@@ -105,10 +104,14 @@ void run_timer_50ms(void){
 
 
 void long_press(){
-	if(SYSTEM_STAT == SYS_SHUT_DOWN)
+	if(SYSTEM_STAT == SYS_SHUT_DOWN){
 		SYSTEM_STAT = SYS_START;
-	else
+		LedTurnOn(mode + 1);
+	}
+	else{
 		SYSTEM_STAT = SYS_SHUT_DOWN;
+		LedTurnOffAll();
+	}
 }
 void double_click(){
 	switchGap();
@@ -144,6 +147,12 @@ void loadConfig(){
 	ReadDataFlash(5,1,&mode);
 }
 
+void fakeDeath(){
+	while(SYSTEM_STAT == SYS_SHUT_DOWN){
+		KeyLoop();
+	}
+}
+
 void main(){
 	
 	unsigned int start_up = 500;
@@ -161,21 +170,21 @@ void main(){
   EA = 1; //enable interrupt
 	mDelaymS(100);  //wait interrupts to statble 
 	
-	SYSTEM_STAT = SYS_SHUT_DOWN;
+//	SYSTEM_STAT = SYS_SHUT_DOWN;
 	
 	//wait for long-press start signal
-	while(SYSTEM_STAT == SYS_SHUT_DOWN){
-		if(readKey() == KEY_PRESSED){
-			start_up --;
-		}
-		else{
-			start_up = 500;
-		}
-		if(start_up == 0){
-			SYSTEM_STAT = SYS_START;
-			break;
-		}
-	}
+//	while(SYSTEM_STAT == SYS_SHUT_DOWN){
+//		if(readKey() == KEY_PRESSED){
+//			start_up --;
+//		}
+//		else{
+//			start_up = 500;
+//		}
+//		if(start_up == 0){
+//			SYSTEM_STAT = SYS_START;
+//			break;
+//		}
+//	}
 	
 
 	USBDeviceInit();              //USB设备模式初始化
@@ -185,7 +194,7 @@ void main(){
 	LedTurnOn(mode + 1);
 	gapBlink();
 	
-	while(SYSTEM_STAT != SYS_SHUT_DOWN)
+	while(1)
 	{
 		if(Ready)
 		{
@@ -193,6 +202,7 @@ void main(){
 			FLAG = 0;
 			KeyLoop();
 			SmoothMouseMoveLoop();
+			fakeDeath();
 			if(enable_movement == ENABLED){
 				if(mode == DEF_MODE){
 					//default mode

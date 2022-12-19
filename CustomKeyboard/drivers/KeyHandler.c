@@ -28,7 +28,7 @@ unsigned char key_event;
 #define CLICK_VALID_TIME   50/TIME_UNIT    //50ms avoid jiter
 #define CLICK_VALID_RTIME 250/TIME_UNIT    //50ms avoid jiter
 #define DOUB_TRI_TIME     300/TIME_UNIT		 //300ms for double click trigger
-#define LONG_TRI_TIME    3000/TIME_UNIT    //2000ms for long press trigger
+#define LONG_TRI_TIME    2000/TIME_UNIT    //2000ms for long press trigger
 
 unsigned long key_press_time1;
 unsigned long key_release_time1;
