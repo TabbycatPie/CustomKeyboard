@@ -206,12 +206,12 @@ void main(){
 			if(enable_movement == ENABLED){
 				if(mode == DEF_MODE){
 					//default mode
-					MoveMouseRect(200);
+					MoveMouseRect(1000);
 					LedBlinkStart(1,1,NORMAL_BLINK);
 				}
 				else if(mode == SRM_MODE){
 					//small range mode
-					MoveMouseRect(50);
+					MoveMouseRect(100);
 					LedBlinkStart(1,1,NORMAL_BLINK);
 				}
 				else{
