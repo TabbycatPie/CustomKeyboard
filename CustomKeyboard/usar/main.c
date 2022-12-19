@@ -211,7 +211,7 @@ void main(){
 				}
 				else if(mode == SRM_MODE){
 					//small range mode
-					MoveMouseRect(100);
+					MoveMouseRect(160);
 					LedBlinkStart(1,1,NORMAL_BLINK);
 				}
 				else{
