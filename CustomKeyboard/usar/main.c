@@ -172,7 +172,7 @@ void main(){
 	initMouse();
 	
   EA = 1; //enable interrupt
-	mDelaymS(100);  //wait interrupts to statble 
+	mDelaymS(500);  //wait interrupts to statble 
 	
 //	SYSTEM_STAT = SYS_SHUT_DOWN;
 	
@@ -229,7 +229,7 @@ void main(){
 		else
 		{
 			//这里是USB未枚举成功处理
-			LedBlinkStart(10,1,NORMAL_BLINK);
+			LedBlinkStart(5,20,NORMAL_BLINK);
 		}
 	}
 }
