@@ -34,6 +34,10 @@ const unsigned char gaps[4] = {DEF_GAP_VAL,LON_GAP_VAL,SML_GAP_PT,TINY_GAP_VAL};
 unsigned char time_sec = 0;
 unsigned char time_unit = 0; // ++ every 50ms
 
+unsigned char led_timer;
+unsigned int seed;
+unsigned char TIMER_PASS;
+
 
 ////Config (stored in NVS)
 UINT8 gap_config = DEF_GAP_VAL;
@@ -86,7 +90,7 @@ void run_timer_50ms(void){
 	unsigned char trigger_time;
 	time_unit ++;
 	KeyTimerTick();
-	seedChange(1); //seed ++
+	seed ++;
 	LedTimerLoop();
 	if(time_unit >= 20){
 		// 1 sec time hit,reset timer

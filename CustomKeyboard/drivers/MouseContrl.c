@@ -12,7 +12,7 @@
 
 
 //used for generate a random number
-unsigned int seed;
+extern unsigned int seed;
 
 void HIDMousesend(){
 	FLAG = 0;
@@ -176,14 +176,11 @@ void MoveMouseRandomly(){
 	seed ++;
   srand(seed);
   y = (int)(rand()%(RMAX+1-RMIN))+RMIN;
-	MoveMouseSmoothly(fx*x,fy*y,1000);
+	MoveMouseSmoothly(-x,y,1000);
 }
 
 void initMouse(){
 	seed = 0;
 	TIMER_PASS = DO_NOT_PASS;
 	mouse_loop_en = MOUSE_LOOP_DISABLE;
-}
-void seedChange(unsigned int delta){
-	seed += delta;
 }

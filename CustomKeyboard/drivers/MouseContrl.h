@@ -18,7 +18,6 @@
 extern unsigned char TIMER_PASS;
 
 void initMouse();
-void seedChange(unsigned int delta);
 
 //move mouse to (x,y) direction when @direction is WIN_MODE;x,y can be negative
 //  @direction :reserved you can input WIN_MODE
