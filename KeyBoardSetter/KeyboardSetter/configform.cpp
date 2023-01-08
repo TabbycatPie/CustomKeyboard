@@ -199,6 +199,7 @@ bool ConfigForm::saveConfigToFile()
         if(!saver->saveConfig(filePath,my_ckb->toJsonObj())){
             //can not save
             QMessageBox msg_info(this);
+            msg_info.setStyleSheet("color:rgb(242, 242, 222);");
             msg_info.setWindowTitle(tr("Error"));
             msg_info.setText(tr("Can not save ")+filePath+" "+saver->getLastError());
             msg_info.setIcon(QMessageBox::Critical);
@@ -207,6 +208,7 @@ bool ConfigForm::saveConfigToFile()
             return false;
         }else{
             QMessageBox msg_info(this);
+            msg_info.setStyleSheet("color:rgb(242, 242, 222);");
             msg_info.setWindowTitle(tr("Notice"));
             msg_info.setText(tr("Saved Successfully!"));
             msg_info.setIcon(QMessageBox::Information);
