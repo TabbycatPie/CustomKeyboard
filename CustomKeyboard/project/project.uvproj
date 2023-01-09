@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>Target 1</TargetName>
+      <TargetName>RF_rec</TargetName>
       <ToolsetNumber>0x0</ToolsetNumber>
       <ToolsetName>MCS-51</ToolsetName>
       <uAC6>0</uAC6>
@@ -33,7 +33,7 @@
           <SFDFile></SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
-          <BinPath>D:\Keil_v5\C51\BIN\</BinPath>
+          <BinPath></BinPath>
           <IncludePath></IncludePath>
           <LibPath></LibPath>
           <RegisterFilePath>WCH\</RegisterFilePath>
@@ -46,7 +46,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Objects\</OutputDirectory>
-          <OutputName>DIY</OutputName>
+          <OutputName>CH552G</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -125,7 +125,7 @@
             <Oh166RecLen>16</Oh166RecLen>
           </OPTHX>
           <Simulator>
-            <UseSimulator>0</UseSimulator>
+            <UseSimulator>1</UseSimulator>
             <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
             <RunToMain>1</RunToMain>
             <RestoreBreakpoints>1</RestoreBreakpoints>
@@ -137,9 +137,9 @@
             <RestoreSysVw>1</RestoreSysVw>
           </Simulator>
           <Target>
-            <UseTarget>1</UseTarget>
+            <UseTarget>0</UseTarget>
             <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
-            <RunToMain>1</RunToMain>
+            <RunToMain>0</RunToMain>
             <RestoreBreakpoints>1</RestoreBreakpoints>
             <RestoreWatchpoints>1</RestoreWatchpoints>
             <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
@@ -163,7 +163,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>BIN\STCMON51.DLL</Driver>
+            <Driver></Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -177,7 +177,7 @@
           </Flash1>
           <bUseTDR>0</bUseTDR>
           <Flash2></Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -186,7 +186,7 @@
         </Utilities>
         <Target51>
           <Target51Misc>
-            <MemoryModel>2</MemoryModel>
+            <MemoryModel>0</MemoryModel>
             <RTOS>0</RTOS>
             <RomSize>2</RomSize>
             <DataHold>0</DataHold>
@@ -324,7 +324,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\usar;.\usar\DataFlash;.\usar\USB</IncludePath>
+              <IncludePath>..\bsp;..\Public;..\usar\DataFlash;..\usar\USB</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>
@@ -374,42 +374,67 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>usar</GroupName>
+          <GroupName>user</GroupName>
           <Files>
-            <File>
-              <FileName>Debug.C</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\usar\Debug.C</FilePath>
-            </File>
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\usar\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>CH552.INC</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\usar\CH552.INC</FilePath>
-            </File>
-            <File>
-              <FileName>usb.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\usar\USB\usb.h</FilePath>
-            </File>
-            <File>
-              <FileName>usb.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\usar\USB\usb.c</FilePath>
+              <FilePath>.\main.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>app</GroupName>
+          <GroupName>bsp</GroupName>
+          <Files>
+            <File>
+              <FileName>GPIO.C</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\bsp\GPIO.C</FilePath>
+            </File>
+            <File>
+              <FileName>SPI.C</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\bsp\SPI.C</FilePath>
+            </File>
+            <File>
+              <FileName>si24R1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\bsp\si24R1.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>public</GroupName>
+          <Files>
+            <File>
+              <FileName>Debug.C</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Public\Debug.C</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>usar</GroupName>
           <Files>
             <File>
               <FileName>DataFlash.C</FileName>
               <FileType>1</FileType>
-              <FilePath>.\usar\DataFlash\DataFlash.C</FilePath>
+              <FilePath>..\usar\DataFlash\DataFlash.C</FilePath>
+            </File>
+            <File>
+              <FileName>usb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\usar\USB\usb.c</FilePath>
+            </File>
+            <File>
+              <FileName>usb.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\usar\USB\usb.h</FilePath>
+            </File>
+            <File>
+              <FileName>DataFlash.H</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\usar\DataFlash\DataFlash.H</FilePath>
             </File>
           </Files>
         </Group>

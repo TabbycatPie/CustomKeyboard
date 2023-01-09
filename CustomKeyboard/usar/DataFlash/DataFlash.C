@@ -7,7 +7,7 @@
 * Description        : CH554 DataFlash字节读写函数定义   
 *******************************************************************************/
 
-#include "CH552.H"                                                         
+#include "CH554.H"                                                         
 #include "Debug.H"
 #include "DataFlash.H"
 

@@ -1,10 +1,9 @@
 #ifndef __usb__
 #define __usb__
 
-#include "ch552.h"
+#include "ch554.h"
 #include "Debug.H"
-#include "string.h"
-//#include "flash.h"
+#include <string.h>
 
 
 #define VID 0x5131
@@ -18,7 +17,7 @@ extern UINT8X User_Ep2Buf_send[64];	//用户上报数据缓冲区
 extern UINT8X User_Ep2Buf_rev[64];	//接收上位机数据缓存区
 extern UINT8 HID_Busy;				//发送标志位
 extern UINT8 HID_Rev;				//接收标志位
-void HID_Send( );					//上报数据
+void HID_Send();					//上报数据
 
 /*键盘数据*/
 extern UINT8 HIDKey[8];
@@ -32,7 +31,7 @@ void Multimedia_Send( );	//多媒体数据上报
 
 
 void USBDeviceInit(void);	//USB初始化
-void USBDevWakeup(void);	//唤醒主机
+
 
 
 
