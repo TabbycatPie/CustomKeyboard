@@ -259,26 +259,32 @@ void handleSPIreceive(){
 		rf_CE = 1;
 		if(rf_pack.msg_id != next_msg_id){
 			next_msg_id = rf_pack.msg_id;
-			if(rf_pack.rfSendKeyValue > 0x00 && rf_pack.rfSendKeyValue < 0x07){
-				KEY_PRESS[rf_pack.rfSendKeyValue - 1] = 0xff;
-				if(KEY_MARCO[rf_pack.rfSendKeyValue -1 ]==0xff)
-					CUR_MARCO_KEY = rf_pack.rfSendKeyValue;
-				LED_Blink();
+			switch(rf_pack.rfSendKeyValue){
+				case 0x01:
+					KEY_PRESS[0] = 0xff;
+					if(KEY_MARCO[0]==0xff)
+						CUR_MARCO_KEY = 1;
+					LED_Blink();
+					break;
+				case 0x02:
+					KEY_PRESS[1] = 0xff;
+					if(KEY_MARCO[1]==0xff)
+						CUR_MARCO_KEY = 2;
+					LED_Blink();
+					break;
+				case 0x04:
+					KEY_PRESS[2] = 0xff;
+					if(KEY_MARCO[1]==0xff)
+						CUR_MARCO_KEY = 3;
+					LED_Blink();
+					break;
+				case 0x03:
+					KEY_PRESS[3] = 0xff;
+					if(KEY_MARCO[1]==0xff)
+						CUR_MARCO_KEY = 4;
+					LED_Blink();
+					break;
 			}
-//			switch(rf_pack.rfSendKeyValue){
-//				case 0x55:
-//					KEY_PRESS[0] = 0xff;
-//					if(KEY_MARCO[0]==0xff)
-//						CUR_MARCO_KEY = 1;
-//					LED_Blink();
-//					break;
-//				case 0xaa:
-//					KEY_PRESS[1] = 0xff;
-//					if(KEY_MARCO[1]==0xff)
-//						CUR_MARCO_KEY = 2;
-//					LED_Blink();
-//					break;
-//			}
 		}
 	}
 }
@@ -539,6 +545,8 @@ void main()
 			handleReceive();
 			KEY_PRESS[0] = 0x00;
 			KEY_PRESS[1] = 0x00;
+			KEY_PRESS[2] = 0x00;
+			KEY_PRESS[3] = 0x00;
 			FLAG = 0;
 		}
 		else
