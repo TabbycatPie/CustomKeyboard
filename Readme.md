@@ -19,7 +19,7 @@ There are 2 floders and many branches
 
 Click the given link below will automatically redirect to a URL and download a zip file for you，it's **NECESSARY** to  download this software for keyboard configuration. the downloaded zip file is built from branch FinalVerison2.1
 
- **[Click Here To Download Software](http://8.210.3.182:9999/man/ZDDKeyboardSetter.zip)**
+ **[Click Here To Download Software](https://github.com/TabbycatPie/CustomKeyboard/releases/tag/stable)**
 
 ## After Downloading
 
