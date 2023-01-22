@@ -149,34 +149,30 @@ void MoveMouseRect(int step_len){
 
 #define RMAX 200
 #define RMIN 50
+#define BOTTOM  -3840
+#define TOP 3840
+#define LEFTMAX -5120
+#define RIGHTMAX 5120
+int cur_x = 0;
+int cur_y = 0;
+int sum_x = 0;
+int sum_y = 0;
 void MoveMouseRandomly(){
-  int x,y,fx,fy;
+  int x,y;
   //random num seed 
 	seed ++;
   srand(seed);
   x = (int)(rand()%(RMAX+1-RMIN))+RMIN;
 	seed ++;
   srand(seed);
-  fx = (int)rand();
-	if(fx%2==1){
-		fx = -1;
-	}
-	else{
-		fx = 1;
-	}
-	seed ++;
-  srand(seed);
-  fy = (int)rand();
-	if(fy%2==1){
-		fy = -1;
-	}
-	else{
-		fy = 1;
-	}
-	seed ++;
-  srand(seed);
   y = (int)(rand()%(RMAX+1-RMIN))+RMIN;
-	MoveMouseSmoothly(fx*x,fy*y,1000);
+	if(sum_y>TOP||sum_y<BOTTOM)
+		y = -y;
+	if(sum_x>RIGHTMAX||sum_x<LEFTMAX)
+		x = -x;
+	sum_x += x;
+	sum_y += y;
+	MoveMouseSmoothly(x,y,1000);
 }
 
 void initMouse(){

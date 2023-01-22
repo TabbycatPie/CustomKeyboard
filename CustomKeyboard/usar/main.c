@@ -90,7 +90,7 @@ void run_timer_50ms(void){
 	unsigned char trigger_time;
 	time_unit ++;
 	KeyTimerTick();
-	seed ++;
+	//seed ++;
 	LedTimerLoop();
 	if(time_unit >= 20){
 		// 1 sec time hit,reset timer
