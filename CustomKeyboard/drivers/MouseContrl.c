@@ -157,6 +157,8 @@ int cur_x = 0;
 int cur_y = 0;
 int sum_x = 0;
 int sum_y = 0;
+int fx = 1;
+int fy = 1;
 void MoveMouseRandomly(){
   int x,y;
   //random num seed 
@@ -167,12 +169,12 @@ void MoveMouseRandomly(){
   srand(seed);
   y = (int)(rand()%(RMAX+1-RMIN))+RMIN;
 	if(sum_y>TOP||sum_y<BOTTOM)
-		y = -y;
+		fy = -fy;
 	if(sum_x>RIGHTMAX||sum_x<LEFTMAX)
-		x = -x;
-	sum_x += x;
-	sum_y += y;
-	MoveMouseSmoothly(x,y,1000);
+		fx = -fx;
+	sum_x += fx*x;
+	sum_y += fy*y;
+	MoveMouseSmoothly(fx*x,fy*y,1000);
 }
 
 void initMouse(){
