@@ -13,12 +13,12 @@
 unsigned char SYSTEM_STAT;
 
 //MODES
-#define DEF_MODE 0x00  //default mode: mouse move a rectangle with 100 as step
-#define SRM_MODE 0x01  //small range mode:mouse move tiny steps with rectangle
+#define DEF_MODE 0x01  //default mode: mouse move a rectangle with 100 as step
+#define SRM_MODE 0x00  //small range mode:mouse move tiny steps with rectangle
 #define RMM_MODE 0x02  //random move mode:mouse move randomly with 100 as step
 #define MODE_COUNT 3;  //there are 3 modes
 #define MODE_NVS_ADDR 5;
-UINT8 mode = DEF_MODE;
+UINT8 mode = SRM_MODE;
 
 //Movement time gap
 #define DEF_GAP_VAL 30  //default 30sec
@@ -229,7 +229,7 @@ void main(){
 		else
 		{
 			//这里是USB未枚举成功处理
-			LedBlinkStart(5,20,NORMAL_BLINK);
+			//LedBlinkStart(5,20,NORMAL_BLINK);
 		}
 	}
 }
