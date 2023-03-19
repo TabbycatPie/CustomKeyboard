@@ -1,5 +1,6 @@
 #include "MouseContrl.h"
 #include "stdlib.h"
+#include "math.h"
 
 #define L_KEY_MASK 0x01  // left key press mask
 #define R_KEY_MASK 0x02  // right key press mask
@@ -146,35 +147,69 @@ void MoveMouseRect(int step_len){
 	rect_step %= 4;
 }
 
+float VectorLen(int x,int y){
+	return sqrt(x*x+y*y);
+}
+float VectorDot(int x1,int y1,int x2,int y2){
+	return x1*x2 + y1*y2;
+}
 
-#define RMAX 200
-#define RMIN 50
-#define BOTTOM  -3840
-#define TOP 3840
-#define LEFTMAX -5120
-#define RIGHTMAX 5120
+#define RMAX 800
+#define RMIN (-800)
+#define BOTTOM  -9000
+#define TOP 9000
+#define LEFTMAX -15000
+#define RIGHTMAX 15000
+#define PI 3.1416
+
 int cur_x = 0;
 int cur_y = 0;
-int sum_x = 0;
-int sum_y = 0;
-int fx = 1;
-int fy = 1;
+int last_x = 1;
+int last_y = 0;
+float cos_ang = 0;
+long sum_x = 0;
+long sum_y = 0;
+char first_flag = 0x01;
 void MoveMouseRandomly(){
-  int x,y;
+	//initial cursor position at first time
+	if(first_flag == 0x01){
+		first_flag = 0x00;
+		MoveMouse(WIN_MODE,-100,-100,30);
+		MoveMouse(WIN_MODE,100,60,3);
+	}
   //random num seed 
-	seed ++;
-  srand(seed);
-  x = (int)(rand()%(RMAX+1-RMIN))+RMIN;
-	seed ++;
-  srand(seed);
-  y = (int)(rand()%(RMAX+1-RMIN))+RMIN;
-	if(sum_y>TOP||sum_y<BOTTOM)
-		fy = -fy;
-	if(sum_x>RIGHTMAX||sum_x<LEFTMAX)
-		fx = -fx;
-	sum_x += fx*x;
-	sum_y += fy*y;
-	MoveMouseSmoothly(fx*x,fy*y,1000);
+	while(1){
+		seed ++;
+		srand(seed);
+		cur_x = (int)(rand()%(RMAX+1-RMIN))+RMIN;
+		cur_y = (int)(rand()%(RMAX+1-RMIN))+RMIN;
+		//avoid divide by zero exception
+		if(cur_x == 0 && cur_y == 0){
+			cur_x = 1;
+		}
+		//angle limitation
+		cos_ang = (VectorDot(last_x,last_y,cur_x,cur_y))/(VectorLen(last_x,last_y) * VectorLen(cur_x,cur_y));
+		if(cos_ang >= 0.0)
+			break;
+	}
+	//boder limitation
+	if(sum_y > TOP){
+		cur_y = -1*abs(cur_y);
+	}
+	if(sum_y < BOTTOM){
+		cur_y = abs(cur_y);
+	}
+	if(sum_x>RIGHTMAX){
+		cur_x = -1*abs(cur_x);
+	}
+	if(sum_x < LEFTMAX){
+		cur_x = abs(cur_x);
+	}
+	sum_x += cur_x;
+	sum_y += cur_y;
+	MoveMouseSmoothly(cur_x,cur_y,1000);
+	last_x = cur_x;
+	last_y = cur_y;
 }
 
 void initMouse(){

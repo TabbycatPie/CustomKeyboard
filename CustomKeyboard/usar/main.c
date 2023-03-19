@@ -65,6 +65,10 @@ void gapBlink();
 void switchMode(){
 	mode++;
 	mode %= MODE_COUNT;//there are 3 modes in total
+	if(mode == RMM_MODE){
+		MoveMouse(WIN_MODE,-100,-100,30);
+		MoveMouse(WIN_MODE,100,60,3);
+	}
 	//save mode to NVS
 	WriteDataFlash(5,&mode,1); // LAST_MODE is stored in NVS address 4, len 1 byte
 }
@@ -91,6 +95,8 @@ void run_timer_50ms(void){
 	time_unit ++;
 	KeyTimerTick();
 	seed ++;
+	if(seed > 9563)
+		seed = 0;
 	LedTimerLoop();
 	if(time_unit >= 20){
 		// 1 sec time hit,reset timer
