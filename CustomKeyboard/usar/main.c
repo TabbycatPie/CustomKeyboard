@@ -29,7 +29,7 @@ UINT8 mode = SRM_MODE;
 #define LON_GAP_PT 1    //pointor to LON_GAP_VAL
 #define SML_GAP_PT 2    //pointor to SML_GAP_VAL
 #define TINY_GAP_PT 3   //pointor to TINY_GAP_VAL
-const unsigned char gaps[4] = {DEF_GAP_VAL,LON_GAP_VAL,SML_GAP_PT,TINY_GAP_VAL}; // read only e.g: access val using gap_val = gaps[DEF_GAP_PT]
+const unsigned char gaps[4] = {DEF_GAP_VAL,LON_GAP_VAL,SML_GAP_VAL,TINY_GAP_VAL}; // read only e.g: access val using gap_val = gaps[DEF_GAP_PT]
 
 unsigned char time_sec = 0;
 unsigned char time_unit = 0; // ++ every 50ms
@@ -80,7 +80,7 @@ void switchMode(){
 //	//save config to NVS
 //	WriteDataFlash(mode,gap_config + mode ,1); // "mode" config store in NVS address "$mode",len 1 byte
 //}
-void _switchGap(){
+void switchGap(){
 	gap_config ++;
 	gap_config %= 4;
 	//save config to NVS
@@ -107,7 +107,7 @@ void run_timer_50ms(void){
 			//enable movement
 			enable_movement = ENABLED;
 			//reset timer
-			time_sec %= trigger_time;
+			time_sec = 0;
 		}
 	}
 }
