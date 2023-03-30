@@ -274,14 +274,38 @@ void handleSPIreceive(){
 					break;
 				case 0x04:
 					KEY_PRESS[2] = 0xff;
-					if(KEY_MARCO[1]==0xff)
+					if(KEY_MARCO[2]==0xff)
 						CUR_MARCO_KEY = 3;
 					LED_Blink();
 					break;
 				case 0x03:
 					KEY_PRESS[3] = 0xff;
-					if(KEY_MARCO[1]==0xff)
+					if(KEY_MARCO[3]==0xff)
 						CUR_MARCO_KEY = 4;
+					LED_Blink();
+					break;
+				case 0x05:
+					KEY_PRESS[4] = 0xff;
+					if(KEY_MARCO[4]==0xff)
+						CUR_MARCO_KEY = 5;
+					LED_Blink();
+					break;
+				case 0x06:
+					KEY_PRESS[5] = 0xff;
+					if(KEY_MARCO[5]==0xff)
+						CUR_MARCO_KEY = 6;
+					LED_Blink();
+					break;
+				case 0x08:
+					KEY_PRESS[6] = 0xff;
+					if(KEY_MARCO[6]==0xff)
+						CUR_MARCO_KEY = 7;
+					LED_Blink();
+					break;
+				case 0x07:
+					KEY_PRESS[7] = 0xff;
+					if(KEY_MARCO[7]==0xff)
+						CUR_MARCO_KEY = 8;
 					LED_Blink();
 					break;
 			}
@@ -547,6 +571,10 @@ void main()
 			KEY_PRESS[1] = 0x00;
 			KEY_PRESS[2] = 0x00;
 			KEY_PRESS[3] = 0x00;
+			KEY_PRESS[4] = 0x00;
+			KEY_PRESS[5] = 0x00;
+			KEY_PRESS[6] = 0x00;
+			KEY_PRESS[7] = 0x00;
 			FLAG = 0;
 		}
 		else
