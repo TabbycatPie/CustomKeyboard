@@ -1,9 +1,13 @@
 #include "usb.h"
 
-#define THIS_ENDP0_SIZE		0x08
+#define Fullspeed
+#define THIS_ENDP0_SIZE 		8
+#define ENDP3_IN_SIZE 		    4
 
-static UINT8X Ep0Buffer[THIS_ENDP0_SIZE+2] _at_ 0x0000;
-static UINT8X Ep1Buffer[MAX_PACKET_SIZE] _at_ 0x0080;
+
+UINT8X	Ep0Buffer[THIS_ENDP0_SIZE+2]	_at_	0x0000;  // OUT&IN
+UINT8X	Ep3Buffer[ENDP3_IN_SIZE+2] 	_at_ (0x0040);    // IN
+
 
 
 UINT8   SetupReq,SetupLen,Ready = 0,Count,FLAG,UsbConfig;
@@ -25,16 +29,6 @@ UINT8C DevDesc[] =
     0x01, 0x01,0x00, 0x00,0x00, 0x01
 };
 
-UINT8C CfgDesc[] =
-{
-	0x09,0x02,0x74,0x00,0x01,0x01,0x00,0xA0,0x32,	//配置描述符
-	
-	0x09,0x04,0x00,0x00,0x01,0x03,0x01,0x02,0x00,	//鼠标 接口描述符 
-	0x09,0x21,0x10,0x01,0x00,0x01,0x22,0x34,0x00,	//鼠标 HID描述符
-	0x07,0x05,0x81,0x03,0x04,0x00,0x02,				//鼠标 端点描述符
-
-};
-
 
 /*报表描述符*/
 UINT8C MouseRepDesc[] =
@@ -49,11 +43,11 @@ UINT8C MouseRepDesc[] =
 	0x29,0x03,
     0x15,0x00,
 	0x25,0x01,
+    0x75,0x01,
 	0x95,0x03,
-	0x75,0x01,
     0x81,0x02,
+    0x75,0x05,
 	0x95,0x01,
-	0x75,0x05,
 	0x81,0x03,
     0x05,0x01,
 	0x09,0x30,
@@ -68,6 +62,13 @@ UINT8C MouseRepDesc[] =
 	0xC0
 };
 
+UINT8C CfgDesc[] =
+{
+	0x09,0x02,0x22,0x00,0x01,0x01,0x00,0xa0,0x32,	//配置描述符
+	0x09,0x04,0x00,0x00,0x01,0x03,0x01,0x02,0x00,	//鼠标 接口描述符 
+	0x09,0x21,0x10,0x01,0x00,0x01,0x22,sizeof(MouseRepDesc),0x00,	//鼠标 HID描述符
+	0x07,0x05,0x83,0x03,0x04,0x00,0x01,				//鼠标 端点描述符
+};
 
 /* 鼠标数据 */
 UINT8 HIDMouse[4] = {0x0,0x0,0x0,0x0};
@@ -101,18 +102,15 @@ void USBDeviceInit(void)
     UDEV_CTRL &= ~bUD_LOW_SPEED;
     USB_CTRL &= ~bUC_LOW_SPEED;
 	
-	UEP1_DMA = Ep1Buffer;
-    UEP4_1_MOD |= bUEP1_TX_EN;
-	UEP4_1_MOD &= ~bUEP1_RX_EN;
-	UEP4_1_MOD &= ~bUEP1_BUF_MOD;
-    UEP1_CTRL = bUEP_AUTO_TOG | UEP_T_RES_NAK;
+    UEP3_DMA = Ep3Buffer;
+	UEP2_3_MOD |= bUEP3_TX_EN;
+	UEP2_3_MOD &= ~bUEP3_RX_EN;
+    UEP2_3_MOD &= ~bUEP3_BUF_MOD;
+    UEP3_CTRL = bUEP_AUTO_TOG | UEP_T_RES_NAK;
 	
 	UEP0_DMA = Ep0Buffer;
     UEP0_CTRL = UEP_R_RES_ACK | UEP_T_RES_NAK;
-	UEP4_1_MOD &= ~bUEP4_TX_EN;
-    UEP4_1_MOD &= ~bUEP4_RX_EN;    
-	UEP4_CTRL = bUEP_AUTO_TOG | UEP_T_RES_NAK;
-
+ 
 	USB_DEV_AD = 0x00;
 	USB_CTRL |= bUC_DEV_PU_EN | bUC_INT_BUSY | bUC_DMA_EN;// 启动USB设备及DMA，在中断期间中断标志未清除前自动返回NAK
 	UDEV_CTRL |= bUD_PORT_EN;                             // 允许USB端口
@@ -143,11 +141,11 @@ void Mouse_Send(void)
 	{
 		USBDevWakeup();
 	}
-
-	while((UEP1_CTRL & MASK_UEP_T_RES) == UEP_T_RES_ACK);  
-    memcpy( Ep1Buffer, HIDMouse, sizeof(HIDMouse)); 
-    UEP1_T_LEN = sizeof(HIDMouse);                    
-    UEP1_CTRL = UEP1_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_ACK;  
+    
+	while((UEP3_CTRL & MASK_UEP_T_RES) == UEP_T_RES_ACK);  
+    memcpy( Ep3Buffer, HIDMouse, sizeof(HIDMouse)); 
+    UEP3_T_LEN = sizeof(HIDMouse);                    
+    UEP3_CTRL = UEP3_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_ACK;  
 }
 
 void DeviceInterrupt( void ) interrupt INT_NO_USB using 1
@@ -157,9 +155,9 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB using 1
     {
         switch (USB_INT_ST & (MASK_UIS_TOKEN | MASK_UIS_ENDP))
         {
-        case UIS_TOKEN_IN | 1:                                                  //endpoint 1# 中断端点上传
-            UEP1_T_LEN = 0;                                                     //预使用发送长度一定要清空
-			UEP1_CTRL = UEP1_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_NAK;           //默认应答NAK
+        case UIS_TOKEN_IN | 3:                                                  //endpoint 1# 中断端点上传
+            UEP3_T_LEN = 0;                                                     //预使用发送长度一定要清空
+			UEP3_CTRL = UEP3_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_NAK;           //默认应答NAK
             FLAG = 1;                                                           /*传输完成标志*/
             break;
 		
@@ -179,11 +177,6 @@ void DeviceInterrupt( void ) interrupt INT_NO_USB using 1
 					switch( SetupReq ) //HID请求
 					{
 						case 0x01:
-					//		pDescr = User_Ep2Buf_send;
-//							if(SetupLen >= THIS_ENDP0_SIZE)
-//								len = THIS_ENDP0_SIZE;
-//							else
-//								len = SetupLen;
 							break;
 						case 0x02:	break;
 						case 0x03:	break;
