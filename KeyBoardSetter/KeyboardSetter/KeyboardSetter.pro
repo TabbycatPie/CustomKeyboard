@@ -16,43 +16,45 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    configform.cpp \
-    configsaver.cpp \
-    customkey.cpp \
-    customkeyboard.cpp \
-    devicefinder.cpp \
-    hidapi.c \
-    hidcodetable.cpp \
-    keyvalue.cpp \
+    ../../../Github/ZeddKeypad/ZeddKeypadSetter/ZeddKeypadSetter/usb/zgenusbdev.cpp \
+    Forms/configform.cpp \
+    Utils/configsaver.cpp \
+    Utils/customkey.cpp \
+    Utils/customkeyboard.cpp \
+    Forms/devicefinder.cpp \
+    HidAPI/hidapi.c \
+    HidAPI/hidcodetable.cpp \
+    Utils/keyvalue.cpp \
     main.cpp \
-    settingform.cpp \
-    uipainter.cpp \
-    userconfig.cpp
+    Forms/settingform.cpp \
+    UIpainter/uipainter.cpp \
+    Utils/userconfig.cpp
 
 HEADERS += \
-    configform.h \
-    configsaver.h \
-    customkey.h \
-    customkeyboard.h \
-    devicefinder.h \
-    hidapi.h \
-    hidcodetable.h \
-    keyvalue.h \
-    settingform.h \
-    uipainter.h \
-    userconfig.h
+    ../../../Github/ZeddKeypad/ZeddKeypadSetter/ZeddKeypadSetter/usb/zgenusbdev.h \
+    Forms/configform.h \
+    Utils/configsaver.h \
+    Utils/customkey.h \
+    Utils/customkeyboard.h \
+    Forms/devicefinder.h \
+    HidAPI/hidapi.h \
+    HidAPI/hidcodetable.h \
+    Utils/keyvalue.h \
+    Forms/settingform.h \
+    UIpainter/uipainter.h \
+    Utils/userconfig.h
 
 FORMS += \
-    configform.ui \
-    devicefinder.ui \
-    settingform.ui
+    Forms/configform.ui \
+    Forms/devicefinder.ui \
+    Forms/settingform.ui
 
-LIBS += -L$$_PRO_FILE_PWD_/  libusb-1.0
+LIBS += -L$$_PRO_FILE_PWD_/  libs/libusb-1.0
 LIBS +=  -lsetupapi
 
 
-TRANSLATIONS += trans_zh_CN.ts
-TRANSLATIONS += trans_en_US.ts
+TRANSLATIONS += lang/trans_zh_CN.ts
+TRANSLATIONS += lang/trans_en_US.ts
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -60,6 +62,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    trans_en_US.ts \
-    trans_zh_CN.ts
+    lang/trans_en_US.ts \
+    lang/trans_zh_CN.ts
 RC_FILE = logo.rc

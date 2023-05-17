@@ -1,9 +1,9 @@
 #ifndef CONFIGFORM_H
 #define CONFIGFORM_H
 
-#include "customkeyboard.h"
-#include "hidcodetable.h"
-#include "uipainter.h"
+#include "Utils/customkeyboard.h"
+#include "HidAPI/hidcodetable.h"
+#include "UIpainter/uipainter.h"
 
 #include <QWidget>
 #include <qpushbutton.h>

@@ -1,10 +1,10 @@
 #include "configform.h"
-#include "configsaver.h"
-#include "customkeyboard.h"
+#include "Utils/configsaver.h"
+#include "Utils/customkeyboard.h"
 #include "settingform.h"
 #include "ui_configform.h"
-#include "uipainter.h"
-#include "userconfig.h"
+#include "UIpainter/uipainter.h"
+#include "Utils/userconfig.h"
 #include <QDebug>
 #include <QLabel>
 #include <qfiledialog.h>

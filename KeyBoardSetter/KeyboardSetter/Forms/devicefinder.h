@@ -3,7 +3,7 @@
 
 
 #include <QMainWindow>
-#include <configform.h>
+#include <Forms/configform.h>
 
 namespace Ui {
 class DeviceFinder;

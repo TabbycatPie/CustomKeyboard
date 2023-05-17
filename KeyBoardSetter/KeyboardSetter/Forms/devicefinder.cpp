@@ -1,7 +1,7 @@
-#include "configsaver.h"
+#include "Utils/configsaver.h"
 #include "devicefinder.h"
 #include "ui_devicefinder.h"
-#include "userconfig.h"
+#include "Utils/userconfig.h"
 
 #include <qaction.h>
 #include <qdebug.h>

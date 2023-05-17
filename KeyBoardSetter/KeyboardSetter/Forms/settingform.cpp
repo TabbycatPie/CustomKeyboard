@@ -1,7 +1,7 @@
-#include "configsaver.h"
+#include "Utils/configsaver.h"
 #include "settingform.h"
 #include "ui_settingform.h"
-#include "userconfig.h"
+#include "Utils/userconfig.h"
 #include "configform.h"
 #include <qjsonobject.h>
 #include <QDebug>

@@ -1,4 +1,4 @@
-#include "hidcodetable.h"
+#include "HidAPI/hidcodetable.h"
 #include "uipainter.h"
 #include <QLabel>
 #include <QPushButton>

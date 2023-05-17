@@ -1,6 +1,6 @@
 #include "customkeyboard.h"
-#include "hidapi.h"
-#include "hidcodetable.h"
+#include "HidAPI/hidapi.h"
+#include "HidAPI/hidcodetable.h"
 #include <QPushButton>
 #include <QVector>
 #include <QString>

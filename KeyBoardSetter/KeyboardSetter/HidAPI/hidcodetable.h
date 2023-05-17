@@ -1,7 +1,7 @@
 #ifndef HIDCODETABLE_H
 #define HIDCODETABLE_H
 
-#include "keyvalue.h"
+#include "Utils/keyvalue.h"
 #include <QObject>
 #include <QVector>
 

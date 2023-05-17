@@ -1,8 +1,8 @@
 #ifndef CUSTOMKEYBOARD_H
 #define CUSTOMKEYBOARD_H
 
-#include "hidapi.h"
-#include "hidcodetable.h"
+#include "HidAPI/hidapi.h"
+#include "HidAPI/hidcodetable.h"
 #include "customkey.h"
 #include <QObject>
 #include <QPushButton>

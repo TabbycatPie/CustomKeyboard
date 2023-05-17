@@ -1,5 +1,5 @@
-#include "configform.h"
-#include "devicefinder.h"
+#include "Forms/configform.h"
+#include "Forms/devicefinder.h"
 
 #include <QApplication>
 #include <QTranslator>
