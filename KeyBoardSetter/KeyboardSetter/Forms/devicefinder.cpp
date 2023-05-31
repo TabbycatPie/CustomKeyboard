@@ -40,10 +40,10 @@ DeviceFinder::DeviceFinder(QWidget *parent) :
         openMainWindow();
     }
 
-//    //developer skip button
-//    connect(ui->btn_skip,&QPushButton::clicked,this,[=]{
-//        openMainWindow();
-//    });
+    //developer skip button
+    connect(ui->btn_skip,&QPushButton::clicked,this,[=]{
+        openMainWindow();
+    });
 
 
     connect(ui->searchdevice_btn,&QPushButton::clicked,this,[=]{
