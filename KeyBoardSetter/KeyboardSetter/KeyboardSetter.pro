@@ -16,7 +16,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    ../../../Github/ZeddKeypad/ZeddKeypadSetter/ZeddKeypadSetter/usb/zgenusbdev.cpp \
     Forms/configform.cpp \
     Utils/configsaver.cpp \
     Utils/customkey.cpp \
@@ -31,7 +30,6 @@ SOURCES += \
     Utils/userconfig.cpp
 
 HEADERS += \
-    ../../../Github/ZeddKeypad/ZeddKeypadSetter/ZeddKeypadSetter/usb/zgenusbdev.h \
     Forms/configform.h \
     Utils/configsaver.h \
     Utils/customkey.h \

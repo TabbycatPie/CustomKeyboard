@@ -64,7 +64,7 @@
 </string>
    </property>
    <property name="text">
-    <string>Download</string>
+    <string>PUSH</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btn_save">
