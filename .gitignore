@@ -26,3 +26,4 @@ CustomKeyboard/Objects/main.__i
 KeyBoardSetter/build*
 *moc_*.cpp
 *.ziph
+*.DS_Store
