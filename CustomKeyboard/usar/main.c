@@ -146,7 +146,6 @@ void HIDmarco(UINT8 key_num){
 	HIDKey[5] = 0x00;
 	HIDKey[6] = 0x00;
 	HIDKey[7] = 0x00;
-	HIDKey[8] = 0x00;
 	//HIDKeysend();
 	for(i=0;i<(MARCO_SPLIT_INDX[pos]-MARCO_SPLIT_INDX[pos-1]);i++){
 		//prepare special key
