@@ -1,0 +1,1 @@
+"..\bsp\user_driver.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(..\bsp;..\user) DEBUG OBJECTEXTEND PRINT(.\Listings\user_driver.lst) TABS (2) OBJECT(.\Objects\user_driver.obj)
