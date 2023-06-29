@@ -1,6 +1,6 @@
 #include "user_driver.h"
 #include "si24R1.h"
-#define ADDRESS 0x1
+#include "global.h"
 
 void SI24R1_Write_Reg(unsigned char regaddr,unsigned char dat)
 {

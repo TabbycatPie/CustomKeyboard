@@ -1,6 +1,5 @@
 #include "si24R1.h"
-
-#define ADDRESS 0x1b
+#include "global.h"
 
 unsigned char spi_send_rec_dat(unsigned char dat)
 {

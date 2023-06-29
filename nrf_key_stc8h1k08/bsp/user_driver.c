@@ -1,4 +1,5 @@
 #include "user_driver.h"
+#include "global.h"
 
 #define EX3             0x20
 #define EX4             0x40

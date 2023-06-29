@@ -373,6 +373,11 @@
               <FileType>1</FileType>
               <FilePath>..\user\main.c</FilePath>
             </File>
+            <File>
+              <FileName>global.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\global.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
