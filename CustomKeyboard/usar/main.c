@@ -29,7 +29,7 @@ UINT8 mode = SRM_MODE;
 #define LON_GAP_PT 1    //pointor to LON_GAP_VAL
 #define SML_GAP_PT 2    //pointor to SML_GAP_VAL
 #define TINY_GAP_PT 3   //pointor to TINY_GAP_VAL
-const unsigned char gaps[4] = {DEF_GAP_VAL,LON_GAP_VAL,SML_GAP_VAL,TINY_GAP_VAL}; // read only e.g: access val using gap_val = gaps[DEF_GAP_PT]
+const unsigned char gaps[4] = {TINY_GAP_VAL,SML_GAP_VAL,DEF_GAP_VAL,LON_GAP_VAL}; // read only e.g: access val using gap_val = gaps[DEF_GAP_PT]
 
 unsigned char time_sec = 0;
 unsigned char time_unit = 0; // ++ every 50ms
