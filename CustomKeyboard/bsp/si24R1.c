@@ -4,7 +4,7 @@
 unsigned char spi_send_rec_dat(unsigned char dat)
 {
 	SPI0_DATA = dat;                                                           
-  while(S0_FREE == 0);													   //µÈ´ý´«ÊäÍê³É	
+  while(S0_FREE == 0);													   //ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	
 	return SPI0_DATA;
 }
 
@@ -59,7 +59,7 @@ unsigned char SI24R1_Test(void)
 	return 0;
 }
 /************
- * Éè¶¨µØÖ·¿í¶È
+ * ï¿½è¶¨ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½
  ***********/
 void SI24R1_SETUP_AW(unsigned char Widht)
 {
@@ -68,7 +68,7 @@ void SI24R1_SETUP_AW(unsigned char Widht)
 }
 
 /************
- * Éè¶¨·¢ËÍµØÖ·
+ * ï¿½è¶¨ï¿½ï¿½ï¿½Íµï¿½Ö·
  ***********/
 void SI24R1_SETUP_TXAddr(unsigned char *Addr)
 {
@@ -77,7 +77,7 @@ void SI24R1_SETUP_TXAddr(unsigned char *Addr)
 }
 
 /************
- * Éè¶¨½ÓÊÕµØÖ·
+ * ï¿½è¶¨ï¿½ï¿½ï¿½Õµï¿½Ö·
  ***********/
 void SI24R1_SETUP_RXAddr(unsigned char *Addr,unsigned char Channel)
 {
@@ -94,7 +94,7 @@ void SI24R1_SETUP_RXAddr(unsigned char *Addr,unsigned char Channel)
 }
 
 /************
- * ×Ô¶¯ACKÍ¨µÀ
+ * ï¿½Ô¶ï¿½ACKÍ¨ï¿½ï¿½
  ***********/
 void SI24R1_Enable_Channel(unsigned char Channel)
 {
@@ -103,7 +103,7 @@ void SI24R1_Enable_Channel(unsigned char Channel)
 }
 
 /************
- * ½ÓÊÕÍ¨µÀÊ¹ÄÜ
+ * ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½Ê¹ï¿½ï¿½
  ***********/
 void SI24R1_Enable_RXChannel(unsigned char Channel)
 {
@@ -112,7 +112,7 @@ void SI24R1_Enable_RXChannel(unsigned char Channel)
 }
 
 /************
- * ×Ô¶¯ÖØ´«´ÎÊý
+ * ï¿½Ô¶ï¿½ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½
  ***********/
 void SI24R1_Auto_retrans(unsigned char retrans)
 {
@@ -121,7 +121,7 @@ void SI24R1_Auto_retrans(unsigned char retrans)
 }
 
 /************
- * ÉäÆµÐÅµÀ
+ * ï¿½ï¿½Æµï¿½Åµï¿½
  ***********/
 void SI24R1_RF_Channel(unsigned char Channel)
 {
@@ -130,10 +130,10 @@ void SI24R1_RF_Channel(unsigned char Channel)
 }
 
 /************
- * Êý¾Ý¿í¶È
- * Widht£º½ÓÊÕÊý¾Ý°ü³¤¶È
- * Channel £ºÅäÖÃµÄÍ¨µÀ
- * Ê¹ÓÃ²»¶¨³¤³¤¶ÈÐèÒªÌáÇ°ÅäÖÃ¶¯Ì¬¸ººÉ°ü
+ * ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½
+ * Widhtï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½ï¿½ï¿½
+ * Channel ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½Í¨ï¿½ï¿½
+ * Ê¹ï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Ç°ï¿½ï¿½ï¿½Ã¶ï¿½Ì¬ï¿½ï¿½ï¿½É°ï¿½
  ***********/
 void SI24R1_Data_Widht(unsigned char Widht,unsigned char Channel)
 {
@@ -150,7 +150,7 @@ void SI24R1_Data_Widht(unsigned char Widht,unsigned char Channel)
 }
 
 /************
- * ¿ÕËÙ£¬·¢Éä¹¦ÂÊ
+ * ï¿½ï¿½ï¿½Ù£ï¿½ï¿½ï¿½ï¿½ä¹¦ï¿½ï¿½
  ***********/
 void SI24R1_RF_Speed(unsigned char Speed,unsigned char dBm)
 {
@@ -159,9 +159,9 @@ void SI24R1_RF_Speed(unsigned char Speed,unsigned char dBm)
 }
 
 /************
- * Çå³ýÖÐ¶Ï
- * Status£ºµ±Ç°»ñÈ¡µ½µÄÖÐ¶ÏÎ»
- * ÐèÒªÏÈµ÷ÓÃSI24R1_Read_IRQ_Status() APIÒÔ»ñÈ¡ÖÐ¶Ï×´Ì¬
+ * ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
+ * Statusï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½Î»
+ * ï¿½ï¿½Òªï¿½Èµï¿½ï¿½ï¿½SI24R1_Read_IRQ_Status() APIï¿½Ô»ï¿½È¡ï¿½Ð¶ï¿½×´Ì¬
  ***********/
 void SI24R1_RF_ClearIRQ(unsigned char Status)
 {
@@ -170,7 +170,7 @@ void SI24R1_RF_ClearIRQ(unsigned char Status)
 }
 
 /************
- * ·¢ËÍÄ£Ê½
+ * ï¿½ï¿½ï¿½ï¿½Ä£Ê½
  ***********/
 void SI24R1_RF_TxMode(void)
 {
@@ -180,7 +180,7 @@ void SI24R1_RF_TxMode(void)
 }
 
 /************
- * ½ÓÊÕÄ£Ê½
+ * ï¿½ï¿½ï¿½ï¿½Ä£Ê½
  ***********/
 void SI24R1_RF_RxMode(void)
 {
@@ -190,7 +190,7 @@ void SI24R1_RF_RxMode(void)
 }
 
 /************
- * Êý¾Ý°üÌØÕ÷ÉèÖÃ
+ * ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  ***********/
 void SI24R1_RF_FEATURE(unsigned char Config)
 {
@@ -199,7 +199,7 @@ void SI24R1_RF_FEATURE(unsigned char Config)
 }
 
 /************
- * »ñÈ¡ÖÐ¶Ï±êÖ¾
+ * ï¿½ï¿½È¡ï¿½Ð¶Ï±ï¿½Ö¾
  ***********/
 unsigned char SI24R1_Read_IRQ_Status(void)
 {
@@ -209,7 +209,7 @@ unsigned char SI24R1_Read_IRQ_Status(void)
 }
 
 /************
- * Çå³ý·¢ËÍ»º´æ
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½
  ***********/
 void SI24R1_Clear_TXfifo(void)
 {
@@ -217,7 +217,7 @@ void SI24R1_Clear_TXfifo(void)
 }
 
 /************
- * Çå³ý½ÓÊÕ»º´æ
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ»ï¿½ï¿½ï¿½
  ***********/
 void SI24R1_Clear_RXfifo(void)
 {
@@ -225,10 +225,10 @@ void SI24R1_Clear_RXfifo(void)
 }
 
 /************
- * ·¢ËÍÊý¾Ý°ü
- * padta:Êý¾Ý·µ»ØÖ¸ÕëµØÖ·
- * Len:¶ÁÈ¡µÄ³¤¶È
- * Ackflag:true×Ô¶¯»ØÓ¦ACK£¬false½ûÖ¹»Ø¸´ACK
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½
+ * padta:ï¿½ï¿½ï¿½Ý·ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Ö·
+ * Len:ï¿½ï¿½È¡ï¿½Ä³ï¿½ï¿½ï¿½
+ * Ackflag:trueï¿½Ô¶ï¿½ï¿½ï¿½Ó¦ACKï¿½ï¿½falseï¿½ï¿½Ö¹ï¿½Ø¸ï¿½ACK
  ***********/
 void SI24R1_SendData(unsigned char* pdat,unsigned char Len,unsigned char Ackflag)
 {
@@ -248,9 +248,9 @@ void SI24R1_SendData(unsigned char* pdat,unsigned char Len,unsigned char Ackflag
 }
 
 /************
- * ½ÓÊÕÊý¾Ý°ü
- * padta:Êý¾Ý·µ»ØÖ¸ÕëµØÖ·
- * Len:¶ÁÈ¡µÄ³¤¶È
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½
+ * padta:ï¿½ï¿½ï¿½Ý·ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Ö·
+ * Len:ï¿½ï¿½È¡ï¿½Ä³ï¿½ï¿½ï¿½
  ***********/
 void SI24R1_RecData(unsigned char* pdat,unsigned char Len)
 {
@@ -263,7 +263,7 @@ void SI24R1_RecData(unsigned char* pdat,unsigned char Len)
 
 void SI24R1_Config_Init(void)
 {
-	unsigned char Addr[5] = {ADDRESS,0x02,0x03,0x04,0x05};
+	unsigned char Addr[5] = {ADDRESS,0x01,0x03,0x04,0x05};
 	SI24R1_SETUP_AW(0x03);
 	SI24R1_SETUP_TXAddr((unsigned char*)&Addr);
 	SI24R1_SETUP_RXAddr((unsigned char*)&Addr,0);

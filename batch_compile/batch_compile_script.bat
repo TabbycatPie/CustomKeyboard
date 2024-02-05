@@ -17,9 +17,9 @@ for /l %%a in (0, 1, 255) do (
     echo #define ADDRESS %%a >%REM_GH%
     echo start compile...
     echo compiling %PRO_REC%
-    %UV% -j0 -b %PRO_REC%
+    %UV% -j12 -b %PRO_REC%
     echo compiling %PRO_REM%
-    %UV% -j0 -b %PRO_REM%
+    %UV% -j12 -b %PRO_REM%
     echo move file .hex file to .\firmware
     ::创建文件夹
     echo moving files
