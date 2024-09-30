@@ -259,7 +259,7 @@ void SI24R1_RecData(unsigned char* pdat,unsigned char Len)
 
 void SI24R1_Config_Init(void)
 {
-	unsigned char Addr[5] = {ADDRESS,0x01,0x03,0x04,0x05};
+	unsigned char Addr[5] = {ADDRESS,0x01,0x13,0x04,0x05};
 	rf_CE = 0;
 	SI24R1_SETUP_AW(0x03);
 	SI24R1_SETUP_TXAddr((unsigned char*)&Addr);

@@ -4,7 +4,7 @@
 unsigned char spi_send_rec_dat(unsigned char dat)
 {
 	SPI0_DATA = dat;                                                           
-  while(S0_FREE == 0);													   //�ȴ��������	
+  while(S0_FREE == 0);													   //�ȴ��������?	
 	return SPI0_DATA;
 }
 
@@ -159,7 +159,7 @@ void SI24R1_RF_Speed(unsigned char Speed,unsigned char dBm)
 }
 
 /************
- * ����ж�
+ * ����ж�?
  * Status����ǰ��ȡ�����ж�λ
  * ��Ҫ�ȵ���SI24R1_Read_IRQ_Status() API�Ի�ȡ�ж�״̬
  ***********/
@@ -209,7 +209,7 @@ unsigned char SI24R1_Read_IRQ_Status(void)
 }
 
 /************
- * ������ͻ���
+ * ������ͻ���?
  ***********/
 void SI24R1_Clear_TXfifo(void)
 {
@@ -217,7 +217,7 @@ void SI24R1_Clear_TXfifo(void)
 }
 
 /************
- * ������ջ���
+ * ������ջ���?
  ***********/
 void SI24R1_Clear_RXfifo(void)
 {
@@ -226,7 +226,7 @@ void SI24R1_Clear_RXfifo(void)
 
 /************
  * �������ݰ�
- * padta:���ݷ���ָ���ַ
+ * padta:���ݷ���ָ����?
  * Len:��ȡ�ĳ���
  * Ackflag:true�Զ���ӦACK��false��ֹ�ظ�ACK
  ***********/
@@ -249,7 +249,7 @@ void SI24R1_SendData(unsigned char* pdat,unsigned char Len,unsigned char Ackflag
 
 /************
  * �������ݰ�
- * padta:���ݷ���ָ���ַ
+ * padta:���ݷ���ָ����?
  * Len:��ȡ�ĳ���
  ***********/
 void SI24R1_RecData(unsigned char* pdat,unsigned char Len)
@@ -263,7 +263,7 @@ void SI24R1_RecData(unsigned char* pdat,unsigned char Len)
 
 void SI24R1_Config_Init(void)
 {
-	unsigned char Addr[5] = {ADDRESS,0x01,0x03,0x04,0x05};
+	unsigned char Addr[5] = {ADDRESS,0x01,0x13,0x04,0x05};
 	SI24R1_SETUP_AW(0x03);
 	SI24R1_SETUP_TXAddr((unsigned char*)&Addr);
 	SI24R1_SETUP_RXAddr((unsigned char*)&Addr,0);
