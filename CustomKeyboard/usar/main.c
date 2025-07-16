@@ -65,10 +65,19 @@ void HIDMousesend(){
 void HIDKeysend(){
 	if(CUR_KEYBOARD == 0xff && KEY_CHANGE == 0xff){
 		FLAG = 0;
-		Keyboard_Send();      //send keyboard event
+		Keyboard_Send(0);      //send keyboard event
 		while(FLAG == 0); /*等待上一包传输完成*/
 	}
 }
+
+void HIDSPKeysend(){
+	if(CUR_KEYBOARD == 0xff && KEY_CHANGE == 0xff){
+		FLAG = 0;
+		Keyboard_Send(2);      //send keyboard event
+		while(FLAG == 0); /*等待上一包传输完成*/
+	}
+}
+
 //send message to computer
 void HIDsendMessage(){
 	HID_Busy = 0;
@@ -182,7 +191,7 @@ void HIDmarco(UINT8 key_num){
 		
 		//prepare normal key
 		HIDKey [2] = MARCO_KEYCODE[MARCO_SPLIT_INDX[pos-1]+i];
-		Keyboard_Send();    //send keyboard event
+		Keyboard_Send(0);    //send keyboard event
 		while(FLAG == 0); 
 		//delay
 		//wait 20ms to bounce up to simulate human clicking
@@ -191,7 +200,7 @@ void HIDmarco(UINT8 key_num){
 		//bounce up
 		HIDKey[0] = 0x00;
 		HIDKey[2] = 0x00;
-		Keyboard_Send();    //send keyboard event
+		Keyboard_Send(0);    //send keyboard event
 		while(FLAG == 0); 
 		
 		mDelaymS(5);
@@ -448,27 +457,27 @@ void scanKey(){
 	if(HIDKey[0]!=0x00 && sp_key_code==0x00)
 		CUR_KEYBOARD = 0xff;
 	if(sp_key_code!=0x00){
-		//send modifier whit seq ctrl > win > alt > shift
-		HIDKey  [0] = 0x00; //reset modifier
-		if(sp_key_code & 0x11 != 0x00) //left or right ctrl pressed
+		//send modifier with seq ctrl > win > alt > shift
+		//reset HIDKey[]
+		if((sp_key_code & 0x11) != 0x00) //left or right ctrl pressed
 		{
-			HIDKey  [0] = sp_key_code & 0x11;
-			HIDKeysend();
+			HIDKey  [0] = (sp_key_code & 0x11);
+			HIDSPKeysend();
 		}
-		if(sp_key_code & 0x88 != 0x00) //left or right win pressed
+		if((sp_key_code & 0x88) != 0x00) //left or right win pressed
 		{
-			HIDKey  [0] = sp_key_code & 0x99;
-			HIDKeysend();
+			HIDKey  [0] = (sp_key_code & 0x99);
+			HIDSPKeysend();
 		}
-		if(sp_key_code & 0x44 != 0x00) //left or right alt pressed
+		if((sp_key_code & 0x44) != 0x00) //left or right alt pressed
 		{
-			HIDKey  [0] = sp_key_code & 0xdd;
-			HIDKeysend();
+			HIDKey  [0] = (sp_key_code & 0xdd);
+			HIDSPKeysend();
 		}
-		if(sp_key_code & 0x22 != 0x00) //left or right shift pressed
+		if((sp_key_code & 0x22) != 0x00) //left or right shift pressed
 		{
 			HIDKey  [0] = sp_key_code;
-			HIDKeysend();
+			HIDSPKeysend();
 		}
 	}
 	HIDKey  [0] = sp_key_code; //special key Byte
@@ -649,6 +658,7 @@ void main(){
 	initKeyValue();              	//intialize key 
 	EA = 1;                       //允许单片机中断
 
+	
 	while(1)
 	{
 		if(Ready)
