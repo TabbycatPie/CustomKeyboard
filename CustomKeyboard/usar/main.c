@@ -447,6 +447,30 @@ void scanKey(){
 	//key codes
 	if(HIDKey[0]!=0x00 && sp_key_code==0x00)
 		CUR_KEYBOARD = 0xff;
+	if(sp_key_code!=0x00){
+		//send modifier whit seq ctrl > win > alt > shift
+		HIDKey  [0] = 0x00; //reset modifier
+		if(sp_key_code & 0x11 != 0x00) //left or right ctrl pressed
+		{
+			HIDKey  [0] = sp_key_code & 0x11;
+			HIDKeysend();
+		}
+		if(sp_key_code & 0x88 != 0x00) //left or right win pressed
+		{
+			HIDKey  [0] = sp_key_code & 0x99;
+			HIDKeysend();
+		}
+		if(sp_key_code & 0x44 != 0x00) //left or right alt pressed
+		{
+			HIDKey  [0] = sp_key_code & 0xdd;
+			HIDKeysend();
+		}
+		if(sp_key_code & 0x22 != 0x00) //left or right shift pressed
+		{
+			HIDKey  [0] = sp_key_code;
+			HIDKeysend();
+		}
+	}
 	HIDKey  [0] = sp_key_code; //special key Byte
 	HIDKey  [1] = 0x00;        //reserved
 	if(key_count<6){					 //fill blank
