@@ -463,21 +463,25 @@ void scanKey(){
 		{
 			HIDKey  [0] = (sp_key_code & 0x11);
 			HIDSPKeysend();
+			mDelaymS(50);
 		}
 		if((sp_key_code & 0x88) != 0x00) //left or right win pressed
 		{
 			HIDKey  [0] = (sp_key_code & 0x99);
 			HIDSPKeysend();
+			mDelaymS(50);
 		}
 		if((sp_key_code & 0x44) != 0x00) //left or right alt pressed
 		{
 			HIDKey  [0] = (sp_key_code & 0xdd);
 			HIDSPKeysend();
+			mDelaymS(50);
 		}
 		if((sp_key_code & 0x22) != 0x00) //left or right shift pressed
 		{
 			HIDKey  [0] = sp_key_code;
 			HIDSPKeysend();
+			mDelaymS(50);
 		}
 	}
 	HIDKey  [0] = sp_key_code; //special key Byte
