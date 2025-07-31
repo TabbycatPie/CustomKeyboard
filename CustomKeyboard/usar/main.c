@@ -4,6 +4,8 @@
 #include "usb.h"
 #include "stdlib.h"
 
+#define MODIFIER_DELAY 10
+
 #define LED1_INTERVAL 0x03
 #define LED2_INTERVAL 0x04
 //UINT8X MARCO_KEYCODE [50]= { 0x15,0x06,0x10,0x07,0x58,0x15,0x10,0x16,0x17,0x16,  //Win+r,c,m,d,Enter,Win+r,m,s,t,s,
@@ -454,7 +456,7 @@ void scanKey(){
 			CUR_KEYBOARD = 0xff;
 		}
 	}
-	//FINAL ASSIGNING
+		//FINAL ASSIGNING
 	//mouse codes
 	if(HIDMouse[0]!=0x00 && mouse_code==0x00)
 		CUR_MOUSE_KEY = 0xff;
@@ -464,6 +466,34 @@ void scanKey(){
 	//key codes
 	if(HIDKey[0]!=0x00 && sp_key_code==0x00)
 		CUR_KEYBOARD = 0xff;
+	if(sp_key_code!=0x00){
+		//send modifier with seq ctrl > win > alt > shift
+		//reset HIDKey[]
+		if((sp_key_code & 0x11) != 0x00) //left or right ctrl pressed
+		{
+			HIDKey  [0] = (sp_key_code & 0x11);
+			HIDSPKeysend();
+			mDelaymS(MODIFIER_DELAY);
+		}
+		if((sp_key_code & 0x88) != 0x00) //left or right win pressed
+		{
+			HIDKey  [0] = (sp_key_code & 0x99);
+			HIDSPKeysend();
+			mDelaymS(MODIFIER_DELAY);
+		}
+		if((sp_key_code & 0x44) != 0x00) //left or right alt pressed
+		{
+			HIDKey  [0] = (sp_key_code & 0xdd);
+			HIDSPKeysend();
+			mDelaymS(MODIFIER_DELAY);
+		}
+		if((sp_key_code & 0x22) != 0x00) //left or right shift pressed
+		{
+			HIDKey  [0] = sp_key_code;
+			HIDSPKeysend();
+			mDelaymS(MODIFIER_DELAY);
+		}
+	}
 	HIDKey  [0] = sp_key_code; //special key Byte
 	HIDKey  [1] = 0x00;        //reserved
 	if(key_count<6){					 //fill blank
