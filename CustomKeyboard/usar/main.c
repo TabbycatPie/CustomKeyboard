@@ -83,7 +83,7 @@ void HIDKeysend(){
 	if(CUR_KEYBOARD == 0xff && KEY_CHANGE == 0xff){
 		FLAG = 0;	
 		//send keyboard event
-		Keyboard_Send();     
+		Keyboard_Send(0);     
 		while(FLAG == 0); /*等待上一包传输完成*/
 	}
 	if(CUR_KEYBOARD == 0xff && KEY_PRESS[1] == 0xff){
@@ -207,7 +207,7 @@ void HIDmarco(UINT8 key_num){
 		
 		//prepare normal key
 		HIDKey [2] = MARCO_KEYCODE[MARCO_SPLIT_INDX[pos-1]+i];
-		Keyboard_Send();    //send keyboard event
+		Keyboard_Send(0);    //send keyboard event
 		while(FLAG == 0); 
 		//delay
 		//wait 20ms to bounce up to simulate human clicking
@@ -216,7 +216,7 @@ void HIDmarco(UINT8 key_num){
 		//bounce up
 		HIDKey[0] = 0x00;
 		HIDKey[2] = 0x00;
-		Keyboard_Send();    //send keyboard event
+		Keyboard_Send(0);    //send keyboard event
 		while(FLAG == 0); 
 		
 		mDelaymS(5);

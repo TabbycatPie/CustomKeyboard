@@ -22,7 +22,7 @@ void HID_Send( );					//上报数据
 
 /*键盘数据*/
 extern UINT8 HIDKey[8];
-void Keyboard_Send( );		//键盘数据上报
+void Keyboard_Send(UINT8);		//键盘数据上报
 /*鼠标数据*/
 extern UINT8 HIDMouse[4];
 void Mouse_Send( );			//鼠标数据上报

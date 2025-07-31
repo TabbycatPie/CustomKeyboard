@@ -243,6 +243,7 @@ void USBDeviceInit(void)
 //	TH0 = (0x3CB0>>8) & 0xff;
 //    TR0 = 0;ET0 = 1;
 	EA = 1;
+	memcpy( Ep1Buffer, HIDKey, sizeof(HIDKey));//clear buffer 
 }
 
 void USBDevWakeup(void)
@@ -253,17 +254,21 @@ void USBDevWakeup(void)
 }
 
 
-void Keyboard_Send(void)
+void Keyboard_Send(UINT8 len)
 {
 	if(sleepOK != 0)
 	{
 		USBDevWakeup();
 	}
 	while((UEP1_CTRL & MASK_UEP_T_RES) == UEP_T_RES_ACK); 
-    memcpy( Ep1Buffer, HIDKey, sizeof(HIDKey)); 
-    UEP1_T_LEN = sizeof(HIDKey);                                           
-    UEP1_CTRL = UEP1_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_ACK; 
+	if(len==0)
+		memcpy( Ep1Buffer, HIDKey, sizeof(HIDKey)); 
+	else
+		memcpy( Ep1Buffer, HIDKey, len); 
+  UEP1_T_LEN = sizeof(HIDKey);                                           
+  UEP1_CTRL = UEP1_CTRL & ~ MASK_UEP_T_RES | UEP_T_RES_ACK; 
 }
+
 void HID_Send(void)
 {
 	while((UEP2_CTRL & MASK_UEP_T_RES) == UEP_T_RES_ACK); 
