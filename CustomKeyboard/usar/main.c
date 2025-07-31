@@ -79,6 +79,7 @@ void HIDMousesend(){
 	}
 }
 
+
 void HIDKeysend(){
 	if(CUR_KEYBOARD == 0xff && KEY_CHANGE == 0xff){
 		FLAG = 0;	
@@ -93,6 +94,15 @@ void HIDKeysend(){
 		TurnOnLED2();
 	}
 }
+
+void HIDSPKeysend(){
+	if(CUR_KEYBOARD == 0xff && KEY_CHANGE == 0xff){
+		FLAG = 0;
+		Keyboard_Send(2);      //send keyboard event
+		while(FLAG == 0); /*等待上一包传输完成*/
+	}
+}
+
 //send message to computer
 void HIDsendMessage(){
 	HID_Busy = 0;
