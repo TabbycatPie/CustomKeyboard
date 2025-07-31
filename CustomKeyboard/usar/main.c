@@ -3,6 +3,8 @@
 #include "DataFlash.h"
 #include "usb.h"
 
+#define MODIFIER_DELAY 10
+
 //UINT8X MARCO_KEYCODE [50]= { 0x15,0x06,0x10,0x07,0x58,0x15,0x10,0x16,0x17,0x16,  //Win+r,c,m,d,Enter,Win+r,m,s,t,s,
 //														 0x06,0x58,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,	 //c,Enter,,,,,,,,,
 //														 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
@@ -463,25 +465,25 @@ void scanKey(){
 		{
 			HIDKey  [0] = (sp_key_code & 0x11);
 			HIDSPKeysend();
-			mDelaymS(50);
+			mDelaymS(MODIFIER_DELAY);
 		}
 		if((sp_key_code & 0x88) != 0x00) //left or right win pressed
 		{
 			HIDKey  [0] = (sp_key_code & 0x99);
 			HIDSPKeysend();
-			mDelaymS(50);
+			mDelaymS(MODIFIER_DELAY);
 		}
 		if((sp_key_code & 0x44) != 0x00) //left or right alt pressed
 		{
 			HIDKey  [0] = (sp_key_code & 0xdd);
 			HIDSPKeysend();
-			mDelaymS(50);
+			mDelaymS(MODIFIER_DELAY);
 		}
 		if((sp_key_code & 0x22) != 0x00) //left or right shift pressed
 		{
 			HIDKey  [0] = sp_key_code;
 			HIDSPKeysend();
-			mDelaymS(50);
+			mDelaymS(MODIFIER_DELAY);
 		}
 	}
 	HIDKey  [0] = sp_key_code; //special key Byte
