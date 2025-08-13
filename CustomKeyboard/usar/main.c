@@ -87,6 +87,37 @@ void HIDsendMessage(){
 	while(HID_Busy == 0); 
 }
 
+void assign_sp_key(UINT8 sp_key_code){
+	if(sp_key_code!=0x00){
+		//send modifier with seq ctrl > win > alt > shift
+		//reset HIDKey[]
+		if((sp_key_code & 0x11) != 0x00) //left or right ctrl pressed
+		{
+			HIDKey  [0] = (sp_key_code & 0x11);
+			HIDSPKeysend();
+			mDelaymS(MODIFIER_DELAY);
+		}
+		if((sp_key_code) & 0x88 != 0x00) //left or right win pressed
+		{
+			HIDKey  [0] = (sp_key_code & 0x99);
+			HIDSPKeysend();
+			mDelaymS(MODIFIER_DELAY);
+		}
+		if((sp_key_code & 0x44) != 0x00) //left or right alt pressed
+		{
+			HIDKey  [0] = (sp_key_code & 0xdd);
+			HIDSPKeysend();
+			mDelaymS(MODIFIER_DELAY);
+		}
+		if((sp_key_code & 0x22) != 0x00) //left or right shift pressed
+		{
+			HIDKey  [0] = sp_key_code;
+			HIDSPKeysend();
+			mDelaymS(MODIFIER_DELAY);
+		}
+	}
+}
+
 void HIDmediasend(){
 	if(CUR_MEDIA_KEY!= 0xff){
 		//valid key triggered
@@ -170,6 +201,7 @@ void HIDmarco(UINT8 key_num){
 			if(MARCO_SPE_KEYINDX[j]>MARCO_SPLIT_INDX[pos])
 				break;
 			if(MARCO_SPE_KEYINDX[j] == (MARCO_SPLIT_INDX[pos-1]+i)){
+				assign_sp_key(MARCO_SPE_KEYCODE[j]);
 				HIDKey[0] = MARCO_SPE_KEYCODE[j];
 				break;
 			}
@@ -216,6 +248,9 @@ void HIDmarco(UINT8 key_num){
 	//wait marco-key bounce up
 	mDelaymS(50);
 }
+
+
+
 void HIDmarcosend(){
 	if(CUR_MARCO_KEY!= 0xff){
 		//valid key triggered
@@ -458,34 +493,7 @@ void scanKey(){
 	//key codes
 	if(HIDKey[0]!=0x00 && sp_key_code==0x00)
 		CUR_KEYBOARD = 0xff;
-	if(sp_key_code!=0x00){
-		//send modifier with seq ctrl > win > alt > shift
-		//reset HIDKey[]
-		if((sp_key_code & 0x11) != 0x00) //left or right ctrl pressed
-		{
-			HIDKey  [0] = (sp_key_code & 0x11);
-			HIDSPKeysend();
-			mDelaymS(MODIFIER_DELAY);
-		}
-		if((sp_key_code & 0x88) != 0x00) //left or right win pressed
-		{
-			HIDKey  [0] = (sp_key_code & 0x99);
-			HIDSPKeysend();
-			mDelaymS(MODIFIER_DELAY);
-		}
-		if((sp_key_code & 0x44) != 0x00) //left or right alt pressed
-		{
-			HIDKey  [0] = (sp_key_code & 0xdd);
-			HIDSPKeysend();
-			mDelaymS(MODIFIER_DELAY);
-		}
-		if((sp_key_code & 0x22) != 0x00) //left or right shift pressed
-		{
-			HIDKey  [0] = sp_key_code;
-			HIDSPKeysend();
-			mDelaymS(MODIFIER_DELAY);
-		}
-	}
+	assign_sp_key(sp_key_code);
 	HIDKey  [0] = sp_key_code; //special key Byte
 	HIDKey  [1] = 0x00;        //reserved
 	if(key_count<6){					 //fill blank
