@@ -4,7 +4,7 @@
 #include "usb.h"
 #include "stdlib.h"
 
-#define MODIFIER_DELAY 10
+#define MODIFIER_DELAY 15
 
 #define LED1_INTERVAL 0x03
 #define LED2_INTERVAL 0x04
