@@ -3,7 +3,14 @@
 #include "DataFlash.h"
 #include "usb.h"
 
-#define MODIFIER_DELAY 15
+#define MODIFIER_DELAY_DEFAULT 15
+#define MODIFIER_DELAY_FLASH_ADDR 127
+#define MODIFIER_DELAY_LEVEL_MAX 3
+#define WATCHDOG_RELOAD_VALUE 0
+#define ENABLE_WATCHDOG_RESET 0
+
+UINT8X MODIFIER_DELAY_LEVEL = 0;
+UINT8X MODIFIER_DELAY_MS = MODIFIER_DELAY_DEFAULT;
 
 //UINT8X MARCO_KEYCODE [50]= { 0x15,0x06,0x10,0x07,0x58,0x15,0x10,0x16,0x17,0x16,  //Win+r,c,m,d,Enter,Win+r,m,s,t,s,
 //														 0x06,0x58,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,	 //c,Enter,,,,,,,,,
@@ -48,12 +55,44 @@ UINT8X CUR_MARCO_LAG = 0x0a;
 
 UINT8X KEY_CHANGE = 0x00;
 
+void FeedWatchdog(){
+	WDOG_COUNT = WATCHDOG_RELOAD_VALUE;
+}
+
+void EnableWatchdogReset(){
+	SAFE_MOD = 0x55;
+	SAFE_MOD = 0xaa;
+	GLOBAL_CFG |= bWDOG_EN;
+	FeedWatchdog();
+}
+
+UINT8 modifierDelayFromLevel(UINT8 level){
+	switch(level & 0x03){
+		case 0: return 15;
+		case 1: return 30;
+		case 2: return 50;
+		case 3: return 80;
+		default: return MODIFIER_DELAY_DEFAULT;
+	}
+}
+
+void setModifierDelayLevel(UINT8 level){
+	if(level > MODIFIER_DELAY_LEVEL_MAX){
+		level = 0;
+	}
+	MODIFIER_DELAY_LEVEL = level & 0x03;
+	MODIFIER_DELAY_MS = modifierDelayFromLevel(MODIFIER_DELAY_LEVEL);
+}
+
 
 
 //delay time*100ms
 void MarcoDelay(UINT8 time){
-	while(time--)
+	while(time--){
+		FeedWatchdog();
 		mDelaymS(100);
+	}
+	FeedWatchdog();
 }
 
 void HIDMousesend(){
@@ -68,7 +107,9 @@ void HIDKeysend(){
 	if(CUR_KEYBOARD == 0xff && KEY_CHANGE == 0xff){
 		FLAG = 0;
 		Keyboard_Send(0);      //send keyboard event
-		while(FLAG == 0); /*µÈ´ýÉÏÒ»°ü´«ÊäÍê³É*/
+		while(FLAG == 0){
+			FeedWatchdog();
+		} /*ï¿½È´ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	}
 }
 
@@ -76,7 +117,9 @@ void HIDSPKeysend(){
 	if(CUR_KEYBOARD == 0xff && KEY_CHANGE == 0xff){
 		FLAG = 0;
 		Keyboard_Send(2);      //send keyboard event
-		while(FLAG == 0); /*µÈ´ýÉÏÒ»°ü´«ÊäÍê³É*/
+		while(FLAG == 0){
+			FeedWatchdog();
+		} /*ï¿½È´ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 	}
 }
 
@@ -84,7 +127,9 @@ void HIDSPKeysend(){
 void HIDsendMessage(){
 	HID_Busy = 0;
 	HID_Send();    //send message
-	while(HID_Busy == 0); 
+	while(HID_Busy == 0){
+		FeedWatchdog();
+	}
 }
 
 void assign_sp_key(UINT8 sp_key_code){
@@ -95,25 +140,25 @@ void assign_sp_key(UINT8 sp_key_code){
 		{
 			HIDKey  [0] = (sp_key_code & 0x11);
 			HIDSPKeysend();
-			mDelaymS(MODIFIER_DELAY);
+			mDelaymS(MODIFIER_DELAY_MS);
 		}
-		if((sp_key_code) & 0x88 != 0x00) //left or right win pressed
+		if((sp_key_code & 0x88) != 0x00) //left or right win pressed
 		{
 			HIDKey  [0] = (sp_key_code & 0x99);
 			HIDSPKeysend();
-			mDelaymS(MODIFIER_DELAY);
+			mDelaymS(MODIFIER_DELAY_MS);
 		}
 		if((sp_key_code & 0x44) != 0x00) //left or right alt pressed
 		{
 			HIDKey  [0] = (sp_key_code & 0xdd);
 			HIDSPKeysend();
-			mDelaymS(MODIFIER_DELAY);
+			mDelaymS(MODIFIER_DELAY_MS);
 		}
 		if((sp_key_code & 0x22) != 0x00) //left or right shift pressed
 		{
 			HIDKey  [0] = sp_key_code;
 			HIDSPKeysend();
-			mDelaymS(MODIFIER_DELAY);
+			mDelaymS(MODIFIER_DELAY_MS);
 		}
 	}
 }
@@ -634,6 +679,16 @@ void handleReceive(){
 				WriteDataFlash(117,MARCO_DELAY_INDX,10);
 				HIDsendACK(0x0b);
 				break;
+			case 0x0e:
+				//set modifier delay level
+				temp[0] = User_Ep2Buf_rev[1];
+				if(temp[0] > MODIFIER_DELAY_LEVEL_MAX){
+					temp[0] = 0;
+				}
+				setModifierDelayLevel(temp[0]);
+				WriteDataFlash(MODIFIER_DELAY_FLASH_ADDR,temp,1);
+				HIDsendACK(0x0e);
+				break;
 			case 0x0c:
 				//ack test
 				HIDsendACK(0x0c);
@@ -650,6 +705,7 @@ void handleReceive(){
 void initKeyValue(){
 	//read from data flash
 	UINT8 _temp[2];
+	UINT8 modifier_delay_level;
 	ReadDataFlash(0,10,KEY_CODE);
 	ReadDataFlash(10,10,SP_KEY_CODE);
 	ReadDataFlash(20,2,_temp);
@@ -663,21 +719,26 @@ void initKeyValue(){
 	ReadDataFlash(97,10,MEDIA_CODE);
 	ReadDataFlash(107,10,MARCO_DELAY);
 	ReadDataFlash(117,10,MARCO_DELAY_INDX);
+	ReadDataFlash(MODIFIER_DELAY_FLASH_ADDR,1,&modifier_delay_level);
+	setModifierDelayLevel(modifier_delay_level);
 }
 
 void main(){
-	CfgFsys();                    //CH552Ê±ÖÓÑ¡ÔñÅäÖÃ
-	mDelaymS(50);                 //ÐÞ¸ÄÖ÷ÆµµÈ´ýÄÚ²¿¾§ÕñÎÈ¶¨,±Ø¼Ó
-	USBDeviceInit();              //USBÉè±¸Ä£Ê½³õÊ¼»¯
-	initKeyValue();              	//intialize key 
-	EA = 1;                       //ÔÊÐíµ¥Æ¬»úÖÐ¶Ï
+	CfgFsys();                    //CH552Ê±ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	mDelaymS(50);                 //ï¿½Þ¸ï¿½ï¿½ï¿½Æµï¿½È´ï¿½ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¶ï¿½,ï¿½Ø¼ï¿½
+	USBDeviceInit();              //USBï¿½è±¸Ä£Ê½ï¿½ï¿½Ê¼ï¿½ï¿½
+	initKeyValue();              	//intialize key
+#if ENABLE_WATCHDOG_RESET
+	EnableWatchdogReset();
+#endif
+	EA = 1;                       //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬ï¿½ï¿½ï¿½Ð¶ï¿½
 
 	
 	while(1)
 	{
 		if(Ready)
 		{
-			//USBÃ¶¾Ù³É¹¦´¦Àí
+			//USBÃ¶ï¿½Ù³É¹ï¿½ï¿½ï¿½ï¿½ï¿½
 			scanKey();
 			HIDsend();
 			handleReceive();
@@ -685,7 +746,8 @@ void main(){
 		}
 		else
 		{
-			//ÕâÀïÊÇUSBÎ´Ã¶¾Ù³É¹¦´¦Àí
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½USBÎ´Ã¶ï¿½Ù³É¹ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
+		FeedWatchdog();
 	}
 }

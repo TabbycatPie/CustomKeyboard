@@ -1,167 +1,195 @@
-## File Structure
+# CustomKeyboard
 
-There are 2 floders and many branches
+CustomKeyboard is a CH552-based programmable keyboard project with a Qt desktop configurator. The repository contains both the device firmware and the configuration utility used to assign keys, hotkeys, mouse buttons, media keys, and simple macros.
 
-### Folders
+> Production note: firmware changes should be validated on a test device before being flashed to production hardware.
 
-* **CustomKeyboard:** a keil project based on CH552
-* **KeyBoardSetter/KeyboardSetter:** a Qt project using hid_api as library to communicate with CH552 chip hardware.
+## Repository layout
 
-### branches
+```text
+CustomKeyboard/                  CH552 firmware project
+KeyBoardSetter/KeyboardSetter/   Qt desktop configuration app
+Readme.assets/                   README images and UI captures
+```
 
-* **main:** newest developping version with HID log and new UI (testing...).
-* **Version 3.0:** new UI.
-* **FinalVersion 2.1:** most "stable" version. (ゝω・´★)
+## Current status
 
+- Firmware target: CH552 USB HID device.
+- Desktop app: Qt-based keyboard setter.
+- Configuration transport: HID reports sent from the desktop app to the device.
+- Modifier delay support: configurable delay level for modifier-key sequences.
+- Watchdog reset: code is present but disabled by default until hardware validation is complete.
 
+## User interface
 
-## Download
+The keyboard setter lets users select a key, assign a normal key or modifier combination, configure macro steps, and download the configuration to the device.
 
-Click the given link below will automatically redirect to a URL and download a zip file for you，it's **NECESSARY** to  download this software for keyboard configuration. the downloaded zip file is built from branch FinalVerison2.1
+![Keyboard setter main interface with modifier delay selector](Readme.assets/configform-modifier-delay.png)
 
- **[Click Here To Download Software](https://github.com/TabbycatPie/CustomKeyboard/releases/tag/stable)**
+The **Modifier Delay** selector controls the delay inserted while sending modifier-key combinations. This can help hosts that need a slightly longer interval between Ctrl/Win/Alt/Shift state changes and the final key event.
 
-## After Downloading
+Available levels:
 
-1. After downloading zipped file (by clicking the link above),unzip it somewhere.
+| Level | Delay |
+|---:|---:|
+| 0 | 15 ms |
+| 1 | 30 ms |
+| 2 | 50 ms |
+| 3 | 80 ms |
 
-   ![image-20210525223535819](Readme.assets/image-20210525223535819.png)
+The selected level is saved into the keyboard configuration file and sent to firmware using HID command `0x0e`.
 
-2. Change directory to the folder and find 2 specific files named "KeyboardSetter.exe" and "KeyMapping.png".
+## Features
 
-   * "KeyboardSetter.exe" is a software used for configuring your Keyboard
+### Single key and hotkey assignment
 
-   * "KeyMapping.png" is a picture that reference the relation between your hardware switch and its related button in software setter(KeyboardSetter.exe) .
+Select a physical key in the UI, then press keys on the virtual keyboard to assign the desired output. Modifier combinations such as `Ctrl + C`, `Win + R`, or `Shift + F4` are supported.
 
-     ​	**For example**:  If you bought a 2-key keyboard, your device can be found in "KeyMapping.png" as the image showed below 👇
+### Macros
 
-     ![image-20210525173858383](Readme.assets/image-20210525173858383.png)
+A macro is a sequence of key events sent by one physical key. Macros can be used for repeated text, shortcuts, or short command sequences.
 
-     * The tiny rectangle ![image-20210525174107725](Readme.assets/image-20210525174107725.png) references the Micro USB wire which you plug into your device.
+Supported macro data includes:
 
-     * The larger rectangle ![image-20210525174350766](Readme.assets/image-20210525174350766.png) references the switch on your device.
+- Normal keyboard keys
+- Modifier keys used with normal keys
+- Delay steps
 
-     * And the "KEY1" on the switch means **in the software**, the switch in related position will be represented by button "KEY1".
+Limitations:
 
-       ![image-20210525175845209](Readme.assets/image-20210525175845209.png)
+- Mouse keys and media keys are not supported inside macros.
+- Macro storage is limited by the CH552 on-chip memory layout.
+- Existing firmware layout stores macro and key configuration in a compact 128-byte DataFlash area.
 
-     
+### Mouse and media keys
 
-## HOW   TO  USE
+Mouse and media functions are configured from the desktop app and are sent as dedicated HID usages. They are configured separately from macro steps.
 
-1. Plug your device into your computer. When it plugged in, the LED on device will be turned on.
+## Firmware configuration layout
 
-   ![plugin](Readme.assets/plugin.gif)
+The firmware keeps the existing DataFlash layout for compatibility:
 
-2. Double click "KeyboardSetter.exe" 
+| Address range | Purpose |
+|---:|---|
+| `0..9` | Normal key codes |
+| `10..19` | Modifier key codes |
+| `20..21` | Macro key flags |
+| `22..32` | Macro split indexes |
+| `33..42` | Macro modifier key codes |
+| `43..52` | Macro modifier indexes |
+| `53..86` | Macro normal key codes |
+| `87..96` | Mouse key codes |
+| `97..106` | Media key codes |
+| `107..116` | Macro delay values |
+| `117..126` | Macro delay indexes |
+| `127` | Modifier delay level |
 
-3. According to KeyMapping.png ,find the represented button you want to configure,then click it,it will turn red after clicking, that also means you are now editing this switch. And the soft-keyboard will display. 
+The modifier delay level uses address `127` so the existing ranges and old command meanings remain unchanged.
 
-   ![setkey](Readme.assets/setkey.gif)
+## HID configuration commands
 
-4. Press some keys on your soft-keyboard to set the behave  of the switch 
+The desktop app sends configuration frames to the device. Existing command IDs remain unchanged:
 
-   * For example: The below gif shows how you can set **"Ctrl + C"** (hotkey known as "Copy")  to **"KEY1"**
+| Command | Purpose |
+|---:|---|
+| `0x01` | Set normal key codes |
+| `0x02` | Set modifier key codes |
+| `0x03` | Set macro key flags |
+| `0x04` | Set macro split indexes |
+| `0x05` | Set macro modifier key codes |
+| `0x06` | Set macro modifier indexes |
+| `0x07` | Set macro normal key codes |
+| `0x08` | Set mouse key codes |
+| `0x09` | Set media key codes |
+| `0x0a` | Set macro delay values |
+| `0x0b` | Set macro delay indexes |
+| `0x0c` | Hardware ACK test |
+| `0x0d` | Simple read/test response |
+| `0x0e` | Set modifier delay level |
 
-     ![setkey2](Readme.assets/setkey2.gif)
+Command `0x0e` is additive. Older firmware that does not support it can still receive the base configuration frames, but the desktop app will report that modifier-delay ACK failed and that firmware should be updated for this feature.
 
-     After pressing "C" ,the program will auto-complete setting and the action of the switch named "KEY1" will be set to "Ctrl + C"
+## Build notes
 
-5. Finally you need to apply settings or configurations to your device ,you need to download them to device by clicking the download button  **with your device plugged in**.
+### Qt desktop app
 
-   ![download](Readme.assets/download.gif)
+The Qt project is located at:
 
-6. After download ,the action of the switch will change instantly.
+```text
+KeyBoardSetter/KeyboardSetter/KeyboardSetter.pro
+```
 
-## Advance Feature
+A normal build uses qmake and make from a Qt 5 environment:
 
-Our production also has some advance features such as **Macro** (continuously send key to computer), **Multi-media control** (eg. paly/pause music), **Mouse clicking simulation**... 
+```bash
+cd KeyBoardSetter/KeyboardSetter
+mkdir -p build
+cd build
+qmake ../KeyboardSetter.pro
+make -j$(nproc)
+```
 
-### Macro
+On Linux, the bundled HID source may require platform-specific hidapi handling. If the build selects the Windows hidapi backend, it may fail with `windows.h: No such file or directory`; use the correct hidapi backend or cross-build environment for the target platform.
 
-A **Macro** is an array of keys sending to computer sequentially. (eg. password,command,hotkeys.) With **Macro**, you can achieve some certain purpose by click one switch on the keyboard. 
+### CH552 firmware
 
-* The gif below offers an example of setting up "Open terminal" to a certain switch.
+The firmware project is under:
 
-![setmarco](Readme.assets/setmarco.gif)
+```text
+CustomKeyboard/usar/
+```
 
-* (Win+R) :  Run window will pop up
-* (Delay 0.6s + C) : Wait for Run window pop up and type "c"
-* (M) : Type "m"
-* (D) :  Type "d"
-* (Enter) : Type "enter"
+Build it with the existing CH552/Keil-compatible firmware toolchain used by the project. Always validate on a spare test device before flashing production units.
 
-The final result is showed below:
+## Production safety and rollback
 
-![show](Readme.assets/show.gif)
+Before changing production firmware or the desktop tool:
 
-When you press "KEY3" , a command window will instantly show up,It acts like a bad USB!
+1. Back up the full project directory.
+2. Save the current git diff.
+3. Build the desktop app.
+4. Build firmware with the CH552 toolchain.
+5. Test on a non-production keyboard.
+6. Verify key assignment, macro download, modifier combinations, disconnect/reconnect persistence, and rollback.
 
-* You can also set **One-key Password** on a certain switch.
+For the current modifier-delay work, watchdog reset is intentionally disabled by default:
 
-Assume your password is "Ha*q123", you can do setup like below:
+```c
+#define ENABLE_WATCHDOG_RESET 0
+```
 
-![show2](Readme.assets/show2.gif)
+Only enable it after USB enumeration, configuration download, long macro delay, and normal key operation have all been validated on real hardware.
 
-Result:
+## Basic usage
 
-![show3](Readme.assets/show3.gif)
+1. Plug in the keyboard.
+2. Open the keyboard setter app.
+3. Select the physical key to edit.
+4. Choose a normal key, hotkey, mouse key, media key, or macro sequence.
+5. Optionally adjust **Modifier Delay** if the host misses modifier-key combinations.
+6. Click **PUSH** to download the configuration to the device.
+7. Unplug and reconnect the keyboard to confirm the configuration is persistent.
 
-### Mouse & Multi-Media
+## Troubleshooting
 
-Our production does **NOT** support using mouse or multi-media keys in any **Macro**.
+### The app cannot find the device
 
-Use tab window to switch pages and setup these keys
+- Try another USB port, preferably a motherboard port.
+- Disconnect other identical keyboards while configuring.
+- On Windows, remove and reinstall the USB composite device matching the keyboard VID/PID if enumeration is stuck.
 
-![show4](Readme.assets/show4.gif)
+### A modifier hotkey sometimes fails
 
+- Increase **Modifier Delay** from `15 ms` to `30 ms` or `50 ms`.
+- Download the configuration again.
+- Reconnect the keyboard and retest the hotkey.
 
+### Macro delay does not work as expected
 
-## Notice
+- Delay steps are for macro mode, not normal single-key mode.
+- Keep the macro within firmware storage limits.
+- Mouse and media keys cannot be inserted into macros.
 
-### Non-Windows system usage:
+## Legacy screenshots
 
-The Keyboard should finish setting on windows pc **first** ,Then plug into other OS. If you are using MacOS, the "Win" key is equal to "command" and "alt" = "option".
-
-### Software related:
-
-ZDDKeyboradSetter.exe opened and the font is too large: Try to shrink your font size, right click on your desktop select "Display settings".
-
-### Configure related:
-
-1. If you have 2 or more keyboard, you can not set them at the same time, the software can only recognize one device.
-2. The virtual keyboard inside this software is fully refer to the 128key keyboard. eg: if you want to set  '=' ,you should press ![image-20211025214104776](Readme.assets/image-20211025214104776-16377365559223.png). if you want to set '+', you should press 'Shift' first ,the press  ![image-20211025214104776](Readme.assets/image-20211025214104776.png).
-3. If you set a key using some keypad keys, and these keys do not work, check whether you pressed 'Num Lock' key first.
-
-### Macro related:
-
-1. The total macro key length is 34 normal key (eg: 'a','b','1','Caps Lock'...) with maximum 10 function key (eg:'Ctrl','Win','Alt'...), 34 is the maximum sum number, not for one key, because this chip has only 128 Byte on-chip  memory.
-2. Mouse key and Media key can not be added to the macro.
-3. The delay function can not apply to a single key(eg: Delay2.5s+d),it is only worked in macro mode,and the delay function can only be a prefix.
-4. You should press a key for enough time to trigger loop sending.
-5. F13~F24 can be found in 'Advance' page, they act like normal keys (1,2,3,q,w,e,F1...).
-
-## Errors
-
-What if my keyboard doesn't working?
-
-1. Try to plug your device into your USB port which at the back of your box.(ports on the motherboard)
-
-2. Press a button but nothing happened (open ZDDKeyboardSetter.exe searching for device,but result in "can not found device"): Maybe your device is not connected to your PC, unplug your device and plug it into another port.
-
-3. The device worked correctly, but ZDDKeyboardSetter.exe keep failing to find your device or download:
-
-   * Change to another USB port will temporarily solve this problem.
-
-   * Go to Windows device manager and reinstall the USB driver. (details below)
-
-     1. Plug keyboard to the computer.
-
-     2. Right click on "This Computer", go to This Computer > Manage (Windows11 : This Computer >Show more options > Manage).
-
-     3. Find "Device Manager" and click it, then go to "Universal Serial Bus controllers" , and you will see many "USB Composite Device"s.
-
-     4. Double click on one of them, a setting page will pop up,then click "Event" Tab.
-
-     5. Find the device with VID_5131 PID_2019 and uninstall the driver.(Right click on corresponding "USB Composite Device").
-     6. Plug in your device again to make your PC reinstall the driver
+Older usage examples are still kept in `Readme.assets/` for reference, including setup and macro demonstration GIFs from the original project documentation.

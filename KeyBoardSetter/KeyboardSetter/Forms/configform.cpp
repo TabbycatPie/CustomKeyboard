@@ -5,6 +5,7 @@
 #include "ui_configform.h"
 #include "UIpainter/uipainter.h"
 #include "Utils/userconfig.h"
+#include <QComboBox>
 #include <QDebug>
 #include <QLabel>
 #include <qfiledialog.h>
@@ -73,6 +74,10 @@ ConfigForm::ConfigForm(QWidget *parent)
     });
     connect(ui->btn_download,&QPushButton::clicked,this,[=]{
         downloadToDevice();
+    });
+    ui->cb_modifier_delay->setCurrentIndex(my_ckb->getModifierDelayLevel());
+    connect(ui->cb_modifier_delay,static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),this,[=](int index){
+        my_ckb->setModifierDelayLevel(index);
     });
     connect(painter->getBtn_delay_plus(),&QPushButton::clicked,this,[=]{
         delayindecrease(true);
@@ -176,6 +181,7 @@ bool ConfigForm::loadConfigFromFile(){
             return false;
         }else{
             my_ckb = CustomKeyboard::fromJson(ckbjsonobj,painter->getCKBkey_list()->data());
+            ui->cb_modifier_delay->setCurrentIndex(my_ckb->getModifierDelayLevel());
             updateUI();
             QMessageBox msg_info(this);
             msg_info.setStyleSheet("color:rgb(242, 242, 222);");

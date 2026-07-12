@@ -26,6 +26,8 @@ public:
     int getMacro_spkey() const;
     int getMacro_delay() const;
     int getMacro_key_count() const;
+    void setModifierDelayLevel(int level);
+    int getModifierDelayLevel() const;
     QPushButton *getButtonByID(int key_no);
     CustomKey *getCustomKeyByID(int key_no);
     QString getName();
@@ -61,6 +63,7 @@ private:
     int macro_spkey;    //max number of macro special key on device           default is 10
     int macro_delay;    //max number of macro delay key on device             default is 10
     int macro_key_count;//max number of macro key on device                   default is 10
+    int modifier_delay_level; //modifier key press delay level                default is 0
     uchar *normal_keycode;  //normal key code
     uchar *spkey_mixcode;   //special key mix code
     QString name;           //keyboard Name
