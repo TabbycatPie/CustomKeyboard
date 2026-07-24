@@ -5,9 +5,12 @@
 #include "HidAPI/hidcodetable.h"
 #include "UIpainter/uipainter.h"
 
+#include <QPointer>
 #include <QWidget>
 #include <qpushbutton.h>
 #include <qtranslator.h>
+
+class SettingForm;
 
 namespace Ui {
 class ConfigForm;
@@ -25,6 +28,7 @@ private:
     Ui::ConfigForm *ui;
     //Translator
     QTranslator *translator =NULL;
+    QPointer<SettingForm> setting_form;
     void softKeyPressed(int i);
     void showWarningDialog(QString title, QString content);
     bool addKeyValue();
@@ -35,7 +39,7 @@ private:
     void setDelay();
     bool deleteKeyValue();
  public slots:
-    void changeLanguage(QString language);
+    bool changeLanguage(QString language);
     void loadConfigFromMenu();
     void saveConfigFromMenu();
     int getModifierDelayLevel() const;

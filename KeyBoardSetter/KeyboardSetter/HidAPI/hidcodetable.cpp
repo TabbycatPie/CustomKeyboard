@@ -2,16 +2,16 @@
 
 
 //public key board string
-static QString _key_string[127];
+static QString _key_string[126];
 //public key board name
-static QString _key_name[127];
+static QString _key_name[126];
 //public key hex
-static uchar _key_hex[127];
+static uchar _key_hex[126];
 
-#define SPKEYY_NUM 8
+#define SPKEYY_NUM 7
 static const int _spkey_index[]={
     /*Left Shift*/55,/*Right Shift*/66,/*Left Ctrl*/67,/*Left Win*/68,/*Left Alt*/69,
-    /*Right Alt*/71,/*Right Win*/72,/*Right Ctrl*/73
+    /*Right Alt*/71,/*Right Ctrl*/73
 };
 
 #define MOUSEKEY_NUM 3
@@ -99,7 +99,7 @@ HIDCodeTable::HIDCodeTable()
     _key_name[69] = tr("Alt"); _key_string[69] = tr("LAlt");_key_hex[69]=0x4;
     _key_name[70] = tr("Space"); _key_string[70] = tr("Space");_key_hex[70]=0x2c;
     _key_name[71] = tr("Alt"); _key_string[71] = tr("RAlt");_key_hex[71]=0x40;
-    _key_name[72] = tr("Win"); _key_string[72] = tr("RWin");_key_hex[72]=0x80;
+    _key_name[72] = tr("Menu"); _key_string[72] = tr("Menu");_key_hex[72]=0x65;
     _key_name[73] = tr("Ctrl"); _key_string[73] = tr("RCtrl");_key_hex[73]=0x10;
     _key_name[74] = tr("PtSr"); _key_string[74] = tr("Print Screen");_key_hex[74]=0x46;
     _key_name[75] = tr("ScLk"); _key_string[75] = tr("Scroll Lock");_key_hex[75]=0x47;
@@ -153,7 +153,6 @@ HIDCodeTable::HIDCodeTable()
     _key_name[123] = tr("F22"); _key_string[123] = tr("F22");_key_hex[123]=0x71;
     _key_name[124] = tr("F23"); _key_string[124] = tr("F23");_key_hex[124]=0x72;
     _key_name[125] = tr("F24"); _key_string[125] = tr("F24");_key_hex[125]=0x73;
-    _key_name[126] = tr("Menu"); _key_string[126] = tr("Menu");_key_hex[126]=0x65;
     this->key_string = _key_string;
     this->key_name = _key_name;
     this->key_hex = _key_hex;

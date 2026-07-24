@@ -11,7 +11,7 @@
     <message>
         <location filename="../Forms/configform.ui" line="67"/>
         <source>PUSH</source>
-        <translation type="unfinished"></translation>
+        <translation>下载到设备</translation>
     </message>
     <message>
         <location filename="../Forms/configform.ui" line="108"/>
@@ -25,101 +25,101 @@
     </message>
     <message>
         <location filename="../Forms/configform.ui" line="183"/>
-        <source>Menu</source>
-        <translation>菜单</translation>
+        <source>Settings</source>
+        <translation>设置</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="135"/>
-        <location filename="../Forms/configform.cpp" line="147"/>
-        <location filename="../Forms/configform.cpp" line="177"/>
-        <location filename="../Forms/configform.cpp" line="207"/>
-        <location filename="../Forms/configform.cpp" line="315"/>
-        <location filename="../Forms/configform.cpp" line="326"/>
-        <location filename="../Forms/configform.cpp" line="337"/>
-        <location filename="../Forms/configform.cpp" line="354"/>
+        <location filename="../Forms/configform.cpp" line="141"/>
+        <location filename="../Forms/configform.cpp" line="153"/>
+        <location filename="../Forms/configform.cpp" line="183"/>
+        <location filename="../Forms/configform.cpp" line="213"/>
+        <location filename="../Forms/configform.cpp" line="321"/>
+        <location filename="../Forms/configform.cpp" line="332"/>
+        <location filename="../Forms/configform.cpp" line="343"/>
+        <location filename="../Forms/configform.cpp" line="360"/>
         <source>Notice</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="100"/>
+        <location filename="../Forms/configform.cpp" line="106"/>
         <source>ZDDKeyboardSetter</source>
         <translation>ZDD键盘设置器</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="136"/>
+        <location filename="../Forms/configform.cpp" line="142"/>
         <source>Download finished!</source>
         <translation>下载完成！</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="141"/>
-        <location filename="../Forms/configform.cpp" line="166"/>
-        <location filename="../Forms/configform.cpp" line="198"/>
+        <location filename="../Forms/configform.cpp" line="147"/>
+        <location filename="../Forms/configform.cpp" line="172"/>
+        <location filename="../Forms/configform.cpp" line="204"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="142"/>
+        <location filename="../Forms/configform.cpp" line="148"/>
         <source>Download Error :</source>
         <translation>下载错误：</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="148"/>
+        <location filename="../Forms/configform.cpp" line="154"/>
         <source>Download finished! But there may be some errors.</source>
         <translation>下载完成,但是可能存在一些问题.</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="157"/>
+        <location filename="../Forms/configform.cpp" line="163"/>
         <source>Open file</source>
         <translation>打开文件</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="157"/>
-        <location filename="../Forms/configform.cpp" line="190"/>
+        <location filename="../Forms/configform.cpp" line="163"/>
+        <location filename="../Forms/configform.cpp" line="196"/>
         <source>zddConfig (*.zdd)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="167"/>
+        <location filename="../Forms/configform.cpp" line="173"/>
         <source>Can not load file </source>
         <translation>无法打开文件 </translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="178"/>
+        <location filename="../Forms/configform.cpp" line="184"/>
         <source>Loaded Successfully!</source>
         <translation>已经成功加载配置！</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="190"/>
+        <location filename="../Forms/configform.cpp" line="196"/>
         <source>Save File</source>
         <translation>文件保存</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="199"/>
+        <location filename="../Forms/configform.cpp" line="205"/>
         <source>Can not save </source>
         <translation>无法保存 </translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="208"/>
+        <location filename="../Forms/configform.cpp" line="214"/>
         <source>Saved Successfully!</source>
         <translation>保存成功!</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="315"/>
+        <location filename="../Forms/configform.cpp" line="321"/>
         <source>You can NOT add mouse event to Macro!</source>
         <translation>无法将鼠标键添加到宏！</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="326"/>
+        <location filename="../Forms/configform.cpp" line="332"/>
         <source>You can NOT add meida key to Macro!</source>
         <translation>无法将多媒体键添加到宏！</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="337"/>
+        <location filename="../Forms/configform.cpp" line="343"/>
         <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
         <translation>无法在宏键中添加鼠标或多媒体键值！</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="354"/>
+        <location filename="../Forms/configform.cpp" line="360"/>
         <source>Can NOT add key macro : hardware limitation!</source>
         <translation>无法添加更多的宏键值：已达到硬件限制！</translation>
     </message>
@@ -153,7 +153,7 @@
     <message>
         <location filename="../Utils/customkeyboard.cpp" line="337"/>
         <source>Base config was sent, but modifier delay ACK failed. Please update firmware for modifier delay support.</source>
-        <translation type="unfinished"></translation>
+        <translation>基础配置已发送，但修饰键延迟确认失败。请更新固件以支持修饰键延迟。</translation>
     </message>
     <message>
         <location filename="../Utils/customkeyboard.cpp" line="367"/>
@@ -704,7 +704,6 @@
     </message>
     <message>
         <location filename="../HidAPI/hidcodetable.cpp" line="98"/>
-        <location filename="../HidAPI/hidcodetable.cpp" line="102"/>
         <source>Win</source>
         <translation></translation>
     </message>
@@ -733,11 +732,6 @@
         <location filename="../HidAPI/hidcodetable.cpp" line="101"/>
         <source>RAlt</source>
         <translation>右Alt</translation>
-    </message>
-    <message>
-        <location filename="../HidAPI/hidcodetable.cpp" line="102"/>
-        <source>RWin</source>
-        <translation>右Win</translation>
     </message>
     <message>
         <location filename="../HidAPI/hidcodetable.cpp" line="103"/>
@@ -1080,12 +1074,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../HidAPI/hidcodetable.cpp" line="156"/>
+        <location filename="../HidAPI/hidcodetable.cpp" line="102"/>
         <source>Menu</source>
         <translation>菜单</translation>
     </message>
     <message>
-        <location filename="../HidAPI/hidcodetable.cpp" line="218"/>
+        <location filename="../HidAPI/hidcodetable.cpp" line="217"/>
         <source>Delay </source>
         <translation>延时 </translation>
     </message>
@@ -1093,13 +1087,13 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Forms/configform.cpp" line="451"/>
+        <location filename="../Forms/configform.cpp" line="457"/>
         <source>Delay </source>
         <oldsource>Delay</oldsource>
         <translation>延时 </translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="474"/>
+        <location filename="../Forms/configform.cpp" line="480"/>
         <source>None</source>
         <translation>未设置</translation>
     </message>
@@ -1107,17 +1101,17 @@
 <context>
     <name>SettingForm</name>
     <message>
-        <location filename="../Forms/settingform.cpp" line="37"/>
-        <source>Menu</source>
-        <translation>菜单</translation>
+        <location filename="../Forms/settingform.cpp" line="30"/>
+        <source>Settings</source>
+        <translation>设置</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.cpp" line="51"/>
+        <location filename="../Forms/settingform.cpp" line="43"/>
         <source>Notice</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.cpp" line="52"/>
+        <location filename="../Forms/settingform.cpp" line="44"/>
         <source>A Restart is needed to apply language changing.</source>
         <translation>切换语言后需要重启软件应用设置。</translation>
     </message>
@@ -1131,56 +1125,71 @@
     </message>
     <message>
         <location filename="../UIpainter/uipainter.cpp" line="66"/>
+        <source>L</source>
+        <translation>左</translation>
+    </message>
+    <message>
+        <location filename="../UIpainter/uipainter.cpp" line="67"/>
+        <source>M</source>
+        <translation>中</translation>
+    </message>
+    <message>
+        <location filename="../UIpainter/uipainter.cpp" line="68"/>
+        <source>R</source>
+        <translation>右</translation>
+    </message>
+    <message>
+        <location filename="../UIpainter/uipainter.cpp" line="74"/>
         <source>Mouse Left</source>
         <translation>鼠标左键</translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="67"/>
+        <location filename="../UIpainter/uipainter.cpp" line="79"/>
         <source>Mouse Middle</source>
         <translation>鼠标中键</translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="68"/>
+        <location filename="../UIpainter/uipainter.cpp" line="83"/>
         <source>Mouse Right</source>
         <translation>鼠标右键</translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="111"/>
+        <location filename="../UIpainter/uipainter.cpp" line="113"/>
         <source>ADD</source>
         <translation>添加</translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="115"/>
+        <location filename="../UIpainter/uipainter.cpp" line="117"/>
         <source>DELETE</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="158"/>
+        <location filename="../UIpainter/uipainter.cpp" line="159"/>
         <source>+</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="159"/>
+        <location filename="../UIpainter/uipainter.cpp" line="160"/>
         <source>-</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="167"/>
+        <location filename="../UIpainter/uipainter.cpp" line="168"/>
         <source>SetDelay</source>
         <translation>设置延时</translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="227"/>
+        <location filename="../UIpainter/uipainter.cpp" line="228"/>
         <source>KEYBOARD</source>
         <translation>键盘</translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="228"/>
+        <location filename="../UIpainter/uipainter.cpp" line="229"/>
         <source>MOUSE</source>
         <translation>鼠标</translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="229"/>
+        <location filename="../UIpainter/uipainter.cpp" line="230"/>
         <source>ADVANCE</source>
         <translation>高级</translation>
     </message>
@@ -1188,97 +1197,97 @@
 <context>
     <name>settingForm</name>
     <message>
-        <location filename="../Forms/settingform.ui" line="21"/>
-        <source>ENGLISH</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/settingform.ui" line="17"/>
-        <source>中文</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../Forms/settingform.ui" line="8"/>
-        <source>Menu</source>
-        <translation>菜单</translation>
+        <source>Settings</source>
+        <translation>设置</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="13"/>
-        <source>LANGUAGE:</source>
-        <translation>语言：</translation>
+        <location filename="../Forms/settingform.ui" line="20"/>
+        <source>Language</source>
+        <translation>语言</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="26"/>
+        <location filename="../Forms/settingform.ui" line="24"/>
+        <source>Chinese</source>
+        <translation>中文</translation>
+    </message>
+    <message>
+        <location filename="../Forms/settingform.ui" line="25"/>
+        <source>English</source>
+        <translation>英语</translation>
+    </message>
+    <message>
+        <location filename="../Forms/settingform.ui" line="29"/>
         <source>Modifier Delay</source>
         <translation>修饰键延迟</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="30"/>
+        <location filename="../Forms/settingform.ui" line="33"/>
         <source>0 ms (Off)</source>
         <translation>0 毫秒（关闭）</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="31"/>
+        <location filename="../Forms/settingform.ui" line="34"/>
         <source>5 ms</source>
         <translation>5 毫秒</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="32"/>
+        <location filename="../Forms/settingform.ui" line="35"/>
         <source>10 ms</source>
         <translation>10 毫秒</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="33"/>
+        <location filename="../Forms/settingform.ui" line="36"/>
         <source>20 ms</source>
         <translation>20 毫秒</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="34"/>
+        <location filename="../Forms/settingform.ui" line="37"/>
         <source>30 ms</source>
         <translation>30 毫秒</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="35"/>
+        <location filename="../Forms/settingform.ui" line="38"/>
         <source>50 ms</source>
         <translation>50 毫秒</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="36"/>
+        <location filename="../Forms/settingform.ui" line="39"/>
         <source>100 ms</source>
         <translation>100 毫秒</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="37"/>
+        <location filename="../Forms/settingform.ui" line="40"/>
         <source>150 ms</source>
         <translation>150 毫秒</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="38"/>
+        <location filename="../Forms/settingform.ui" line="41"/>
         <source>200 ms</source>
         <translation>200 毫秒</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="39"/>
+        <location filename="../Forms/settingform.ui" line="42"/>
         <source>300 ms</source>
         <translation>300 毫秒</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="40"/>
+        <location filename="../Forms/settingform.ui" line="43"/>
         <source>500 ms</source>
         <translation>500 毫秒</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="44"/>
+        <location filename="../Forms/settingform.ui" line="48"/>
         <source>Load</source>
         <translation>加载</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="48"/>
+        <location filename="../Forms/settingform.ui" line="53"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="52"/>
+        <location filename="../Forms/settingform.ui" line="58"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>

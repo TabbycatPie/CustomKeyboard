@@ -50,11 +50,13 @@ ConfigForm::ConfigForm(QWidget *parent)
     if(!cs.readConfig(filename,jsonobj))
         qDebug() << "Can not read userconfig.ini";
     UserConfig *uc = UserConfig::fromJson(*jsonobj);
-    if(uc->getLanguage()=="english"){
-        changeLanguage("en");
-    }else{
-        changeLanguage("cn");
-    }
+    QString language = uc->getLanguage()=="english" ? "en" : "cn";
+    QString translation_path = QCoreApplication::applicationDirPath()
+            + (language == "en" ? "//trans_en_US.qm" : "//trans_zh_CN.qm");
+    if(!translator->load(translation_path) || !qApp->installTranslator(translator))
+        qDebug() << "Can not load UI language:" << language;
+    delete uc;
+    delete jsonobj;
     initUI(this);
     //CONNECT FUNCTIONS
     for(int i = 1;i<vkey_list->size()+1;i++){
@@ -93,9 +95,15 @@ ConfigForm::ConfigForm(QWidget *parent)
         deleteKeyValue();
     });
     connect(ui->btn_settings,&QPushButton::clicked,this,[=]{
-        SettingForm *sf = new SettingForm(this,this);
-        sf->setAttribute(Qt::WA_DeleteOnClose);
-        sf->show();
+        if(setting_form){
+            setting_form->show();
+            setting_form->raise();
+            setting_form->activateWindow();
+            return;
+        }
+        setting_form = new SettingForm(this,this);
+        setting_form->setAttribute(Qt::WA_DeleteOnClose);
+        setting_form->show();
     });
     this->setWindowTitle(tr("ZDDKeyboardSetter"));
 }
@@ -395,37 +403,47 @@ ConfigForm::~ConfigForm()
     delete translator;
     delete ui;
 }
-void ConfigForm::changeLanguage(QString language){
-    QString flag = "english";
+bool ConfigForm::changeLanguage(QString language){
+    QString flag;
+    QString path;
     if(language=="cn"){
-        QString path = QCoreApplication::applicationDirPath() + "//trans_zh_CN.qm";
-        translator->load(path);
-        if(qApp->installTranslator(translator)){
-            qDebug() << "Using chinese as UI language.";
-            flag = "chinese";
-        }
-        else{
-            qDebug() << "Can not load UI language:cn";
-        }
+        flag = "chinese";
+        path = QCoreApplication::applicationDirPath() + "//trans_zh_CN.qm";
     }else if(language=="en"){
-        QString path = QCoreApplication::applicationDirPath() + "//trans_en_US.qm";
-        bool is_load = translator->load(path);
-        if(qApp->installTranslator(translator) && is_load){
-            qDebug() << "Using english as UI language.";
-            flag = "english";
-        }
-        else{
-            qDebug() << "Can not load UI language:en";
-        }
+        flag = "english";
+        path = QCoreApplication::applicationDirPath() + "//trans_en_US.qm";
+    }else{
+        return false;
     }
 
-    //save user language information to file
-    UserConfig *userconfig = new UserConfig(flag);
+    QTranslator *new_translator = new QTranslator(this);
+    if(!new_translator->load(path)){
+        qDebug() << "Can not load UI language:" << language;
+        delete new_translator;
+        return false;
+    }
+
+    UserConfig userconfig(flag);
     ConfigSaver cs;
-    QString filename =  QCoreApplication::applicationDirPath() + "//usercondif.ini";
-    if(!cs.saveConfig(filename,userconfig->toJsonObj()))
-        qDebug()  << cs.getLastError();
-    delete userconfig;
+    QString filename = QCoreApplication::applicationDirPath() + "//usercondif.ini";
+    if(!cs.saveConfig(filename,userconfig.toJsonObj())){
+        qDebug() << cs.getLastError();
+        delete new_translator;
+        return false;
+    }
+
+    if(translator){
+        qApp->removeTranslator(translator);
+        delete translator;
+    }
+    translator = new_translator;
+    if(!qApp->installTranslator(translator)){
+        qDebug() << "Can not install UI language:" << language;
+        return false;
+    }
+
+    qDebug() << "Using" << flag << "as UI language.";
+    return true;
 }
 void updateUI(){
     //update soft keyboard label

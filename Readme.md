@@ -24,9 +24,9 @@ Readme.assets/                   README images and UI captures
 
 ## User interface
 
-The keyboard setter lets users select a key, assign a normal key or modifier combination, configure macro steps, and download the configuration to the device. Open **Menu** to load or save configuration files, choose the interface language, and set the global **Modifier Delay** level. The main window no longer has separate Load and Save controls.
+The keyboard setter lets users select a key, assign a normal key or modifier combination, configure macro steps, and download the configuration to the device. Open **Settings** to load or save configuration files, choose the interface language from a drop-down list, and set the global **Modifier Delay** level. The main window no longer has separate Load and Save controls. Pressing OK displays the restart notice only after the selected language actually changes and the preference is saved successfully.
 
-The existing image below is retained as a legacy layout reference; current builds place **Modifier Delay** in Menu.
+The existing image below is retained as a legacy layout reference; current builds place **Modifier Delay** in Settings.
 
 ![Legacy keyboard setter interface with modifier delay selector](Readme.assets/configform-modifier-delay.png)
 
@@ -76,9 +76,9 @@ Limitations:
 
 ### Mouse, media, and Menu keys
 
-Mouse and media functions are configured from the desktop app and are sent as dedicated HID usages. The mouse view labels its controls **Mouse Left**, **Mouse Middle**, and **Mouse Right**. They are configured separately from macro steps.
+Mouse and media functions are configured from the desktop app and are sent as dedicated HID usages. The compact mouse view labels its controls **L**, **M**, and **R**, with translated **Mouse Left**, **Mouse Middle**, and **Mouse Right** tooltips. They are configured separately from macro steps.
 
-The virtual keyboard also provides the standard Menu/Application key. It uses USB HID Keyboard/Keypad usage `0x65` and was appended after the existing logical keys, preserving saved-configuration compatibility for indices `1..125`.
+The standard Menu/Application key replaces the former right Win key between right Alt and right Ctrl at logical index `72`. It uses USB HID Keyboard/Keypad usage `0x65` and follows the normal-key path rather than the modifier-byte path. No duplicate Menu key is added to ADVANCE; saved configurations that used index `72` intentionally resolve to Menu, while all other logical indices remain stable.
 
 ## Firmware configuration layout
 
@@ -183,7 +183,7 @@ Only enable it after USB enumeration, configuration download, long macro delay, 
 2. Open the keyboard setter app.
 3. Select the physical key to edit.
 4. Choose a normal key, hotkey, mouse key, media key, Menu/Application key, or macro sequence.
-5. Open **Menu** to load/save configurations, choose a language, or adjust **Modifier Delay** if the host misses modifier-key combinations.
+5. Open **Settings** to load/save configurations, choose a language, or adjust **Modifier Delay** if the host misses modifier-key combinations.
 6. Use ADVANCE → **SetDelay** for per-step macro delays such as `0.7` seconds.
 7. Click **PUSH** to download the configuration to the device.
 8. Unplug and reconnect the keyboard to confirm the configuration is persistent.

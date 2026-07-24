@@ -27,3 +27,7 @@ KeyBoardSetter/build*
 *moc_*.cpp
 *.ziph
 *.DS_Store
+
+# Keep intentional, versioned distributable files under release/.
+!release/
+!release/**

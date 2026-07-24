@@ -63,27 +63,29 @@ int UIPainter::getFullWindowHeight(int CKBrow)
 void UIPainter::drawVMouse(int x,int y){
     int cur_x = x;
     int cur_y = y;
-    QPushButton *lbtn = new QPushButton(tr("Mouse Left"),this->my_ui);
-    QPushButton *mbtn = new QPushButton(tr("Mouse Middle"),this->my_ui);
-    QPushButton *rbtn = new QPushButton(tr("Mouse Right"),this->my_ui);
+    QPushButton *lbtn = new QPushButton(tr("L"),this->my_ui);
+    QPushButton *mbtn = new QPushButton(tr("M"),this->my_ui);
+    QPushButton *rbtn = new QPushButton(tr("R"),this->my_ui);
     this->mouse_body = new QLabel("",this->my_ui);
-    //draw right mouse key
-    lbtn->setGeometry(cur_x,cur_y,100,70);
-    cur_x +=(100 + this->Vkey_inter_margin);
-    lbtn->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;border-top-left-radius:30px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
-    //draw middle mouse key
-    mbtn->setGeometry(cur_x,cur_y,100,70);
-    cur_x +=(100 + this->Vkey_inter_margin);
-    mbtn->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
-    //draw left mouse key
-    rbtn->setGeometry(cur_x,cur_y,100,70);
-    cur_y +=(70 + this->Vkey_inter_margin);
+
+    lbtn->setGeometry(cur_x,cur_y,40,70);
+    cur_x += 40 + this->Vkey_inter_margin;
+    lbtn->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;border-top-left-radius:30px;padding:1px;font: 8pt \"Microsoft YaHei UI\";color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
+    lbtn->setToolTip(tr("Mouse Left"));
+
+    mbtn->setGeometry(cur_x,cur_y+8,15,40);
+    cur_x += 15 + this->Vkey_inter_margin;
+    mbtn->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;padding:0;font: 7pt \"Microsoft YaHei UI\";color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
+    mbtn->setToolTip(tr("Mouse Middle"));
+
+    rbtn->setGeometry(cur_x,cur_y,40,70);
+    rbtn->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;border-top-right-radius:30px;padding:1px;font: 8pt \"Microsoft YaHei UI\";color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
+    rbtn->setToolTip(tr("Mouse Right"));
+
+    cur_y += 70 + this->Vkey_inter_margin;
     cur_x = x;
-    rbtn->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;border-top-right-radius:30px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
-    //draw body
-    mouse_body->setGeometry(cur_x,cur_y,300+2*this->Vkey_inter_margin,95+2*this->Vkey_inter_margin);
-    mouse_body->setStyleSheet("background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;border-bottom-right-radius:40px;border-bottom-left-radius:40px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);");
-    //append to maind list
+    mouse_body->setGeometry(cur_x,cur_y,95+2*this->Vkey_inter_margin,95+2*this->Vkey_inter_margin);
+    mouse_body->setStyleSheet("background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;border-bottom-right-radius:40px;border-bottom-left-radius:40px;padding:2px 4px;");
     this->Vkey_list->append(lbtn);
     this->Vkey_list->append(mbtn);
     this->Vkey_list->append(rbtn);
@@ -138,7 +140,6 @@ void UIPainter::drawADVpanel(int x,int y){
         this->Vkey_list->append(drawVKey(cur_x,cur_y,1.0,1.0,t->getButtonNmae(i)));
         cur_x+= 1.0*this->VKey_len+this->Vkey_inter_margin;
     }
-    this->Vkey_list->append(drawVKey(cur_x,cur_y,1.5,1.0,t->getButtonNmae(126)));
     //begin a new line
     cur_y+= this->VKey_len + this->Vkey_inter_margin;
     cur_x = x;
@@ -194,13 +195,13 @@ QPushButton *UIPainter::getBtn_delete() const
     return btn_delete;
 }
 void UIPainter::showAdvPanel(){
-    for(int i = 106;i<126;i++){
+    for(int i = 106;i<125;i++){
         this->Vkey_list->data()[i]->show();
     }
     showDelayPart();
 };
 void UIPainter::hideAdvPanel(){
-    for(int i = 106;i<126;i++){
+    for(int i = 106;i<125;i++){
         this->Vkey_list->data()[i]->hide();
     }
     hideDelayPart();

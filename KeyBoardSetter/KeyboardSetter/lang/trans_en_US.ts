@@ -11,7 +11,7 @@
     <message>
         <location filename="../Forms/configform.ui" line="67"/>
         <source>PUSH</source>
-        <translation type="unfinished"></translation>
+        <translation>PUSH</translation>
     </message>
     <message>
         <location filename="../Forms/configform.ui" line="108"/>
@@ -25,102 +25,102 @@
     </message>
     <message>
         <location filename="../Forms/configform.ui" line="183"/>
-        <source>Menu</source>
-        <translation>Menu</translation>
+        <source>Settings</source>
+        <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="135"/>
-        <location filename="../Forms/configform.cpp" line="147"/>
-        <location filename="../Forms/configform.cpp" line="177"/>
-        <location filename="../Forms/configform.cpp" line="207"/>
-        <location filename="../Forms/configform.cpp" line="315"/>
-        <location filename="../Forms/configform.cpp" line="326"/>
-        <location filename="../Forms/configform.cpp" line="337"/>
-        <location filename="../Forms/configform.cpp" line="354"/>
+        <location filename="../Forms/configform.cpp" line="141"/>
+        <location filename="../Forms/configform.cpp" line="153"/>
+        <location filename="../Forms/configform.cpp" line="183"/>
+        <location filename="../Forms/configform.cpp" line="213"/>
+        <location filename="../Forms/configform.cpp" line="321"/>
+        <location filename="../Forms/configform.cpp" line="332"/>
+        <location filename="../Forms/configform.cpp" line="343"/>
+        <location filename="../Forms/configform.cpp" line="360"/>
         <source>Notice</source>
         <translation>Notice</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="100"/>
+        <location filename="../Forms/configform.cpp" line="106"/>
         <source>ZDDKeyboardSetter</source>
         <translatorcomment>ZDDKeyboardSetter</translatorcomment>
         <translation>ZDDKeyboardSetter</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="136"/>
+        <location filename="../Forms/configform.cpp" line="142"/>
         <source>Download finished!</source>
         <translation>Download finished!</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="141"/>
-        <location filename="../Forms/configform.cpp" line="166"/>
-        <location filename="../Forms/configform.cpp" line="198"/>
+        <location filename="../Forms/configform.cpp" line="147"/>
+        <location filename="../Forms/configform.cpp" line="172"/>
+        <location filename="../Forms/configform.cpp" line="204"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="142"/>
+        <location filename="../Forms/configform.cpp" line="148"/>
         <source>Download Error :</source>
         <translation>Download Error :</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="148"/>
+        <location filename="../Forms/configform.cpp" line="154"/>
         <source>Download finished! But there may be some errors.</source>
         <translation>Download finished! But there may be some errors.</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="157"/>
+        <location filename="../Forms/configform.cpp" line="163"/>
         <source>Open file</source>
         <translation>Open file</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="157"/>
-        <location filename="../Forms/configform.cpp" line="190"/>
+        <location filename="../Forms/configform.cpp" line="163"/>
+        <location filename="../Forms/configform.cpp" line="196"/>
         <source>zddConfig (*.zdd)</source>
         <translation>zddConfig (*.zdd)</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="167"/>
+        <location filename="../Forms/configform.cpp" line="173"/>
         <source>Can not load file </source>
         <translation>Can not load file </translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="178"/>
+        <location filename="../Forms/configform.cpp" line="184"/>
         <source>Loaded Successfully!</source>
         <translation>Loaded Successfully!</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="190"/>
+        <location filename="../Forms/configform.cpp" line="196"/>
         <source>Save File</source>
         <translation>Save File</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="199"/>
+        <location filename="../Forms/configform.cpp" line="205"/>
         <source>Can not save </source>
         <translation>Can not save </translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="208"/>
+        <location filename="../Forms/configform.cpp" line="214"/>
         <source>Saved Successfully!</source>
         <translation>Saved Successfully!</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="315"/>
+        <location filename="../Forms/configform.cpp" line="321"/>
         <source>You can NOT add mouse event to Macro!</source>
         <translation>You can NOT add mouse event to Macro!</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="326"/>
+        <location filename="../Forms/configform.cpp" line="332"/>
         <source>You can NOT add meida key to Macro!</source>
         <translation>You can NOT add meida key to Macro!</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="337"/>
+        <location filename="../Forms/configform.cpp" line="343"/>
         <source>You can NOT set MEDIA or MOUSE key to Macro!</source>
         <translation>You can NOT set MEDIA or MOUSE key to Macro!</translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="354"/>
+        <location filename="../Forms/configform.cpp" line="360"/>
         <source>Can NOT add key macro : hardware limitation!</source>
         <translation>Can NOT add key macro : hardware limitation!</translation>
     </message>
@@ -144,7 +144,7 @@
     <message>
         <location filename="../Utils/customkeyboard.cpp" line="337"/>
         <source>Base config was sent, but modifier delay ACK failed. Please update firmware for modifier delay support.</source>
-        <translation type="unfinished"></translation>
+        <translation>Base config was sent, but modifier delay ACK failed. Please update firmware for modifier delay support.</translation>
     </message>
     <message>
         <location filename="../Utils/customkeyboard.cpp" line="341"/>
@@ -705,7 +705,6 @@
     </message>
     <message>
         <location filename="../HidAPI/hidcodetable.cpp" line="98"/>
-        <location filename="../HidAPI/hidcodetable.cpp" line="102"/>
         <source>Win</source>
         <translation>Win</translation>
     </message>
@@ -733,11 +732,6 @@
     <message>
         <location filename="../HidAPI/hidcodetable.cpp" line="101"/>
         <source>RAlt</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../HidAPI/hidcodetable.cpp" line="102"/>
-        <source>RWin</source>
         <translation></translation>
     </message>
     <message>
@@ -1081,12 +1075,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../HidAPI/hidcodetable.cpp" line="156"/>
+        <location filename="../HidAPI/hidcodetable.cpp" line="102"/>
         <source>Menu</source>
         <translation>Menu</translation>
     </message>
     <message>
-        <location filename="../HidAPI/hidcodetable.cpp" line="218"/>
+        <location filename="../HidAPI/hidcodetable.cpp" line="217"/>
         <source>Delay </source>
         <translation></translation>
     </message>
@@ -1094,13 +1088,13 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Forms/configform.cpp" line="451"/>
+        <location filename="../Forms/configform.cpp" line="457"/>
         <source>Delay </source>
         <oldsource>Delay</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Forms/configform.cpp" line="474"/>
+        <location filename="../Forms/configform.cpp" line="480"/>
         <source>None</source>
         <translation></translation>
     </message>
@@ -1108,18 +1102,18 @@
 <context>
     <name>SettingForm</name>
     <message>
-        <location filename="../Forms/settingform.cpp" line="37"/>
-        <source>Menu</source>
-        <translation>Menu</translation>
+        <location filename="../Forms/settingform.cpp" line="30"/>
+        <source>Settings</source>
+        <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.cpp" line="51"/>
+        <location filename="../Forms/settingform.cpp" line="43"/>
         <source>Notice</source>
         <translatorcomment>Notice</translatorcomment>
         <translation>Notice</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.cpp" line="52"/>
+        <location filename="../Forms/settingform.cpp" line="44"/>
         <source>A Restart is needed to apply language changing.</source>
         <translatorcomment>A Restart is needed to apply language changing.</translatorcomment>
         <translation>A Restart is needed to apply language changing.</translation>
@@ -1134,56 +1128,71 @@
     </message>
     <message>
         <location filename="../UIpainter/uipainter.cpp" line="66"/>
+        <source>L</source>
+        <translation>L</translation>
+    </message>
+    <message>
+        <location filename="../UIpainter/uipainter.cpp" line="67"/>
+        <source>M</source>
+        <translation>M</translation>
+    </message>
+    <message>
+        <location filename="../UIpainter/uipainter.cpp" line="68"/>
+        <source>R</source>
+        <translation>R</translation>
+    </message>
+    <message>
+        <location filename="../UIpainter/uipainter.cpp" line="74"/>
         <source>Mouse Left</source>
         <translation>Mouse Left</translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="67"/>
+        <location filename="../UIpainter/uipainter.cpp" line="79"/>
         <source>Mouse Middle</source>
         <translation>Mouse Middle</translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="68"/>
+        <location filename="../UIpainter/uipainter.cpp" line="83"/>
         <source>Mouse Right</source>
         <translation>Mouse Right</translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="111"/>
+        <location filename="../UIpainter/uipainter.cpp" line="113"/>
         <source>ADD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="115"/>
+        <location filename="../UIpainter/uipainter.cpp" line="117"/>
         <source>DELETE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="158"/>
+        <location filename="../UIpainter/uipainter.cpp" line="159"/>
         <source>+</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="159"/>
+        <location filename="../UIpainter/uipainter.cpp" line="160"/>
         <source>-</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="167"/>
+        <location filename="../UIpainter/uipainter.cpp" line="168"/>
         <source>SetDelay</source>
         <translation>SetDelay</translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="227"/>
+        <location filename="../UIpainter/uipainter.cpp" line="228"/>
         <source>KEYBOARD</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="228"/>
+        <location filename="../UIpainter/uipainter.cpp" line="229"/>
         <source>MOUSE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UIpainter/uipainter.cpp" line="229"/>
+        <location filename="../UIpainter/uipainter.cpp" line="230"/>
         <source>ADVANCE</source>
         <translation></translation>
     </message>
@@ -1191,97 +1200,97 @@
 <context>
     <name>settingForm</name>
     <message>
-        <location filename="../Forms/settingform.ui" line="21"/>
-        <source>ENGLISH</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Forms/settingform.ui" line="17"/>
-        <source>中文</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../Forms/settingform.ui" line="8"/>
-        <source>Menu</source>
-        <translation>Menu</translation>
+        <source>Settings</source>
+        <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="13"/>
-        <source>LANGUAGE:</source>
-        <translation>LANGUAGE:</translation>
+        <location filename="../Forms/settingform.ui" line="20"/>
+        <source>Language</source>
+        <translation>Language</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="26"/>
+        <location filename="../Forms/settingform.ui" line="24"/>
+        <source>Chinese</source>
+        <translation>Chinese</translation>
+    </message>
+    <message>
+        <location filename="../Forms/settingform.ui" line="25"/>
+        <source>English</source>
+        <translation>English</translation>
+    </message>
+    <message>
+        <location filename="../Forms/settingform.ui" line="29"/>
         <source>Modifier Delay</source>
         <translation>Modifier Delay</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="30"/>
+        <location filename="../Forms/settingform.ui" line="33"/>
         <source>0 ms (Off)</source>
         <translation>0 ms (Off)</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="31"/>
+        <location filename="../Forms/settingform.ui" line="34"/>
         <source>5 ms</source>
         <translation>5 ms</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="32"/>
+        <location filename="../Forms/settingform.ui" line="35"/>
         <source>10 ms</source>
         <translation>10 ms</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="33"/>
+        <location filename="../Forms/settingform.ui" line="36"/>
         <source>20 ms</source>
         <translation>20 ms</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="34"/>
+        <location filename="../Forms/settingform.ui" line="37"/>
         <source>30 ms</source>
         <translation>30 ms</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="35"/>
+        <location filename="../Forms/settingform.ui" line="38"/>
         <source>50 ms</source>
         <translation>50 ms</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="36"/>
+        <location filename="../Forms/settingform.ui" line="39"/>
         <source>100 ms</source>
         <translation>100 ms</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="37"/>
+        <location filename="../Forms/settingform.ui" line="40"/>
         <source>150 ms</source>
         <translation>150 ms</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="38"/>
+        <location filename="../Forms/settingform.ui" line="41"/>
         <source>200 ms</source>
         <translation>200 ms</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="39"/>
+        <location filename="../Forms/settingform.ui" line="42"/>
         <source>300 ms</source>
         <translation>300 ms</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="40"/>
+        <location filename="../Forms/settingform.ui" line="43"/>
         <source>500 ms</source>
         <translation>500 ms</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="44"/>
+        <location filename="../Forms/settingform.ui" line="48"/>
         <source>Load</source>
         <translation>Load</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="48"/>
+        <location filename="../Forms/settingform.ui" line="53"/>
         <source>Save</source>
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="../Forms/settingform.ui" line="52"/>
+        <location filename="../Forms/settingform.ui" line="58"/>
         <source>OK</source>
         <translation></translation>
     </message>

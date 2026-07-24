@@ -15,17 +15,11 @@ class SettingForm : public QWidget
 
 public:
     explicit SettingForm(ConfigForm *mainwindow,QWidget *parent = nullptr);
-    void setLanguageBtnTriggered(int btn_no);
-    char cur_lang = 'c';
-    char sel_lang = 'c';
     ~SettingForm();
 
 private:
     Ui::settingForm *ui;
-    void changeLanguage(char language);
-
-signals:
-    void changeConfigFormLanguage(QString language);
+    int initial_language_index = 0;
 };
 
 #endif // SETTINGFORM_H
