@@ -1,6 +1,43 @@
 # Windows 一键构建与运行
 
-## 快速使用
+## 推荐：从 Qt Creator 的 build 目录发布
+
+如果 Qt Creator 已经能编译并运行 Debug 版本，请使用这个方式。它不需要扫描或猜测 Qt 安装位置。
+
+1. 在 Qt Creator 中使用 **MinGW kit** 构建一次项目。
+2. 找到 Qt Creator 生成的 build 目录，例如：
+
+   ```text
+   build-KeyboardSetter-Desktop_Qt_5_14_2_MinGW_32_bit-Debug
+   ```
+
+3. 将仓库中的：
+
+   ```text
+   KeyBoardSetter\deploy_from_build.bat
+   ```
+
+   单独复制到上述 build 目录。
+4. 双击 `deploy_from_build.bat`。
+
+脚本会从 build 目录现有的 Makefile 自动获取 qmake、MinGW 和源码路径，然后：
+
+- 单独编译 Release 版本，不破坏现有 Debug 文件；
+- 调用 Qt 官方 `windeployqt` 补齐 Release Qt DLL、插件和编译器运行库；
+- 调用 `lrelease` 生成中英文 `.qm` 翻译文件；
+- 从源码 `libs` 或现有 `debug` 目录补充 `libusb-1.0.dll` 等非 Qt DLL；
+- 不允许 Debug Qt DLL 覆盖 `windeployqt` 发布的 Release DLL；
+- 自动打开并启动最终发布程序。
+
+最终可分发目录位于原 build 目录下：
+
+```text
+package\KeyboardSetter\
+```
+
+需要复制给其他用户的是整个 `package\KeyboardSetter` 目录，不能只复制 exe。
+
+## 备用：从源码目录自动查找 Qt
 
 1. 用 Qt Maintenance Tool 确认已安装 **Qt MinGW kit** 和对应的 MinGW 编译器。
 2. 将与当前 MinGW 位数匹配的 `libusb-1.0.dll` 放入：
