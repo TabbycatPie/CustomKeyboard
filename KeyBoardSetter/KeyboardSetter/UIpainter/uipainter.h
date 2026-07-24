@@ -34,6 +34,7 @@ public:
     void drawVMouse(int x,int y);
     void showVMouse();
     void hideVMouse();
+    void retranslateUi();
     //draw output port
     void drawOutputPort(int x,int y);
     int getPortHeight();
@@ -100,6 +101,7 @@ private:
     QPushButton* btn_delay_plus,*btn_delay_minus,*btn_set_delay;
     //----other component
     QLabel *mouse_body;
+    QPushButton *mouse_left_btn,*mouse_middle_btn;
 
 signals:
 

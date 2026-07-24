@@ -1114,9 +1114,9 @@
     </message>
     <message>
         <location filename="../Forms/settingform.cpp" line="44"/>
-        <source>A Restart is needed to apply language changing.</source>
-        <translatorcomment>A Restart is needed to apply language changing.</translatorcomment>
-        <translation>A Restart is needed to apply language changing.</translation>
+        <source>Switching language requires reopening the application.</source>
+        <translatorcomment>Switching language requires reopening the application.</translatorcomment>
+        <translation>Switching language requires reopening the application.</translation>
     </message>
 </context>
 <context>
@@ -1143,13 +1143,13 @@
     </message>
     <message>
         <location filename="../UIpainter/uipainter.cpp" line="74"/>
-        <source>Mouse Left</source>
-        <translation>Mouse Left</translation>
+        <source>Left mouse button click</source>
+        <translation>Left mouse button click</translation>
     </message>
     <message>
         <location filename="../UIpainter/uipainter.cpp" line="79"/>
-        <source>Mouse Middle</source>
-        <translation>Mouse Middle</translation>
+        <source>Middle mouse button click</source>
+        <translation>Middle mouse button click</translation>
     </message>
     <message>
         <location filename="../UIpainter/uipainter.cpp" line="83"/>

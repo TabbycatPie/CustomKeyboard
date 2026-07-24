@@ -37,10 +37,10 @@ SettingForm::SettingForm(ConfigForm *mainwindow,QWidget *parent) :
     connect(ui->btn_sf_ok,&QPushButton::clicked,this,[=]{
         int selected_language_index = ui->cb_language->currentIndex();
         if(selected_language_index != initial_language_index &&
-                mainwindow->changeLanguage(selected_language_index == 0 ? "cn" : "en")){
+                !mainwindow->changeLanguage(selected_language_index == 0 ? "cn" : "en")){
             QMessageBox *msg_info = new QMessageBox(QMessageBox::Information,
                                                      tr("Notice"),
-                                                     tr("A Restart is needed to apply language changing."),
+                                                     tr("Switching language requires reopening the application."),
                                                      QMessageBox::Ok,
                                                      mainwindow);
             msg_info->setStyleSheet("QMessageBox{background-color:rgb(48,56,65);color:rgb(242,242,222);} QLabel{color:rgb(242,242,222);}");

@@ -23,7 +23,9 @@ CustomKeyboard/Objects/main.__i
 *.__il*
 *.7z
 *.ini
-KeyBoardSetter/build*
+KeyBoardSetter/build-*/
+KeyBoardSetter/build/
+KeyBoardSetter/dist/
 *moc_*.cpp
 *.ziph
 *.DS_Store

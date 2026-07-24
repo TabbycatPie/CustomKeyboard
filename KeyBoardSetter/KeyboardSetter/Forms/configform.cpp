@@ -443,6 +443,12 @@ bool ConfigForm::changeLanguage(QString language){
     }
 
     qDebug() << "Using" << flag << "as UI language.";
+    ui->retranslateUi(this);
+    setWindowTitle(tr("Config Your Custom Keyboard"));
+    if(painter){
+        painter->retranslateUi();
+        updateUI();
+    }
     return true;
 }
 void updateUI(){
