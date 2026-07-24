@@ -76,25 +76,35 @@ build_windows.bat -Clean -NoRun
 
 脚本依次检查：
 
-1. 环境变量 `QT_BIN_DIR`；
-2. 当前 `PATH` 中的 `qmake`；
-3. `C:\Qt\<Qt版本>\mingw*\bin`；
-4. `C:\Qt\Tools\mingw*\bin` 中的 `mingw32-make.exe`。
+1. 命令行参数 `-QtBinDir`；
+2. 环境变量 `QT_BIN_DIR`、`QTDIR`、`QT_ROOT_DIR`；
+3. 当前 `PATH` 中的 `qmake` 或 `qmake6`；
+4. Qt Creator 的 `qtversion.xml` / `profiles.xml`；
+5. `C:\Qt`、`D:\Qt`、`E:\Qt`、用户目录和 Program Files 下的 Qt MinGW kit；
+6. 同一 Qt 根目录 `Tools\mingw*\bin` 中的 `mingw32-make.exe`。
 
-如果 Qt 安装在非标准位置，可以先设置：
+如果 Qt 安装在非标准位置，可以直接传入 Qt kit 的 `bin` 目录：
+
+```bat
+build_windows.bat -QtBinDir "D:\Qt\6.8.3\mingw_64\bin"
+```
+
+也可以设置环境变量：
 
 ```bat
 set QT_BIN_DIR=D:\Qt\5.15.2\mingw81_64\bin
 build_windows.bat
 ```
 
-`QT_BIN_DIR` 中应存在：
+传入的目录中应存在 Qt 5 或 Qt 6 对应的：
 
-- `qmake.exe`
-- `lrelease.exe`
-- `windeployqt.exe`
+- `qmake.exe` 或 `qmake6.exe`
+- `lrelease.exe` 或 `lrelease6.exe`
+- `windeployqt.exe` 或 `windeployqt6.exe`
 
-同时应确保匹配该 Qt kit 的 `mingw32-make.exe` 位于 `PATH`，或安装在同一个 Qt 根目录的 `Tools\mingw*\bin` 下。
+脚本还会查找与该 kit 匹配的 `mingw32-make.exe`。项目当前使用 MinGW 格式的 `libusb-1.0.dll.a`，因此不能选择名称中带 `msvc` 的 Qt kit。
+
+如果不知道 Qt 路径，在 Qt Creator 中打开 **工具 → 选项 → Kits → Qt Versions**，查看当前 Qt 版本对应的 qmake 路径；把 qmake 所在目录传给 `-QtBinDir`。
 
 ## 常见问题
 

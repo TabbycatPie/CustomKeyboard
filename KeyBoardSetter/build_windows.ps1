@@ -1,7 +1,8 @@
 [CmdletBinding()]
 param(
     [switch]$Clean,
-    [switch]$NoRun
+    [switch]$NoRun,
+    [string]$QtBinDir
 )
 
 $ErrorActionPreference = "Stop"
@@ -37,61 +38,122 @@ function Invoke-Tool([string]$FilePath, [string[]]$Arguments, [string]$WorkingDi
     }
 }
 
-function Find-QtBin {
+function Get-QtTool([string]$QtBin, [string[]]$Names) {
+    foreach ($name in $Names) {
+        $path = Join-Path $QtBin $name
+        if (Test-Path $path -PathType Leaf) { return $path }
+    }
+    return $null
+}
+
+function ConvertTo-QtBin([string]$Candidate) {
+    if (-not $Candidate) { return $null }
+    $expanded = [Environment]::ExpandEnvironmentVariables($Candidate.Trim('"'))
+    if (Test-Path $expanded -PathType Leaf) {
+        return Split-Path $expanded -Parent
+    }
+    if (Test-Path (Join-Path $expanded "bin") -PathType Container) {
+        return (Join-Path $expanded "bin")
+    }
+    return $expanded
+}
+
+function Find-QtBin([string]$PreferredQtBin) {
     $candidates = New-Object System.Collections.Generic.List[string]
+    $diagnostics = New-Object System.Collections.Generic.List[string]
 
-    if ($env:QT_BIN_DIR) {
-        $candidates.Add($env:QT_BIN_DIR)
+    foreach ($preferred in @($PreferredQtBin, $env:QT_BIN_DIR, $env:QTDIR, $env:QT_ROOT_DIR)) {
+        if ($preferred) { $candidates.Add((ConvertTo-QtBin $preferred)) }
     }
 
-    $pathQmake = Get-CommandPath "qmake.exe"
-    if (-not $pathQmake) { $pathQmake = Get-CommandPath "qmake" }
-    if ($pathQmake) {
-        $candidates.Add((Split-Path $pathQmake -Parent))
+    foreach ($commandName in @("qmake.exe", "qmake6.exe", "qmake")) {
+        $pathQmake = Get-CommandPath $commandName
+        if ($pathQmake) { $candidates.Add((Split-Path $pathQmake -Parent)) }
     }
 
-    $qtRoots = @("C:\Qt")
-    if ($env:QTDIR) {
-        $qtRoots = @($env:QTDIR) + $qtRoots
+    $qtCreatorFiles = @(
+        (Join-Path $env:APPDATA "QtProject\qtcreator\qtversion.xml"),
+        (Join-Path $env:APPDATA "QtProject\qtcreator\profiles.xml")
+    )
+    foreach ($configFile in $qtCreatorFiles) {
+        if (Test-Path $configFile -PathType Leaf) {
+            $content = Get-Content $configFile -Raw -ErrorAction SilentlyContinue
+            foreach ($match in [regex]::Matches($content, '(?i)([A-Z]:[/\\][^<"\r\n]*?qmake(?:6)?\.exe)')) {
+                $qmakePath = [System.Net.WebUtility]::HtmlDecode($match.Groups[1].Value) -replace '/', '\'
+                $candidates.Add((Split-Path $qmakePath -Parent))
+            }
+        }
     }
 
-    foreach ($qtRoot in $qtRoots | Select-Object -Unique) {
-        if (Test-Path $qtRoot) {
-            Get-ChildItem $qtRoot -Directory -ErrorAction SilentlyContinue |
-                Sort-Object Name -Descending |
-                ForEach-Object {
-                    Get-ChildItem $_.FullName -Directory -Filter "mingw*" -ErrorAction SilentlyContinue |
-                        Sort-Object Name -Descending |
-                        ForEach-Object { $candidates.Add((Join-Path $_.FullName "bin")) }
+    $qtRoots = @(
+        "C:\Qt", "D:\Qt", "E:\Qt",
+        (Join-Path $env:USERPROFILE "Qt"),
+        (Join-Path $env:LOCALAPPDATA "Qt"),
+        (Join-Path $env:ProgramFiles "Qt")
+    )
+    foreach ($qtRoot in $qtRoots | Where-Object { $_ } | Select-Object -Unique) {
+        if (-not (Test-Path $qtRoot -PathType Container)) { continue }
+        Get-ChildItem $qtRoot -Directory -ErrorAction SilentlyContinue |
+            Sort-Object Name -Descending |
+            ForEach-Object {
+                if ($_.Name -like "mingw*") {
+                    $candidates.Add((Join-Path $_.FullName "bin"))
                 }
-        }
+                Get-ChildItem $_.FullName -Directory -Filter "mingw*" -ErrorAction SilentlyContinue |
+                    Sort-Object Name -Descending |
+                    ForEach-Object { $candidates.Add((Join-Path $_.FullName "bin")) }
+            }
     }
 
-    foreach ($candidate in $candidates | Select-Object -Unique) {
-        if ((Test-Path (Join-Path $candidate "qmake.exe")) -and
-            (Test-Path (Join-Path $candidate "windeployqt.exe"))) {
-            return (Resolve-Path $candidate).Path
+    foreach ($candidate in $candidates | Where-Object { $_ } | Select-Object -Unique) {
+        $qtBin = ConvertTo-QtBin $candidate
+        $qmake = Get-QtTool $qtBin @("qmake.exe", "qmake6.exe")
+        $deploy = Get-QtTool $qtBin @("windeployqt.exe", "windeployqt6.exe")
+        $release = Get-QtTool $qtBin @("lrelease.exe", "lrelease6.exe")
+        $missing = @()
+        if (-not $qmake) { $missing += "qmake" }
+        if (-not $deploy) { $missing += "windeployqt" }
+        if (-not $release) { $missing += "lrelease" }
+        if ($missing.Count -gt 0) {
+            $diagnostics.Add("$qtBin (missing: $($missing -join ', '))")
+            continue
         }
+
+        $kitName = (Split-Path (Split-Path $qtBin -Parent) -Leaf)
+        if ($kitName -notmatch '(?i)mingw') {
+            $diagnostics.Add("$qtBin (not a MinGW kit: $kitName)")
+            continue
+        }
+        return $qtBin
     }
 
-    throw "Qt MinGW kit was not found. Add its bin directory to PATH or set QT_BIN_DIR, for example C:\Qt\5.15.2\mingw81_64\bin."
+    Write-Host "`nQt candidates checked:" -ForegroundColor Yellow
+    if ($diagnostics.Count -eq 0) {
+        Write-Host "    No Qt installation candidates were found."
+    } else {
+        $diagnostics | Select-Object -Unique | ForEach-Object { Write-Host "    $_" }
+    }
+    throw "Qt MinGW kit was not found. Run: build_windows.bat -QtBinDir `"D:\Qt\6.x.x\mingw_64\bin`""
 }
 
 function Find-Make([string]$QtBin) {
-    $pathMake = Get-CommandPath "mingw32-make.exe"
-    if (-not $pathMake) { $pathMake = Get-CommandPath "mingw32-make" }
-    if ($pathMake) { return $pathMake }
-
     $qtRoot = Split-Path (Split-Path (Split-Path $QtBin -Parent) -Parent) -Parent
     $toolsDir = Join-Path $qtRoot "Tools"
     if (Test-Path $toolsDir) {
-        $make = Get-ChildItem $toolsDir -Filter "mingw32-make.exe" -File -Recurse -ErrorAction SilentlyContinue |
-            Sort-Object FullName -Descending |
+        $kitName = Split-Path (Split-Path $QtBin -Parent) -Leaf
+        $kitVersion = [regex]::Match($kitName, '\d+').Value
+        $makeCandidates = Get-ChildItem $toolsDir -Filter "mingw32-make.exe" -File -Recurse -ErrorAction SilentlyContinue
+        $make = $makeCandidates |
+            Sort-Object @{Expression={ if ($kitVersion -and $_.FullName -match [regex]::Escape($kitVersion)) { 0 } else { 1 } }}, FullName |
             Select-Object -First 1
         if ($make) { return $make.FullName }
     }
 
-    throw "mingw32-make.exe was not found. Install the MinGW component for your Qt kit or add its bin directory to PATH."
+    $pathMake = Get-CommandPath "mingw32-make.exe"
+    if (-not $pathMake) { $pathMake = Get-CommandPath "mingw32-make" }
+    if ($pathMake) { return $pathMake }
+
+    throw "mingw32-make.exe was not found for Qt kit $QtBin. Install its matching MinGW component or add the compiler bin directory to PATH."
 }
 
 function Find-LibusbDll([string]$QtBin, [string]$MakePath) {
@@ -120,10 +182,10 @@ try {
     }
 
     Write-Step "Detecting Qt MinGW tools"
-    $qtBin = Find-QtBin
-    $qmake = Join-Path $qtBin "qmake.exe"
-    $lrelease = Join-Path $qtBin "lrelease.exe"
-    $windeployqt = Join-Path $qtBin "windeployqt.exe"
+    $qtBin = Find-QtBin $QtBinDir
+    $qmake = Get-QtTool $qtBin @("qmake.exe", "qmake6.exe")
+    $lrelease = Get-QtTool $qtBin @("lrelease.exe", "lrelease6.exe")
+    $windeployqt = Get-QtTool $qtBin @("windeployqt.exe", "windeployqt6.exe")
     $make = Find-Make $qtBin
 
     if (-not (Test-Path $lrelease)) {
