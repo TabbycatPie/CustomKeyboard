@@ -3,9 +3,9 @@
 #include "DataFlash.h"
 #include "usb.h"
 
-#define MODIFIER_DELAY_DEFAULT 25
+#define MODIFIER_DELAY_DEFAULT 0
 #define MODIFIER_DELAY_FLASH_ADDR 127
-#define MODIFIER_DELAY_LEVEL_MAX 3
+#define MODIFIER_DELAY_LEVEL_MAX 6
 #define WATCHDOG_RELOAD_VALUE 0
 #define ENABLE_WATCHDOG_RESET 0
 
@@ -67,11 +67,14 @@ void EnableWatchdogReset(){
 }
 
 UINT8 modifierDelayFromLevel(UINT8 level){
-	switch(level & 0x03){
-		case 0: return 15;
-		case 1: return 30;
-		case 2: return 50;
-		case 3: return 80;
+	switch(level){
+		case 0: return 0;
+		case 1: return 15;
+		case 2: return 30;
+		case 3: return 50;
+		case 4: return 80;
+		case 5: return 100;
+		case 6: return 200;
 		default: return MODIFIER_DELAY_DEFAULT;
 	}
 }
@@ -80,7 +83,7 @@ void setModifierDelayLevel(UINT8 level){
 	if(level > MODIFIER_DELAY_LEVEL_MAX){
 		level = 0;
 	}
-	MODIFIER_DELAY_LEVEL = level & 0x03;
+	MODIFIER_DELAY_LEVEL = level;
 	MODIFIER_DELAY_MS = modifierDelayFromLevel(MODIFIER_DELAY_LEVEL);
 }
 

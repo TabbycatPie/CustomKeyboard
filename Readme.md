@@ -32,10 +32,13 @@ Available levels:
 
 | Level | Delay |
 |---:|---:|
-| 0 | 15 ms |
-| 1 | 30 ms |
-| 2 | 50 ms |
-| 3 | 80 ms |
+| 0 | Off (0 ms) |
+| 1 | 15 ms |
+| 2 | 30 ms |
+| 3 | 50 ms |
+| 4 | 80 ms |
+| 5 | 100 ms |
+| 6 | 200 ms |
 
 The selected level is saved into the keyboard configuration file and sent to firmware using HID command `0x0e`.
 
@@ -180,7 +183,7 @@ Only enable it after USB enumeration, configuration download, long macro delay, 
 
 ### A modifier hotkey sometimes fails
 
-- Increase **Modifier Delay** from `15 ms` to `30 ms` or `50 ms`.
+- Increase **Modifier Delay** from `0 ms (Off)` to `15 ms`, `30 ms`, or a higher value.
 - Download the configuration again.
 - Reconnect the keyboard and retest the hotkey.
 

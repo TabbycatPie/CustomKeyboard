@@ -169,10 +169,13 @@ void UIPainter::drawDelayPart(int x, int y)
     label_modifier_delay->setGeometry(cur_x,cur_y,this->VKey_len*2.1,this->VKey_len/2);
     label_modifier_delay->setStyleSheet("color:rgb(242, 242, 222);font: 9pt \"Microsoft YaHei UI\";font-size:12px;");
     this->cb_modifier_delay = new QComboBox(this->my_ui);
+    cb_modifier_delay->addItem(tr("0 ms (Off)"));
     cb_modifier_delay->addItem(tr("15 ms"));
     cb_modifier_delay->addItem(tr("30 ms"));
     cb_modifier_delay->addItem(tr("50 ms"));
     cb_modifier_delay->addItem(tr("80 ms"));
+    cb_modifier_delay->addItem(tr("100 ms"));
+    cb_modifier_delay->addItem(tr("200 ms"));
     cb_modifier_delay->setGeometry(cur_x,cur_y+this->VKey_len/2,this->VKey_len*2.1,this->VKey_len/2);
     cb_modifier_delay->setStyleSheet("QComboBox{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:12px;color:rgb(242, 242, 222);}QComboBox QAbstractItemView{background-color:rgb(68, 76, 85);color:rgb(242, 242, 222);selection-background-color:rgb(168, 176, 185);}");
     //set style
