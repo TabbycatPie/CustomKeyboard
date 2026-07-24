@@ -3,14 +3,20 @@
 #include "DataFlash.h"
 #include "usb.h"
 
-#define MODIFIER_DELAY_DEFAULT 0
 #define MODIFIER_DELAY_FLASH_ADDR 127
-#define MODIFIER_DELAY_LEVEL_MAX 6
+#define MODIFIER_DELAY_LEVEL_MAX 10
 #define WATCHDOG_RELOAD_VALUE 0
 #define ENABLE_WATCHDOG_RESET 0
+#define UPTIME_TIMER_RELOAD 0xB1E0
+#define UPTIME_TICKS_PER_SECOND 100
+#define DAILY_RESTART_SECONDS 86400UL
+
+typedef unsigned int uint;
 
 UINT8X MODIFIER_DELAY_LEVEL = 0;
-UINT8X MODIFIER_DELAY_MS = MODIFIER_DELAY_DEFAULT;
+volatile UINT8 UPTIME_TICK_COUNT = 0;
+volatile UINT32 UPTIME_SECONDS = 0;
+volatile UINT8 DAILY_RESTART_PENDING = 0;
 
 //UINT8X MARCO_KEYCODE [50]= { 0x15,0x06,0x10,0x07,0x58,0x15,0x10,0x16,0x17,0x16,  //Win+r,c,m,d,Enter,Win+r,m,s,t,s,
 //														 0x06,0x58,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,	 //c,Enter,,,,,,,,,
@@ -66,16 +72,54 @@ void EnableWatchdogReset(){
 	FeedWatchdog();
 }
 
-UINT8 modifierDelayFromLevel(UINT8 level){
-	switch(level){
+void RestartFirmware(){
+	EA = 0;
+	SAFE_MOD = 0x55;
+	SAFE_MOD = 0xaa;
+	GLOBAL_CFG |= bWDOG_EN | bSW_RESET;
+	while(1);
+}
+
+void InitUptimeTimer(){
+	TR2 = 0;
+	T2CON = 0x00;
+	T2MOD &= ~(bTMR_CLK | bT2_CLK);
+	RCAP2 = UPTIME_TIMER_RELOAD;
+	T2COUNT = UPTIME_TIMER_RELOAD;
+	TF2 = 0;
+	ET2 = 1;
+	TR2 = 1;
+}
+
+void UptimeTimerInterrupt(void) interrupt 5 using 2
+{
+	TF2 = 0;
+	if(DAILY_RESTART_PENDING == 0){
+		UPTIME_TICK_COUNT++;
+		if(UPTIME_TICK_COUNT >= UPTIME_TICKS_PER_SECOND){
+			UPTIME_TICK_COUNT = 0;
+			UPTIME_SECONDS++;
+			if(UPTIME_SECONDS >= DAILY_RESTART_SECONDS){
+				DAILY_RESTART_PENDING = 1;
+			}
+		}
+	}
+}
+
+uint getModifierDelay(uint stage){
+	switch(stage){
 		case 0: return 0;
-		case 1: return 15;
-		case 2: return 30;
-		case 3: return 50;
-		case 4: return 80;
-		case 5: return 100;
-		case 6: return 200;
-		default: return MODIFIER_DELAY_DEFAULT;
+		case 1: return 5;
+		case 2: return 10;
+		case 3: return 20;
+		case 4: return 30;
+		case 5: return 50;
+		case 6: return 100;
+		case 7: return 150;
+		case 8: return 200;
+		case 9: return 300;
+		case 10: return 500;
+		default: return 0;
 	}
 }
 
@@ -84,7 +128,6 @@ void setModifierDelayLevel(UINT8 level){
 		level = 0;
 	}
 	MODIFIER_DELAY_LEVEL = level;
-	MODIFIER_DELAY_MS = modifierDelayFromLevel(MODIFIER_DELAY_LEVEL);
 }
 
 
@@ -143,25 +186,25 @@ void assign_sp_key(UINT8 sp_key_code){
 		{
 			HIDKey  [0] = (sp_key_code & 0x11);
 			HIDSPKeysend();
-			mDelaymS(MODIFIER_DELAY_MS);
+			mDelaymS(getModifierDelay(MODIFIER_DELAY_LEVEL));
 		}
 		if((sp_key_code & 0x88) != 0x00) //left or right win pressed
 		{
 			HIDKey  [0] = (sp_key_code & 0x99);
 			HIDSPKeysend();
-			mDelaymS(MODIFIER_DELAY_MS);
+			mDelaymS(getModifierDelay(MODIFIER_DELAY_LEVEL));
 		}
 		if((sp_key_code & 0x44) != 0x00) //left or right alt pressed
 		{
 			HIDKey  [0] = (sp_key_code & 0xdd);
 			HIDSPKeysend();
-			mDelaymS(MODIFIER_DELAY_MS);
+			mDelaymS(getModifierDelay(MODIFIER_DELAY_LEVEL));
 		}
 		if((sp_key_code & 0x22) != 0x00) //left or right shift pressed
 		{
 			HIDKey  [0] = sp_key_code;
 			HIDSPKeysend();
-			mDelaymS(MODIFIER_DELAY_MS);
+			mDelaymS(getModifierDelay(MODIFIER_DELAY_LEVEL));
 		}
 	}
 }
@@ -731,6 +774,7 @@ void main(){
 	mDelaymS(50);                 //�޸���Ƶ�ȴ��ڲ������ȶ�,�ؼ�
 	USBDeviceInit();              //USB�豸ģʽ��ʼ��
 	initKeyValue();              	//intialize key
+	InitUptimeTimer();
 #if ENABLE_WATCHDOG_RESET
 	EnableWatchdogReset();
 #endif
@@ -739,6 +783,9 @@ void main(){
 	
 	while(1)
 	{
+		if(DAILY_RESTART_PENDING){
+			RestartFirmware();
+		}
 		if(Ready)
 		{
 			//USBö�ٳɹ�����

@@ -18,13 +18,17 @@ Readme.assets/                   README images and UI captures
 - Desktop app: Qt-based keyboard setter.
 - Configuration transport: HID reports sent from the desktop app to the device.
 - Modifier delay support: configurable delay level for modifier-key sequences.
-- Watchdog reset: code is present but disabled by default until hardware validation is complete.
+- Macro delays: stored in one-tenth-second units, including exact 0.7-second steps.
+- Daily restart: firmware schedules a controlled reset after 24 hours of continuous powered uptime.
+- Watchdog reset: general watchdog-reset mode remains disabled by default until hardware validation is complete.
 
 ## User interface
 
-The keyboard setter lets users select a key, assign a normal key or modifier combination, configure macro steps, and download the configuration to the device.
+The keyboard setter lets users select a key, assign a normal key or modifier combination, configure macro steps, and download the configuration to the device. Open **Menu** to load or save configuration files, choose the interface language, and set the global **Modifier Delay** level. The main window no longer has separate Load and Save controls.
 
-![Keyboard setter main interface with modifier delay selector](Readme.assets/configform-modifier-delay.png)
+The existing image below is retained as a legacy layout reference; current builds place **Modifier Delay** in Menu.
+
+![Legacy keyboard setter interface with modifier delay selector](Readme.assets/configform-modifier-delay.png)
 
 The **Modifier Delay** selector controls the delay inserted while sending modifier-key combinations. This can help hosts that need a slightly longer interval between Ctrl/Win/Alt/Shift state changes and the final key event.
 
@@ -33,12 +37,16 @@ Available levels:
 | Level | Delay |
 |---:|---:|
 | 0 | Off (0 ms) |
-| 1 | 15 ms |
-| 2 | 30 ms |
-| 3 | 50 ms |
-| 4 | 80 ms |
-| 5 | 100 ms |
-| 6 | 200 ms |
+| 1 | 5 ms |
+| 2 | 10 ms |
+| 3 | 20 ms |
+| 4 | 30 ms |
+| 5 | 50 ms |
+| 6 | 100 ms |
+| 7 | 150 ms |
+| 8 | 200 ms |
+| 9 | 300 ms |
+| 10 | 500 ms |
 
 The selected level is saved into the keyboard configuration file and sent to firmware using HID command `0x0e`.
 
@@ -56,7 +64,9 @@ Supported macro data includes:
 
 - Normal keyboard keys
 - Modifier keys used with normal keys
-- Delay steps
+- Delay steps stored as an integer number of tenths of a second
+
+Macro **SetDelay** remains in the ADVANCE panel. Typed values and the plus/minus controls are normalized to one decimal place from `0.0` through `25.5` seconds. For example, `0.7` seconds is serialized, stored, and sent as integer byte `7`; firmware executes it as seven 100 ms waits, or 700 ms total.
 
 Limitations:
 
@@ -64,9 +74,11 @@ Limitations:
 - Macro storage is limited by the CH552 on-chip memory layout.
 - Existing firmware layout stores macro and key configuration in a compact 128-byte DataFlash area.
 
-### Mouse and media keys
+### Mouse, media, and Menu keys
 
-Mouse and media functions are configured from the desktop app and are sent as dedicated HID usages. They are configured separately from macro steps.
+Mouse and media functions are configured from the desktop app and are sent as dedicated HID usages. The mouse view labels its controls **Mouse Left**, **Mouse Middle**, and **Mouse Right**. They are configured separately from macro steps.
+
+The virtual keyboard also provides the standard Menu/Application key. It uses USB HID Keyboard/Keypad usage `0x65` and was appended after the existing logical keys, preserving saved-configuration compatibility for indices `1..125`.
 
 ## Firmware configuration layout
 
@@ -144,6 +156,8 @@ CustomKeyboard/usar/
 
 Build it with the existing CH552/Keil-compatible firmware toolchain used by the project. Always validate on a spare test device before flashing production units.
 
+The firmware uses Timer2 as a 10 ms uptime source and schedules a controlled software reset after 86,400 seconds (24 hours) of continuous powered operation. Unplugging or losing power naturally starts the uptime interval again. Timer2 timing, software-reset behavior, USB disconnect/re-enumeration, and DataFlash retention must be validated on a spare CH552 device before production deployment. A practical test should first use a shortened compile-time interval, then restore the production 86,400-second threshold for a long-duration test.
+
 ## Production safety and rollback
 
 Before changing production firmware or the desktop tool:
@@ -168,10 +182,11 @@ Only enable it after USB enumeration, configuration download, long macro delay, 
 1. Plug in the keyboard.
 2. Open the keyboard setter app.
 3. Select the physical key to edit.
-4. Choose a normal key, hotkey, mouse key, media key, or macro sequence.
-5. Optionally adjust **Modifier Delay** if the host misses modifier-key combinations.
-6. Click **PUSH** to download the configuration to the device.
-7. Unplug and reconnect the keyboard to confirm the configuration is persistent.
+4. Choose a normal key, hotkey, mouse key, media key, Menu/Application key, or macro sequence.
+5. Open **Menu** to load/save configurations, choose a language, or adjust **Modifier Delay** if the host misses modifier-key combinations.
+6. Use ADVANCE → **SetDelay** for per-step macro delays such as `0.7` seconds.
+7. Click **PUSH** to download the configuration to the device.
+8. Unplug and reconnect the keyboard to confirm the configuration is persistent.
 
 ## Troubleshooting
 
@@ -183,13 +198,15 @@ Only enable it after USB enumeration, configuration download, long macro delay, 
 
 ### A modifier hotkey sometimes fails
 
-- Increase **Modifier Delay** from `0 ms (Off)` to `15 ms`, `30 ms`, or a higher value.
+- Increase **Modifier Delay** from `0 ms (Off)` to `5 ms`, `10 ms`, or a higher value.
 - Download the configuration again.
 - Reconnect the keyboard and retest the hotkey.
 
 ### Macro delay does not work as expected
 
 - Delay steps are for macro mode, not normal single-key mode.
+- Enter seconds with one decimal digit; `0.7` represents byte value `7` and 700 ms on firmware.
+- Values are rounded to the nearest tenth and constrained to `0.0..25.5` seconds.
 - Keep the macro within firmware storage limits.
 - Mouse and media keys cannot be inserted into macros.
 

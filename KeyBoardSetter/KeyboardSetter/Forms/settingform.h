@@ -4,7 +4,6 @@
 #include "configform.h"
 
 #include <QWidget>
-#include <qtranslator.h>
 
 namespace Ui {
 class settingForm;
@@ -24,8 +23,6 @@ public:
 private:
     Ui::settingForm *ui;
     void changeLanguage(char language);
-    //Translator
-    QTranslator *translator =NULL;
 
 signals:
     void changeConfigFormLanguage(QString language);

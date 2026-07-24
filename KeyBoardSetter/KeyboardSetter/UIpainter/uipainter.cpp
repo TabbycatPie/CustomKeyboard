@@ -63,25 +63,25 @@ int UIPainter::getFullWindowHeight(int CKBrow)
 void UIPainter::drawVMouse(int x,int y){
     int cur_x = x;
     int cur_y = y;
-    QPushButton *lbtn = new QPushButton("",this->my_ui);
-    QPushButton *mbtn = new QPushButton("",this->my_ui);
-    QPushButton *rbtn = new QPushButton("",this->my_ui);
+    QPushButton *lbtn = new QPushButton(tr("Mouse Left"),this->my_ui);
+    QPushButton *mbtn = new QPushButton(tr("Mouse Middle"),this->my_ui);
+    QPushButton *rbtn = new QPushButton(tr("Mouse Right"),this->my_ui);
     this->mouse_body = new QLabel("",this->my_ui);
     //draw right mouse key
-    lbtn->setGeometry(cur_x,cur_y,40,70);
-    cur_x +=(40 + this->Vkey_inter_margin);
+    lbtn->setGeometry(cur_x,cur_y,100,70);
+    cur_x +=(100 + this->Vkey_inter_margin);
     lbtn->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;border-top-left-radius:30px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
     //draw middle mouse key
-    mbtn->setGeometry(cur_x,cur_y+15,15,40);
-    cur_x +=(15 + this->Vkey_inter_margin);
+    mbtn->setGeometry(cur_x,cur_y,100,70);
+    cur_x +=(100 + this->Vkey_inter_margin);
     mbtn->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
     //draw left mouse key
-    rbtn->setGeometry(cur_x,cur_y,40,70);
+    rbtn->setGeometry(cur_x,cur_y,100,70);
     cur_y +=(70 + this->Vkey_inter_margin);
     cur_x = x;
     rbtn->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;border-top-right-radius:30px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
     //draw body
-    mouse_body->setGeometry(cur_x,cur_y,95+2*this->Vkey_inter_margin,95+2*this->Vkey_inter_margin);
+    mouse_body->setGeometry(cur_x,cur_y,300+2*this->Vkey_inter_margin,95+2*this->Vkey_inter_margin);
     mouse_body->setStyleSheet("background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;border-bottom-right-radius:40px;border-bottom-left-radius:40px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);");
     //append to maind list
     this->Vkey_list->append(lbtn);
@@ -138,6 +138,7 @@ void UIPainter::drawADVpanel(int x,int y){
         this->Vkey_list->append(drawVKey(cur_x,cur_y,1.0,1.0,t->getButtonNmae(i)));
         cur_x+= 1.0*this->VKey_len+this->Vkey_inter_margin;
     }
+    this->Vkey_list->append(drawVKey(cur_x,cur_y,1.5,1.0,t->getButtonNmae(126)));
     //begin a new line
     cur_y+= this->VKey_len + this->Vkey_inter_margin;
     cur_x = x;
@@ -165,19 +166,6 @@ void UIPainter::drawDelayPart(int x, int y)
     cur_y=y;
     this->btn_set_delay = this->drawVKey(cur_x,cur_y,2.1,1.0,tr("SetDelay"));
     cur_x+=this->VKey_len*2.1+this->Vkey_inter_margin;
-    this->label_modifier_delay = new QLabel(tr("Modifier Delay"),this->my_ui);
-    label_modifier_delay->setGeometry(cur_x,cur_y,this->VKey_len*2.1,this->VKey_len/2);
-    label_modifier_delay->setStyleSheet("color:rgb(242, 242, 222);font: 9pt \"Microsoft YaHei UI\";font-size:12px;");
-    this->cb_modifier_delay = new QComboBox(this->my_ui);
-    cb_modifier_delay->addItem(tr("0 ms (Off)"));
-    cb_modifier_delay->addItem(tr("15 ms"));
-    cb_modifier_delay->addItem(tr("30 ms"));
-    cb_modifier_delay->addItem(tr("50 ms"));
-    cb_modifier_delay->addItem(tr("80 ms"));
-    cb_modifier_delay->addItem(tr("100 ms"));
-    cb_modifier_delay->addItem(tr("200 ms"));
-    cb_modifier_delay->setGeometry(cur_x,cur_y+this->VKey_len/2,this->VKey_len*2.1,this->VKey_len/2);
-    cb_modifier_delay->setStyleSheet("QComboBox{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:12px;color:rgb(242, 242, 222);}QComboBox QAbstractItemView{background-color:rgb(68, 76, 85);color:rgb(242, 242, 222);selection-background-color:rgb(168, 176, 185);}");
     //set style
     et_delay->setStyleSheet("background-color:rgb(68, 76, 85);\nborder:1px solid rgb(242, 242, 222);\nborder-top-left-radius:7px;\nborder-bottom-left-radius:7px;\npadding:2px 4px;\nfont: 9pt \"Microsoft YaHei UI\";\nfont-size:15px;\ncolor:rgb(242, 242, 222);");
     btn_delay_plus->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-top-right-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
@@ -189,8 +177,6 @@ void UIPainter::showDelayPart()
     this->btn_delay_plus->show();
     this->btn_delay_minus->show();
     this->et_delay->show();
-    this->label_modifier_delay->show();
-    this->cb_modifier_delay->show();
 }
 void UIPainter::hideDelayPart()
 {
@@ -198,8 +184,6 @@ void UIPainter::hideDelayPart()
     this->btn_delay_plus->hide();
     this->btn_delay_minus->hide();
     this->et_delay->hide();
-    this->label_modifier_delay->hide();
-    this->cb_modifier_delay->hide();
 }
 QPushButton *UIPainter::getBtn_addkey() const
 {
@@ -210,13 +194,13 @@ QPushButton *UIPainter::getBtn_delete() const
     return btn_delete;
 }
 void UIPainter::showAdvPanel(){
-    for(int i = 106;i<125;i++){
+    for(int i = 106;i<126;i++){
         this->Vkey_list->data()[i]->show();
     }
     showDelayPart();
 };
 void UIPainter::hideAdvPanel(){
-    for(int i = 106;i<125;i++){
+    for(int i = 106;i<126;i++){
         this->Vkey_list->data()[i]->hide();
     }
     hideDelayPart();
@@ -285,10 +269,6 @@ QPushButton* UIPainter::drawVKey(int x,int y,float block_x,float block_y,QString
 QPushButton *UIPainter::getBtn_set_delay() const
 {
     return btn_set_delay;
-}
-QComboBox *UIPainter::getCb_modifier_delay() const
-{
-    return cb_modifier_delay;
 }
 QLineEdit *UIPainter::getEt_delay() const
 {

@@ -2,11 +2,11 @@
 
 
 //public key board string
-static QString _key_string[126];
+static QString _key_string[127];
 //public key board name
-static QString _key_name[126];
+static QString _key_name[127];
 //public key hex
-static uchar _key_hex[126];
+static uchar _key_hex[127];
 
 #define SPKEYY_NUM 8
 static const int _spkey_index[]={
@@ -153,6 +153,7 @@ HIDCodeTable::HIDCodeTable()
     _key_name[123] = tr("F22"); _key_string[123] = tr("F22");_key_hex[123]=0x71;
     _key_name[124] = tr("F23"); _key_string[124] = tr("F23");_key_hex[124]=0x72;
     _key_name[125] = tr("F24"); _key_string[125] = tr("F24");_key_hex[125]=0x73;
+    _key_name[126] = tr("Menu"); _key_string[126] = tr("Menu");_key_hex[126]=0x65;
     this->key_string = _key_string;
     this->key_name = _key_name;
     this->key_hex = _key_hex;
@@ -214,7 +215,7 @@ KeyValue* HIDCodeTable::convertVector2KeyValue(int normal,int mouse,int media,co
 QString HIDCodeTable::convertKeyValue2QString(KeyValue *kv){
     QString out ="";
     if(kv->getDelay()>0){
-        out = tr("Delay ") + QString::number(kv->getDelay()/10.0f)+"s + ";
+        out = tr("Delay ") + QString::number(kv->getDelay()/10.0, 'f', 1)+"s + ";
     }
     if(kv->getSPKeyList().size()>0 && kv->getSPKeyList()[0]!=0){
         out += getKeyString(kv->getSPKeyList()[0]);

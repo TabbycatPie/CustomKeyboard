@@ -68,6 +68,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="btn_save">
+   <property name="visible">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>909</x>
@@ -106,6 +109,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="btn_load">
+   <property name="visible">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>850</x>
@@ -174,7 +180,7 @@
 </string>
    </property>
    <property name="text">
-    <string>Settings</string>
+    <string>Menu</string>
    </property>
   </widget>
  </widget>

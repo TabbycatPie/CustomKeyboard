@@ -12,9 +12,6 @@ SettingForm::SettingForm(ConfigForm *mainwindow,QWidget *parent) :
     ui(new Ui::settingForm)
 {
     ui->setupUi(this);
-    if(translator == NULL){
-        translator = new QTranslator();
-    }
 
 
     //load from config
@@ -32,11 +29,16 @@ SettingForm::SettingForm(ConfigForm *mainwindow,QWidget *parent) :
         this->cur_lang = 'c';
     }
     //type setting
-    setWindowFlags(Qt::WindowStaysOnTopHint|Qt::CustomizeWindowHint|Qt::WindowCloseButtonHint);
+    setWindowFlags(Qt::Window|Qt::WindowStaysOnTopHint|Qt::CustomizeWindowHint|Qt::WindowCloseButtonHint);
 
-    this->setWindowTitle(tr("Settings"));
+    this->setWindowTitle(tr("Menu"));
+
+    ui->cb_modifier_delay->setCurrentIndex(mainwindow->getModifierDelayLevel());
 
     //connect functions
+    connect(ui->btn_sf_load,&QPushButton::clicked,mainwindow,&ConfigForm::loadConfigFromMenu);
+    connect(ui->btn_sf_save,&QPushButton::clicked,mainwindow,&ConfigForm::saveConfigFromMenu);
+    connect(ui->cb_modifier_delay,static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),mainwindow,&ConfigForm::setModifierDelayLevel);
     connect(ui->btn_sf_ok,&QPushButton::clicked,this,[=]{
         //notice user to restart
         if(cur_lang!=sel_lang){
@@ -88,47 +90,13 @@ void SettingForm::setLanguageBtnTriggered(int btn_no)
             break;
     }
 }
-/*******************************************************
- * change UI language
- * @para:QString language:"cn" for chinese
- *                        "en" for english
- *       QTranslator     : global translator
- * @return:  void
- * ******************************************************/
-void changeUILaneguage(QString language,QTranslator *translator){
-    QString flag = "english";
-    if(language=="cn"){
-        QString path = QCoreApplication::applicationDirPath() + "//trans_zh_CN.qm";
-        translator->load(path);
-        if(qApp->installTranslator(translator)){
-            qDebug() << "Using chinese as UI language.";
-            flag = "chinese";
-        }
-        else{
-            qDebug() << "Can not load UI language:cn";
-        }
-    }else if(language=="en"){
-        QString path = QCoreApplication::applicationDirPath() + "//trans_en_US.qm";
-        bool is_load = translator->load(path);
-        if(qApp->installTranslator(translator) && is_load){
-            qDebug() << "Using english as UI language.";
-            flag = "english";
-        }
-        else{
-            qDebug() << "Can not load UI language:en";
-        }
-    }
-}
-
 void SettingForm::changeLanguage(char language){
     switch (language) {
     case 'c':
         setLanguageBtnTriggered(1);
-        changeUILaneguage("cn",this->translator);
         break;
     case 'e':
         setLanguageBtnTriggered(2);
-        changeUILaneguage("en",this->translator);
         break;
     default:
         break;

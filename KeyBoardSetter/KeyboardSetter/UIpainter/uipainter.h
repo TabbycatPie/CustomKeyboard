@@ -7,7 +7,6 @@
 #include <qlabel.h>
 #include <QTextBrowser>
 #include <qlineedit.h>
-#include <QComboBox>
 
 class UIPainter : public QObject
 {
@@ -71,7 +70,6 @@ public:
     QPushButton *getBtn_delay_minus() const;
     QLineEdit *getEt_delay() const;
     QPushButton *getBtn_set_delay() const;
-    QComboBox *getCb_modifier_delay() const;
 
 private:
     QWidget *my_ui;
@@ -100,8 +98,6 @@ private:
     //advance pannel delay
     QLineEdit* et_delay;
     QPushButton* btn_delay_plus,*btn_delay_minus,*btn_set_delay;
-    QLabel* label_modifier_delay;
-    QComboBox* cb_modifier_delay;
     //----other component
     QLabel *mouse_body;
 

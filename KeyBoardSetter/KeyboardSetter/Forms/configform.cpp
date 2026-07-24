@@ -5,7 +5,6 @@
 #include "ui_configform.h"
 #include "UIpainter/uipainter.h"
 #include "Utils/userconfig.h"
-#include <QComboBox>
 #include <QDebug>
 #include <QLabel>
 #include <qfiledialog.h>
@@ -18,7 +17,7 @@ void updateUI();
 
 QVector<QPushButton *> *vkey_list;
 CustomKeyboard *my_ckb;
-HIDCodeTable cf_table;
+HIDCodeTable *cf_table = NULL;
 UIPainter *painter;
 int row = 2;
 int col = 5;
@@ -38,6 +37,9 @@ ConfigForm::ConfigForm(QWidget *parent)
     ui(new Ui::ConfigForm)
 {
     ui->setupUi(this);
+    if(cf_table == NULL){
+        cf_table = new HIDCodeTable();
+    }
     if(translator == NULL){
         translator = new QTranslator();
     }
@@ -75,10 +77,6 @@ ConfigForm::ConfigForm(QWidget *parent)
     connect(ui->btn_download,&QPushButton::clicked,this,[=]{
         downloadToDevice();
     });
-    painter->getCb_modifier_delay()->setCurrentIndex(my_ckb->getModifierDelayLevel());
-    connect(painter->getCb_modifier_delay(),static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged),this,[=](int index){
-        my_ckb->setModifierDelayLevel(index);
-    });
     connect(painter->getBtn_delay_plus(),&QPushButton::clicked,this,[=]{
         delayindecrease(true);
     });
@@ -95,7 +93,8 @@ ConfigForm::ConfigForm(QWidget *parent)
         deleteKeyValue();
     });
     connect(ui->btn_settings,&QPushButton::clicked,this,[=]{
-        SettingForm *sf = new SettingForm(this);
+        SettingForm *sf = new SettingForm(this,this);
+        sf->setAttribute(Qt::WA_DeleteOnClose);
         sf->show();
     });
     this->setWindowTitle(tr("ZDDKeyboardSetter"));
@@ -110,37 +109,28 @@ bool ConfigForm::deleteKeyValue(){
     return true;
 }
 void ConfigForm::setDelay(){
-    QString temp = painter->getEt_delay()->text();
-    float delay = temp.toFloat();
-    int delay_int = (int)(delay * 10);
-    cf_cur_delay = (uchar) delay_int;
+    bool ok = false;
+    double delay = painter->getEt_delay()->text().toDouble(&ok);
+    int delay_tenths = ok ? qRound(delay * 10.0) : 0;
+    delay_tenths = qBound(0,delay_tenths,255);
+    cf_cur_delay = (uchar) delay_tenths;
+    painter->getEt_delay()->setText(QString::number(delay_tenths / 10.0,'f',1));
     updateUI();
 }
 void ConfigForm::delayindecrease(bool is_add){
-    QString temp = painter->getEt_delay()->text();
-    float delay = temp.toFloat();
-    if(is_add){
-        //increase delay
-        if(delay < 25.5f)
-            delay += 0.1f;
-        else{
-            delay = 25.5f;
-        }
-    }
-    else{
-        //decrease delay
-        if(delay > 0.1f)
-            delay -= 0.1f;
-        else
-            delay = 0.0f;
-    }
-    painter->getEt_delay()->setText(QString::number(delay));
+    bool ok = false;
+    double delay = painter->getEt_delay()->text().toDouble(&ok);
+    int delay_tenths = ok ? qRound(delay * 10.0) : 0;
+    delay_tenths = qBound(0,delay_tenths,255);
+    delay_tenths += is_add ? 1 : -1;
+    delay_tenths = qBound(0,delay_tenths,255);
+    painter->getEt_delay()->setText(QString::number(delay_tenths / 10.0,'f',1));
 }
 bool ConfigForm::downloadToDevice(){
     int result = -1;
     QMessageBox msg_result(this);
     msg_result.setStyleSheet("color:rgb(242, 242, 222);");
-    result = my_ckb->download(&cf_table);
+    result = my_ckb->download(cf_table);
     if(result == 1){
         msg_result.setWindowTitle(tr("Notice"));
         msg_result.setText(tr("Download finished!"));
@@ -181,7 +171,6 @@ bool ConfigForm::loadConfigFromFile(){
             return false;
         }else{
             my_ckb = CustomKeyboard::fromJson(ckbjsonobj,painter->getCKBkey_list()->data());
-            painter->getCb_modifier_delay()->setCurrentIndex(my_ckb->getModifierDelayLevel());
             updateUI();
             QMessageBox msg_info(this);
             msg_info.setStyleSheet("color:rgb(242, 242, 222);");
@@ -232,7 +221,7 @@ void ConfigForm::softKeyPressed(int i){
         painter->getBtn_addkey()->show();
         painter->getBtn_delete()->hide();
         //painter->getBtn_delete()->hide();
-        if(cf_table.isSPkey(i)){
+        if(cf_table->isSPkey(i)){
             //clear single key except normal key
             cf_cur_media = 0;
             cf_cur_mouse = 0;
@@ -255,7 +244,7 @@ void ConfigForm::softKeyPressed(int i){
                 painter->setVkeyTriggered(i-1);
             }
         }
-        else if(cf_table.isMouseKey(i)){
+        else if(cf_table->isMouseKey(i)){
             //clear other single key
             cf_cur_media = 0;
             //clear noraml
@@ -270,7 +259,7 @@ void ConfigForm::softKeyPressed(int i){
                 addKeyValue();
             }
         }
-        else if(cf_table.isMediaKey(i)){
+        else if(cf_table->isMediaKey(i)){
             //clear other single key
            cf_cur_mouse = 0;
            if(cf_cur_key_normal.size()>0){
@@ -317,7 +306,7 @@ bool ConfigForm::addKeyValue()
     int temp_normal = 0;
     if(cf_cur_key_normal.size() > 0)
         temp_normal = cf_cur_key_normal[0];
-    KeyValue *temp_kv = cf_table.convertVector2KeyValue(temp_normal,cf_cur_mouse,cf_cur_media,cf_cur_key_sp);
+    KeyValue *temp_kv = cf_table->convertVector2KeyValue(temp_normal,cf_cur_mouse,cf_cur_media,cf_cur_key_sp);
     temp_kv->setDelay(cf_cur_delay);
     if(cf_cur_mouse != 0 ){
         //add mouse key
@@ -378,11 +367,28 @@ bool ConfigForm::addKeyValue()
     cf_cur_delay =0;
     //untirgger all sp keys
     for(int i = 0;i<8;i++){
-        painter->setVkeyUntriggered(cf_table.getSPkeybByindex(i)-1);
+        painter->setVkeyUntriggered(cf_table->getSPkeybByindex(i)-1);
     }
     updateUI();
     return true;
 }
+void ConfigForm::loadConfigFromMenu()
+{
+    loadConfigFromFile();
+}
+void ConfigForm::saveConfigFromMenu()
+{
+    saveConfigToFile();
+}
+int ConfigForm::getModifierDelayLevel() const
+{
+    return my_ckb->getModifierDelayLevel();
+}
+void ConfigForm::setModifierDelayLevel(int level)
+{
+    my_ckb->setModifierDelayLevel(level);
+}
+
 ConfigForm::~ConfigForm()
 {
     hid_exit();
@@ -425,19 +431,19 @@ void updateUI(){
     //update soft keyboard label
     QString temp = "";
     if(!cf_cur_key_sp.isEmpty()){
-        temp = cf_table.getKeyString(cf_cur_key_sp[0]);
+        temp = cf_table->getKeyString(cf_cur_key_sp[0]);
         for(int i = 1;i<cf_cur_key_sp.size();i++){
-            temp += " + " +  cf_table.getKeyString(cf_cur_key_sp[i]);
+            temp += " + " +  cf_table->getKeyString(cf_cur_key_sp[i]);
         }
     }
     if(!cf_cur_key_normal.isEmpty()){
         int i = 0;
         if(temp == ""){
-            temp = cf_table.getKeyString(cf_cur_key_normal[0]);
+            temp = cf_table->getKeyString(cf_cur_key_normal[0]);
             i++;
         }
         for(;i<cf_cur_key_normal.size();i++){
-            temp += " + " +  cf_table.getKeyString(cf_cur_key_normal[i]);
+            temp += " + " +  cf_table->getKeyString(cf_cur_key_normal[i]);
         }
     }
     if(cf_cur_delay!=0){
@@ -446,10 +452,10 @@ void updateUI(){
     }
     // these keys is single
     if(cf_cur_media!=0){
-        temp = cf_table.getKeyString(cf_cur_media);
+        temp = cf_table->getKeyString(cf_cur_media);
     }
     if(cf_cur_mouse!=0){
-        temp = cf_table.getKeyString(cf_cur_mouse);
+        temp = cf_table->getKeyString(cf_cur_mouse);
     }
 
     //set selector color
@@ -458,9 +464,9 @@ void updateUI(){
         QString str_temp ="";
         QVector<KeyValue*> kvs = my_ckb->getCustomKeyByID(cf_cur_edit_key_no)->getKeyValueList();
         if(!kvs.isEmpty()){
-            str_temp = "(" + cf_table.convertKeyValue2QString(kvs[0])+")";
+            str_temp = "(" + cf_table->convertKeyValue2QString(kvs[0])+")";
             for(int i =1;i<kvs.size();i++){
-                str_temp += " + ("+cf_table.convertKeyValue2QString(kvs[i])+")";
+                str_temp += " + ("+cf_table->convertKeyValue2QString(kvs[i])+")";
             }
         }
         //set text

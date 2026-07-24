@@ -628,7 +628,7 @@ int CustomKeyboard::getMacro_key_count() const
 
 void CustomKeyboard::setModifierDelayLevel(int level)
 {
-    if(level < 0 || level > 6){
+    if(level < 0 || level > 10){
         level = 0;
     }
     this->modifier_delay_level = level;

@@ -36,6 +36,10 @@ private:
     bool deleteKeyValue();
  public slots:
     void changeLanguage(QString language);
+    void loadConfigFromMenu();
+    void saveConfigFromMenu();
+    int getModifierDelayLevel() const;
+    void setModifierDelayLevel(int level);
 
 };
 
