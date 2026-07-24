@@ -35,7 +35,7 @@ private:
     void setDelay();
     bool deleteKeyValue();
  public slots:
-    void changeLanguage(QString language);
+    bool changeLanguage(QString language);
 
 };
 

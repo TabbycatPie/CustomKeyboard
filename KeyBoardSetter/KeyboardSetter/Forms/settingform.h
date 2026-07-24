@@ -23,7 +23,7 @@ public:
 
 private:
     Ui::settingForm *ui;
-    void changeLanguage(char language);
+    bool changeLanguage(char language);
     //Translator
     QTranslator *translator =NULL;
 

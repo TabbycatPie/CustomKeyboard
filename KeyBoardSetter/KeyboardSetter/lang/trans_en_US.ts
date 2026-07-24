@@ -1577,6 +1577,10 @@
         <translatorcomment>A Restart is needed to apply language changing.</translatorcomment>
         <translation>A Restart is needed to apply language changing.</translation>
     </message>
+    <message>
+        <source>Switching language requires reopening the application.</source>
+        <translation>Switching language requires reopening the application.</translation>
+    </message>
 </context>
 <context>
     <name>UIPainter</name>
@@ -1584,6 +1588,14 @@
         <location filename="uipainter.cpp" line="36"/>
         <source>KEY</source>
         <translation>KEY</translation>
+    </message>
+    <message>
+        <source>Left mouse button click</source>
+        <translation>Left mouse button click</translation>
+    </message>
+    <message>
+        <source>Middle mouse button click</source>
+        <translation>Middle mouse button click</translation>
     </message>
     <message>
         <location filename="uipainter.cpp" line="111"/>

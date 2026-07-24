@@ -389,28 +389,31 @@ ConfigForm::~ConfigForm()
     delete translator;
     delete ui;
 }
-void ConfigForm::changeLanguage(QString language){
-    QString flag = "english";
+bool ConfigForm::changeLanguage(QString language){
+    QString flag;
+    QString path;
     if(language=="cn"){
-        QString path = QCoreApplication::applicationDirPath() + "//trans_zh_CN.qm";
-        translator->load(path);
-        if(qApp->installTranslator(translator)){
-            qDebug() << "Using chinese as UI language.";
-            flag = "chinese";
-        }
-        else{
-            qDebug() << "Can not load UI language:cn";
-        }
+        path = QCoreApplication::applicationDirPath() + "//trans_zh_CN.qm";
+        flag = "chinese";
     }else if(language=="en"){
-        QString path = QCoreApplication::applicationDirPath() + "//trans_en_US.qm";
-        bool is_load = translator->load(path);
-        if(qApp->installTranslator(translator) && is_load){
-            qDebug() << "Using english as UI language.";
-            flag = "english";
-        }
-        else{
-            qDebug() << "Can not load UI language:en";
-        }
+        path = QCoreApplication::applicationDirPath() + "//trans_en_US.qm";
+        flag = "english";
+    }else{
+        return false;
+    }
+
+    qApp->removeTranslator(translator);
+    if(!translator->load(path) || !qApp->installTranslator(translator)){
+        qDebug() << "Can not load UI language:" << language;
+        return false;
+    }
+    qDebug() << "Using" << flag << "as UI language.";
+
+    ui->retranslateUi(this);
+    this->setWindowTitle(tr("Config Your Custom Keyboard"));
+    if(painter != NULL){
+        painter->retranslateUi();
+        updateUI();
     }
 
     //save user language information to file
@@ -420,6 +423,7 @@ void ConfigForm::changeLanguage(QString language){
     if(!cs.saveConfig(filename,userconfig->toJsonObj()))
         qDebug()  << cs.getLastError();
     delete userconfig;
+    return true;
 }
 void updateUI(){
     //update soft keyboard label

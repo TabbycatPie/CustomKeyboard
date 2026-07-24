@@ -38,28 +38,23 @@ SettingForm::SettingForm(ConfigForm *mainwindow,QWidget *parent) :
 
     //connect functions
     connect(ui->btn_sf_ok,&QPushButton::clicked,this,[=]{
-        //notice user to restart
-        if(cur_lang!=sel_lang){
-            //if there is a language changing
-            QMessageBox msg_info(this);
-            msg_info.setStyleSheet("color:rgb(242, 242, 222);");
-            msg_info.setWindowTitle(tr("Notice"));
-            msg_info.setText(tr("A Restart is needed to apply language changing."));
-            msg_info.setIcon(QMessageBox::Information);
-            msg_info.setStandardButtons(QMessageBox::Ok);
-            msg_info.exec();
-        }
         this->close();
     });
     connect(ui->btn_sf_chinese,&QPushButton::clicked,this,[=]{
-        changeLanguage('c');
-        this->sel_lang = 'c';
-        mainwindow->changeLanguage("cn");
+        if(changeLanguage('c') && mainwindow->changeLanguage("cn")){
+            this->sel_lang = 'c';
+            this->cur_lang = 'c';
+        }else{
+            QMessageBox::information(this,tr("Notice"),tr("Switching language requires reopening the application."));
+        }
     });
     connect(ui->btn_sf_english,&QPushButton::clicked,this,[=]{
-        changeLanguage('e');
-        this->sel_lang = 'e';
-        mainwindow->changeLanguage("en");
+        if(changeLanguage('e') && mainwindow->changeLanguage("en")){
+            this->sel_lang = 'e';
+            this->cur_lang = 'e';
+        }else{
+            QMessageBox::information(this,tr("Notice"),tr("Switching language requires reopening the application."));
+        }
     });
 }
 
@@ -120,19 +115,27 @@ void changeUILaneguage(QString language,QTranslator *translator){
     }
 }
 
-void SettingForm::changeLanguage(char language){
-    switch (language) {
-    case 'c':
-        setLanguageBtnTriggered(1);
-        changeUILaneguage("cn",this->translator);
-        break;
-    case 'e':
-        setLanguageBtnTriggered(2);
-        changeUILaneguage("en",this->translator);
-        break;
-    default:
-        break;
+bool SettingForm::changeLanguage(char language){
+    QString path;
+    int button = 0;
+    if(language == 'c'){
+        path = QCoreApplication::applicationDirPath() + "//trans_zh_CN.qm";
+        button = 1;
+    }else if(language == 'e'){
+        path = QCoreApplication::applicationDirPath() + "//trans_en_US.qm";
+        button = 2;
+    }else{
+        return false;
     }
+
+    qApp->removeTranslator(translator);
+    if(!translator->load(path) || !qApp->installTranslator(translator)){
+        return false;
+    }
+    setLanguageBtnTriggered(button);
+    ui->retranslateUi(this);
+    this->setWindowTitle(tr("Settings"));
+    return true;
 }
 
 SettingForm::~SettingForm()

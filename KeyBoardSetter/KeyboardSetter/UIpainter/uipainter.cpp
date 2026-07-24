@@ -66,15 +66,19 @@ void UIPainter::drawVMouse(int x,int y){
     QPushButton *lbtn = new QPushButton("",this->my_ui);
     QPushButton *mbtn = new QPushButton("",this->my_ui);
     QPushButton *rbtn = new QPushButton("",this->my_ui);
+    this->mouse_left_btn = lbtn;
+    this->mouse_middle_btn = mbtn;
     this->mouse_body = new QLabel("",this->my_ui);
     //draw right mouse key
     lbtn->setGeometry(cur_x,cur_y,40,70);
     cur_x +=(40 + this->Vkey_inter_margin);
-    lbtn->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;border-top-left-radius:30px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
+    lbtn->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-top-left-radius:30px;border-top-right-radius:7px;border-bottom-left-radius:7px;border-bottom-right-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
+    lbtn->setToolTip(tr("Left mouse button click"));
     //draw middle mouse key
     mbtn->setGeometry(cur_x,cur_y+15,15,40);
     cur_x +=(15 + this->Vkey_inter_margin);
     mbtn->setStyleSheet("QPushButton{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt \"Microsoft YaHei UI\";font-size:10px;color:rgb(242, 242, 222);}QPushButton:hover{background-color:rgb(168, 176, 185);}QPushButton:pressed{background-color:rgb(18, 26, 35);color:rgb(202, 202,182);}");
+    mbtn->setToolTip(tr("Middle mouse button click"));
     //draw left mouse key
     rbtn->setGeometry(cur_x,cur_y,40,70);
     cur_y +=(70 + this->Vkey_inter_margin);
@@ -101,6 +105,17 @@ void UIPainter::hideVMouse()
         Vkey_list->data()[i]->hide();
     }
     this->mouse_body->hide();
+}
+void UIPainter::retranslateUi()
+{
+    mouse_left_btn->setToolTip(tr("Left mouse button click"));
+    mouse_middle_btn->setToolTip(tr("Middle mouse button click"));
+    btn_addkey->setText(tr("ADD"));
+    btn_delete->setText(tr("DELETE"));
+    btn_set_delay->setText(tr("SetDelay"));
+    SW_list->data()[0]->setText(tr("KEYBOARD"));
+    SW_list->data()[1]->setText(tr("MOUSE"));
+    SW_list->data()[2]->setText(tr("ADVANCE"));
 }
 //---------------Paint Output TextBrowser---------------------------//
 void UIPainter::drawOutputPort(int x, int y)
