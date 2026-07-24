@@ -20,6 +20,7 @@ CustomKeyboard::CustomKeyboard(QString _name,int keynum,unsigned short pid,unsig
     this->macro_spkey = 10;
     this->macro_delay = 10;
     this->macro_key_count = 10;
+    this->modifier_delay_level = 0;
 
     this->last_error = "";
 
@@ -48,6 +49,7 @@ CustomKeyboard::CustomKeyboard(QString _name, int keynum, unsigned short pid, un
     this->macro_spkey = 10;
     this->macro_delay = 10;
     this->macro_key_count = 10;
+    this->modifier_delay_level = 0;
 
     this->last_error = "";
 
@@ -68,6 +70,7 @@ CustomKeyboard::CustomKeyboard(unsigned short pid, unsigned short vid)
 {
     this->pid = pid;
     this->vid = vid;
+    this->modifier_delay_level = 0;
     this->normal_keycode = new uchar[1];
     this->spkey_mixcode = new uchar[1];
 }
@@ -156,6 +159,7 @@ int CustomKeyboard::download(HIDCodeTable *table){
         uchar frame_set_media[65]={0x00};
         uchar frame_set_delay[65]={0x00};
         uchar frame_set_delay_index[65]={0x00};
+        uchar frame_set_modifier_delay[65]={0x00};
 
         QVector<uchar> temp_macro_buffer,temp_macro_index_buffer, //macro indecies and buffer
                        temp_macro_sp_buffer,temp_macro_sp_index,  //macro sp indecies and buffer
@@ -176,6 +180,7 @@ int CustomKeyboard::download(HIDCodeTable *table){
         frame_set_media            [0]= 0x00;
         frame_set_delay            [0]= 0x00;
         frame_set_delay_index      [0]= 0x00;
+        frame_set_modifier_delay   [0]= 0x00;
 
         //set frame header
         frame_set_normal           [1]= 0x01;   // set KEY_CODE          [10]
@@ -189,6 +194,7 @@ int CustomKeyboard::download(HIDCodeTable *table){
         frame_set_media            [1]= 0x09;   // set MEDIA_CODE        [10]
         frame_set_delay            [1]= 0x0a;   // set marco_DELAY       [10]
         frame_set_delay_index      [1]= 0x0b;   // set marco_DELAY_INDX  [10]
+        frame_set_modifier_delay   [1]= 0x0e;   // set modifier delay level
 
         //generate frames
         for(int i = 0;i<this->getKeynum();i++){
@@ -288,8 +294,11 @@ int CustomKeyboard::download(HIDCodeTable *table){
             frame_set_macro[i+2] = temp_macro_buffer[i];
         }
 
+        frame_set_modifier_delay[2] = (uchar)this->modifier_delay_level;
+
 
         bool get_ack = false;
+        bool modifier_delay_ack = false;
         //set hid device to blocking mode
         hid_set_nonblocking(my_device,0);
         //send setting frames to device
@@ -315,15 +324,24 @@ int CustomKeyboard::download(HIDCodeTable *table){
         get_ack = (getACK(my_device) && get_ack);
         int res7 = hid_write(my_device,frame_set_macro,65);
         get_ack = (getACK(my_device) && get_ack);
+        int res12= hid_write(my_device,frame_set_modifier_delay,65);
+        modifier_delay_ack = getACK(my_device);
+        get_ack = (modifier_delay_ack && get_ack);
 
         if(res1 != -1 && res2 != -1 && res3!= -1 && res4 != -1 && res5 != -1
                 && res6 != -1 && res7 != -1 && res8 != -1 && res9 !=-1 && res10 != -1
-                && res11!= -1 )
+                && res11!= -1 && res12 != -1 )
         {
             if(!get_ack){
-                last_error = tr("Can not get all ACKs!");
-                qDebug() << "Can not get all ACKs.";
-                logToMain("Can not get all ACKs.");
+                if(!modifier_delay_ack){
+                    last_error = tr("Base config was sent, but modifier delay ACK failed. Please update firmware for modifier delay support.");
+                    qDebug() << "Modifier delay ACK failed.";
+                    logToMain("Modifier delay ACK failed.");
+                }else{
+                    last_error = tr("Can not get all ACKs!");
+                    qDebug() << "Can not get all ACKs.";
+                    logToMain("Can not get all ACKs.");
+                }
                 hid_close(my_device);
                 hid_exit();
                 return 0;
@@ -559,6 +577,7 @@ QJsonObject CustomKeyboard::toJsonObj()
     ckbjson.insert("pid",this->pid);
     ckbjson.insert("vid",this->vid);
     ckbjson.insert("keynum",this->keynum);
+    ckbjson.insert("modifier_delay_level",this->modifier_delay_level);
     QJsonArray cklist = QJsonArray();
     for(int i = 0;i<this->key_list.size();i++){
         cklist.append(this->key_list[i]->toJsonObj());
@@ -573,6 +592,7 @@ CustomKeyboard *CustomKeyboard::fromJson(QJsonObject jsonobj, QPushButton *(*map
     unsigned short _pid = (unsigned short)jsonobj.value("pid").toInt();
     unsigned short _vid = (unsigned short)jsonobj.value("vid").toInt();
     int _keynum = jsonobj.value("keynum").toInt();
+    int _modifier_delay_level = jsonobj.value("modifier_delay_level").toInt(0);
     QJsonArray jsonarray = jsonobj.value("ck_list").toArray();
     QVector<CustomKey*> *ck_list = new QVector<CustomKey*>();
     for(int i = 0;i<_keynum;i++){
@@ -582,6 +602,7 @@ CustomKeyboard *CustomKeyboard::fromJson(QJsonObject jsonobj, QPushButton *(*map
     }
     CustomKeyboard *ckb = new CustomKeyboard(_name,_keynum,_pid,_vid,mapping_button_list);
     ckb->setKeyList(*ck_list);
+    ckb->setModifierDelayLevel(_modifier_delay_level);
     return ckb;
 }
 
@@ -603,6 +624,19 @@ int CustomKeyboard::getMacro_delay() const
 int CustomKeyboard::getMacro_key_count() const
 {
     return macro_key_count;
+}
+
+void CustomKeyboard::setModifierDelayLevel(int level)
+{
+    if(level < 0 || level > 3){
+        level = 0;
+    }
+    this->modifier_delay_level = level;
+}
+
+int CustomKeyboard::getModifierDelayLevel() const
+{
+    return modifier_delay_level;
 }
 
 

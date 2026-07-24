@@ -177,6 +177,39 @@
     <string>Settings</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_modifier_delay">
+   <property name="geometry">
+    <rect>
+     <x>850</x>
+     <y>220</y>
+     <width>120</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:rgb(242, 242, 222);font: 9pt &quot;Microsoft YaHei UI&quot;;font-size:12px;</string>
+   </property>
+   <property name="text">
+    <string>Modifier Delay</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cb_modifier_delay">
+   <property name="geometry">
+    <rect>
+     <x>850</x>
+     <y>245</y>
+     <width>120</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QComboBox{background-color:rgb(68, 76, 85);border:1px solid rgb(242, 242, 222);border-radius:7px;padding:2px 4px;font: 9pt &quot;Microsoft YaHei UI&quot;;font-size:12px;color:rgb(242, 242, 222);}QComboBox QAbstractItemView{background-color:rgb(68, 76, 85);color:rgb(242, 242, 222);selection-background-color:rgb(168, 176, 185);}</string>
+   </property>
+   <item><property name="text"><string>15 ms</string></property></item>
+   <item><property name="text"><string>30 ms</string></property></item>
+   <item><property name="text"><string>50 ms</string></property></item>
+   <item><property name="text"><string>80 ms</string></property></item>
+  </widget>
  </widget>
  <resources/>
  <connections/>
